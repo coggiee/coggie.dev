@@ -42,16 +42,17 @@ const parsePost = (postPath: string): Post | undefined => {
       readingMinutes: Math.ceil(readingTime(content).minutes),
       wordCount: content.split(/\s+/gu).length,
     };
-  } catch (error) {
-    console.error(error);
+  } catch (e) {
+    // console.error(e);
   }
 }
 
 export const getAllPosts = () => {
-  const postPaths = sync(`${POSTS_PATH}/**/*.mdx`);
-  return postPaths.map((path) => {
-    return {
-      slug: path.slice(path.indexOf(BASE_PATH)).replace('.mdx', ''),
-    };
-  });
+  const postPaths: string[] = sync(`${POSTS_PATH}/**/*.mdx`);
+  return postPaths.reduce<Post[]>((ac, postPath) => {
+    const post = parsePost(postPath);
+    if (!post) return ac;
+
+    return [ ...ac, post ];
+  }, []);
 };
