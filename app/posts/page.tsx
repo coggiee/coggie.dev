@@ -1,4 +1,4 @@
-import { getAllPosts } from '../libs/post';
+import { getAllPosts } from '../libs/posts';
 
 async function getProps() {
   return {

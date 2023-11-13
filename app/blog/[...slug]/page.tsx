@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/app/libs/post";
+import { getAllPosts } from "@/app/libs/posts";
 
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
