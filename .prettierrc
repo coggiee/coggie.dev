@@ -7,5 +7,6 @@
   "printWidth": 120,
   "parser": "babel",
   "bracketSpacing": true,
-  "arrowParens": "avoid"
+  "arrowParens": "always",
+  "endOfLine": "auto"
 }
