@@ -1,9 +1,34 @@
-import { Container } from "../components/Container";
+import { allPosts } from '@/.contentlayer/generated';
+import { BlogPost } from '../components/BlogPost';
 
-export const Blog = () => {
+async function getProps() {
+  const posts = allPosts.sort(
+    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+  );
+
+  return {
+    props: {
+      posts,
+    },
+  };
+}
+
+export default async function Blog() {
+  const {
+    props: { posts },
+  } = await getProps();
   return (
-    <Container>
+    <div>
       <span className={`font-bold`}>BLOG</span>
-    </Container>
+      {posts.map((post) => (
+        <BlogPost
+          key={post._id}
+          date={post.date}
+          title={post.title}
+          description={post.description}
+          slug={post._raw.flattenedPath}
+        />
+      ))}
+    </div>
   );
 }
