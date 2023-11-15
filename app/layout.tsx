@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
 import { Nav } from './components/Nav';
-
-const inter = Inter({ subsets: ['latin'] });
+import './globals.css';
+import { blackHanSans, inter } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${blackHanSans.variable}`}>
         <Nav />
         {children}
       </body>
