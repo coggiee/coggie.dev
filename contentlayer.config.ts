@@ -32,7 +32,9 @@ export const Post = defineDocumentType(() => ({
     tags: {
       type: 'list',
       of: { type: 'string' },
+      required: true,
     },
+    hot: { type: 'boolean' }, // 읽으면 좋은 포스트 표시
     draft: { type: 'boolean', required: true },
   },
   computedFields: {
