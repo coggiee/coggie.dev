@@ -1,8 +1,23 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypePrettyCode from 'rehype-pretty-code';
 import remarkGfm from 'remark-gfm';
+import remarkToc from 'remark-toc';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypePrettyCode from 'rehype-pretty-code';
+import rehypeSlug from 'rehype-slug';
+import rehypeCodeTitles from 'rehype-code-titles';
+import rehypeExternalLinks from 'rehype-external-links';
 import fs from 'node:fs';
+
+export const calculateReadingTime = (text: string) => {
+  const wordsPerMinute = 200;
+  // Step 3: Calculate the word count
+  const noOfWords = text.split(/\s/g).length;
+  // Step 4: Calculate the estimated reading time (in minutes)
+  const minutes = noOfWords / wordsPerMinute;
+  const readTime = Math.ceil(minutes);
+  // Step 5: Format the output
+  return `${readTime} min read`;
+};
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -25,6 +40,10 @@ export const Post = defineDocumentType(() => ({
       type: 'string',
       resolve: (post) => `/posts/${post._raw.flattenedPath}`,
     },
+    readTimeMinutes: {
+      type: 'number',
+      resolve: (doc) => calculateReadingTime(doc.body.code),
+    },
   },
 }));
 
@@ -42,15 +61,35 @@ export default makeSource({
   contentDirPath: 'posts',
   documentTypes: [Post],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [
+      remarkGfm,
+      [
+        remarkToc,
+        {
+          heading: '목차',
+          maxDepth: 3,
+        },
+      ],
+    ],
     rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
       [rehypePrettyCode, rehypeOptions],
       [
         rehypeAutolinkHeadings,
         {
+          behavior: 'wrap',
+          content: undefined,
           properties: {
             className: ['anchor'],
           },
+        },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['nofollow', 'noopener', 'noreferrer'],
         },
       ],
     ],
