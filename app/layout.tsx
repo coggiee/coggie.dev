@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Nav } from './components/Nav';
 import './globals.css';
 import { blackHanSans, inter } from './fonts';
+import { Footer } from './components/Footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +18,10 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${inter.variable} ${blackHanSans.variable}`}>
         <Nav />
-        {children}
+        <main className='flex flex-col justify-center items-center min-h-screen text-stone-800 px-5'>
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );
