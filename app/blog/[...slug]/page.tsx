@@ -1,6 +1,7 @@
 import { format, parseISO } from 'date-fns';
 import { allPosts } from 'contentlayer/generated';
 import { getMDXComponent } from 'next-contentlayer/hooks';
+import { formatDate } from '@/utils/formatDate'
 
 // similar with getStaticPaths
 export const generateStaticParams = async () => {
@@ -37,18 +38,19 @@ export default async function PostPage({
   return (
     <div className='prose dark:prose-dark mt-4 w-full max-w-none'>
       <article className='mx-auto max-w-xl py-8'>
-        <div className='mb-8 text-center'>
+        <div className='mb-8'>
           <time dateTime={post!.date} className='mb-1 text-xs text-gray-600'>
-            {format(parseISO(post!.date), 'LLLL d, yyyy')}
+            <div>{formatDate(post!.date)}</div>
+            <div>{format(parseISO(post!.date), 'H:mm')} - {post!.readTimeMinutes}</div>
           </time>
-          <div className='flex justify-center items-center'>
+          <div className='flex justify-start items-center'>
             {post!.tags?.map((tag: string) => (
               <div key={tag} className='text-xs text-gray-600 mr-2'>
                 {tag}
               </div>
             ))}
           </div>
-          <h1 className='text-3xl font-bold'>{post!.title}</h1>
+          <h1 className='text-5xl font-bold'>{post!.title}</h1>
           <MDXComponent />
         </div>
       </article>

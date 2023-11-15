@@ -1,3 +1,4 @@
+import { format, parseISO } from 'date-fns';
 import { allPosts } from '@/.contentlayer/generated';
 import { BlogPost } from '../components/BlogPost';
 
@@ -23,7 +24,7 @@ export default async function Blog() {
       {posts.map((post) => (
         <BlogPost
           key={post._id}
-          date={post.date}
+          date={format(parseISO(post!.date), 'cccc LLLL d, yyyy ')}
           title={post.title}
           description={post.description}
           slug={post._raw.flattenedPath}

@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { formatDate } from '@/utils/formatDate';
+import { parseISO } from 'date-fns';
 
-export const RecentPosts = ({posts} : {posts: any}) => {
+export const RecentPosts = ({ posts }: { posts: any }) => {
   return (
     <section className={`mt-10`}>
       <h1 className={`text-3xl font-extrabold`}>최근 게시물</h1>
@@ -9,7 +11,7 @@ export const RecentPosts = ({posts} : {posts: any}) => {
           <div key={post.slug} className=' border-black border-2 m-5'>
             <Link href={`/blog/${post._raw.flattenedPath}`} passHref>
               <div className='font-medium text-xs text-gray-400'>
-                {post.date}
+                {formatDate(post.date)}
               </div>
               <div className={`font-medium text-xl`}>{post.title}</div>
               <div className={`font-light`}>{post.description}</div>
