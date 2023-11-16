@@ -2,3 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 @import url(./prose.css);
+
+ul {
+  list-style: revert; /* 또는 revert; */
+  margin: revert;
+  padding: revert;
+}
