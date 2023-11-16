@@ -17,15 +17,6 @@ const config: Config = {
         inter: ['var(--font-inter)'],
         blackHanSans: ['var(--font-blackHanSans)'],
       },
-      typography: (theme: any) => ({
-        DEFAULT: {
-          css: {
-            'h1, h2, h3, h4': {
-              'scroll-margin-top': '4.5rem',
-            },
-          },
-        },
-      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],

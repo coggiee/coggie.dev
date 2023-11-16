@@ -67,13 +67,6 @@ export default makeSource({
     remarkPlugins: [
       remarkGfm,
       remarkBreaks,
-      [
-        remarkToc,
-        {
-          heading: '목차',
-          maxDepth: 3,
-        },
-      ],
     ],
     rehypePlugins: [
       rehypeSlug,
