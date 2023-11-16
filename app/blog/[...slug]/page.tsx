@@ -8,6 +8,8 @@ import IconTimerSand from '@/app/Icons/IconTimerSand';
 import { ko } from 'date-fns/locale';
 import IconBxCalendarStar from '@/app/Icons/IconBxCalendarStar';
 import IconLink from '@/app/Icons/IconLink';
+import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
+import { TocSidebar } from '@/app/components/post/Toc';
 
 // similar with getStaticPaths
 export const generateStaticParams = async () => {
@@ -42,16 +44,17 @@ export default async function PostPage({
 
   const MDXComponent = getMDXComponent(post!.body.code);
   return (
-    <div className='prose dark:prose-dark w-full max-w-full'>
-      <article className='flex flex-col flex-grow min-w-0 w-full mx-auto md:max-w-4xl py-8 border-b-[1px] border-gray-300'>
-        <div className='mb-8 flex flex-col min-w-0 w-full'>
+    <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse relative gap-10 mx-auto'>
+      <TocSidebar tableOfContents={parseHeaderForTOC(post!.body.raw)} />
+      <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words'>
+        <div className='mb-8 flex flex-col'>
           <h1 className='text-4xl font-bold w-full break-words'>
             {post!.title}
           </h1>
           <div className='flex justify-start items-center gap-2 mb-5'>
             {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
           </div>
-          <div className='w-full flex justify-between items-center'>
+          <div className='w-full flex justify-between items-center mb-16 pb-10 border-b-[1px]'>
             <time
               dateTime={post!.date}
               className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
@@ -73,7 +76,7 @@ export default async function PostPage({
               <IconLink />
             </button>
           </div>
-          <MDXComponent />
+            <MDXComponent />
         </div>
       </article>
     </div>
