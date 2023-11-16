@@ -55,7 +55,7 @@ code[data-line-numbers-max-digits='3'] > [data-line]::before {
   cursor: pointer;
 }
 
-.prose .anchor:after {
+.prose .anchor:before {
   @apply text-gray-300 dark:text-gray-700;
   content: '#';
 }
@@ -63,4 +63,9 @@ code[data-line-numbers-max-digits='3'] > [data-line]::before {
 .anchor:hover,
 .prose *:hover > .anchor {
   @apply visible;
+}
+
+.prose .rehype-code-title {
+  /* ... */
+  @apply rounded-t-lg border border-b-0 px-5 py-3 text-sm font-bold;
 }
