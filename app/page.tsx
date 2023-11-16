@@ -2,7 +2,7 @@ import { Hero } from './components/Hero';
 import { InfoSection } from './components/InfoSection';
 import { PostSection } from './components/PostSection';
 import { allPosts } from '@/.contentlayer/generated';
-import { UpdateSection } from './components/UpdateSection';
+import { Sidebar } from './components/sidebar/Sidebar';
 
 async function getProps() {
   const posts = allPosts.sort(
@@ -31,7 +31,7 @@ export default async function Home() {
         <PostSection posts={hotPosts} title={'읽어 볼만한 포스트'} />
         <InfoSection />
       </div>
-      <UpdateSection />
+      <Sidebar />
     </section>
   );
 }
