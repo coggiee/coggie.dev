@@ -1,3 +1,7 @@
+'use client';
+
+import { useState } from 'react';
+
 interface Items {
   title: string;
   description?: string[] | null;
@@ -12,12 +16,21 @@ export const InfoCard = ({
   isDesc: boolean;
   items: Items[];
 }) => {
+  const [isFold, setIsFold] = useState<boolean>(false);
+
+  const handleFoldState = () => {
+    setIsFold((prev) => !prev);
+  };
+
   return (
-    <div className='flex flex-col gap-5'>
-      <h1 className='text-3xl font-bold decoration-[#f7ab0a]/50 underline underline-offset-8'>
-        {title}
-      </h1>
-      <div className='flex flex-col'>
+    <div className='flex flex-col gap-5 items-start'>
+      <button
+        className='text-3xl font-bold decoration-[#f7ab0a]/50 underline underline-offset-8'
+        onClick={handleFoldState}
+      >
+        <span className='hover:bg-[#f7ab0a]/50 transition-colors'>{title}</span>
+      </button>
+      <div className={` flex flex-col transition-all duration-500 ease-in-out`}>
         {isDesc &&
           items.map(
             (item) =>
