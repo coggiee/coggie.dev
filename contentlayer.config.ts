@@ -43,7 +43,7 @@ export const Post = defineDocumentType(() => ({
       resolve: (post) => `/posts/${post._raw.flattenedPath}`,
     },
     readTimeMinutes: {
-      type: 'number',
+      type: 'string',
       resolve: (doc) => calculateReadingTime(doc.body.code),
     },
   },
