@@ -25,7 +25,7 @@ export default async function Home() {
   } = await getProps();
 
   return (
-    <section className='w-full mx-auto flex flex-col md:flex-row gap-5 relative'>
+    <section className='w-full mx-auto flex flex-col md:max-w-6xl md:flex-row gap-5 relative'>
       <div className='flex flex-col flex-grow min-w-0 w-full border-b-2 mb-3'>
         <Hero />
         <PostSection posts={hotPosts} title={'읽어 볼만한 포스트'} />

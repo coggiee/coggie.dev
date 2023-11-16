@@ -8,7 +8,7 @@ export const Hero = () => {
           <Image
             src={'/profile.jpg'}
             layout='fill'
-            objectFit='cover'
+            objectFit='contain'
             alt='프로필 이미지'
             className='absolute'
           />
