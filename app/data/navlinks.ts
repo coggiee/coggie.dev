@@ -3,6 +3,6 @@ interface NavLink {
   link: string;
 }
 export const navLinks: NavLink[] = [
-  { title: 'Home', link: '/' },
-  { title: 'Blog', link: '/blog' },
+  { title: '홈', link: '/' },
+  { title: '포스트', link: '/blog' },
 ];
