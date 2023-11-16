@@ -17,11 +17,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${inter.variable} ${blackHanSans.variable}`}>
-        <Nav />
-        <main className='flex flex-col justify-center items-center min-h-screen text-stone-800 px-5'>
-          {children}
-        </main>
-        <Footer />
+        <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
+          <Nav />
+          <main className='flex-grow flex flex-col items-center w-full px-5 md:flex-row md:items-baseline'>
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
