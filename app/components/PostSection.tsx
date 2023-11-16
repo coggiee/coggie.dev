@@ -20,6 +20,7 @@ export const PostSection = ({
             description={post.description}
             path={post._raw.flattenedPath}
             tags={post.tags}
+            readTimeMinutes={post.readTimeMinutes}
           />
         ))}
       </div>

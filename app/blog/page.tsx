@@ -1,6 +1,5 @@
-import { format, parseISO } from 'date-fns';
 import { allPosts } from '@/.contentlayer/generated';
-import { BlogPost } from '../components/BlogPost';
+import { PostCard } from '../components/PostCard';
 
 async function getProps() {
   const posts = allPosts.sort(
@@ -19,17 +18,32 @@ export default async function Blog() {
     props: { posts },
   } = await getProps();
   return (
-    <div>
-      <span className={`font-bold`}>BLOG</span>
-      {posts.map((post) => (
-        <BlogPost
-          key={post._id}
-          date={format(parseISO(post!.date), 'cccc LLLL d, yyyy ')}
-          title={post.title}
-          description={post.description}
-          slug={post._raw.flattenedPath}
-        />
-      ))}
-    </div>
+    <section className='w-full mx-auto flex-grow md:max-w-3xl flex flex-col gap-3'>
+      <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5'>
+        이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
+      </header>
+      {/* <div>Select Tag</div> */}
+      <div className='flex-1'>
+        <span className='font-bold text-2xl decoration-[#f7ab0a]/50 underline underline-offset-8 decoration-wavy inline-block mr-2'>
+          All posts
+        </span>
+        <span className='font-bold'>
+          ({posts.length})
+        </span>
+        <div>
+          {posts.map((post) => (
+            <PostCard
+              key={post._id}
+              date={post.date}
+              title={post.title}
+              description={post.description}
+              path={post._raw.flattenedPath}
+              tags={post.tags}
+              readTimeMinutes={post.readTimeMinutes}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
