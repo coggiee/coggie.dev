@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
+import remarkBreaks from 'remark-breaks'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
@@ -65,6 +66,7 @@ export default makeSource({
   mdx: {
     remarkPlugins: [
       remarkGfm,
+      remarkBreaks,
       [
         remarkToc,
         {
