@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { Tag } from './Tag';
 import { format, parseISO } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import IconBxCalendarStar from '../Icons/IconBxCalendarStar';
-import IconTimerSand from '../Icons/IconTimerSand';
+import IconBxCalendarStar from '../../Icons/IconBxCalendarStar';
+import IconTimerSand from '../../Icons/IconTimerSand';
 interface PostCardProps {
   date: string;
   title: string;

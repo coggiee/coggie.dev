@@ -1,9 +1,9 @@
 import { navLinks } from '@/app/data/navlinks';
 import Link from 'next/link';
 import { Logo } from './Logo';
-import IconSearch from '../Icons/IconSearch';
-import IconApplemusic from '../Icons/IconAppleMusic';
-import IconGlobe from '../Icons/IconGlobe';
+import IconSearch from '../../Icons/IconSearch';
+import IconApplemusic from '../../Icons/IconAppleMusic';
+import IconGlobe from '../../Icons/IconGlobe';
 
 export const Nav = () => {
   return (
@@ -22,11 +22,14 @@ export const Nav = () => {
         <div className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'>
           <IconSearch />
         </div>
-        <div className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md' aria-label='playlist'>
-          <IconApplemusic className='transition-colors hover:text-[#ff5474]'/>
+        <div
+          className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'
+          aria-label='playlist'
+        >
+          <IconApplemusic className='transition-colors hover:text-[#ff5474]' />
         </div>
         <div className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'>
-          <IconGlobe className='transition-colors hover:text-[#4860ff]'/>
+          <IconGlobe className='transition-colors hover:text-[#4860ff]' />
         </div>
       </div>
     </nav>
