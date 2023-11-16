@@ -10,7 +10,7 @@ export const PostSection = ({
 }) => {
   return (
     <section className='mt-10'>
-      <h1 className='text-3xl font-bold mb-10 decoration-[#f7ab0a]/50 underline underline-offset-8'>{title}</h1>
+      <h1 className='text-3xl font-bold mb-10 underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'>{title}</h1>
       <div className='flex flex-col'>
         {posts.map((post: any) => (
           <PostCard

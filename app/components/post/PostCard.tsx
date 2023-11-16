@@ -23,7 +23,7 @@ export const PostCard = ({
   readTimeMinutes,
 }: PostCardProps) => {
   return (
-    <div className='border-b-2 m-2 p-5 shadow-md rounded-lg font-mono'>
+    <div className='border-b-2 border-[#f7ab0a] m-2 p-5 shadow-md rounded-lg font-mono hover:scale-105 duration-300'>
       <Link href={`/blog/${path}`} passHref className='flex flex-col gap-2'>
         <div className='font-medium text-xs text-gray-400 flex gap-2 items-center'>
           <IconBxCalendarStar />
@@ -34,8 +34,8 @@ export const PostCard = ({
           <IconTimerSand />
           {readTimeMinutes.split(' ').slice(0, 2).join(' ')}
         </div>
-        <div className='text-2xl'>{title}</div>
-        <div className='font-light text-ellipsis overflow-hidden whitespace-nowrap'>
+        <div className='text-xl w-full break-words'>{title}</div>
+        <div className='font-light w-full text-ellipsis overflow-hidden whitespace-nowrap'>
           {description}
         </div>
         <div className='flex gap-3 text-sm'>

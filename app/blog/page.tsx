@@ -1,5 +1,5 @@
 import { allPosts } from '@/.contentlayer/generated';
-import { PostCard } from '../components/PostCard';
+import { PostCard } from '../components/post/PostCard';
 
 async function getProps() {
   const posts = allPosts.sort(
@@ -23,13 +23,13 @@ export default async function Blog() {
         이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
       </header>
       {/* <div>Select Tag</div> */}
-      <div className='flex-1'>
-        <span className='font-bold text-2xl decoration-[#f7ab0a]/50 underline underline-offset-8 decoration-wavy inline-block mr-2'>
-          All posts
-        </span>
-        <span className='font-bold'>
-          ({posts.length})
-        </span>
+      <div className='flex-1 flex flex-col gap-5'>
+        <div>
+          <span className='font-bold text-2xl  underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy inline-block mr-2'>
+            📝 All posts
+          </span>
+          <span className='font-bold'>({posts.length})</span>
+        </div>
         <div>
           {posts.map((post) => (
             <PostCard

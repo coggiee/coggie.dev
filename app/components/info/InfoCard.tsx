@@ -25,7 +25,7 @@ export const InfoCard = ({
   return (
     <div className='flex flex-col gap-5 items-start'>
       <button
-        className='text-3xl font-bold decoration-[#f7ab0a]/50 underline underline-offset-8'
+        className='text-3xl font-bold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'
         onClick={handleFoldState}
       >
         <span className='hover:bg-[#f7ab0a]/50 transition-colors'>{title}</span>
