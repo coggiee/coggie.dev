@@ -29,7 +29,6 @@ export default async function Home() {
       <div className='flex flex-col flex-grow min-w-0 w-full border-b-2 mb-3'>
         <Hero />
         <PostSection posts={hotPosts} title={'🔥 읽어 볼만한 포스트'} />
-        <InfoSection />
       </div>
       <Sidebar />
     </section>
