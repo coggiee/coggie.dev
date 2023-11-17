@@ -29,16 +29,22 @@ export const Nav = () => {
         </div>
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
-        <div className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'>
+        <div
+          className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'
+          data-tip='search'
+        >
           <IconSearch />
         </div>
         <div
-          className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'
-          aria-label='playlist'
+          className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'
+          data-tip='playlist'
         >
           <IconApplemusic className='transition-colors hover:text-[#ff5474]' />
         </div>
-        <div className='cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'>
+        <div
+          className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md'
+          data-tip='language'
+        >
           <IconGlobe className='transition-colors hover:text-[#4860ff]' />
         </div>
       </div>
