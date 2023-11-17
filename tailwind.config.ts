@@ -19,9 +19,9 @@ const config: Config = {
       },
       transitionProperty: {
         'max-height': 'max-height',
-      }
+      },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
 };
 export default config;
