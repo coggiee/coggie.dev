@@ -4,7 +4,7 @@ interface UpdateList {
 
 export const updateList: UpdateList[] = [
   {title: 'tag filter'},
-  {title: 'edit on page & markdown preview'},
+  {title: 'edit on page & markdown preview with debounce'},
   {title: 'connect to db'},
   {title: 'theme switcher(darkmode)'},
   {title: 'search content'},
