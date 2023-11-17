@@ -2,7 +2,7 @@
 
 import { navLinks } from '@/app/data/navlinks';
 import Link from 'next/link';
-import { Logo } from './Logo';
+import { Avatar } from './Avatar';
 import IconSearch from '../../Icons/IconSearch';
 import IconApplemusic from '../../Icons/IconAppleMusic';
 import IconGlobe from '../../Icons/IconGlobe';
@@ -13,7 +13,7 @@ export const Nav = () => {
   return (
     <nav className='sticky top-0 left-0 h-24 px-10 text-lg flex justify-between items-center border-b border-white-400 backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full'>
       <div className='flex justify-between items-center gap-5'>
-        <Logo />
+        <Avatar />
         <div className='flex items-center gap-5 font-blackHanSans'>
           {navLinks.map((nav) => (
             <Link
