@@ -7,6 +7,8 @@ import IconSearch from '../../Icons/IconSearch';
 import IconApplemusic from '../../Icons/IconAppleMusic';
 import IconGlobe from '../../Icons/IconGlobe';
 import { usePathname } from 'next/navigation';
+import IconSun from '@/app/Icons/IconSun';
+import IconMoon from '@/app/Icons/IconMoon';
 
 export const Nav = () => {
   const pathname = usePathname();
@@ -46,6 +48,18 @@ export const Nav = () => {
           data-tip='language'
         >
           <IconGlobe className='transition-colors hover:text-[#4860ff]' />
+        </div>
+        <div className='flex justify-center items-center'>
+          <label className='swap swap-rotate'>
+            {/* this hidden checkbox controls the state */}
+            <input
+              type='checkbox'
+              className='theme-controller'
+              value='synthwave'
+            />
+            <IconSun className='swap-on fill-current text-[#ffde49]'/>
+            <IconMoon className='swap-off fill-current text-[#8046ff]'/>
+          </label>
         </div>
       </div>
     </nav>
