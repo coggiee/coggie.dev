@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -13,8 +13,15 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+        blackHanSans: ['var(--font-blackHanSans)'],
+      },
+      transitionProperty: {
+        'max-height': 'max-height',
+      },
     },
   },
-  plugins: [],
-}
-export default config
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+};
+export default config;

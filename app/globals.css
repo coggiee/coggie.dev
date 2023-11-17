@@ -1,27 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url(./prose.css);
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+ul {
+  list-style: revert; /* 또는 revert; */
+  margin: revert;
+  padding: revert;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+h2#toc {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h2#toc + ul {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+h2#toc + ul li a {
+  text-decoration: underline;
+  display: block;
+  width: 100%;
+  overflow-wrap: break-words;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 1024px) {
+  h2#toc {
+    display: none;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  h2#toc + ul {
+    display: none;
+  }
 }
