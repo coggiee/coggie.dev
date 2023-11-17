@@ -52,19 +52,7 @@ export const Hero = () => {
             </div>
           </main>
         </div>
-        {/* <button
-          onClick={handleOnClickUnfoldButton}
-          data-collapse-target='collapse-1'
-          className='flex justify-center items-center text-2xl mt-5'
-        >
-          {isOpen ? <IconChevronUp className='animate-bounce'/> : <IconChevronDown className='animate-bounce'/>}
-        </button> */}
-        {/* <div
-          className='h-0 overflow-hidden transition-all duration-300 ease-in-out'
-          data-collapse='collapse-1'
-        > */}
-          <InfoSection />
-        {/* </div> */}
+        <InfoSection />
       </div>
     </section>
   );
