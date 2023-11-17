@@ -3,6 +3,7 @@ import { Nav } from './components/ui/Nav';
 import './globals.css';
 import { blackHanSans, inter } from './fonts';
 import { Footer } from './components/ui/Footer';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,6 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
+      <head>
+        <Script src='https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js' />
+      </head>
       <body className={`${inter.variable} ${blackHanSans.variable}`}>
         <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
           <Nav />

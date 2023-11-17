@@ -3,6 +3,8 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { InfoSection } from './info/InfoSection';
+import IconChevronDown from '../Icons/IconChevronDown';
+import IconChevronUp from '../Icons/IconChevronUp';
 
 export const Hero = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -11,7 +13,7 @@ export const Hero = () => {
   };
   return (
     <section className='p-5 rounded-xl shadow-xl'>
-      <div className='flex flex-col gap-5 '>
+      <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-10 md:flex-row'>
           <aside className='h-64 w-full md:h-40 relative lg:h-96 border-r-[1px]'>
             <Image
@@ -50,14 +52,18 @@ export const Hero = () => {
             </div>
           </main>
         </div>
-        <div
-          className={`overflow-hidden transition-all duration-300 ease-in-out max-h-0 ${
-            isOpen ? 'max-h-fit' : ''
-          }`}
+        <button
+          onClick={handleOnClickUnfoldButton}
+          data-collapse-target='collapse-1'
         >
-          {isOpen && <InfoSection />}
+          {isOpen ? <IconChevronUp /> : <IconChevronDown />}
+        </button>
+        <div
+          className='h-0 overflow-hidden transition-all duration-300 ease-in-out'
+          data-collapse='collapse-1'
+        >
+          <InfoSection />
         </div>
-        <button onClick={handleOnClickUnfoldButton}>CLICK</button>
       </div>
     </section>
   );
