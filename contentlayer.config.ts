@@ -67,6 +67,7 @@ export default makeSource({
     remarkPlugins: [
       remarkGfm,
       remarkBreaks,
+      remarkToc,
     ],
     rehypePlugins: [
       rehypeSlug,

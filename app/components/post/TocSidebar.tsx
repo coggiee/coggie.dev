@@ -26,10 +26,11 @@ interface IHeadingTops {
 }
 
 interface TocSideProps {
+  isSidebar: boolean;
   tableOfContents: Toc[];
 }
 
-export const TocSidebar = ({ tableOfContents }: TocSideProps) => {
+export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
   const [activeToc, setActiveToc] = useState('');
   const [headingTops, setHeadingTops] = useState<null | IHeadingTops[]>([]);
 
@@ -87,22 +88,42 @@ export const TocSidebar = ({ tableOfContents }: TocSideProps) => {
   }, [headingTops]);
 
   return (
-    <div className='hidden lg:block sticky top-[120px] right-0 h-fit border-b-2 border-[#f7ab0a]/50 min-w-[240px] max-w-[260px]'>
+    <div
+      className={`${
+        isSidebar
+          ? 'hidden lg:block sticky top-[120px] right-0 h-fit border-b-2 border-[#f7ab0a]/50 min-w-[240px] max-w-[260px] mb-10'
+          : 'block lg:hidden w-full h-fit'
+      }`}
+    >
       {tableOfContents.length ? (
-        <div className='p-5'>
-          <div className='font-semibold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'>
+        <div className={`${isSidebar ? 'p-5' : ''} mb-10`}>
+          <div
+            className={`${
+              isSidebar ? '' : 'text-2xl'
+            } font-semibold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy`}
+          >
             목차
           </div>
-          <ul className='mt-2 flex flex-col items-start justify-start text-sm list-none m-0 p-0'>
+          <ul
+            className={`${
+              isSidebar
+                ? 'mt-2 list-none m-0 p-0 flex flex-col items-start justify-start text-sm'
+                : 'mt-10 text-lg'
+            }  `}
+          >
             {tableOfContents.map((toc, i) => (
               <li
                 data-level={numberToStringMap[toc.level]}
                 key={i}
-                className={`${activeToc === toc.slug ? 'active' : ''} ${
-                  numberToStringMap[toc.level] === 'two' ? 'ml-4 ' : ''
-                } ${
-                  numberToStringMap[toc.level] === 'three' ? 'ml-8' : ''
-                } w-full my-1 p-0`}
+                className={`${
+                  isSidebar
+                    ? `my-1 p-0  w-full${
+                        numberToStringMap[toc.level] === 'two' ? 'ml-4 ' : ''
+                      } ${
+                        numberToStringMap[toc.level] === 'three' ? 'ml-8' : ''
+                      }`
+                    : 'mb-5'
+                } ${activeToc === toc.slug ? 'active' : ''}`}
               >
                 <Link
                   href={`#${toc.slug}`}
@@ -110,7 +131,9 @@ export const TocSidebar = ({ tableOfContents }: TocSideProps) => {
                     numberToStringMap[toc.level] === 'one' ? '' : 'gap-1'
                   } flex items-center hover:text-[#f7ab0a] transition-colors`}
                 >
-                  {numberToStringMap[toc.level] === 'one' ? null : <IconChevronRight />}
+                  {numberToStringMap[toc.level] === 'one' ? null : isSidebar ? (
+                    <IconChevronRight />
+                  ) : null}
                   <span className='truncate overflow-hidden whitespace-nowrap'>
                     {toc.text}
                   </span>
