@@ -96,7 +96,7 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
       }`}
     >
       {tableOfContents.length ? (
-        <div className={`${isSidebar ? 'p-5' : ''} mb-10`}>
+        <div className={`${isSidebar ? 'p-5' : ''}`}>
           <div
             className={`${
               isSidebar ? '' : 'text-2xl'
@@ -117,7 +117,7 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
                 key={i}
                 className={`${
                   isSidebar
-                    ? `my-1 p-0  w-full${
+                    ? `my-1 p-0  w-full ${
                         numberToStringMap[toc.level] === 'two' ? 'ml-4 ' : ''
                       } ${
                         numberToStringMap[toc.level] === 'three' ? 'ml-8' : ''

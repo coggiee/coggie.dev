@@ -57,7 +57,7 @@ export default async function PostPage({
           <div className='flex justify-start items-center gap-2 mb-5'>
             {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
           </div>
-          <div className='w-full flex justify-between items-center pb-10 border-b-[1px]'>
+          <div className='w-full flex justify-between items-center pb-10 border-b-[1px] mb-10'>
             <time
               dateTime={post!.date}
               className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
