@@ -8,3 +8,22 @@ ul {
   margin: revert;
   padding: revert;
 }
+
+h2#toc {
+  margin-bottom: 0.5rem;
+}
+
+h2#toc + ul {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+h2#toc + ul li a {
+  display: block;
+  width: 100%;
+  overflow-wrap: break-words;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
