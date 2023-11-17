@@ -17,6 +17,9 @@ const config: Config = {
         inter: ['var(--font-inter)'],
         blackHanSans: ['var(--font-blackHanSans)'],
       },
+      transitionProperty: {
+        'max-height': 'max-height',
+      }
     },
   },
   plugins: [require('@tailwindcss/typography')],
