@@ -55,7 +55,7 @@ export const Hero = () => {
         <button
           onClick={handleOnClickUnfoldButton}
           data-collapse-target='collapse-1'
-          className='flex justify-center items-center'
+          className='flex justify-center items-center text-2xl mt-5'
         >
           {isOpen ? <IconChevronUp className='animate-bounce'/> : <IconChevronDown className='animate-bounce'/>}
         </button>
