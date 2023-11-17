@@ -11,17 +11,19 @@ async function getProps() {
 
   // 읽을 만한 포스트 필터링
   const hotPosts = posts.filter((post) => post?.hot === true);
+  const recentPosts = posts.slice(0, 5);
 
   return {
     props: {
       hotPosts,
+      recentPosts
     },
   };
 }
 
 export default async function Home() {
   const {
-    props: { hotPosts },
+    props: { hotPosts, recentPosts },
   } = await getProps();
 
   return (
@@ -29,6 +31,7 @@ export default async function Home() {
       <div className='flex flex-col flex-grow min-w-0 w-full border-b-2 mb-3'>
         <Hero />
         <PostSection posts={hotPosts} title={'🔥 읽어 볼만한 포스트'} />
+        <PostSection posts={recentPosts} title={'📅 최근 포스트'} />
       </div>
       <Sidebar />
     </section>
