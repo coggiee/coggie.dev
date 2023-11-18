@@ -16,6 +16,8 @@ const config: Config = {
       fontFamily: {
         inter: ['var(--font-inter)'],
         blackHanSans: ['var(--font-blackHanSans)'],
+        notosanskr: ['var(--font-notosanskr)'],
+        lato: ['var(--font-lato)'],
       },
       transitionProperty: {
         'max-height': 'max-height',
