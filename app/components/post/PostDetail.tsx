@@ -16,7 +16,7 @@ import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import { CopyAlert } from '../ui/CopyAlert';
-import { Comment } from './Comment';
+import Giscus from './Giscus';
 
 export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
@@ -80,7 +80,7 @@ export const PostDetail = ({ post }: { post: Post }) => {
             <MDXComponent />
           </div>
         </article>
-        <Comment />
+        <Giscus />
       </div>
       {isAlertVisible && <CopyAlert />}
     </div>
