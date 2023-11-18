@@ -1,5 +1,5 @@
 import { allPosts } from 'contentlayer/generated';
-import { PostDetail } from '@/app/components/PostDetail';
+import { PostDetail } from '@/app/components/post/PostDetail';
 
 // similar with getStaticPaths
 export const generateStaticParams = async () => {
