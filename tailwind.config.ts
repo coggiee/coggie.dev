@@ -18,6 +18,8 @@ const config: Config = {
         blackHanSans: ['var(--font-blackHanSans)'],
         notosanskr: ['var(--font-notosanskr)'],
         lato: ['var(--font-lato)'],
+        pretendard: ['var(--font-pretendard)'],
+        tossface: ['var(--font-tossface)'],
       },
       transitionProperty: {
         'max-height': 'max-height',
