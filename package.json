@@ -16,7 +16,6 @@
     "next": "14.0.2",
     "next-contentlayer": "^0.3.4",
     "next-mdx-remote": "^4.4.1",
-    "next-sitemap": "^4.2.3",
     "node-youtube-music": "^0.10.3",
     "react": "^18",
     "react-dom": "^18",
