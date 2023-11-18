@@ -16,7 +16,7 @@ export const Hero = () => {
     <section className='p-5 rounded-xl shadow-xl'>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-10 md:flex-row'>
-          <aside className='h-64 w-full md:h-40 relative lg:h-96 border-r-[1px]'>
+          <aside className='h-64 w-full md:h-52 relative lg:h-96 md:border-r-[1px]'>
             <Image
               src={'/profile.jpg'}
               layout='fill'
