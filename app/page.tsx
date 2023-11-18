@@ -1,5 +1,4 @@
 import { Hero } from './components/Hero';
-import { InfoSection } from './components/info/InfoSection';
 import { PostSection } from './components/post/PostSection';
 import { allPosts } from '@/.contentlayer/generated';
 import { Sidebar } from './components/sidebar/Sidebar';
