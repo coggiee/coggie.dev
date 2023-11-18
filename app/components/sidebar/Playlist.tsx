@@ -14,7 +14,7 @@ export const Playlist = async () => {
   return (
     <div className='flex flex-col justify-start gap-2 h-full  relative border-[1px] p-3 pt-0 rounded-2xl shadow-lg'>
       <header className='sticky top-0 left-0 bg-white pb-3 pt-3'>
-        <h4 className='flex gap-1 items-center font-mono'>
+        <h4 className='flex gap-1 items-center font-lato'>
           <span>Playlist</span>
           <IconYoutubemusic className='text-xs text-[#9a9a9a]' />
         </h4>
