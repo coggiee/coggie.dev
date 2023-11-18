@@ -10,8 +10,8 @@ export const PostSection = ({
   title: string;
 }) => {
   return (
-    <section className='mt-10 mb-10'>
-      <h1 className='text-3xl font-bold mb-10 underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'>
+    <section className='mt-10 mb-10 font-notosanskr'>
+      <h1 className='text-2xl font-medium mb-10 underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'>
         {title}
       </h1>
       <div className='flex flex-col'>

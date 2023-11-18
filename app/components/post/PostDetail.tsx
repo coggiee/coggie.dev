@@ -16,17 +16,15 @@ import HorizontalProgress from '../ui/HorizontalProgress';
 
 export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
-
+  const parsedToc = parseHeaderForTOC(post!.body.raw);
   const MDXComponent = getMDXComponent(post!.body.code);
   return (
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto'>
       <HorizontalProgress scroll={scroll} />
-      <TocSidebar
-        tableOfContents={parseHeaderForTOC(post!.body.raw)}
-        isSidebar={true}
-      />
-      <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words'>
+      <TocSidebar tableOfContents={parsedToc} isSidebar={false} />
+
+      <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
         <div className='mb-8 flex flex-col'>
           <h1 className='text-4xl font-bold w-full break-words'>
             {post!.title}

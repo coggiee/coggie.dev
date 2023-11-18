@@ -32,6 +32,5 @@ export default async function PostPage({
     props: { post },
   } = await getProps({ params });
 
-  // const MDXComponent = getMDXComponent(post!.body.code);
   return <PostDetail post={post!} />;
 }

@@ -23,7 +23,7 @@ export const PostCard = ({
   readTimeMinutes,
 }: PostCardProps) => {
   return (
-    <div className='card bg-base-100 shadow-md font-mono hover:scale-105 duration-300 m-2'>
+    <div className='card bg-base-100 shadow-md font-notosanskr hover:scale-105 duration-300 m-2'>
       <div className='card-body'>
         <Link href={`/blog/${path}`} passHref className='flex flex-col gap-2'>
           <div className='font-medium text-xs text-gray-400 flex gap-2 items-center'>

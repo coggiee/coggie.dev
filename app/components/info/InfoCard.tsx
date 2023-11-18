@@ -25,18 +25,18 @@ export const InfoCard = ({
   return (
     <div className='flex flex-col gap-5 items-start'>
       <button
-        className='text-3xl font-bold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'
+        className='text-2xl font-bold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'
         onClick={handleFoldState}
       >
         <span className='hover:bg-[#f7ab0a]/50 transition-colors'>{title}</span>
       </button>
-      <div className={` flex flex-col transition-all duration-500 ease-in-out`}>
+      <div className={`flex flex-col transition-all duration-500 ease-in-out`}>
         {isDesc &&
           items.map(
             (item) =>
               item.description && (
                 <div key={item.title}>
-                  <h3 className='text-xl font-bold'>{item.title}</h3>
+                  <h3 className='text-lg font-semibold'>{item.title}</h3>
                   <div>
                     {item.description && (
                       <ul>
