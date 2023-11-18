@@ -13,17 +13,19 @@ import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { TocSidebar } from '@/app/components/post/TocSidebar';
 import useDetectScroll from '../../hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
+import { copyToClipboard } from '@/utils/copyToClipboard';
 
 export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
   const parsedToc = parseHeaderForTOC(post!.body.raw);
-  console.log(parsedToc)
   const MDXComponent = getMDXComponent(post!.body.code);
   return (
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto'>
       <HorizontalProgress scroll={scroll} />
-      {parsedToc.length > 0 && <TocSidebar tableOfContents={parsedToc} isSidebar={true} />}
+      {parsedToc.length > 0 && (
+        <TocSidebar tableOfContents={parsedToc} isSidebar={true} />
+      )}
       <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
         <div className='mb-8 flex flex-col'>
           <h1 className='text-4xl font-bold w-full break-words'>
@@ -50,8 +52,13 @@ export const PostDetail = ({ post }: { post: Post }) => {
               </div>
             </time>
             {/* Copy link when click */}
-            <button className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff8259] hover:drop-shadow-lg hover:shadow-lg'>
-              <IconLink />
+            <button
+              className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
+              onClick={copyToClipboard}
+            >
+              <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
+                <IconLink />
+              </div>
             </button>
           </div>
           <MDXComponent />
