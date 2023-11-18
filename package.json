@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@giscus/react": "^2.3.0",
     "@react-icons/all-files": "^4.1.0",
     "contentlayer": "^0.3.4",
     "date-fns": "^2.30.0",

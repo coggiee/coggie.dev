@@ -16,6 +16,7 @@ import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import { CopyAlert } from '../ui/CopyAlert';
+import { Comment } from './Comment';
 
 export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
@@ -39,44 +40,48 @@ export const PostDetail = ({ post }: { post: Post }) => {
       {parsedToc.length > 0 && (
         <TocSidebar tableOfContents={parsedToc} isSidebar={true} />
       )}
-      <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
-        <div className='mb-8 flex flex-col'>
-          <h1 className='text-4xl font-bold w-full break-words'>
-            {post!.title}
-          </h1>
-          <div className='flex justify-start items-center gap-2 mb-5'>
-            {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
+      <div className='mb-5'>
+        <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
+          <div className='mb-8 flex flex-col'>
+            <h1 className='text-4xl font-bold w-full break-words'>
+              {post!.title}
+            </h1>
+            <div className='flex justify-start items-center gap-2 mb-5'>
+              {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
+            </div>
+            <div className='w-full flex justify-between items-center pb-10 border-b-[1px] mb-10'>
+              <time
+                dateTime={post!.date}
+                className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
+              >
+                <div className='text-xs text-black flex gap-2 items-center'>
+                  <IconBxCalendarStar />
+                  {formatDate(post!.date)} /{' '}
+                  {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
+                    locale: ko,
+                  })}
+                </div>
+                <div className='text-xs text-black flex gap-1 items-center'>
+                  <IconTimerSand />
+                  {format(parseISO(post!.date), 'H:mm')} -{' '}
+                  {post!.readTimeMinutes}
+                </div>
+              </time>
+              {/* Copy link when click */}
+              <button
+                className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
+                onClick={handleOnClickCopyButton}
+              >
+                <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
+                  <IconLink />
+                </div>
+              </button>
+            </div>
+            <MDXComponent />
           </div>
-          <div className='w-full flex justify-between items-center pb-10 border-b-[1px] mb-10'>
-            <time
-              dateTime={post!.date}
-              className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
-            >
-              <div className='text-xs text-black flex gap-2 items-center'>
-                <IconBxCalendarStar />
-                {formatDate(post!.date)} /{' '}
-                {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
-                  locale: ko,
-                })}
-              </div>
-              <div className='text-xs text-black flex gap-1 items-center'>
-                <IconTimerSand />
-                {format(parseISO(post!.date), 'H:mm')} - {post!.readTimeMinutes}
-              </div>
-            </time>
-            {/* Copy link when click */}
-            <button
-              className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
-              onClick={handleOnClickCopyButton}
-            >
-              <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
-                <IconLink />
-              </div>
-            </button>
-          </div>
-          <MDXComponent />
-        </div>
-      </article>
+        </article>
+        <Comment />
+      </div>
       {isAlertVisible && <CopyAlert />}
     </div>
   );

@@ -10,8 +10,6 @@ import {
   tossface,
 } from './fonts';
 import { Footer } from './components/ui/Footer';
-import Script from 'next/script';
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +63,7 @@ export default function RootLayout({
       >
         <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
           <Nav />
-          <main className='flex-grow flex flex-col items-center w-full px-12 md:flex-row md:items-baseline font-notosanskr'>
+          <main className='flex-grow flex flex-col items-center w-full px-5 md:px-12 md:flex-row md:items-baseline font-notosanskr'>
             {children}
           </main>
           <Footer />
