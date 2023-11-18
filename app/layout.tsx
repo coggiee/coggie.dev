@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nav } from './components/ui/Nav';
 import './globals.css';
-import { blackHanSans, inter } from './fonts';
+import { blackHanSans, inter, lato, notosanskr } from './fonts';
 import { Footer } from './components/ui/Footer';
 import Script from 'next/script';
 
@@ -20,10 +20,12 @@ export default function RootLayout({
       <head>
         <Script src='https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js' />
       </head>
-      <body className={`${inter.variable} ${blackHanSans.variable}`}>
+      <body
+        className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable}`}
+      >
         <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
           <Nav />
-          <main className='flex-grow flex flex-col items-center w-full px-12 md:flex-row md:items-baseline'>
+          <main className='flex-grow flex flex-col items-center w-full px-12 md:flex-row md:items-baseline font-notosanskr'>
             {children}
           </main>
           <Footer />
