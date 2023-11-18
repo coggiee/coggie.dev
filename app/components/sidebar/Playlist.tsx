@@ -1,5 +1,5 @@
 // 'node-youtube-music' only works on server side
-import IconYoutubemusic from '@/app/Icons/IconYoutubeMusic';
+import IconYoutubemusic from '@/app/Icons/IconYoutubemusic';
 import { listMusicsFromPlaylist, searchPlaylists } from 'node-youtube-music';
 
 async function getPlaylist() {
