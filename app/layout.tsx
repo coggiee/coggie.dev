@@ -17,12 +17,37 @@ export const metadata: Metadata = {
     default: 'Zentechie.dev',
   },
   description: '프론트엔드 개발 관련 포스팅이 올라오는 Zentechie 블로그입니다.',
+  icons: {
+    icon: '/profile.jpg',
+    apple: '/profile.jpg',
+  },
   other: {
-    name: ['google-site-verification', 'naver-site-verification'],
-    content: [
-      'JaVz1bemB3VUWEFyLRmR9RLOBNr4hybV8S5GWvJZkr4',
-      '59f5471d35d15f99c1a7841c357220db014e240c',
+    'google-site-verification': 'JaVz1bemB3VUWEFyLRmR9RLOBNr4hybV8S5GWvJZkr4',
+    'naver-site-verification': '59f5471d35d15f99c1a7841c357220db014e240c',
+  },
+  openGraph: {
+    title: 'Zentechie.dev',
+    description:
+      '프론트엔드 개발 관련 포스팅이 올라오는 Zentechie 블로그입니다.',
+    url: 'https://zentechie.vercel.app',
+    siteName: 'Zentechie.dev',
+    images: [
+      {
+        url: 'https://i.ibb.co/87LtM03/profile.jpg',
+        width: 800,
+        height: 600,
+      },
     ],
+    locale: 'ko_KR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Zentechie.dev',
+    description:
+      '프론트엔드 개발 관련 포스팅이 올라오는 Zentechie 블로그입니다.',
+    creator: '@zentechie',
+    images: ['https://i.ibb.co/87LtM03/profile.jpg'],
   },
 };
 
