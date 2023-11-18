@@ -40,7 +40,7 @@ export const PostDetail = ({ post }: { post: Post }) => {
       {parsedToc.length > 0 && (
         <TocSidebar tableOfContents={parsedToc} isSidebar={true} />
       )}
-      <div className='mb-5'>
+      <div className='mb-5 flex-grow'>
         <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
           <div className='mb-8 flex flex-col'>
             <h1 className='text-4xl font-bold w-full break-words'>
