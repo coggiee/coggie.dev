@@ -35,16 +35,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <Head>
-        <meta
-          name='google-site-verification'
-          content='JaVz1bemB3VUWEFyLRmR9RLOBNr4hybV8S5GWvJZkr4'
-        />
-        <meta
-          name='naver-site-verification'
-          content='59f5471d35d15f99c1a7841c357220db014e240c'
-        />
-      </Head>
       <body
         className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${pretendard.variable} ${tossface.variable}`}
       >
