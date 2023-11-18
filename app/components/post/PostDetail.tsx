@@ -20,6 +20,7 @@ import { CopyAlert } from '../ui/CopyAlert';
 export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
   const parsedToc = parseHeaderForTOC(post!.body.raw);
+  console.log(parsedToc)
   const MDXComponent = getMDXComponent(post!.body.code);
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
 
