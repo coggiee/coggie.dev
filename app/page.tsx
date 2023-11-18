@@ -16,7 +16,7 @@ async function getProps() {
   return {
     props: {
       hotPosts,
-      recentPosts
+      recentPosts,
     },
   };
 }
@@ -32,7 +32,6 @@ export default async function Home() {
         <Hero />
         <PostSection posts={hotPosts} title={'🔥 읽어 볼만한 포스트'} />
         <PostSection posts={recentPosts} title={'📅 최근 포스트'} />
-        <div className='divider' />
       </div>
       <Sidebar />
     </section>
