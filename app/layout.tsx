@@ -17,9 +17,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <head>
-        <Script src='https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js' />
-      </head>
       <body
         className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${pretendard.variable} ${tossface.variable}`}
       >
