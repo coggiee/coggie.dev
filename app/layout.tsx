@@ -10,8 +10,6 @@ import {
   tossface,
 } from './fonts';
 import { Footer } from './components/ui/Footer';
-import Script from 'next/script';
-import Head from 'next/head';
 
 export const metadata: Metadata = {
   title: {
