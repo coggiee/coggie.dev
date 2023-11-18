@@ -11,10 +11,10 @@ import IconBxCalendarStar from '@/app/Icons/IconBxCalendarStar';
 import IconLink from '@/app/Icons/IconLink';
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { TocSidebar } from '@/app/components/post/TocSidebar';
-import useDetectScroll from '../hooks/useDetectScroll';
-import HorizontalProgress from './ui/HorizontalProgress';
+import useDetectScroll from '../../hooks/useDetectScroll';
+import HorizontalProgress from '../ui/HorizontalProgress';
 
-export const PostDetail = ({ post } : {post : Post}) => {
+export const PostDetail = ({ post }: { post: Post }) => {
   const { scroll } = useDetectScroll();
 
   const MDXComponent = getMDXComponent(post!.body.code);
