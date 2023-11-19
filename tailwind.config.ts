@@ -31,6 +31,7 @@ const config: Config = {
     require('@tailwindcss/typography'),
     require('daisyui'),
     'prettier-plugin-tailwindcss',
+    require('tailwind-scrollbar'),
   ],
 };
 export default config;

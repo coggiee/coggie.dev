@@ -30,6 +30,7 @@
     "remark-breaks": "^4.0.0",
     "remark-toc": "^9.0.0",
     "shiki": "^0.14.5",
+    "tailwind-scrollbar": "^3.0.5",
     "ytmusic-api": "^4.4.0"
   },
   "devDependencies": {
