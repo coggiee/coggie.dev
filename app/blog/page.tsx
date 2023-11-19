@@ -30,7 +30,7 @@ export default async function Blog() {
       {/* <div>Select Tag</div> */}
       <div className='flex-1 flex flex-col gap-5'>
         <div>
-          <h1 className='font-bold text-2xl  underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy inline-block mr-2'>
+          <h1 className='font-bold text-2xl inline-block mr-2'>
             📝 All posts
           </h1>
           <span className='font-bold'>({posts.length})</span>

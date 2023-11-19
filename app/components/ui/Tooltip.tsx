@@ -7,7 +7,7 @@ export const Tooltip = ({
 }) => {
   return (
     <div
-      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md bg-[#c1c1c12f]'
+      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md hover:bg-[#c1c1c12f]'
       data-tip={dataTip}
     >
       {children}

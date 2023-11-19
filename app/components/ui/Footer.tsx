@@ -1,6 +1,7 @@
 import IconGithub from '@/app/Icons/IconGithub';
 import { Social } from './Social';
 import IconPrevBlog from '@/app/Icons/IconPrevBlog';
+import Link from 'next/link';
 
 export const Footer = () => {
   return (
@@ -8,7 +9,9 @@ export const Footer = () => {
       <div className='text-sm'>Copyright. 2023 Ⓒ Zentechie(Moon Hwisik)</div>
       <div className='flex items-center gap-5 text-black'>
         <button className='rounded-full text-2xl dark:text-white'>
-          <IconGithub />
+          <Link href='https://github.com/lunarmoon7' passHref>
+            <IconGithub />
+          </Link>
         </button>
       </div>
     </footer>
