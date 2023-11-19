@@ -11,7 +11,7 @@ export const PostSection = ({
 }) => {
   return (
     <section className='mt-10 mb-10 font-notosanskr'>
-      <h1 className='text-2xl font-medium mb-10 underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy'>
+      <h1 className='text-2xl font-medium mb-10 underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy dark:text-white'>
         {title}
       </h1>
       <div className='flex flex-col'>

@@ -35,7 +35,7 @@ export const InfoCard = ({
           items.map(
             (item) =>
               item.description && (
-                <div key={item.title}>
+                <div key={item.title} className='flex flex-col gap-2 mb-3'>
                   <h3 className='text-lg font-semibold'>{item.title}</h3>
                   <div>
                     {item.description && (

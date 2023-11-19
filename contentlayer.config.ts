@@ -41,12 +41,15 @@ export const Post = defineDocumentType(() => ({
 }));
 
 const rehypeOptions = {
-  theme: JSON.parse(
-    fs.readFileSync(
-      new URL('../../../assets/moonlight-ii.json', import.meta.url),
-      'utf-8'
-    )
-  ),
+  theme: {
+    dark: 'github-light',
+    light: JSON.parse(
+      fs.readFileSync(
+        new URL('../../../assets/moonlight-ii.json', import.meta.url),
+        'utf-8'
+      )
+    ),
+  },
   keepBackground: true,
 };
 
