@@ -26,6 +26,12 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
+  darkMode: 'class',
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('daisyui'),
+    'prettier-plugin-tailwindcss',
+    require('tailwind-scrollbar'),
+  ],
 };
 export default config;

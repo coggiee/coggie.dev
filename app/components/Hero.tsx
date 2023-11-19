@@ -1,22 +1,15 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
 import { InfoSection } from './info/InfoSection';
-import IconChevronDown from '../Icons/IconChevronDown';
-import IconChevronUp from '../Icons/IconChevronUp';
 import { Social } from './ui/Social';
 
 export const Hero = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleOnClickUnfoldButton = () => {
-    setIsOpen((prev) => !prev);
-  };
   return (
-    <section className='p-5 rounded-xl shadow-xl'>
+    <section className='p-5 rounded-xl shadow-xl dark:text-white'>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-10 md:flex-row'>
-          <aside className='h-64 w-full md:h-52 relative lg:h-96 md:border-r-[1px]'>
+          <aside className='h-64 w-full md:h-52 relative lg:h-96 '>
             <Image
               src={'/profile.jpg'}
               layout='fill'

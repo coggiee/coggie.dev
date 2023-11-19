@@ -35,33 +35,33 @@ export const PostDetail = ({ post }: { post: Post }) => {
 
   return (
     // relative 삭제했음.
-    <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto'>
+    <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
       <HorizontalProgress scroll={scroll} />
       {parsedToc.length > 0 && (
         <TocSidebar tableOfContents={parsedToc} isSidebar={true} />
       )}
       <div className='mb-5 flex-grow'>
-        <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 relative break-words mb-5'>
+        <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-5'>
           <div className='mb-8 flex flex-col'>
-            <h1 className='text-4xl font-bold w-full break-words'>
+            <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
               {post!.title}
             </h1>
-            <div className='flex justify-start items-center gap-2 mb-5'>
+            <div className='flex justify-start items-center gap-2 mb-5 '>
               {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
             </div>
-            <div className='w-full flex justify-between items-center pb-10 border-b-[1px] mb-10'>
+            <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c] mb-10'>
               <time
                 dateTime={post!.date}
                 className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
               >
-                <div className='text-xs text-black flex gap-2 items-center'>
+                <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconBxCalendarStar />
-                  {formatDate(post!.date)} /{' '}
+                  {/* {formatDate(post!.date)} /{' '} */}
                   {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
                     locale: ko,
                   })}
                 </div>
-                <div className='text-xs text-black flex gap-1 items-center'>
+                <div className='text-xs text-black flex gap-1 items-center dark:text-[#fff]'>
                   <IconTimerSand />
                   {format(parseISO(post!.date), 'H:mm')} -{' '}
                   {post!.readTimeMinutes}

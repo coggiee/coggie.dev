@@ -1,3 +1,3 @@
 export default function Book() {
-  return <div>Book Page</div>
+  return <div className='dark:text-[#fff]'>Book Page</div>
 }

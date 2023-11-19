@@ -3,11 +3,26 @@
 @tailwind utilities;
 @import url(./prose.css);
 
-ul {
-  list-style: revert; /* 또는 revert; */
-  margin: revert;
-  padding: revert;
+// For theme switcher
+/*
+:root {
+  --background: white;
+  --foreground: black;
 }
+
+[data-theme='dark'] {
+  --background: black;
+  --foreground: white;
+}
+
+[data-theme='dark'] body {
+  color: #fff;
+  --foreground: white;
+  --background: black;
+}
+*/
+
+
 
 h2#toc {
   margin-top: 0;
@@ -35,6 +50,20 @@ h2#toc + ul li a {
     display: none;
   }
   h2#toc + ul {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  pre[data-theme='light'],
+  code[data-theme='light'] {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  pre[data-theme='dark'],
+  code[data-theme='dark'] {
     display: none;
   }
 }

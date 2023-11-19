@@ -23,6 +23,10 @@
   @apply inline-block px-4 py-0.5 leading-snug;
 }
 
+.prose blockquote {
+  border-left: 4px solid #f7ab0a;
+}
+
 code {
   counter-reset: line;
 }
@@ -46,4 +50,3 @@ code[data-line-numbers-max-digits='2'] > [data-line]::before {
 code[data-line-numbers-max-digits='3'] > [data-line]::before {
   width: 3rem;
 }
-
