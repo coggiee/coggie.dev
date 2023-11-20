@@ -44,161 +44,118 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-const syncContentFromGit = async (contentDir: string) => {
-  const startTime = Date.now();
-  // console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
+// const syncContentFromGit = async (contentDir: string) => {
+//   const startTime = Date.now();
+//   // console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
 
-  const syncRun = async () => {
-    const gitUrl = 'https://github.com/lunarmoon7/posts-main.git';
-    await runBashCommand(`
-      if [ -d  "${contentDir}" ];
-        then
-          cd "${contentDir}"; git pull;
-        else
-          git clone --depth 1 --single-branch ${gitUrl} ${contentDir};
-      fi
-    `);
-    // await runBashCommand(`
-    //   #! /usr/bin/env bash
+//   const syncRun = async () => {
+//     const gitUrl = 'https://github.com/lunarmoon7/posts-main.git';
+//     await runBashCommand(`
+//       if [ -d  "${contentDir}" ];
+//         then
+//           cd "${contentDir}"; git pull;
+//         else
+//           git clone --depth 1 --single-branch ${gitUrl} ${contentDir};
+//       fi
+//     `);
+//     // await runBashCommand(`
+//     //   #! /usr/bin/env bash
 
-    //   sync_lock_file="${contentDir}/.sync.lock"
+//     //   sync_lock_file="${contentDir}/.sync.lock"
 
-    //     function contentlayer_sync_run () {
-    //       block_if_locked;
+//     //     function contentlayer_sync_run () {
+//     //       block_if_locked;
 
-    //       mkdir -p ${contentDir};
-    //       touch $sync_lock_file;
+//     //       mkdir -p ${contentDir};
+//     //       touch $sync_lock_file;
 
-    //       if [ -d "${contentDir}/.git" ];
-    //         then
-    //           cd "${contentDir}";
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //         else
-    //           git init --quiet ${contentDir};
-    //           cd ${contentDir};
-    //           git remote add origin ${gitUrl};
-    //           git config core.sparsecheckout true;
-    //           git config advice.detachedHead false;
-    //           echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
-    //           git checkout --quiet -b ${gitTag};
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //       fi
+//     //       if [ -d "${contentDir}/.git" ];
+//     //         then
+//     //           cd "${contentDir}";
+//     //           git fetch --quiet --depth=1 origin ${gitTag};
+//     //           git checkout --quiet FETCH_HEAD;
+//     //         else
+//     //           git init --quiet ${contentDir};
+//     //           cd ${contentDir};
+//     //           git remote add origin ${gitUrl};
+//     //           git config core.sparsecheckout true;
+//     //           git config advice.detachedHead false;
+//     //           echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
+//     //           git checkout --quiet -b ${gitTag};
+//     //           git fetch --quiet --depth=1 origin ${gitTag};
+//     //           git checkout --quiet FETCH_HEAD;
+//     //       fi
 
-    //       rm $sync_lock_file;
-    //     }
+//     //       rm $sync_lock_file;
+//     //     }
 
-    //     function block_if_locked () {
-    //       if [ -f "$sync_lock_file" ];
-    //         then
-    //           while [ -f "$sync_lock_file" ]; do sleep 1; done;
-    //           exit 0;
-    //       fi
-    //     }
+//     //     function block_if_locked () {
+//     //       if [ -f "$sync_lock_file" ];
+//     //         then
+//     //           while [ -f "$sync_lock_file" ]; do sleep 1; done;
+//     //           exit 0;
+//     //       fi
+//     //     }
 
-    //     contentlayer_sync_run
-    // `);
-  };
+//     //     contentlayer_sync_run
+//     // `);
+//   };
 
-  let wasCancelled = false;
-  let syncInterval: NodeJS.Timeout;
+//   let wasCancelled = false;
+//   let syncInterval: NodeJS.Timeout;
 
-  const syncLoop = async () => {
-    console.log('Syncing content from git...');
+//   const syncLoop = async () => {
+//     console.log('Syncing content from git...');
 
-    await syncRun();
+//     await syncRun();
 
-    if (wasCancelled) return;
+//     if (wasCancelled) return;
 
-    syncInterval = setTimeout(syncLoop, SYNC_INTERVAL);
-  };
+//     syncInterval = setTimeout(syncLoop, SYNC_INTERVAL);
+//   };
 
-  await syncLoop();
+//   await syncLoop();
 
-  const initialSyncDuration = ((Date.now() - startTime) / 1000).toPrecision(2);
-  console.log(
-    `Initial sync of content files from git took ${initialSyncDuration}s (still syncing every minute...)`
-  );
+//   const initialSyncDuration = ((Date.now() - startTime) / 1000).toPrecision(2);
+//   console.log(
+//     `Initial sync of content files from git took ${initialSyncDuration}s (still syncing every minute...)`
+//   );
 
-  return () => {
-    wasCancelled = true;
-    clearTimeout(syncInterval);
-  };
-};
+//   return () => {
+//     wasCancelled = true;
+//     clearTimeout(syncInterval);
+//   };
+// };
 
-const runBashCommand = (command: string) => {
-  new Promise((resolve, reject) => {
-    const child = spawn(command, [], { shell: true });
+// const runBashCommand = (command: string) => {
+//   new Promise((resolve, reject) => {
+//     const child = spawn(command, [], { shell: true });
 
-    child.stdout.setEncoding('utf8');
-    child.stdout.on('data', (data) => process.stdout.write(data));
+//     child.stdout.setEncoding('utf8');
+//     child.stdout.on('data', (data) => process.stdout.write(data));
 
-    child.stderr.setEncoding('utf8');
-    child.stderr.on('data', (data) => process.stderr.write(data));
+//     child.stderr.setEncoding('utf8');
+//     child.stderr.on('data', (data) => process.stderr.write(data));
 
-    child.on('close', function (code) {
-      if (code === 0) {
-        resolve(void 0);
-      } else {
-        reject(new Error(`Command failed with exit code ${code}`));
-      }
-    });
-  });
-};
-
-const rehypeOptions = {
-  theme: {
-    dark: 'github-light',
-    light: JSON.parse(
-      fs.readFileSync(
-        new URL('../../../assets/moonlight-ii.json', import.meta.url),
-        'utf-8'
-      )
-    ),
-  },
-  keepBackground: true,
-};
-
-export default makeSource({
-  
-  // syncFiles: (contentDir: any) =>
-  //   syncContentFromGit({ contentDir, gitTag: sourceKey }),
-  syncFiles: syncContentFromGit,
-  contentDirPath: 'posts-main',
-  contentDirInclude: ['posts'],
-  documentTypes: [Post],
-  disableImportAliasWarning: true,
-  mdx: {
-    remarkPlugins: [remarkGfm, remarkBreaks, remarkToc],
-    rehypePlugins: [
-      rehypeSlug,
-      rehypeCodeTitles,
-      [rehypePrettyCode, rehypeOptions],
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'wrap',
-          content: undefined,
-          properties: {
-            className: ['anchor'],
-          },
-        },
-      ],
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['nofollow', 'noopener', 'noreferrer'],
-        },
-      ],
-    ],
-  },
-});
+//     child.on('close', function (code) {
+//       if (code === 0) {
+//         resolve(void 0);
+//       } else {
+//         reject(new Error(`Command failed with exit code ${code}`));
+//       }
+//     });
+//   });
+// };
 
 // export default makeSource({
-//   contentDirPath: 'posts',
+  
+//   // syncFiles: (contentDir: any) =>
+//   //   syncContentFromGit({ contentDir, gitTag: sourceKey }),
+//   syncFiles: syncContentFromGit,
+//   contentDirPath: 'posts-main',
+//   contentDirInclude: ['posts'],
 //   documentTypes: [Post],
+//   disableImportAliasWarning: true,
 //   mdx: {
 //     remarkPlugins: [remarkGfm, remarkBreaks, remarkToc],
 //     rehypePlugins: [
@@ -225,3 +182,46 @@ export default makeSource({
 //     ],
 //   },
 // });
+
+const rehypeOptions = {
+  theme: {
+    dark: 'github-light',
+    light: JSON.parse(
+      fs.readFileSync(
+        new URL('../../../assets/moonlight-ii.json', import.meta.url),
+        'utf-8'
+      )
+    ),
+  },
+  keepBackground: true,
+};
+
+export default makeSource({
+  contentDirPath: 'posts',
+  documentTypes: [Post],
+  mdx: {
+    remarkPlugins: [remarkGfm, remarkBreaks, remarkToc],
+    rehypePlugins: [
+      rehypeSlug,
+      rehypeCodeTitles,
+      [rehypePrettyCode, rehypeOptions],
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'wrap',
+          content: undefined,
+          properties: {
+            className: ['anchor'],
+          },
+        },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          target: '_blank',
+          rel: ['nofollow', 'noopener', 'noreferrer'],
+        },
+      ],
+    ],
+  },
+});
