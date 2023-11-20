@@ -35,7 +35,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `/posts/${post._raw.flattenedPath}`,
+      resolve: (post) => `${post._raw.flattenedPath}`,
     },
     readTimeMinutes: {
       type: 'string',
@@ -44,60 +44,58 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-const syncContentFromGit = async (contentDir: string) => {
+const syncContentFromGit = async ({
+  contentDir,
+  gitTag,
+}: {
+  contentDir: string;
+  gitTag: string;
+}) => {
   const startTime = Date.now();
-  console.log(`Syncing content files from git  to ${contentDir}`);
+  console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
 
   const syncRun = async () => {
     const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
-    // await runBashCommand(`
-    //   #! /usr/bin/env bash
-
-    //   sync_lock_file="${contentDir}/.sync.lock"
-
-    //     function contentlayer_sync_run () {
-    //       block_if_locked;
-
-    //       mkdir -p ${contentDir};
-    //       touch $sync_lock_file;
-
-    //       if [ -d "${contentDir}/.git" ];
-    //         then
-    //           cd "${contentDir}";
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //         else
-    //           git init --quiet ${contentDir};
-    //           cd ${contentDir};
-    //           git remote add origin ${gitUrl};
-    //           git config core.sparsecheckout true;
-    //           git config advice.detachedHead false;
-    //           echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
-    //           git checkout --quiet -b ${gitTag};
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //       fi
-
-    //       rm $sync_lock_file;
-    //     }
-
-    //     function block_if_locked () {
-    //       if [ -f "$sync_lock_file" ];
-    //         then
-    //           while [ -f "$sync_lock_file" ]; do sleep 1; done;
-    //           exit 0;
-    //       fi
-    //     }
-
-    //     contentlayer_sync_run
-    // `);
     await runBashCommand(`
-      if [ -d  "${contentDir}" ];
-        then
-          cd "${contentDir}"; git pull;
-        else
-          git clone --depth 1 --single-branch ${gitUrl} ${contentDir};
-      fi
+      #! /usr/bin/env bash
+
+      sync_lock_file="${contentDir}/.sync.lock"
+  
+        function contentlayer_sync_run () {
+          block_if_locked;
+  
+          mkdir -p ${contentDir};
+          touch $sync_lock_file;
+  
+          if [ -d "${contentDir}/.git" ];
+            then
+              cd "${contentDir}";
+              git fetch --quiet --depth=1 origin ${gitTag};
+              git checkout --quiet FETCH_HEAD;
+            else
+              git init --quiet ${contentDir};
+              cd ${contentDir};
+              git remote add origin ${gitUrl};
+              git config core.sparsecheckout true;
+              git config advice.detachedHead false;
+              echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
+              git checkout --quiet -b ${gitTag};
+              git fetch --quiet --depth=1 origin ${gitTag};
+              git checkout --quiet FETCH_HEAD;
+          fi
+  
+          rm $sync_lock_file;
+        }
+  
+        function block_if_locked () {
+          if [ -f "$sync_lock_file" ];
+            then
+              while [ -f "$sync_lock_file" ]; do sleep 1; done;
+              exit 0;
+          fi
+        }
+  
+        contentlayer_sync_run
     `);
   };
 
@@ -161,8 +159,9 @@ const rehypeOptions = {
 };
 
 export default makeSource((sourceKey = 'main') => ({
-  syncFiles: syncContentFromGit,
-  contentDirPath: `posts-main`,
+  syncFiles: (contentDir: any) =>
+    syncContentFromGit({ contentDir, gitTag: sourceKey }),
+  contentDirPath: `posts-${sourceKey}`,
   contentDirInclude: ['posts'],
   documentTypes: [Post],
   disableImportAliasWarning: true,
