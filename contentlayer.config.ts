@@ -35,7 +35,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `/posts/${post._raw.flattenedPath}`,
+      resolve: (post) => `${post._raw.flattenedPath}`,
     },
     readTimeMinutes: {
       type: 'string',
@@ -51,6 +51,9 @@ const syncContentFromGit = async ({
   contentDir: string;
   gitTag: string;
 }) => {
+  const startTime = Date.now();
+  console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
+
   const syncRun = async () => {
     const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
     await runBashCommand(`
@@ -110,6 +113,11 @@ const syncContentFromGit = async ({
   };
 
   await syncLoop();
+
+  const initialSyncDuration = ((Date.now() - startTime) / 1000).toPrecision(2);
+    console.log(
+      `Initial sync of content files from git took ${initialSyncDuration}s (still syncing every minute...)`
+    );
 
   return () => {
     wasCancelled = true;
