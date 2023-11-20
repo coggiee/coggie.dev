@@ -49,7 +49,7 @@ const syncContentFromGit = async (contentDir: string) => {
   // console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
 
   const syncRun = async () => {
-    const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
+    const gitUrl = 'https://github.com/lunarmoon7/posts-main.git';
     await runBashCommand(`
       if [ -d  "${contentDir}" ];
         then
@@ -161,10 +161,11 @@ const rehypeOptions = {
 };
 
 export default makeSource({
-  syncFiles: syncContentFromGit,
+  
   // syncFiles: (contentDir: any) =>
   //   syncContentFromGit({ contentDir, gitTag: sourceKey }),
-  contentDirPath: `posts-main`,
+  syncFiles: syncContentFromGit,
+  contentDirPath: 'posts-main',
   contentDirInclude: ['posts'],
   documentTypes: [Post],
   disableImportAliasWarning: true,
