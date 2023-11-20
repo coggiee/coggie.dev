@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import { calculateReadingTime } from './utils/calculateReadingTime';
 import { spawn } from 'node:child_process';
 
-const BLOG_DIRECTORY = 'posts'
+const BLOG_DIRECTORY = 'posts';
 const SYNC_INTERVAL = 1000 * 60;
 
 export const Post = defineDocumentType(() => ({
@@ -44,15 +44,9 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-const syncContentFromGit = async ({
-  contentDir,
-  gitTag,
-}: {
-  contentDir: string;
-  gitTag: string;
-}) => {
+const syncContentFromGit = async (contentDir: string) => {
   const startTime = Date.now();
-  console.log(`Syncing content files from git (${gitTag}) to ${contentDir}`);
+  console.log(`Syncing content files from git  to ${contentDir}`);
 
   const syncRun = async () => {
     const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
@@ -167,8 +161,7 @@ const rehypeOptions = {
 };
 
 export default makeSource((sourceKey = 'main') => ({
-  syncFiles: (contentDir: any) =>
-    syncContentFromGit({ contentDir, gitTag: sourceKey }),
+  syncFiles: syncContentFromGit,
   contentDirPath: `posts-main`,
   contentDirInclude: ['posts'],
   documentTypes: [Post],
