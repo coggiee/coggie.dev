@@ -27,16 +27,16 @@ export const lato = Lato({
   display: 'swap',
   variable: '--font-lato',
 });
-export const pretendard = localFont({
-  src: '../public/fonts/PretendardVariable.ttf',
-  display: 'swap',
-  variable: '--font-pretendard',
-  preload: true,
-});
+// export const pretendard = localFont({
+//   src: '../public/fonts/PretendardVariable.ttf',
+//   display: 'swap',
+//   variable: '--font-pretendard',
+//   preload: true,
+// });
 
-export const tossface = localFont({
-  src: '../public/fonts/TossFaceFontMac.ttf',
-  display: 'block',
-  variable: '--font-tossface',
-  preload: true,
-});
+// export const tossface = localFont({
+//   src: '../public/fonts/TossFaceFontMac.ttf',
+//   display: 'block',
+//   variable: '--font-tossface',
+//   preload: true,
+// });
