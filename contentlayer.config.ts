@@ -17,7 +17,7 @@ const SYNC_INTERVAL = 1000 * 60;
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `posts/**/*.mdx`,
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -58,9 +58,9 @@ const rehypeOptions = {
 };
 
 const syncContentFromGit = async (contentDir: string) => {
-
+  console.log('Syncing content from git...');
   const syncRun = async () => {
-    const gitUrl = 'https://github.com/lunarmoon7/posts-main.git';
+    const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
     // contentDir이 디렉토리라면...
     await runBashCommand(`
       if [ -d  "${contentDir}" ];
@@ -136,30 +136,29 @@ const syncContentFromGit = async (contentDir: string) => {
 
 const runBashCommand = (command: string) => {
   new Promise((resolve, reject) => {
-    const child = spawn(command, [], { shell: true });
+    const child = spawn(command, [], { shell: true })
 
-    child.stdout.setEncoding('utf8');
-    child.stdout.on('data', (data) => process.stdout.write(data));
+    child.stdout.setEncoding('utf8')
+    child.stdout.on('data', (data) => process.stdout.write(data))
 
-    child.stderr.setEncoding('utf8');
-    child.stderr.on('data', (data) => process.stderr.write(data));
+    child.stderr.setEncoding('utf8')
+    child.stderr.on('data', (data) => process.stderr.write(data))
 
     child.on('close', function (code) {
       if (code === 0) {
-        resolve(void 0);
+        resolve(void 0)
       } else {
-        reject(new Error(`Command failed with exit code ${code}`));
+        reject(new Error(`Command failed with exit code ${code}`))
       }
-    });
-  });
-};
+    })
+  }
+)};
 
 export default makeSource({
-  
   // syncFiles: (contentDir: any) =>
   //   syncContentFromGit({ contentDir, gitTag: sourceKey }),
-  syncFiles: syncContentFromGit,
-  contentDirPath: 'posts-main',
+  syncFiles: syncContentFromGit('posts'),
+  contentDirPath: 'posts',
   contentDirInclude: ['posts'],
   documentTypes: [Post],
   disableImportAliasWarning: true,
@@ -189,8 +188,6 @@ export default makeSource({
     ],
   },
 });
-
-
 
 // export default makeSource({
 //   contentDirPath: 'posts',
