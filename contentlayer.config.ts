@@ -66,7 +66,7 @@ const syncContentFromGit = async (contentDir: string) => {
       if [ -d  "${contentDir}" ];
         then
           cd "${contentDir}";
-          git pull;
+          git pull --rebase origin main;
         else
           git clone --depth 1 --single-branch ${gitUrl} ${contentDir};
       fi
