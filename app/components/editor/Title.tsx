@@ -21,7 +21,7 @@ export default function Title({ title, handleOnTypeTitle }: Props) {
   // };
 
   return (
-    <div className='h-auto mb-3'>
+    <div className='h-auto mb-3 flex-grow'>
       <textarea
         className='w-full resize-none outline-none text-3xl font-bold overflow-visible min-h-[3.5em]'
         // style={{ height: calculateTextAreaHeight() }}
