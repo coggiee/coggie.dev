@@ -156,7 +156,7 @@ const runBashCommand = (command: string) => {
 )};
 
 export default makeSource({
-  syncFiles: syncContentFromGit( 'posts-main', 'main' ),
+  syncFiles: syncContentFromGit( 'posts', 'main' ),
   // syncFiles: syncContentFromGit('posts'),
   contentDirPath: 'posts',
   contentDirInclude: ['posts'],
