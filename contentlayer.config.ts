@@ -66,8 +66,7 @@ const syncContentFromGit = async (contentDir: string) => {
       if [ -d  "${contentDir}" ];
         then
           cd "${contentDir}";
-          git fetch origin main;
-          git merge FETCH_HEAD;
+          git pull origin main;
         else
           git clone -b main --depth 1 --single-branch ${gitUrl} ${contentDir};
       fi
