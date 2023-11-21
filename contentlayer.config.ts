@@ -17,7 +17,7 @@ const SYNC_INTERVAL = 1000 * 60;
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `posts/**/*.mdx`,
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
