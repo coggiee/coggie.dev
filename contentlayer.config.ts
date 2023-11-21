@@ -12,7 +12,7 @@ import { calculateReadingTime } from './utils/calculateReadingTime';
 import { spawn } from 'node:child_process';
 
 const BLOG_DIRECTORY = 'posts';
-const SYNC_INTERVAL = 1000 * 5;
+const SYNC_INTERVAL = 1000 * 10;
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
