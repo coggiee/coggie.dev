@@ -1,7 +1,6 @@
 'use client';
+
 import { Octokit } from 'octokit';
-import { useRef } from 'react';
-import TuiEditor from '../components/TuiEditor';
 
 export default function Book() {
   const octokit = new Octokit({
@@ -56,13 +55,12 @@ export default function Book() {
     // );
     const data = await response.data;
   };
-  const ref = useRef<any>(null);
+
   return (
-    <div className='dark:text-[#fff]'>
-      {/* <button className='border-2 p-3 rounded-lg' onClick={handleOnClick}>
+    <div className='dark:text-[#fff] w-full mx-auto flex flex-col  md:flex-row gap-5 relative'>
+      <button className='border-2 p-3 rounded-lg' onClick={handleOnClick}>
         Create File on Github
-      </button> */}
-      <TuiEditor content={''} editorRef={ref} />
+      </button>
     </div>
   );
 }
