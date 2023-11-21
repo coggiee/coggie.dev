@@ -12,12 +12,12 @@ import { calculateReadingTime } from './utils/calculateReadingTime';
 import { spawn } from 'node:child_process';
 
 const BLOG_DIRECTORY = 'posts';
-const SYNC_INTERVAL = 1000 * 60;
+const SYNC_INTERVAL = 1000 * 5;
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  filePathPattern: `posts/**/*.mdx`,
+  filePathPattern: `**/*.mdx`,
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
