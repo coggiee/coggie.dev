@@ -15,13 +15,8 @@ export default function Title({ title, handleOnTypeTitle }: Props) {
     handleOnTypeTitle(event.target.value);
   };
 
-  // const calculateTextAreaHeight = () => {
-  //   const rows = title.split('\n').length;
-  //   return `${rows * 1.2}em`; // Adjust the multiplier based on your font size
-  // };
-
   return (
-    <div className='h-auto mb-3'>
+    <div className='h-auto mb-3 flex-grow'>
       <textarea
         className='w-full resize-none outline-none text-3xl font-bold overflow-visible min-h-[3.5em]'
         // style={{ height: calculateTextAreaHeight() }}

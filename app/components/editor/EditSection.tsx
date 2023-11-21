@@ -43,7 +43,7 @@ export default function EditSection({}: Props) {
   };
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col flex-grow'>
       <Title title={title} handleOnTypeTitle={handleOnTypeTitle} />
       <TuiEditor
         content={'Edit'}
