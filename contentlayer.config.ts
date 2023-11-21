@@ -116,7 +116,7 @@ const runBashCommand = (command: string) => {
 export default makeSource({
   syncFiles: syncContentFromGit,
   // syncFiles: syncContentFromGit,
-  contentDirPath: 'zentechie-blog',
+  contentDirPath: 'posts-remote',
   contentDirInclude: ['posts'],
   documentTypes: [Post],
   disableImportAliasWarning: true,
