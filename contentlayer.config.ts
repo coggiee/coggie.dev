@@ -67,11 +67,7 @@ const syncContentFromGit = async (contentDir: string) => {
         then
           cd "${contentDir}"; git pull;
         else
-<<<<<<< HEAD
-          git clone --depth 1 --single-branch build ${gitUrl} ${contentDir};
-=======
           git clone -b main --depth 1 --single-branch ${gitUrl} ${contentDir};
->>>>>>> main
       fi
     `);
   };
