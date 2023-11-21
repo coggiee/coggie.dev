@@ -1,4 +1,4 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import { defineDocumentType } from 'contentlayer/source-files';
 import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 import remarkBreaks from 'remark-breaks';
@@ -10,7 +10,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import fs from 'node:fs';
 import { calculateReadingTime } from './utils/calculateReadingTime';
 import { spawn } from 'node:child_process';
-
+import { makeSource } from 'contentlayer/source-remote-files';
 const BLOG_DIRECTORY = 'posts';
 const SYNC_INTERVAL = 1000 * 10;
 
