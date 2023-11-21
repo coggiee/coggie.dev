@@ -6,13 +6,14 @@ import { Avatar } from './Avatar';
 import IconSearch from '../../Icons/IconSearch';
 import IconApplemusic from '../../Icons/IconAppleMusic';
 import IconGlobe from '../../Icons/IconGlobe';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { Tooltip } from './Tooltip';
+import IconWrite from '@/app/Icons/IconWrite';
 
 export const Nav = () => {
   const pathname = usePathname();
-
+  const router = useRouter();
   return (
     <nav className='sticky top-0 left-0 h-24 px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
       <div className='flex justify-between items-center gap-10'>
@@ -32,6 +33,11 @@ export const Nav = () => {
         </div>
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
+        <Tooltip dataTip='write'>
+          <button onClick={() => router.push('/write')}>
+            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+          </button>
+        </Tooltip>
         <Tooltip dataTip='search'>
           <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />
         </Tooltip>
