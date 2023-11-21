@@ -12,7 +12,7 @@ import { calculateReadingTime } from './utils/calculateReadingTime';
 import { spawn } from 'node:child_process';
 
 const BLOG_DIRECTORY = 'posts';
-const SYNC_INTERVAL = 1000 * 60;
+const SYNC_INTERVAL = 1000 * 5;
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -35,7 +35,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `/posts/${post._raw.flattenedPath}`,
+      resolve: (post) => `posts/${post._raw.flattenedPath}`,
     },
     readTimeMinutes: {
       type: 'string',
@@ -67,50 +67,13 @@ const syncContentFromGit = async (contentDir: string) => {
         then
           cd "${contentDir}"; git pull;
         else
+<<<<<<< HEAD
+          git clone --depth 1 --single-branch build ${gitUrl} ${contentDir};
+=======
           git clone -b main --depth 1 --single-branch ${gitUrl} ${contentDir};
+>>>>>>> main
       fi
     `);
-    // await runBashCommand(`
-    //   #! /usr/bin/env bash
-
-    //   sync_lock_file="${contentDir}/.sync.lock"
-
-    //     function contentlayer_sync_run () {
-    //       block_if_locked;
-
-    //       mkdir -p ${contentDir};
-    //       touch $sync_lock_file;
-
-    //       if [ -d "${contentDir}/.git" ];
-    //         then
-    //           cd "${contentDir}";
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //         else
-    //           git init --quiet ${contentDir};
-    //           cd ${contentDir};
-    //           git remote add origin ${gitUrl};
-    //           git config core.sparsecheckout true;
-    //           git config advice.detachedHead false;
-    //           echo "${BLOG_DIRECTORY}/*" >> .git/info/sparse-checkout;
-    //           git checkout --quiet -b ${gitTag};
-    //           git fetch --quiet --depth=1 origin ${gitTag};
-    //           git checkout --quiet FETCH_HEAD;
-    //       fi
-
-    //       rm $sync_lock_file;
-    //     }
-
-    //     function block_if_locked () {
-    //       if [ -f "$sync_lock_file" ];
-    //         then
-    //           while [ -f "$sync_lock_file" ]; do sleep 1; done;
-    //           exit 0;
-    //       fi
-    //     }
-
-    //     contentlayer_sync_run
-    // `);
   };
 
   let wasCancelled = false;
@@ -136,28 +99,27 @@ const syncContentFromGit = async (contentDir: string) => {
 
 const runBashCommand = (command: string) => {
   new Promise((resolve, reject) => {
-    const child = spawn(command, [], { shell: true })
+    const child = spawn(command, [], { shell: true });
 
-    child.stdout.setEncoding('utf8')
-    child.stdout.on('data', (data) => process.stdout.write(data))
+    child.stdout.setEncoding('utf8');
+    child.stdout.on('data', (data) => process.stdout.write(data));
 
-    child.stderr.setEncoding('utf8')
-    child.stderr.on('data', (data) => process.stderr.write(data))
+    child.stderr.setEncoding('utf8');
+    child.stderr.on('data', (data) => process.stderr.write(data));
 
     child.on('close', function (code) {
       if (code === 0) {
-        resolve(void 0)
+        resolve(void 0);
       } else {
-        reject(new Error(`Command failed with exit code ${code}`))
+        reject(new Error(`Command failed with exit code ${code}`));
       }
-    })
-  }
-)};
+    });
+  });
+};
 
 export default makeSource({
-  // syncFiles: (contentDir: any) =>
-  //   syncContentFromGit({ contentDir, gitTag: sourceKey }),
   syncFiles: syncContentFromGit('posts'),
+  // syncFiles: syncContentFromGit,
   contentDirPath: 'posts',
   contentDirInclude: ['posts'],
   documentTypes: [Post],
