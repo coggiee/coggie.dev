@@ -36,6 +36,7 @@ export const createContentFromGithub = async (title: string, content: string) =>
         name: 'lunarmoon7',
         email: '49crehbgr@gmail.com',
       },
+      branch: 'build',
       content: `${btoa(encodeURIComponent(content))}`,
       headers: {
         'X-GitHub-Api-Version': '2022-11-28',
