@@ -60,7 +60,7 @@ const rehypeOptions = {
 const syncContentFromGit = async (contentDir: string) => {
   console.log('Syncing content from git...');
   const syncRun = async () => {
-    const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git';
+    const gitUrl = 'https://github.com/lunarmoon7/zentechie-blog.git'
     // contentDir이 디렉토리라면...
     await runBashCommand(`
       if [ -d  "${contentDir}" ];
