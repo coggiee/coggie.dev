@@ -3,7 +3,6 @@
 import { format, parseISO } from 'date-fns';
 import { Post } from 'contentlayer/generated';
 import { getMDXComponent } from 'next-contentlayer/hooks';
-import { formatDate } from '@/utils/formatDate';
 import { Tag } from '@/app/components/post/Tag';
 import IconTimerSand from '@/app/Icons/IconTimerSand';
 import { ko } from 'date-fns/locale';
@@ -15,7 +14,7 @@ import useDetectScroll from '../../hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
-import { CopyAlert } from '../ui/CopyAlert';
+import { Alert } from '../ui/Alert';
 import Giscus from './Giscus';
 
 export const PostDetail = ({ post }: { post: Post }) => {
@@ -82,7 +81,7 @@ export const PostDetail = ({ post }: { post: Post }) => {
         </article>
         <Giscus />
       </div>
-      {isAlertVisible && <CopyAlert />}
+      {isAlertVisible && <Alert title={'링크가 복사되었습니다.'}/>}
     </div>
   );
 };
