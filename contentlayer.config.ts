@@ -65,7 +65,9 @@ const syncContentFromGit = async (contentDir: string) => {
     await runBashCommand(`
       if [ -d  "${contentDir}" ];
         then
-          cd "${contentDir}"; git pull;
+          cd "${contentDir}";
+          git fetch origin main;
+          git merge FETCH_HEAD;
         else
           git clone -b main --depth 1 --single-branch ${gitUrl} ${contentDir};
       fi
