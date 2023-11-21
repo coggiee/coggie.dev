@@ -17,7 +17,7 @@ const SYNC_INTERVAL = 1000 * 10;
 export const Post = defineDocumentType(() => ({
   name: 'Post',
   contentType: 'mdx',
-  filePathPattern: `**/*.mdx`,
+  filePathPattern: `posts/**/*.mdx`,
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
@@ -35,7 +35,7 @@ export const Post = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => `${post._raw.flattenedPath}`,
+      resolve: (post) => `/posts/${post._raw.flattenedPath}`,
     },
     readTimeMinutes: {
       type: 'string',
@@ -65,8 +65,7 @@ const syncContentFromGit = async (contentDir: string) => {
     await runBashCommand(`
       if [ -d  "${contentDir}" ];
         then
-          cd "${contentDir}";
-          git fetch --all --prune && git rebase origin/main;
+          cd "${contentDir}"; git pull;
         else
           git clone --depth 1 --single-branch ${gitUrl} ${contentDir};
       fi
