@@ -13,7 +13,7 @@ type PostMatter = {
   date: string;
 }
 
-type Post = PostMatter & {
+export type Post = PostMatter & {
   slug: string;
   content: string;
   readingMinutes: number;

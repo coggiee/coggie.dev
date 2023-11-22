@@ -1,7 +1,6 @@
 'use client';
 
 import { format, parseISO } from 'date-fns';
-import { Post } from 'contentlayer/generated';
 import { getMDXComponent } from 'next-contentlayer/hooks';
 import { Tag } from '@/app/components/post/Tag';
 import IconTimerSand from '@/app/Icons/IconTimerSand';
@@ -13,16 +12,27 @@ import { TocSidebar } from '@/app/components/post/TocSidebar';
 import useDetectScroll from '../../hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { Alert } from '../ui/Alert';
 import Giscus from './Giscus';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { Post } from '@/app/libs/posts';
+import { CompileMDXResult } from 'next-mdx-remote/rsc';
 
-export const PostDetail = ({ post }: { post: Post }) => {
+export const PostDetail = ({
+  post,
+  mdx,
+  toc,
+}: {
+  post: Post;
+  mdx: MDXRemoteSerializeResult;
+  toc: any;
+}) => {
   const { scroll } = useDetectScroll();
-  const parsedToc = parseHeaderForTOC(post!.body.raw);
-  const MDXComponent = getMDXComponent(post!.body.code);
+  // const parsedToc = parseHeaderForTOC(post!.content);
+  // const MDXComponent = getMDXComponent(post!.body.code);
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
-
+  console.log('post: ', post);
   const handleOnClickCopyButton = () => {
     copyToClipboard();
 
@@ -36,9 +46,7 @@ export const PostDetail = ({ post }: { post: Post }) => {
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
       <HorizontalProgress scroll={scroll} />
-      {parsedToc.length > 0 && (
-        <TocSidebar tableOfContents={parsedToc} isSidebar={true} />
-      )}
+      {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />}
       <div className='mb-5 flex-grow'>
         <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-5'>
           <div className='mb-8 flex flex-col'>
@@ -56,14 +64,16 @@ export const PostDetail = ({ post }: { post: Post }) => {
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconBxCalendarStar />
                   {/* {formatDate(post!.date)} /{' '} */}
-                  {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
+                  {/* {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
                     locale: ko,
-                  })}
+                  })} */}
+                  {post.date}
                 </div>
                 <div className='text-xs text-black flex gap-1 items-center dark:text-[#fff]'>
                   <IconTimerSand />
-                  {format(parseISO(post!.date), 'H:mm')} -{' '}
-                  {post!.readTimeMinutes}
+                  {format(parseISO(post!.date), 'H:mm')} - {' '}
+                  {/* {post.date} */}
+                  {post!.readingMinutes}
                 </div>
               </time>
               {/* Copy link when click */}
@@ -76,12 +86,14 @@ export const PostDetail = ({ post }: { post: Post }) => {
                 </div>
               </button>
             </div>
-            <MDXComponent />
+            <div>
+              <MDXRemote {...mdx} />
+            </div>
           </div>
         </article>
         <Giscus />
       </div>
-      {isAlertVisible && <Alert title={'링크가 복사되었습니다.'}/>}
+      {isAlertVisible && <Alert title={'링크가 복사되었습니다.'} />}
     </div>
   );
 };
