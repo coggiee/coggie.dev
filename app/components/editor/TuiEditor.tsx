@@ -31,7 +31,7 @@ export default function TuiEditor({
     ['hr', 'quote'],
     ['ul', 'ol', 'task', 'indent', 'outdent'],
     ['table', 'image', 'link'],
-    ['code', 'codeblock'],
+    ['code', 'codeblock']
   ];
   const { theme } = useTheme();
   const router = useRouter();
@@ -47,11 +47,25 @@ export default function TuiEditor({
             // window.innerWidth는 새로고침하지 않으면 작동하지 않음.
             previewStyle='vertical'
             theme={theme === 'light' ? 'light' : 'dark'}
-            initialEditType='markdown' // or wysiwyg
-            hideModeSwitch={true} // 하단 숨기기
+            initialEditType='wysiwyg' // or wysiwyg
+            // hideModeSwitch={true} // 하단 숨기기
             initialValue={content || ''}
             useCommandShortcut={true}
             toolbarItems={toolbarItems}
+            frontMatter={true}
+            // customHTMLRenderer={{
+            //   paragraph(node, { origin, options }) {
+            //     const { customProp = {}} = options;
+            //     const showFrontMatter = customProp.showFrontMatter && node.customType;
+            //     const attributes = {};
+
+            //     // prevent to edit the front matter in WYSIWYG
+            //     if (showFrontMatter) {
+            //       attributes.contenteditable = false ;
+            //     }
+            //     return { ...origin(), attributes };
+            //   }
+            // }}
             plugins={[
               [
                 codeSyntaxHighlight,

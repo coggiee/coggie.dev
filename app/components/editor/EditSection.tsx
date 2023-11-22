@@ -20,7 +20,6 @@ export default function EditSection({}: Props) {
 
   const handleOnSave = async () => {
     const content: string = editorRef.current.getInstance().getMarkdown();
-
     // 제목과 내용이 없는 예외처리
     if (content.trim().length === 0 || title.trim().length === 0) {
       setIsAlertVisible(true);
@@ -46,7 +45,7 @@ export default function EditSection({}: Props) {
     <div className='flex flex-col flex-grow'>
       <Title title={title} handleOnTypeTitle={handleOnTypeTitle} />
       <TuiEditor
-        content={'Edit'}
+        content={''}
         editorRef={editorRef}
         handleOnSave={handleOnSave}
       />
