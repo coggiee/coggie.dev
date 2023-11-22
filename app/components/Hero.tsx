@@ -49,7 +49,7 @@ export const Hero = () => {
             <Social fontSize='text-xl'/>
           </main>
         </div>
-        <InfoSection />
+        {/* <InfoSection /> */}
       </div>
     </section>
   );
