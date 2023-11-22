@@ -5,7 +5,7 @@ import TuiEditor from './TuiEditor';
 import Title from './Title';
 import { Octokit } from 'octokit';
 import { Alert } from '../ui/Alert';
-import { createContentFromGithub } from '@/utils/githubHandler';
+import { useRouter } from 'next/navigation';
 
 type Props = {};
 
@@ -17,24 +17,50 @@ export default function EditSection({}: Props) {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleOnSave = async () => {
+    setIsLoading(true);
     const content: string = editorRef.current.getInstance().getMarkdown();
+
+    const response = await fetch('/api/create', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ title, content }),
+    });
+
+    if (response.ok) {
+      const response = await fetch('/api/upload', {
+        method: 'POST',
+        body: JSON.stringify({ title, content }),
+      });
+
+      const { message } = await response.json();
+
+      if (message === true) {
+        setIsLoading(false);
+        router.back();
+      }
+    }
+
     // 제목과 내용이 없는 예외처리
-    if (content.trim().length === 0 || title.trim().length === 0) {
-      setIsAlertVisible(true);
-      setTimeout(() => {
-        setIsAlertVisible(false);
-      }, 3000);
-      return;
-    }
-    if (title.endsWith('.')) {
-      setTitle(title.slice(0, title.length - 1));
-    }
+    // if (content.trim().length === 0 || title.trim().length === 0) {
+    //   setIsAlertVisible(true);
+    //   setTimeout(() => {
+    //     setIsAlertVisible(false);
+    //   }, 3000);
+    //   return;
+    // }
+    // if (title.endsWith('.')) {
+    //   setTitle(title.slice(0, title.length - 1));
+    // }
 
-    const data = await createContentFromGithub(title, content);
+    // const data = await createContentFromGithub(title, content);
 
-    console.log(data);
+    // console.log(data);
   };
 
   const handleOnTypeTitle = (value: string) => {

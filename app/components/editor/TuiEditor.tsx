@@ -47,7 +47,7 @@ export default function TuiEditor({
             // window.innerWidth는 새로고침하지 않으면 작동하지 않음.
             previewStyle='vertical'
             theme={theme === 'light' ? 'light' : 'dark'}
-            initialEditType='wysiwyg' // or wysiwyg
+            initialEditType='markdown' // or wysiwyg
             // hideModeSwitch={true} // 하단 숨기기
             initialValue={content || ''}
             useCommandShortcut={true}
