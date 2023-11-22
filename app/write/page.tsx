@@ -1,5 +1,4 @@
 import { Suspense } from 'react';
-import EditSection from '../components/editor/EditSection';
 import dynamic from 'next/dynamic';
 
 const DynamicEditSection = dynamic(
