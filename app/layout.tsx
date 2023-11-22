@@ -6,6 +6,10 @@ import { Footer } from './components/ui/Footer';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
+  metadataBase:
+    process.env.NODE_ENV === 'production'
+      ? new URL('https://zentechie.vercel.app')
+      : new URL('http://localhost:3000'),
   title: {
     template: '%s | Zentechie',
     default: 'Zentechie.dev',
