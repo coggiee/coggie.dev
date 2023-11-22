@@ -39,13 +39,19 @@ export const Nav = () => {
           </button>
         </Tooltip>
         <Tooltip dataTip='search'>
-          <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />
+          <button className=' btn-disabled'>
+            <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />
+          </button>
         </Tooltip>
         <Tooltip dataTip='playlist'>
-          <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
+          <button className=' btn-disabled'>
+            <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
+          </button>
         </Tooltip>
         <Tooltip dataTip='language'>
-          <IconGlobe className='transition-colors hover:text-[#4860ff] dark:text-white dark:hover:text-[#4860ff]' />
+          <button className=' btn-disabled'>
+            <IconGlobe className='transition-colors hover:text-[#4860ff] dark:text-white dark:hover:text-[#4860ff]' />
+          </button>
         </Tooltip>
         <ThemeSwitcher />
       </div>
