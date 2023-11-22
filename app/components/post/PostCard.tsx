@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { Tag } from './Tag';
-import { format, parseISO } from 'date-fns';
-import { ko } from 'date-fns/locale';
 import IconBxCalendarStar from '../../Icons/IconBxCalendarStar';
 import IconTimerSand from '../../Icons/IconTimerSand';
 interface PostCardProps {
   date: string;
+  time: string;
   title: string;
   description: string;
   path: string;
@@ -15,6 +14,7 @@ interface PostCardProps {
 
 export const PostCard = ({
   date,
+  time,
   title,
   description,
   path,
@@ -27,12 +27,11 @@ export const PostCard = ({
         <Link href={`/blog/${path}`} passHref className='flex flex-col gap-2'>
           <div className='font-medium text-xs text-gray-700 flex gap-2 items-center dark:text-white'>
             <IconBxCalendarStar />
-            {/* {formatDate(date)} /{' '} */}
-            {format(parseISO(date), 'cccc LLLL d, yyyy', { locale: ko })}
+            {date}
           </div>
           <div className='font-medium text-xs text-gray-700 flex gap-1 items-center dark:text-white'>
             <IconTimerSand />
-            {readTimeMinutes.split(' ').slice(0, 2).join(' ')}
+            {time} - {readTimeMinutes} min read
           </div>
           <h2 className='text-xl w-full break-words'>{title}</h2>
           <div className='font-light w-full text-ellipsis overflow-hidden whitespace-nowrap'>

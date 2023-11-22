@@ -42,6 +42,7 @@ export default async function Blog() {
         <PostCard 
           key={post.slug}
           date={post.date}
+          time={post.time}
           title={post.title}
           description={post.description}
           path={post.slug}

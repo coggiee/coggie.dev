@@ -4,6 +4,9 @@ import dayjs from 'dayjs';
 import fs from 'fs';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
+import 'dayjs/locale/ko';
+
+dayjs.locale('ko');
 
 type PostMatter = {
   title: string;
@@ -16,6 +19,7 @@ type PostMatter = {
 export type Post = PostMatter & {
   slug: string;
   content: string;
+  time: string
   readingMinutes: number;
   wordCount: number;
 }
@@ -36,8 +40,9 @@ const parsePost = (postPath: string): Post | undefined => {
     return {
       ...grayMatter,
       tags: grayMatter.tags.filter(Boolean),
-      date: dayjs(grayMatter.date).format('YYYY-MM-DD'),
+      date: dayjs(grayMatter.date).format('dddd, YYYY-MM-DD'),
       content,
+      time: dayjs(grayMatter.date).format('HH:MM'),
       slug: postPath.slice(postPath.indexOf(BASE_PATH)).replace('.mdx', ''),
       readingMinutes: Math.ceil(readingTime(content).minutes),
       wordCount: content.split(/\s+/gu).length,

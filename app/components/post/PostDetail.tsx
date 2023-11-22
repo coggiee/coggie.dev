@@ -1,23 +1,18 @@
 'use client';
 
-import { format, parseISO } from 'date-fns';
-import { getMDXComponent } from 'next-contentlayer/hooks';
 import { Tag } from '@/app/components/post/Tag';
 import IconTimerSand from '@/app/Icons/IconTimerSand';
-import { ko } from 'date-fns/locale';
 import IconBxCalendarStar from '@/app/Icons/IconBxCalendarStar';
 import IconLink from '@/app/Icons/IconLink';
-import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { TocSidebar } from '@/app/components/post/TocSidebar';
 import useDetectScroll from '../../hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { Alert } from '../ui/Alert';
 import Giscus from './Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Post } from '@/app/libs/posts';
-import { CompileMDXResult } from 'next-mdx-remote/rsc';
 
 export const PostDetail = ({
   post,
@@ -29,10 +24,7 @@ export const PostDetail = ({
   toc: any;
 }) => {
   const { scroll } = useDetectScroll();
-  // const parsedToc = parseHeaderForTOC(post!.content);
-  // const MDXComponent = getMDXComponent(post!.body.code);
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
-  console.log('post: ', post);
   const handleOnClickCopyButton = () => {
     copyToClipboard();
 
@@ -63,17 +55,12 @@ export const PostDetail = ({
               >
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconBxCalendarStar />
-                  {/* {formatDate(post!.date)} /{' '} */}
-                  {/* {format(parseISO(post!.date), 'cccc LLLL d, yyyy', {
-                    locale: ko,
-                  })} */}
                   {post.date}
                 </div>
-                <div className='text-xs text-black flex gap-1 items-center dark:text-[#fff]'>
+                <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconTimerSand />
-                  {format(parseISO(post!.date), 'H:mm')} - {' '}
-                  {/* {post.date} */}
-                  {post!.readingMinutes}
+                  {post.time} - {post!.readingMinutes} min
+                  read
                 </div>
               </time>
               {/* Copy link when click */}
