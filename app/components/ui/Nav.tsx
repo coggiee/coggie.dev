@@ -33,11 +33,11 @@ export const Nav = () => {
         </div>
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
-        <Tooltip dataTip='write'>
+        {/* <Tooltip dataTip='write'>
           <button onClick={() => router.push('/write')}>
             <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
           </button>
-        </Tooltip>
+        </Tooltip> */}
         <Tooltip dataTip='search'>
           <button className=' btn-disabled'>
             <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />

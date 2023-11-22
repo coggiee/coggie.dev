@@ -14,6 +14,7 @@ import Giscus from './Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Post } from '@/app/libs/posts';
 import { formatCreatedAt, formatCreatedTime, formatReadTime, formatReadingMinutes } from '@/utils/formatTime';
+import dayjs from 'dayjs';
 
 export const PostDetail = ({
   post,
@@ -34,7 +35,8 @@ export const PostDetail = ({
       setIsAlertVisible(false);
     }, 3000);
   };
-
+  // date는 이걸 넣으면 된다.
+  // dayjs().toISOString()
   return (
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
