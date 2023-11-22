@@ -50,7 +50,7 @@ export default async function Blog() {
               time={formatCreatedTime(node.date)}
               title={node.title}
               description={node.description}
-              path={node.slug}
+              path={node.id}
               tags={node.tags}
               readTimeMinutes={formatReadingMinutes(node.content)}
             />

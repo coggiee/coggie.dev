@@ -29,10 +29,10 @@ export async function getTotalPosts() {
   return results.postsConnection.edges;
 }
 
-export async function getSinglePost(slug: string) {
+export async function getSinglePost(id: string) {
   const query = gql`
-    query getPost($slug: String!) {
-      post(where: { slug: $slug }) {
+    query getPost($id: ID) {
+      post(where: { id: $id }) {
         id
         content
         createdAt
@@ -48,7 +48,7 @@ export async function getSinglePost(slug: string) {
     }
   `;
 
-  const results: any = await graphcms.request(query, { slug });
+  const results: any = await graphcms.request(query, { id });
   return results.post;
 }
 

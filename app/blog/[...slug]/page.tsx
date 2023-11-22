@@ -8,16 +8,14 @@ import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 // at build time.
 export async function generateStaticParams() {
   const posts = (await getTotalPosts()) || [];
-  const paths = posts.map(({ node: { slug } }) => ({ params: { slug } }));
-
+  const paths = posts.map(({ node: { id } }) => ({ params: { slug: id } }));
   return paths;
 }
 
 // Return the path of individual pages
-async function getProps({ params }: { params: { slug: string[] } }) {
-  const { slug } = params as { slug: string[] };
+async function getProps({ params }: { params: { slug: any } }) {
+  const { slug } = params as { slug: any };
   const post = await getSinglePost(slug[0]);
-
   return {
     post,
   };
@@ -27,7 +25,7 @@ async function getProps({ params }: { params: { slug: string[] } }) {
 export default async function PostPage({
   params,
 }: {
-  params: { slug: string[] };
+  params: { slug: any };
 }) {
   // console.log => { params: { slug: [ 'blog' ] } }
   const { post } = await getProps({ params });
