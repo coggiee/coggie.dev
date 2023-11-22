@@ -25,7 +25,7 @@ export const serializeMdx = (source: string) => {
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
-        [rehypePrettyCode, rehypeOptions],
+        // [rehypePrettyCode, rehypeOptions],
         [
           rehypeAutolinkHeadings,
           {
