@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+const { spacing } = require('tailwindcss/defaultTheme');
 
 const config: Config = {
   content: [
@@ -24,6 +25,16 @@ const config: Config = {
       transitionProperty: {
         'max-height': 'max-height',
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            //...
+            'h1,h2,h3,h4': {
+              'scroll-margin-top': spacing[32],
+            },
+          },
+        },
+      }),
     },
   },
   darkMode: 'class',

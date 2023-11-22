@@ -14,6 +14,7 @@ type PostMatter = {
   tags: string[];
   draft?: boolean;
   date: string;
+  hot: boolean;
 }
 
 export type Post = PostMatter & {

@@ -59,8 +59,7 @@ export const PostDetail = ({
                 </div>
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconTimerSand />
-                  {post.time} - {post!.readingMinutes} min
-                  read
+                  {post.time} - {post!.readingMinutes} min read
                 </div>
               </time>
               {/* Copy link when click */}
@@ -73,9 +72,7 @@ export const PostDetail = ({
                 </div>
               </button>
             </div>
-            <div>
-              <MDXRemote {...mdx} />
-            </div>
+            <MDXRemote {...mdx} />
           </div>
         </article>
         <Giscus />
