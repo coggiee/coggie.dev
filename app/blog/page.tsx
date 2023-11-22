@@ -1,9 +1,14 @@
-import { getAllPosts } from '@/app/libs/posts';
+import {
+  formatCreatedAt,
+  formatCreatedTime,
+  formatReadingMinutes,
+} from '@/utils/formatTime';
 import { PostCard } from '../components/post/PostCard';
 import { Fallback } from '../components/ui/Fallback';
+import { getTotalPosts } from '../libs/hygraph';
 
 async function getProps() {
-  const posts = getAllPosts();
+  const posts = (await getTotalPosts()) || [];
 
   return {
     props: {
@@ -17,8 +22,10 @@ export default async function Blog() {
   // 각 포스트의 frontmatter(title, desc, date, tags, ...)를 가져온다.
   // 그리고 각 포스트의 slug를 가져온다.
   // slug도 graphcms에 저장되어있다.
-  
-  const { props: { posts } } = await getProps();
+
+  const {
+    props: { posts },
+  } = await getProps();
   return (
     <section className='w-full mx-auto flex-grow md:max-w-3xl flex flex-col gap-3 dark:text-[#fff]'>
       <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5 mb-5 shadow-md'>
@@ -31,25 +38,23 @@ export default async function Blog() {
       {/* <div>Select Tag</div> */}
       <div className='flex-1 flex flex-col gap-5'>
         <div>
-          <h1 className='font-bold text-2xl inline-block mr-2'>
-            📝 All posts
-          </h1>
+          <h1 className='font-bold text-2xl inline-block mr-2'>📝 All posts</h1>
           <span className='font-bold'>({posts.length})</span>
         </div>
         <div className='flex flex-col'>
           {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
-          {posts.map((post) => (
-        <PostCard 
-          key={post.slug}
-          date={post.date}
-          time={post.time}
-          title={post.title}
-          description={post.description}
-          path={post.slug}
-          tags={post.tags}
-          readTimeMinutes={post.readingMinutes.toString()}
-          />
-        ))}
+          {posts.map(({ node }: { node: any }) => (
+            <PostCard
+              key={node.id}
+              date={formatCreatedAt(node.date)}
+              time={formatCreatedTime(node.date)}
+              title={node.title}
+              description={node.description}
+              path={node.slug}
+              tags={node.tags}
+              readTimeMinutes={formatReadingMinutes(node.content)}
+            />
+          ))}
         </div>
       </div>
     </section>

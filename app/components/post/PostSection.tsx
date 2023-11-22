@@ -1,13 +1,17 @@
 // import { Post } from '@/.contentlayer/generated';
-import { Post } from '@/app/libs/posts';
 import { PostCard } from './PostCard';
 import { Fallback } from '../ui/Fallback';
+import {
+  formatCreatedAt,
+  formatCreatedTime,
+  formatReadingMinutes,
+} from '@/utils/formatTime';
 
 export const PostSection = ({
   posts,
   title,
 }: {
-  posts: Post[];
+  posts: any;
   title: string;
 }) => {
   return (
@@ -15,16 +19,16 @@ export const PostSection = ({
       <h1 className='text-2xl font-medium mb-10 dark:text-white'>{title}</h1>
       <div className='flex flex-col'>
         {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
-        {posts.map((post: any) => (
+        {posts.map(({ node }: { node: any }) => (
           <PostCard
-            key={post._id}
-            date={post.date}
-            time={post.time}
-            title={post.title}
-            description={post.description}
-            path={post.slug}
-            tags={post.tags}
-            readTimeMinutes={post.readingMinutes}
+            key={node.id}
+            date={formatCreatedAt(node.date)}
+            time={formatCreatedTime(node.date)}
+            title={node.title}
+            description={node.description}
+            path={node.slug}
+            tags={node.tags}
+            readTimeMinutes={formatReadingMinutes(node.content)}
           />
         ))}
       </div>

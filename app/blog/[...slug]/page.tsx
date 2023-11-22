@@ -1,34 +1,22 @@
 import { PostDetail } from '@/app/components/post/PostDetail';
+import { getSinglePost, getTotalPosts } from '@/app/libs/hygraph';
 import { serializeMdx } from '@/app/libs/mdx';
-import { getAllPosts } from '@/app/libs/posts';
+
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
 export async function generateStaticParams() {
-  const posts = getAllPosts();
-  // http://localhost:3000/blog/2023/10/test 에서 동작
-  // const paths = posts.map((post) => ({
-  //   params: { slug: post.slug }
-  // }));
-  const paths = posts.map((post) => `/blog${post.slug}`); // http://localhost:3000/blog/posts/2023/10/test 에서 동작
+  const posts = (await getTotalPosts()) || [];
+  const paths = posts.map(({ node: { slug } }) => ({ params: { slug } }));
+
   return paths;
 }
 
 // Return the path of individual pages
 async function getProps({ params }: { params: { slug: string[] } }) {
   const { slug } = params as { slug: string[] };
-  const paths = `/${[...slug].join('/')}`; // http://localhost:3000/blog/posts/2023/10/test 에서 동작
-  // const paths = `/posts/${[...slug].join('/')}`; // http://localhost:3000/blog/2023/10/test 에서 동작
-  const post = getAllPosts().find((post) => post.slug === paths);
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
-
-  // Dosen't work anymore
+  const post = await getSinglePost(slug[0]);
 
   return {
     post,
@@ -41,6 +29,7 @@ export default async function PostPage({
 }: {
   params: { slug: string[] };
 }) {
+  // console.log => { params: { slug: [ 'blog' ] } }
   const { post } = await getProps({ params });
   const parsedToc = parseHeaderForTOC(post!.content);
 

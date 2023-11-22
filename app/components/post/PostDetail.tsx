@@ -13,6 +13,7 @@ import { Alert } from '../ui/Alert';
 import Giscus from './Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Post } from '@/app/libs/posts';
+import { formatCreatedAt, formatCreatedTime, formatReadTime, formatReadingMinutes } from '@/utils/formatTime';
 
 export const PostDetail = ({
   post,
@@ -55,11 +56,11 @@ export const PostDetail = ({
               >
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconBxCalendarStar />
-                  {post.date}
+                  {formatCreatedAt(post.date)}
                 </div>
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconTimerSand />
-                  {post.time} - {post!.readingMinutes} min read
+                  {formatCreatedTime(post.date)} - {formatReadingMinutes(post.content)} min read
                 </div>
               </time>
               {/* Copy link when click */}
