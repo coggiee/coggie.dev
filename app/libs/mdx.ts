@@ -1,18 +1,18 @@
 import { serialize } from 'next-mdx-remote/serialize';
-import fs from 'node:fs';
 import remarkGfm from 'remark-gfm';
 import remarkToc from 'remark-toc';
 import remarkBreaks from 'remark-breaks';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypePrettyCode from 'rehype-pretty-code';
+// import rehypePrettyCode from 'rehype-pretty-code';
 import rehypeSlug from 'rehype-slug';
 import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeExternalLinks from 'rehype-external-links';
+import rehypePrism from 'rehype-prism-plus';
 
 const rehypeOptions = {
   theme: {
     dark: 'github-light',
-    light: 'github-dark'
+    light: 'github-dark',
   },
   keepBackground: true,
 };
@@ -25,6 +25,7 @@ export const serializeMdx = (source: string) => {
       rehypePlugins: [
         rehypeSlug,
         rehypeCodeTitles,
+        rehypePrism,
         // [rehypePrettyCode, rehypeOptions],
         [
           rehypeAutolinkHeadings,

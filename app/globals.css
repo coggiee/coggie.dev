@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import url(./prose.css);
+@import url(./prism-nord.css);
 
 // For theme switcher
 /*
