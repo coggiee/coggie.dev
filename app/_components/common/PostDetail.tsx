@@ -1,16 +1,16 @@
 'use client';
 
-import { Tag } from '@/app/_components/post/Tag';
+import { Tag } from '@/app/_components/ui/Tag';
 import IconTimerSand from '@/app/_icons/IconTimerSand';
 import IconBxCalendarStar from '@/app/_icons/IconBxCalendarStar';
 import IconLink from '@/app/_icons/IconLink';
-import { TocSidebar } from '@/app/_components/post/TocSidebar';
+import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 import useDetectScroll from '../../_hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import { Alert } from '../ui/Alert';
-import Giscus from './Giscus';
+import Giscus from '../../blog/_components/Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Post } from '@/app/_libs/posts';
 import {

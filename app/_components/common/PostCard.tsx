@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Tag } from './Tag';
+import { Tag } from '../ui/Tag';
 import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
 import IconTimerSand from '../../_icons/IconTimerSand';
 interface PostCardProps {

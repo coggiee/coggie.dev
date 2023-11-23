@@ -1,4 +1,4 @@
-import { PostDetail } from '@/app/_components/post/PostDetail';
+import { PostDetail } from '@/app/_components/common/PostDetail';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
 

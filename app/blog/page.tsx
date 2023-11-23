@@ -1,10 +1,9 @@
 import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
-import TagSidebar from '../_components/blog/TagSidebar';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
 const DynamicBlogSection = dynamic(
-  () => import('../_components/blog/BlogSection'),
+  () => import('./_components/BlogSection'),
   {
     ssr: false,
   }

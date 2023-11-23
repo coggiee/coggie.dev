@@ -1,5 +1,5 @@
 import { Hero } from './_components/hero/Hero';
-import { PostSection } from './_components/post/PostSection';
+import { PostSection } from './_components/common/PostSection';
 import { Sidebar } from './_components/sidebar/Sidebar';
 import { getHotPosts, getRecentPosts } from './_libs/hygraph';
 

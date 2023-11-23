@@ -1,7 +1,16 @@
 import type { Metadata } from 'next';
 import { Nav } from './_components/ui/Nav';
 import '@/app/_styles/globals.css';
-import { blackHanSans, inter, lato, notosanskr, marhey, pacifico, indieFlower, permanentMarker } from '../assets/fonts';
+import {
+  blackHanSans,
+  inter,
+  lato,
+  notosanskr,
+  marhey,
+  pacifico,
+  indieFlower,
+  permanentMarker,
+} from '../assets/fonts';
 import { Footer } from './_components/ui/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';

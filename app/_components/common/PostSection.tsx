@@ -17,7 +17,9 @@ export const PostSection = ({
   return (
     <section className='mt-10 mb-10 font-mono'>
       <div className='flex items-center mb-7 gap-2'>
-        <h1 className='text-3xl font-thin dark:text-white min-w-fit'>{title}</h1>
+        <h1 className='text-3xl font-thin dark:text-white min-w-fit'>
+          {title}
+        </h1>
         <div className='h-[1px] bg-[#00000047] w-full dark:bg-[#5d5d5d]'></div>
       </div>
 

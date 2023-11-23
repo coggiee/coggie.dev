@@ -1,14 +1,14 @@
 'use client';
 
 import React, { Suspense } from 'react';
-import { Fallback } from '../ui/Fallback';
-import { PostCard } from '../post/PostCard';
+import { Fallback } from '../../_components/ui/Fallback';
+import { PostCard } from '../../_components/common/PostCard';
 import {
   formatCreatedAt,
   formatCreatedTime,
   formatReadingMinutes,
 } from '@/utils/formatTime';
-import TagSidebar from './TagSidebar';
+import TagSidebar from '@/app/blog/_components/TagSidebar';
 import { getPostsByTag } from '@/app/_libs/hygraph';
 
 type Props = {

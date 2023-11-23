@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import TuiEditor from './TuiEditor';
-import Title from './Title';
+import TuiEditor from '@/app/write/_components/TuiEditor';
+import Title from '@/app/write/_components/Title';
 import { Octokit } from 'octokit';
-import { Alert } from '../ui/Alert';
+import { Alert } from '../../_components/ui/Alert';
 import { useRouter } from 'next/navigation';
 
 type Props = {};
