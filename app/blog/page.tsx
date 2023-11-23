@@ -38,7 +38,7 @@ export default async function Blog() {
       {/* <div>Select Tag</div> */}
       <div className='flex-1 flex flex-col gap-5'>
         <div>
-          <h1 className='font-bold text-2xl inline-block mr-2'>📝 All posts</h1>
+          <h1 className='font-thin text-3xl inline-block mr-2 font-lato'>All posts</h1>
           <span className='font-bold'>({posts.length})</span>
         </div>
         <div className='flex flex-col'>

@@ -34,7 +34,7 @@ export const PostCard = ({
             {time} - {readTimeMinutes} min read
           </div>
           <h2 className='text-xl w-full break-words'>{title}</h2>
-          <div className='font-light w-full text-ellipsis overflow-hidden whitespace-nowrap'>
+          <div className='font-thin w-full text-ellipsis overflow-hidden whitespace-nowrap font-mono mb-5'>
             {description}
           </div>
           <div className='card-actions justify-start'>

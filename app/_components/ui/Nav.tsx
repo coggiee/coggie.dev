@@ -23,17 +23,24 @@ export const Nav = () => {
     signIn();
   };
   return (
-    <nav className='sticky top-0 left-0 h-24 px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
-      <div className='flex justify-between items-center gap-10'>
-        <Avatar />
-        <div className='flex items-center gap-5 font-notosanskr'>
+    <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
+      <div className='flex justify-between items-center gap-5'>
+        <div>
+          <Link
+            href='/'
+            className=' font-indieFlower text-4xl dark:text-[#ffc76d]'
+          >
+            Coggie
+          </Link>
+        </div>
+        <div className='flex items-center gap-5 font-mono'>
           {navLinks.map((nav) => (
             <Link
               href={nav.link}
               key={nav.title}
               className={`${
                 pathname === nav.link ? 'before:w-full' : ''
-              }  dark:text-[#fff] text-lg relative before:absolute before:h-1 before:bg-[#f7ab0a] before:w-[0%] before:-bottom-2 before:left-1/2 before:translate-x-[-50%] hover:before:w-full before:transition-all`}
+              }  dark:text-[#fff] text-lg relative before:absolute before:h-1 before:bg-[#f7ab0a] before:w-[0%] before:-bottom-2 before:left-1/2 before:translate-x-[-50%] hover:before:w-full before:transition-all font-thin`}
             >
               {nav.title}
             </Link>
