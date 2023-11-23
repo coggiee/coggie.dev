@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nav } from './_components/ui/Nav';
 import '@/app/_styles/globals.css';
-import { blackHanSans, inter, lato, notosanskr } from '../assets/fonts';
+import { blackHanSans, inter, lato, notosanskr, marhey, pacifico, indieFlower, permanentMarker } from '../assets/fonts';
 import { Footer } from './_components/ui/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';
@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable}  dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80`}
+        className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${marhey.variable} ${pacifico.variable} ${indieFlower.variable} ${permanentMarker.variable}  dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80`}
       >
         <AuthProvider>
           <Providers>
