@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { Nav } from './components/ui/Nav';
-import './globals.css';
-import { blackHanSans, inter, lato, notosanskr } from './fonts';
-import { Footer } from './components/ui/Footer';
-import { Providers } from './providers';
-import AuthProvider from './AuthProvider';
+import { Nav } from './_components/ui/Nav';
+import '@/app/_styles/globals.css';
+import { blackHanSans, inter, lato, notosanskr } from '../assets/fonts';
+import { Footer } from './_components/ui/Footer';
+import { Providers } from './_provider/providers';
+import AuthProvider from './_provider/AuthProvider';
 
 export const metadata: Metadata = {
   metadataBase:
@@ -26,8 +26,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'coggie.dev',
-    description:
-      '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
+    description: '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
     url: 'https://coggie.dev',
     siteName: 'coggie.dev',
     images: [
@@ -43,8 +42,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'coggie.dev',
-    description:
-      '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
+    description: '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
     creator: '@coggie',
     images: ['https://i.ibb.co/87LtM03/profile.jpg'],
   },

@@ -1,17 +1,17 @@
 'use client';
 
-import { navLinks } from '@/app/data/navlinks';
+import { navLinks } from '@/app/_data/navlinks';
 import Link from 'next/link';
 import { Avatar } from './Avatar';
-import IconSearch from '../../Icons/IconSearch';
-import IconApplemusic from '../../Icons/IconAppleMusic';
-import IconGlobe from '../../Icons/IconGlobe';
+import IconSearch from '../../_icons/IconSearch';
+import IconApplemusic from '../../_icons/IconAppleMusic';
+import IconGlobe from '../../_icons/IconGlobe';
 import { usePathname, useRouter } from 'next/navigation';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { Tooltip } from './Tooltip';
-import IconWrite from '@/app/Icons/IconWrite';
+import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
-import IconGithub from '@/app/Icons/IconGithub';
+import IconGithub from '@/app/_icons/IconGithub';
 import GithubLogin from './GithubLogin';
 
 export const Nav = () => {

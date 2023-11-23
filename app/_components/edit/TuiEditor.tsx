@@ -12,7 +12,7 @@ import 'prismjs/themes/prism.css';
 import Prism from 'prismjs';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useTheme } from 'next-themes';
-import IconBack from '../../Icons/IconBack';
+import IconBack from '../../_icons/IconBack';
 import { useRouter } from 'next/navigation';
 
 interface Props {
@@ -31,11 +31,11 @@ export default function TuiEditor({
     ['hr', 'quote'],
     ['ul', 'ol', 'task', 'indent', 'outdent'],
     ['table', 'image', 'link'],
-    ['code', 'codeblock']
+    ['code', 'codeblock'],
   ];
   const { theme } = useTheme();
   const router = useRouter();
-  
+
   return (
     <div className='flex-grow'>
       {editorRef && (

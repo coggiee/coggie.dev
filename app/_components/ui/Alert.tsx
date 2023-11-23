@@ -1,6 +1,6 @@
-import IconLink from '@/app/Icons/IconLink';
+import IconLink from '@/app/_icons/IconLink';
 
-export const Alert = ({title}: {title: string}) => {
+export const Alert = ({ title }: { title: string }) => {
   return (
     <div
       role='alert'

@@ -1,6 +1,6 @@
 'use client';
 
-import IconChevronRight from '@/app/Icons/IconChevronRight';
+import IconChevronRight from '@/app/_icons/IconChevronRight';
 import { Toc } from '@/types/type';
 import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';

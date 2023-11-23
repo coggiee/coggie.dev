@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip } from './Tooltip';
-import IconGithub from '@/app/Icons/IconGithub';
+import IconGithub from '@/app/_icons/IconGithub';
 
 type Props = {
   handleOnLogin: () => void;

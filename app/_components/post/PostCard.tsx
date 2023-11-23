@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Tag } from './Tag';
-import IconBxCalendarStar from '../../Icons/IconBxCalendarStar';
-import IconTimerSand from '../../Icons/IconTimerSand';
+import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
+import IconTimerSand from '../../_icons/IconTimerSand';
 interface PostCardProps {
   date: string;
   time: string;

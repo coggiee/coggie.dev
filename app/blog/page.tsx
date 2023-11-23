@@ -3,9 +3,9 @@ import {
   formatCreatedTime,
   formatReadingMinutes,
 } from '@/utils/formatTime';
-import { PostCard } from '../components/post/PostCard';
-import { Fallback } from '../components/ui/Fallback';
-import { getTotalPosts } from '../libs/hygraph';
+import { PostCard } from '../_components/post/PostCard';
+import { Fallback } from '../_components/ui/Fallback';
+import { getTotalPosts } from '../_libs/hygraph';
 
 async function getProps() {
   const posts = (await getTotalPosts()) || [];

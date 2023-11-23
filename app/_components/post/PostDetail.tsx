@@ -1,19 +1,24 @@
 'use client';
 
-import { Tag } from '@/app/components/post/Tag';
-import IconTimerSand from '@/app/Icons/IconTimerSand';
-import IconBxCalendarStar from '@/app/Icons/IconBxCalendarStar';
-import IconLink from '@/app/Icons/IconLink';
-import { TocSidebar } from '@/app/components/post/TocSidebar';
-import useDetectScroll from '../../hooks/useDetectScroll';
+import { Tag } from '@/app/_components/post/Tag';
+import IconTimerSand from '@/app/_icons/IconTimerSand';
+import IconBxCalendarStar from '@/app/_icons/IconBxCalendarStar';
+import IconLink from '@/app/_icons/IconLink';
+import { TocSidebar } from '@/app/_components/post/TocSidebar';
+import useDetectScroll from '../../_hooks/useDetectScroll';
 import HorizontalProgress from '../ui/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import { Alert } from '../ui/Alert';
 import Giscus from './Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { Post } from '@/app/libs/posts';
-import { formatCreatedAt, formatCreatedTime, formatReadTime, formatReadingMinutes } from '@/utils/formatTime';
+import { Post } from '@/app/_libs/posts';
+import {
+  formatCreatedAt,
+  formatCreatedTime,
+  formatReadTime,
+  formatReadingMinutes,
+} from '@/utils/formatTime';
 import dayjs from 'dayjs';
 
 export const PostDetail = ({
@@ -62,7 +67,8 @@ export const PostDetail = ({
                 </div>
                 <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
                   <IconTimerSand />
-                  {formatCreatedTime(post.date)} - {formatReadingMinutes(post.content)} min read
+                  {formatCreatedTime(post.date)} -{' '}
+                  {formatReadingMinutes(post.content)} min read
                 </div>
               </time>
               {/* Copy link when click */}

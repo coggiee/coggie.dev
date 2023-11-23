@@ -1,6 +1,6 @@
-import IconGithub from '@/app/Icons/IconGithub';
+import IconGithub from '@/app/_icons/IconGithub';
 import { Social } from './Social';
-import IconPrevBlog from '@/app/Icons/IconPrevBlog';
+import IconPrevBlog from '@/app/_icons/IconPrevBlog';
 import Link from 'next/link';
 
 export const Footer = () => {

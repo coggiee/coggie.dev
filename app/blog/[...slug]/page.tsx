@@ -1,6 +1,6 @@
-import { PostDetail } from '@/app/components/post/PostDetail';
-import { getSinglePost, getTotalPosts } from '@/app/libs/hygraph';
-import { serializeMdx } from '@/app/libs/mdx';
+import { PostDetail } from '@/app/_components/post/PostDetail';
+import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
+import { serializeMdx } from '@/app/_libs/mdx';
 
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 
@@ -22,11 +22,7 @@ async function getProps({ params }: { params: { slug: any } }) {
 }
 
 // params come from `generateStaticParams` above.
-export default async function PostPage({
-  params,
-}: {
-  params: { slug: any };
-}) {
+export default async function PostPage({ params }: { params: { slug: any } }) {
   // console.log => { params: { slug: [ 'blog' ] } }
   const { post } = await getProps({ params });
   const parsedToc = parseHeaderForTOC(post!.content);

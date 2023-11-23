@@ -1,7 +1,7 @@
-import { Hero } from './components/Hero';
-import { PostSection } from './components/post/PostSection';
-import { Sidebar } from './components/sidebar/Sidebar';
-import { getHotPosts, getRecentPosts } from './libs/hygraph';
+import { Hero } from './_components/Hero';
+import { PostSection } from './_components/post/PostSection';
+import { Sidebar } from './_components/sidebar/Sidebar';
+import { getHotPosts, getRecentPosts } from './_libs/hygraph';
 
 async function getProps() {
   const hotPosts = (await getHotPosts()) || [];
@@ -11,8 +11,8 @@ async function getProps() {
     props: {
       hotPosts,
       recentPosts,
-    }
-  }
+    },
+  };
 }
 
 export default async function Home() {
