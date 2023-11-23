@@ -8,15 +8,17 @@ export const Hero = () => {
   return (
     <section className='p-5 rounded-xl shadow-xl dark:text-white'>
       <div className='flex flex-col gap-5'>
-        <div className='flex flex-col gap-10 md:flex-row'>
-          <aside className='h-64 w-full md:h-52 relative lg:h-96 '>
-            <Image
-              src={'/profile2.jpg'}
-              layout='fill'
-              objectFit='contain'
-              alt='프로필 이미지'
-              className='absolute'
-            />
+        <div className='flex flex-col gap-10 lg:flex-row'>
+          <aside className='flex justify-center'>
+            <div className='h-80 w-80 relative lg:w-96 lg:h-96 rounded-2xl'>
+              <Image
+                src={'/profile2.jpg'}
+                layout='fill'
+                objectFit='contain'
+                alt='프로필 이미지'
+                className='absolute rounded-2xl'
+              />
+            </div>
           </aside>
           <main className='flex flex-col gap-10'>
             <div className='flex flex-col gap-5'>
