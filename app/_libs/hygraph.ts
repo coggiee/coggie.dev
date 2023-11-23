@@ -101,7 +101,42 @@ export async function getRecentPosts() {
       }
     }
   `;
-  
+
   const results: any = await graphcms.request(query);
   return results.postsConnection.edges;
+}
+
+export async function getTotalTags() {
+  const query = gql`
+    query getTotalTags {
+      posts {
+        tags
+      }
+    }
+  `;
+
+  const results: any = await graphcms.request(query);
+  return results.posts;
+}
+
+export async function getPostsByTag(tag: any[]) {
+  const query = gql`
+    query getPostByTag($tags_contains_some: [Tags!] = Javascript) {
+      posts(where: { tags_contains_some: $tags_contains_some }) {
+        tags
+        content
+        createdAt
+        date
+        description
+        publishedAt
+        id
+        hot
+        title
+        updatedAt
+      }
+    }
+  `;
+
+  const results: any = await graphcms.request(query, { tags_contains_some: tag });
+  return results.posts;
 }
