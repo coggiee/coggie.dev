@@ -42,13 +42,13 @@ export default function TuiEditor({
         <div className='flex flex-col gap-3 mb-3'>
           <Editor
             ref={editorRef}
-            height='950px'
+            height='800px'
             placeholder='Write your content here...'
             // window.innerWidth는 새로고침하지 않으면 작동하지 않음.
             previewStyle='vertical'
             theme={theme === 'light' ? 'light' : 'dark'}
             initialEditType='markdown' // or wysiwyg
-            // hideModeSwitch={true} // 하단 숨기기
+            hideModeSwitch={true} // 하단 숨기기
             initialValue={content || ''}
             useCommandShortcut={true}
             toolbarItems={toolbarItems}

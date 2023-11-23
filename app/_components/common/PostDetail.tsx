@@ -58,7 +58,7 @@ export const PostDetail = ({
             <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
               {post!.title}
             </h1>
-            <div className='flex justify-start items-center gap-2 mb-5 '>
+            <div className='flex justify-start items-center gap-2 mb-5 flex-wrap'>
               {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
             </div>
             <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c] mb-10'>
