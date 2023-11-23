@@ -47,12 +47,13 @@ export const Nav = () => {
             </button>
           </Tooltip>
         )}
-
-        {/* <Tooltip dataTip='write'>
-          <button onClick={() => router.push('/write')}>
-            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
-          </button>
-        </Tooltip> */}
+        {session && (
+          <Tooltip dataTip='write'>
+            <button onClick={() => router.push('/write')}>
+              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+            </button>
+          </Tooltip>
+        )}
         <Tooltip dataTip='search'>
           <button className=' btn-disabled'>
             <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />
