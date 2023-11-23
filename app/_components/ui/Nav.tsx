@@ -49,7 +49,7 @@ export const Nav = () => {
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
-        {session && (
+        {session && session.user!.email === '' && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
               <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />

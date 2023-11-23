@@ -20,6 +20,8 @@ import {
   formatReadingMinutes,
 } from '@/utils/formatTime';
 import dayjs from 'dayjs';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export const PostDetail = ({
   post,
@@ -32,6 +34,8 @@ export const PostDetail = ({
 }) => {
   const { scroll } = useDetectScroll();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
+  const { data: session } = useSession();
+
   const handleOnClickCopyButton = () => {
     copyToClipboard();
 
@@ -72,14 +76,22 @@ export const PostDetail = ({
                 </div>
               </time>
               {/* Copy link when click */}
-              <button
-                className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
-                onClick={handleOnClickCopyButton}
-              >
-                <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
-                  <IconLink />
-                </div>
-              </button>
+              <div className='flex items-center gap-10'>
+                {session && session.user!.email === '49crehbgr@gmail.com' && (
+                  <div className='text-xs underline flex gap-3'>
+                    <Link href=''>수정</Link>
+                    <Link href=''>삭제</Link>
+                  </div>
+                )}
+                <button
+                  className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
+                  onClick={handleOnClickCopyButton}
+                >
+                  <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
+                    <IconLink />
+                  </div>
+                </button>
+              </div>
             </div>
             <MDXRemote {...mdx} />
           </div>
