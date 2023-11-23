@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import url(./prose.css);
 @import url(./prism-nord.css);
+@import url(./loading.css);
 
 // For theme switcher
 /*
