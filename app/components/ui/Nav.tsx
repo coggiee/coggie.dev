@@ -10,10 +10,14 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { Tooltip } from './Tooltip';
 import IconWrite from '@/app/Icons/IconWrite';
+import { signIn, useSession } from 'next-auth/react';
+import IconGithub from '@/app/Icons/IconGithub';
 
 export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const { data: session } = useSession();
+
   return (
     <nav className='sticky top-0 left-0 h-24 px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
       <div className='flex justify-between items-center gap-10'>
@@ -33,6 +37,17 @@ export const Nav = () => {
         </div>
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
+        {!session && (
+          <Tooltip dataTip='login'>
+            <button
+              onClick={() => signIn()}
+              className='flex items-center gap-2'
+            >
+              <IconGithub className='transition-colors hover:text-[#6945a8] dark:text-white dark:hover:text-[#6945a8]' />
+            </button>
+          </Tooltip>
+        )}
+
         {/* <Tooltip dataTip='write'>
           <button onClick={() => router.push('/write')}>
             <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
