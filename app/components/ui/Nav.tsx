@@ -12,12 +12,16 @@ import { Tooltip } from './Tooltip';
 import IconWrite from '@/app/Icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import IconGithub from '@/app/Icons/IconGithub';
+import GithubLogin from './GithubLogin';
 
 export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
 
+  const handleOnLogin = () => {
+    signIn();
+  };
   return (
     <nav className='sticky top-0 left-0 h-24 px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
       <div className='flex justify-between items-center gap-10'>
@@ -37,16 +41,7 @@ export const Nav = () => {
         </div>
       </div>
       <div className='hidden md:flex gap-5 text-[30px]'>
-        {!session && (
-          <Tooltip dataTip='login'>
-            <button
-              onClick={() => signIn()}
-              className='flex items-center gap-2'
-            >
-              <IconGithub className='transition-colors hover:text-[#6945a8] dark:text-white dark:hover:text-[#6945a8]' />
-            </button>
-          </Tooltip>
-        )}
+        {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
@@ -71,7 +66,8 @@ export const Nav = () => {
         </Tooltip>
         <ThemeSwitcher />
       </div>
-      <div className='flex items-center text-[30px] md:hidden'>
+      <div className='flex items-center gap-3 text-[30px] md:hidden'>
+        {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         <ThemeSwitcher />
       </div>
     </nav>
