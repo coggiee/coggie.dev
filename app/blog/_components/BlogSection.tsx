@@ -10,6 +10,7 @@ import {
 } from '@/utils/formatTime';
 import TagSidebar from '@/app/blog/_components/TagSidebar';
 import { getPostsByTag } from '@/app/_libs/hygraph';
+import TagFilter from './TagFilter';
 
 type Props = {
   posts: any;
@@ -28,6 +29,7 @@ export default function BlogSection({ posts, uniqueTags }: Props) {
 
   return (
     <>
+      {/* <div className='w-full flex flex-row-reverse gap-5'> */}
       <Suspense fallback={<div>Loading...</div>}>
         <div className='flex-grow min-w-0 w-full mb-3'>
           <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5 mb-5 shadow-md'>
@@ -40,12 +42,13 @@ export default function BlogSection({ posts, uniqueTags }: Props) {
             등에 대한 내용이 포함됩니다.
           </header>
           {/* <div>Select Tag</div> */}
+          <TagFilter tags={uniqueTags} handleOnClickTag={handleOnClickTag} />
           <div className='flex-1 flex flex-col gap-5'>
             <div>
               <h1 className='font-thin text-3xl inline-block mr-2 font-lato'>
                 All posts
               </h1>
-              <span className='font-bold'>({posts.length})</span>
+              <span className='font-bold'>({currentPosts.length})</span>
             </div>
             <div className='flex flex-col'>
               {currentPosts.length === 0 && (
@@ -67,7 +70,8 @@ export default function BlogSection({ posts, uniqueTags }: Props) {
           </div>
         </div>
       </Suspense>
-      <TagSidebar tags={uniqueTags} handleOnClickTag={handleOnClickTag} />
+      {/* <TagSidebar tags={uniqueTags} handleOnClickTag={handleOnClickTag} /> */}
+      {/* </div> */}
     </>
   );
 }
