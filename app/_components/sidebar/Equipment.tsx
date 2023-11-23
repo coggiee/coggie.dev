@@ -10,7 +10,7 @@ export const Equipment = () => {
         </h4>
       </div>
       <div className='collapse-content'>
-        <ul className='text-gray-700 dark:text-[#fff] font-lato'>
+        <ul className='text-gray-700 dark:text-[#fff] font-permanentMarker'>
           {equipment.map((item) => (
             <li key={item.title}>{item.title}</li>
           ))}

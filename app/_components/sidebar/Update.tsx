@@ -10,7 +10,7 @@ export const Update = () => {
         </h4>
       </div>
       <div className='collapse-content'>
-        <ul className='text-gray-700 dark:text-[#fff]'>
+        <ul className='text-gray-700 dark:text-[#fff] font-permanentMarker'>
           {updateList.map((item) => (
             <li key={item.title}>{item.title}</li>
           ))}
