@@ -1,8 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import { InfoSection } from './info/InfoSection';
-import { Social } from './ui/Social';
+import { InfoSection } from '../info/InfoSection';
+import { Social } from '../ui/Social';
 
 export const Hero = () => {
   return (
@@ -11,7 +11,7 @@ export const Hero = () => {
         <div className='flex flex-col gap-10 md:flex-row'>
           <aside className='h-64 w-full md:h-52 relative lg:h-96 '>
             <Image
-              src={'/profile.jpg'}
+              src={'/profile2.jpg'}
               layout='fill'
               objectFit='contain'
               alt='프로필 이미지'
