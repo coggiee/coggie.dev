@@ -22,6 +22,7 @@ import {
 import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import FooterHero from '@/app/blog/_components/FooterHero';
 
 export const PostDetail = ({
   post,
@@ -52,7 +53,7 @@ export const PostDetail = ({
       <HorizontalProgress scroll={scroll} />
       {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />}
       <div className='mb-5 flex-grow'>
-        <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-5'>
+        <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
           <div className='mb-8 flex flex-col'>
             <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
               {post!.title}
@@ -96,6 +97,7 @@ export const PostDetail = ({
             <MDXRemote {...mdx} />
           </div>
         </article>
+        <FooterHero />
         <Giscus />
       </div>
       {isAlertVisible && <Alert title={'링크가 복사되었습니다.'} />}
