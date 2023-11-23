@@ -1,62 +1,42 @@
-import {
-  formatCreatedAt,
-  formatCreatedTime,
-  formatReadingMinutes,
-} from '@/utils/formatTime';
-import { PostCard } from '../_components/post/PostCard';
-import { Fallback } from '../_components/ui/Fallback';
-import { getTotalPosts } from '../_libs/hygraph';
+import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
+import TagSidebar from '../_components/blog/TagSidebar';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+const DynamicBlogSection = dynamic(
+  () => import('../_components/blog/BlogSection'),
+  {
+    ssr: false,
+  }
+);
 
 async function getProps() {
-  const posts = (await getTotalPosts()) || [];
+  const response = (await getTotalPosts()) || [];
+  const posts = response.map((post: any) => post.node);
+  const tags = (await getTotalTags()) || [];
+  const uniqueTags = Array.from(
+    new Set<string>(tags.flatMap((post: any) => post.tags))
+  );
 
   return {
     props: {
       posts,
+      uniqueTags,
     },
   };
 }
 
 export default async function Blog() {
-  // graphcms를 사용한다면, 모든 포스트를 가져온다.
-  // 각 포스트의 frontmatter(title, desc, date, tags, ...)를 가져온다.
-  // 그리고 각 포스트의 slug를 가져온다.
-  // slug도 graphcms에 저장되어있다.
-
   const {
-    props: { posts },
+    props: { posts, uniqueTags },
   } = await getProps();
+
   return (
-    <section className='w-full mx-auto flex-grow md:max-w-3xl flex flex-col gap-3 dark:text-[#fff]'>
-      <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5 mb-5 shadow-md'>
-        이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
-        <br />
-        알고리즘 문제 풀이 제외, 각종 <strong>프로젝트 개발기</strong>와{' '}
-        <strong>회고</strong> 그리고 <strong>트러블 슈팅</strong>
-        등에 대한 내용이 포함됩니다.
-      </header>
-      {/* <div>Select Tag</div> */}
-      <div className='flex-1 flex flex-col gap-5'>
-        <div>
-          <h1 className='font-thin text-3xl inline-block mr-2 font-lato'>All posts</h1>
-          <span className='font-bold'>({posts.length})</span>
-        </div>
-        <div className='flex flex-col'>
-          {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
-          {posts.map(({ node }: { node: any }) => (
-            <PostCard
-              key={node.id}
-              date={formatCreatedAt(node.date)}
-              time={formatCreatedTime(node.date)}
-              title={node.title}
-              description={node.description}
-              path={node.id}
-              tags={node.tags}
-              readTimeMinutes={formatReadingMinutes(node.content)}
-            />
-          ))}
-        </div>
-      </div>
+    <section className='w-full mx-auto flex flex-col md:max-w-6xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DynamicBlogSection posts={posts} uniqueTags={uniqueTags} />
+      </Suspense>
+      {/* 태그 클릭 시, 해당 태그를 가지고 있는 포스트를 보여줌 */}
     </section>
   );
 }
