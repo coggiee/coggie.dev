@@ -21,8 +21,7 @@ export const metadata: Metadata = {
     apple: '/profile.jpg',
   },
   other: {
-    'google-site-verification': 'JaVz1bemB3VUWEFyLRmR9RLOBNr4hybV8S5GWvJZkr4',
-    'naver-site-verification': '59f5471d35d15f99c1a7841c357220db014e240c',
+    'naver-site-verification': 'db583c8efc6a2ebd36e6b839daf24a146b414c49',
   },
   openGraph: {
     title: 'coggie.dev',
