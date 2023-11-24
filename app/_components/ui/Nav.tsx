@@ -2,7 +2,6 @@
 
 import { navLinks } from '@/app/_data/navlinks';
 import Link from 'next/link';
-import { Avatar } from './Avatar';
 import IconSearch from '../../_icons/IconSearch';
 import IconApplemusic from '../../_icons/IconAppleMusic';
 import IconGlobe from '../../_icons/IconGlobe';
@@ -11,7 +10,6 @@ import { ThemeSwitcher } from './ThemeSwitcher';
 import { Tooltip } from './Tooltip';
 import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
-import IconGithub from '@/app/_icons/IconGithub';
 import GithubLogin from './GithubLogin';
 import DropdownMenu from './DropdownMenu';
 
@@ -50,17 +48,16 @@ export const Nav = () => {
       </div>
       <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden md:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
-        <Tooltip dataTip='write'>
+        {/* <Tooltip dataTip='write'>
           <button onClick={() => router.push('/write')}>
             <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
           </button>
-        </Tooltip>
-        {session && session.user!.email === '' && (
-          <Tooltip dataTip='write'>
-            <button onClick={() => router.push('/write')}>
-              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
-            </button>
-          </Tooltip>
+        </Tooltip> */}
+        {session && session.user!.email === '49crehbgr@gmail.com' && (
+          <button onClick={() => router.push('/write')}>
+            <span>Write Post</span>
+            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+          </button>
         )}
         <Tooltip dataTip='search'>
           <button className=' btn-disabled'>
@@ -81,7 +78,7 @@ export const Nav = () => {
       </div>
       <div className='flex items-center gap-3 text-[30px] md:hidden'>
         <ThemeSwitcher />
-        <DropdownMenu handleOnLogin={handleOnLogin} />
+        <DropdownMenu handleOnLogin={handleOnLogin} session={session} />
       </div>
     </nav>
   );
