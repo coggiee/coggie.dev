@@ -48,16 +48,12 @@ export const Nav = () => {
       </div>
       <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
-        {/* <Tooltip dataTip='write'>
-          <button onClick={() => router.push('/write')}>
-            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
-          </button>
-        </Tooltip> */}
         {session && session.user!.email === '49crehbgr@gmail.com' && (
-          <button onClick={() => router.push('/write')}>
-            <span>Write Post</span>
-            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
-          </button>
+          <Tooltip dataTip='write'>
+            <button onClick={() => router.push('/write')}>
+              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+            </button>
+          </Tooltip>
         )}
         <Tooltip dataTip='search'>
           <button className=' btn-disabled'>
