@@ -2,8 +2,4 @@ interface NavLink {
   title: string;
   link: string;
 }
-export const navLinks: NavLink[] = [
-  // { title: '홈', link: '/' },
-  { title: '포스트', link: '/blog' },
-  // { title: '기타', link: '/book' },
-];
+export const navLinks: NavLink[] = [{ title: '포스트', link: '/blog' }];
