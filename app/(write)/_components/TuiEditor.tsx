@@ -45,27 +45,15 @@ export default function TuiEditor({
             height='800px'
             placeholder='Write your content here...'
             // window.innerWidth는 새로고침하지 않으면 작동하지 않음.
-            previewStyle='vertical'
-            theme={theme === 'light' ? 'light' : 'dark'}
+            previewStyle={window.innerWidth > 768 ? 'vertical' : 'tab'}
+            // {theme === 'light' ? 'light' : 'dark'}
+            theme='light'
             initialEditType='markdown' // or wysiwyg
             hideModeSwitch={true} // 하단 숨기기
-            initialValue={content || ''}
+            initialValue={''}
             useCommandShortcut={true}
             toolbarItems={toolbarItems}
-            frontMatter={true}
-            // customHTMLRenderer={{
-            //   paragraph(node, { origin, options }) {
-            //     const { customProp = {}} = options;
-            //     const showFrontMatter = customProp.showFrontMatter && node.customType;
-            //     const attributes = {};
-
-            //     // prevent to edit the front matter in WYSIWYG
-            //     if (showFrontMatter) {
-            //       attributes.contenteditable = false ;
-            //     }
-            //     return { ...origin(), attributes };
-            //   }
-            // }}
+            // frontMatter={true}
             plugins={[
               [
                 codeSyntaxHighlight,
@@ -85,7 +73,7 @@ export default function TuiEditor({
               <span>나가기</span>
             </button>
             <button
-              className='p-3 rounded-xl bg-[#f7ab0a] drop-shadow-md shadow-md font-notosanskr'
+              className='p-3 rounded-xl bg-[#f7ab0a] drop-shadow-md shadow-md font-mono'
               onClick={handleOnSave}
             >
               출간하기
