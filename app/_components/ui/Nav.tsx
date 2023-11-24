@@ -46,7 +46,7 @@ export const Nav = () => {
           ))}
         </div>
       </div>
-      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden md:flex gap-5 text-[30px]'>
+      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {/* <Tooltip dataTip='write'>
           <button onClick={() => router.push('/write')}>
@@ -76,7 +76,7 @@ export const Nav = () => {
         </Tooltip>
         <ThemeSwitcher />
       </div>
-      <div className='flex items-center gap-3 text-[30px] md:hidden'>
+      <div className='flex items-center gap-3 text-[30px] lg:hidden'>
         <ThemeSwitcher />
         <DropdownMenu handleOnLogin={handleOnLogin} session={session} />
       </div>
