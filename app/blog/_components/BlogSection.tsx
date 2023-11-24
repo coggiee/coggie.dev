@@ -11,6 +11,7 @@ import {
 import TagSidebar from '@/app/blog/_components/TagSidebar';
 import { getPostsByTag } from '@/app/_libs/hygraph';
 import TagFilter from './TagFilter';
+import Loading from '@/app/loading';
 
 type Props = {
   posts: any;
@@ -30,8 +31,8 @@ export default function BlogSection({ posts, uniqueTags }: Props) {
   return (
     <>
       {/* <div className='w-full flex flex-row-reverse gap-5'> */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className='flex-grow min-w-0 w-full mb-3'>
+      <Suspense fallback={<Loading />}>
+        <div className='flex-grow min-w-0 w-full mb-3 h-full'>
           <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5 mb-5 shadow-md'>
             이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
             <br />

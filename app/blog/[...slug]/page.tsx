@@ -6,6 +6,8 @@ import Loading from '@/app/loading';
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { Suspense } from 'react';
 
+export const dynamic = 'auto'
+
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
 export async function generateStaticParams() {
