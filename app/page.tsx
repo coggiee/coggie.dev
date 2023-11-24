@@ -12,6 +12,7 @@ async function getProps() {
       hotPosts,
       recentPosts,
     },
+    revalidate: 60,
   };
 }
 

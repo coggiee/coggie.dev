@@ -2,12 +2,9 @@ import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-const DynamicBlogSection = dynamic(
-  () => import('./_components/BlogSection'),
-  {
-    ssr: false,
-  }
-);
+const DynamicBlogSection = dynamic(() => import('./_components/BlogSection'), {
+  ssr: false,
+});
 
 async function getProps() {
   const response = (await getTotalPosts()) || [];
@@ -22,6 +19,7 @@ async function getProps() {
       posts,
       uniqueTags,
     },
+    revalidate: 60,
   };
 }
 
