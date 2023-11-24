@@ -33,13 +33,15 @@ export default function DropdownMenu({ handleOnLogin, session }: Props) {
             <IconGlobe className='transition-colors hover:text-[#4860ff] dark:text-black dark:hover:text-[#4860ff]' />
           </button>
         </li>
-        <li>
-          <button onClick={handleOnLogin} className='flex items-center gap-2'>
-            <span>Github Login</span>
-            <IconGithub className='transition-colors hover:text-[#6945a8] dark:text-black dark:hover:text-[#6945a8]' />
-          </button>
-        </li>
-        {session && session.user!.email === '49crehbgr@gmail.com' && (
+        {!session && (
+          <li>
+            <button onClick={handleOnLogin} className='flex items-center gap-2'>
+              <span>Github Login</span>
+              <IconGithub className='transition-colors hover:text-[#6945a8] dark:text-black dark:hover:text-[#6945a8]' />
+            </button>
+          </li>
+        )}
+        {session && session.user!.email === 'zentechie7@gmail.com' && (
           <li>
             <button>
               <Link href='/write' className='flex items-center gap-2'>

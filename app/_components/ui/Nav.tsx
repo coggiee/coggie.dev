@@ -17,7 +17,7 @@ export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
-
+  console.log(session);
   const handleOnLogin = () => {
     signIn();
   };
@@ -48,7 +48,7 @@ export const Nav = () => {
       </div>
       <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
-        {session && session.user!.email === '49crehbgr@gmail.com' && (
+        {session && session.user!.email === 'zentechie7@gmail.com' && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
               <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
