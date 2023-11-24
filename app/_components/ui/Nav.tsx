@@ -17,7 +17,6 @@ export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
-  console.log(session);
   const handleOnLogin = () => {
     signIn();
   };

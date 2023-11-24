@@ -25,7 +25,11 @@ export async function getTotalPosts() {
     }
   `;
 
-  const results: any = await graphcms.request(query);
+  const results: any = await graphcms.request(query, {
+    headers: {
+      'hyg-stale-while-revalidate': '27',
+    },
+  });
   return results.postsConnection.edges;
 }
 
@@ -48,7 +52,9 @@ export async function getSinglePost(id: string) {
     }
   `;
 
-  const results: any = await graphcms.request(query, { id });
+  const results: any = await graphcms.request(query, {
+    id,
+  });
   return results.post;
 }
 
@@ -75,7 +81,11 @@ export async function getHotPosts() {
     }
   `;
 
-  const results: any = await graphcms.request(query);
+  const results: any = await graphcms.request(query, {
+    headers: {
+      'hyg-stale-while-revalidate': '27',
+    },
+  });
   return results.postsConnection.edges;
 }
 
@@ -102,7 +112,11 @@ export async function getRecentPosts() {
     }
   `;
 
-  const results: any = await graphcms.request(query);
+  const results: any = await graphcms.request(query, {
+    headers: {
+      'hyg-stale-while-revalidate': '27',
+    },
+  });
   return results.postsConnection.edges;
 }
 
@@ -115,7 +129,11 @@ export async function getTotalTags() {
     }
   `;
 
-  const results: any = await graphcms.request(query);
+  const results: any = await graphcms.request(query, {
+    headers: {
+      'hyg-stale-while-revalidate': '27',
+    },
+  });
   return results.posts;
 }
 
@@ -139,6 +157,7 @@ export async function getPostsByTag(tag: any[]) {
 
   const results: any = await graphcms.request(query, {
     tags_contains_some: tag,
+    'hyg-stale-while-revalidate': '27',
   });
   return results.posts;
 }
@@ -188,6 +207,7 @@ export async function createPost(
     tags,
     hot,
     date,
+    'hyg-stale-while-revalidate': '27',
   });
 
   return results;

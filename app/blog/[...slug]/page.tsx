@@ -1,8 +1,10 @@
 import { PostDetail } from '@/app/_components/common/PostDetail';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
+import Loading from '@/app/loading';
 
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
+import { Suspense } from 'react';
 
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
@@ -35,7 +37,9 @@ export default async function PostPage({ params }: { params: { slug: any } }) {
 
   return (
     <div className='prose dark:prose-dark mt-4 w-full max-w-none'>
-      <PostDetail post={post!} mdx={mdx!} toc={parsedToc} />
+      <Suspense fallback={<Loading />}>
+        <PostDetail post={post!} mdx={mdx!} toc={parsedToc} />
+      </Suspense>
     </div>
   );
 }
