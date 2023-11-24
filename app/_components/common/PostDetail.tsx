@@ -52,9 +52,9 @@ export const PostDetail = ({
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
       <HorizontalProgress scroll={scroll} />
       {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />}
-      <div className='mb-5 flex-grow'>
+      <div className='mb-5 flex-grow w-full'>
         <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
-          <div className='mb-8 flex flex-col'>
+          <div className='mb-8 flex flex-col w-full'>
             <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
               {post!.title}
             </h1>
