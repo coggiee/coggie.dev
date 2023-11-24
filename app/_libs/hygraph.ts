@@ -207,7 +207,9 @@ export async function createPost(
     tags,
     hot,
     date,
-    'hyg-stale-while-revalidate': '27',
+    headers: {
+      'hyg-stale-while-revalidate': '27',
+    },
   });
 
   return results;
