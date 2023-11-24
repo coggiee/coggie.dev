@@ -8,7 +8,7 @@ export const formatReadTime = (time: string) => {
 };
 
 export const formatCreatedTime = (date: string) => {
-  return dayjs(date).format('HH:MM');
+  return dayjs(date).format('HH:mm');
 };
 
 export const formatReadingMinutes = (content: string) => {
