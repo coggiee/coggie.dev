@@ -19,7 +19,6 @@ export default async function Home() {
   const {
     props: { hotPosts, recentPosts },
   } = await getProps();
-
   return (
     <section className='w-full mx-auto flex flex-col md:max-w-6xl md:flex-row gap-5 relative'>
       <div className='flex flex-col flex-grow min-w-0 w-full mb-3'>
