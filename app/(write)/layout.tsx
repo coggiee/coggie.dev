@@ -11,7 +11,6 @@ import {
   permanentMarker,
 } from '@/assets/fonts';
 import { Providers } from '@/app/_provider/providers';
-import AuthProvider from '@/app/_provider/AuthProvider';
 
 export const metadata: Metadata = {
   metadataBase:
@@ -64,15 +63,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${marhey.variable} ${pacifico.variable} ${indieFlower.variable} ${permanentMarker.variable}  dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80 pt-10`}
       >
-        <AuthProvider>
-          <Providers>
-            <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
-              <main className='flex-grow flex flex-col items-center w-full px-5 md:px-12 md:flex-row md:items-baseline font-notosanskr'>
-                {children}
-              </main>
-            </div>
-          </Providers>
-        </AuthProvider>
+        <Providers>
+          <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
+            <main className='flex-grow flex flex-col items-center w-full px-5 md:px-5 md:flex-row md:items-baseline font-notosanskr'>
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   );
