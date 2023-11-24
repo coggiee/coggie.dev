@@ -121,7 +121,7 @@ export async function getTotalTags() {
 
 export async function getPostsByTag(tag: any[]) {
   const query = gql`
-    query getPostByTag($tags_contains_some: [Tags!] = Javascript) {
+    query getPostByTag($tags_contains_some: [Tags!]) {
       posts(where: { tags_contains_some: $tags_contains_some }) {
         tags
         content
@@ -137,6 +137,58 @@ export async function getPostsByTag(tag: any[]) {
     }
   `;
 
-  const results: any = await graphcms.request(query, { tags_contains_some: tag });
+  const results: any = await graphcms.request(query, {
+    tags_contains_some: tag,
+  });
   return results.posts;
+}
+
+export async function createPost(
+  title: string,
+  description: string,
+  content: string,
+  tags: any[],
+  hot: boolean,
+  date: Date
+) {
+  const query = gql`
+    mutation createPost(
+      $title: String
+      $description: String
+      $content: String
+      $tags: [Tags!]
+      $hot: Boolean
+      $date: DateTime
+    ) {
+      createPost(
+        data: {
+          content: $content
+          description: $description
+          hot: $hot
+          title: $title
+          date: $date
+          tags: $tags
+        }
+      ) {
+        content
+        hot
+        tags
+        title
+        date
+        description
+        id
+      }
+    }
+  `;
+
+  const results: any = await graphcms.request(query, {
+    title,
+    description,
+    content,
+    tags,
+    hot,
+    date,
+  });
+
+  return results;
 }

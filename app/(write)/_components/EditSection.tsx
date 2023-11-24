@@ -13,6 +13,9 @@ import { Octokit } from 'octokit';
 import { Alert } from '../../_components/ui/Alert';
 import { useRouter } from 'next/navigation';
 import { set } from 'date-fns';
+import dayjs from 'dayjs';
+import { createPost } from '@/app/_libs/hygraph';
+import Loading from '@/app/loading';
 
 type Props = {};
 
@@ -27,8 +30,10 @@ const octokit = new Octokit({
 export default function EditSection({}: Props) {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isHotPost, setIsHotPost] = useState<boolean>(false);
   const [tags, setTags] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
   const router = useRouter();
@@ -50,7 +55,21 @@ export default function EditSection({}: Props) {
       setTitle(title.slice(0, title.length - 1));
     }
 
-    setIsLoading(false);
+    const date = dayjs().format();
+
+    const response = await createPost(
+      title,
+      description,
+      content,
+      tagList,
+      isHotPost,
+      new Date(date)
+    );
+    const data = response.createPost;
+    if (data) {
+      setIsLoading(false);
+      router.replace(`/blog/${data.id}`);
+    }
   };
 
   const addTags = () => {
@@ -68,6 +87,9 @@ export default function EditSection({}: Props) {
   const handleOnTypeTags = (e: ChangeEvent<HTMLInputElement>) => {
     setTags(e.target.value);
   };
+  const handleOnTypeDesc = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setDescription(e.target.value);
+  };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -78,10 +100,17 @@ export default function EditSection({}: Props) {
   const handleOnClickTag = (tagToRemove: string) => {
     setTagList(tagList.filter((tag) => tag !== tagToRemove));
   };
-
   return (
     <div className='flex flex-col flex-grow flex-3'>
       <Title title={title} handleOnTypeTitle={handleOnTypeTitle} />
+      <div>
+        <textarea
+          className='w-full resize-none outline-none text-xl font-bold overflow-visible min-h-[3.5em]'
+          placeholder='설명을 입력하세요'
+          value={description}
+          onChange={handleOnTypeDesc}
+        ></textarea>
+      </div>
       <div className='mb-4'>
         <input
           type='text'
@@ -91,15 +120,15 @@ export default function EditSection({}: Props) {
           value={tags}
           onChange={handleOnTypeTags}
           onKeyPress={handleKeyPress}
-          className='mt-1 p-2 w-full rounded-md outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent'
+          className='mt-1 p-2 pl-0 w-full rounded-md outline-none'
         />
       </div>
       <div className='mb-4'>
-        <ul>
+        <ul className='flex flex-wrap justify-start items-center'>
           {tagList.map((tag, index) => (
             <li
               key={index}
-              className='inline-block bg-gray-200 text-gray-800 px-2 py-1 mr-2 rounded-md'
+              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-lg cursor-pointer mb-2 border border-[#f7ab0a]'
               onClick={() => handleOnClickTag(tag)}
             >
               # {tag}
@@ -113,6 +142,7 @@ export default function EditSection({}: Props) {
         handleOnSave={handleOnSave}
       />
       {isAlertVisible && <Alert title='제목과 내용을 입력해주세요.' />}
+      {isLoading && <Loading />}
     </div>
   );
 }
