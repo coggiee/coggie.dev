@@ -7,7 +7,7 @@ export const ThemeSwitcher = () => {
   const { theme, resolvedTheme, setTheme } = useTheme();
   return (
     <div
-      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md drop-shadow-md hover:bg-[#c1c1c12f]'
+      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl shadow-md hover:bg-[#c1c1c12f]'
       data-tip='theme'
     >
       <div className='flex justify-center items-center'>
