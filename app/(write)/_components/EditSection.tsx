@@ -68,8 +68,7 @@ export default function EditSection({}: Props) {
     const data = response.createPost;
     if (data) {
       setIsLoading(false);
-      // router.replace(`/blog/${data.id}`);
-      router.push(`/blog/${data.id}`);
+      router.push(`/blog`);
     }
   };
 

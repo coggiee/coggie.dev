@@ -15,6 +15,8 @@ import { Footer } from './_components/ui/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';
 
+export const dynamic = 'dynamic';
+
 export const metadata: Metadata = {
   metadataBase:
     process.env.NODE_ENV === 'production'
