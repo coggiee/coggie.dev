@@ -13,6 +13,7 @@ import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import IconGithub from '@/app/_icons/IconGithub';
 import GithubLogin from './GithubLogin';
+import DropdownMenu from './DropdownMenu';
 
 export const Nav = () => {
   const pathname = usePathname();
@@ -47,8 +48,13 @@ export const Nav = () => {
           ))}
         </div>
       </div>
-      <div className='hidden md:flex gap-5 text-[30px]'>
+      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden md:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
+        <Tooltip dataTip='write'>
+          <button onClick={() => router.push('/write')}>
+            <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+          </button>
+        </Tooltip>
         {session && session.user!.email === '' && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
@@ -74,8 +80,8 @@ export const Nav = () => {
         <ThemeSwitcher />
       </div>
       <div className='flex items-center gap-3 text-[30px] md:hidden'>
-        {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         <ThemeSwitcher />
+        <DropdownMenu handleOnLogin={handleOnLogin} />
       </div>
     </nav>
   );
