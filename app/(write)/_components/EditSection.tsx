@@ -2,21 +2,18 @@
 
 import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import TuiEditor from '@/app/(write)/_components/TuiEditor';
-import Title from '@/app/(write)/_components/Title';
-import { Octokit } from 'octokit';
+import EditTitle from '@/app/(write)/_components/EditTitle';
 import { Alert } from '../../_components/ui/Alert';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { createPost } from '@/app/_libs/hygraph';
 import Loading from '@/app/loading';
 import IconBack from '@/app/_icons/IconBack';
+import EditDrawer from './EditDrawer';
+import Link from 'next/link';
 
 type Props = {};
 
-// 글 작성 완료 시 date 처리 추가하는 로직
-// 설명 어떻게 추가하여 전송할지
-// tag 추가하는 로직
-// 인기 포스트 설정하는 로직
 export default function EditSection({}: Props) {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
@@ -32,6 +29,7 @@ export default function EditSection({}: Props) {
   const handleOnSave = async () => {
     setIsLoading(true);
     const content: string = editorRef.current.getInstance().getMarkdown();
+    tagList.forEach((tag) => tag.toUpperCase());
 
     // 제목과 내용이 없는 예외처리
     if (
@@ -87,6 +85,11 @@ export default function EditSection({}: Props) {
   };
   const handleOnTypeDesc = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
+    console.log(description);
+  };
+
+  const handleOnToggleHotPost = () => {
+    setIsHotPost((prev) => !prev);
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -98,17 +101,10 @@ export default function EditSection({}: Props) {
   const handleOnClickTag = (tagToRemove: string) => {
     setTagList(tagList.filter((tag) => tag !== tagToRemove));
   };
+
   return (
     <div className='flex flex-col flex-grow flex-3 relative w-full'>
-      <Title title={title} handleOnTypeTitle={handleOnTypeTitle} />
-      <div>
-        <textarea
-          className='w-full resize-none outline-none text-xl font-bold overflow-visible min-h-[3.5em]'
-          placeholder='설명을 입력하세요'
-          value={description}
-          onChange={handleOnTypeDesc}
-        ></textarea>
-      </div>
+      <EditTitle title={title} handleOnTypeTitle={handleOnTypeTitle} />
       <div className='mb-4'>
         <input
           type='text'
@@ -118,7 +114,7 @@ export default function EditSection({}: Props) {
           value={tags}
           onChange={handleOnTypeTags}
           onKeyPress={handleKeyPress}
-          className='mt-1 p-2 pl-0 w-full rounded-md outline-none'
+          className='mt-1 p-2 outline-none border-l-4 border-[#f7ab0a]'
         />
       </div>
       <div className='mb-4'>
@@ -126,7 +122,7 @@ export default function EditSection({}: Props) {
           {tagList.map((tag, index) => (
             <li
               key={index}
-              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-lg cursor-pointer mb-2 border border-[#f7ab0a]'
+              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-xl cursor-pointer mb-2 border border-[#f7ab0a]'
               onClick={() => handleOnClickTag(tag)}
             >
               # {tag}
@@ -135,20 +131,18 @@ export default function EditSection({}: Props) {
         </ul>
       </div>
       <TuiEditor content={''} editorRef={editorRef} />
-      <div className='w-full flex gap-3 justify-end fixed bottom-0 px-10 py-3'>
-        <button
-          className='p-3 flex gap-2 items-center cursor-pointer'
-          onClick={() => router.back()}
-        >
-          <IconBack />
-          <span>나가기</span>
+      <div className='w-full flex gap-3 fixed bottom-0 px-10 py-3 justify-end'>
+        <button className='btn glass ghost p-3'>
+          <Link href='/' className='flex gap-2 items-center'>
+            <IconBack />
+            <span>나가기</span>
+          </Link>
         </button>
-        <button
-          className='p-3 rounded-xl bg-[#f7ab0a] drop-shadow-md shadow-md font-mono cursor-pointer'
-          onClick={handleOnSave}
-        >
-          출간하기
-        </button>
+        <EditDrawer
+          handleOnTypeDesc={handleOnTypeDesc}
+          handleOnToggleHotPost={handleOnToggleHotPost}
+          handleOnClickSaveBtn={handleOnSave}
+        />
       </div>
       {isAlertVisible && <Alert title='제목과 내용, 태그를 확인해주세요.' />}
       {isPostCreated && <Alert title='글이 작성되었습니다.' />}
