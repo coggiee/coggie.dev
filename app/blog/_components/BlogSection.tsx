@@ -1,6 +1,11 @@
 'use client';
 
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, {
+  ChangeEvent,
+  Suspense,
+  useEffect,
+  useRef,
+} from 'react';
 import { Fallback } from '../../_components/ui/Fallback';
 import { PostCard } from '../../_components/common/PostCard';
 import {
@@ -12,6 +17,7 @@ import {
   getPostsByTag,
   getPostsOnScroll,
   getTotalPosts,
+  searchPostByTitle,
 } from '@/app/_libs/hygraph';
 import TagFilter from './TagFilter';
 import Loading from '@/app/loading';
@@ -34,6 +40,7 @@ export default function BlogSection({
   const [currentPosts, setCurrentPosts] = React.useState<any>(posts);
   const [lastPostCursor, setLastPostCursor] = React.useState<string>(cursor);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = React.useState<string>('');
 
   const target = useRef<HTMLDivElement>(null);
 
@@ -48,6 +55,19 @@ export default function BlogSection({
     }
     const response = await getPostsByTag([tag]);
     setCurrentPosts((prev: any) => response);
+  };
+
+  const handleOnSearch = async (e: ChangeEvent) => {
+    setSearchQuery((e.target as HTMLInputElement).value);
+  };
+
+  const handleOnPressEnter = async (e: any) => {
+    const { key } = e;
+    if (key === 'Enter') {
+      const trimmedQuery = searchQuery.trim();
+      const searchedPosts = await searchPostByTitle(trimmedQuery);
+      setCurrentPosts((prev: any) => [...searchedPosts]);
+    }
   };
 
   useEffect(() => {
@@ -84,7 +104,7 @@ export default function BlogSection({
       window.removeEventListener('scroll', onScroll);
     };
   }, [currentPosts, lastPostCursor, isLoading, totalPostSize]);
-
+  
   return (
     <>
       {/* <div className='w-full flex flex-row-reverse gap-5'> */}
@@ -98,10 +118,15 @@ export default function BlogSection({
             </strong>와 <strong>회고</strong> 그리고{' '}
             <strong>트러블 슈팅</strong>
             등에 대한 내용이 포함됩니다.
+            <br />
+            포스팅의 내용은 <strong>주관적</strong>이며 부정확한 정보가 포함되어
+            있을 수 있습니다.
           </header>
-          <div className='sm:hidden mb-5'>
-            <SearchBarXS />
-          </div>
+
+          <SearchBarXS
+            handleOnSearch={handleOnSearch}
+            handleOnPressEnter={handleOnPressEnter}
+          />
 
           {/* <div>Select Tag</div> */}
           <TagFilter
