@@ -1,4 +1,3 @@
-// import { Post } from '@/.contentlayer/generated';
 import { PostCard } from './PostCard';
 import { Fallback } from '../ui/Fallback';
 import {
