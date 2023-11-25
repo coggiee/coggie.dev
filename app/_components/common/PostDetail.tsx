@@ -78,7 +78,7 @@ export const PostDetail = ({
               </time>
               {/* Copy link when click */}
               <div className='flex items-center gap-10'>
-                {session && session.user!.email === '49crehbgr@gmail.com' && (
+                {session && session.user!.email === 'zentechie7@gmail.com' && (
                   <div className='text-xs underline flex gap-3'>
                     <Link href=''>수정</Link>
                     <Link href=''>삭제</Link>
