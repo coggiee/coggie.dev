@@ -2,7 +2,6 @@
 
 import { navLinks } from '@/app/_data/navlinks';
 import Link from 'next/link';
-import IconSearch from '../../_icons/IconSearch';
 import IconApplemusic from '../../_icons/IconAppleMusic';
 import IconGlobe from '../../_icons/IconGlobe';
 import { usePathname, useRouter } from 'next/navigation';
@@ -12,15 +11,18 @@ import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import GithubLogin from './GithubLogin';
 import DropdownMenu from './DropdownMenu';
-import SearchBar from './SearchBar';
 
 export const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
+
+  // TODO: Nav에서 Searchbar 검색 기능 이용 시, /blog로 이동하여 검색 결과를 보여주는 기능 구현.
+
   const handleOnLogin = () => {
     signIn('github');
   };
+
   return (
     <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full'>
       <div className='flex justify-between items-center gap-5'>
@@ -45,9 +47,6 @@ export const Nav = () => {
             </Link>
           ))}
         </div>
-      </div>
-      <div className='hidden sm:block ml-auto mr-5'>
-        <SearchBar />
       </div>
       <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
