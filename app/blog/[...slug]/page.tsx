@@ -11,8 +11,8 @@ export const dynamic = 'force-static'
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
 export async function generateStaticParams() {
-  const posts = (await getTotalPosts()) || [];
-  const paths = posts.map(({ node: { id } }) => ({ params: { slug: id } }));
+  const {edges, aggregate } = (await getTotalPosts()) || [];
+  const paths = edges.map(({ node: { id } }) => ({ params: { slug: id } }));
   return paths;
 }
 

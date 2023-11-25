@@ -7,17 +7,21 @@ const DynamicBlogSection = dynamic(() => import('./_components/BlogSection'), {
 });
 
 async function getProps() {
-  const response = (await getTotalPosts()) || [];
-  const posts = response.map((post: any) => post.node);
+  const { edges, aggregate } = (await getTotalPosts()) || [];
+  const posts = edges.map((post: any) => post.node);
+  const lastPostCursor = posts[posts.length - 1].id;
   const tags = (await getTotalTags()) || [];
   const uniqueTags = Array.from(
     new Set<string>(tags.flatMap((post: any) => post.tags))
   );
+  uniqueTags.unshift('All');
 
   return {
     props: {
       posts,
       uniqueTags,
+      lastPostCursor,
+      totalPostsSize: aggregate.count,
     },
     revalidate: 60,
   };
@@ -25,13 +29,18 @@ async function getProps() {
 
 export default async function Blog() {
   const {
-    props: { posts, uniqueTags },
+    props: { posts, uniqueTags, lastPostCursor, totalPostsSize },
   } = await getProps();
 
   return (
     <section className='w-full mx-auto flex flex-col md:max-w-6xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
       <Suspense fallback={<div>Loading...</div>}>
-        <DynamicBlogSection posts={posts} uniqueTags={uniqueTags} />
+        <DynamicBlogSection
+          posts={posts}
+          uniqueTags={uniqueTags}
+          cursor={lastPostCursor}
+          totalPostSize={totalPostsSize}
+        />
       </Suspense>
       {/* 태그 클릭 시, 해당 태그를 가지고 있는 포스트를 보여줌 */}
     </section>
