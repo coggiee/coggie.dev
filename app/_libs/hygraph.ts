@@ -5,7 +5,7 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 export async function getTotalPosts() {
   const query = gql`
     {
-      postsConnection {
+      postsConnection(first: 50) {
         edges {
           node {
             content
