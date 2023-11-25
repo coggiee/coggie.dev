@@ -80,8 +80,12 @@ export const PostDetail = ({
               <div className='flex items-center gap-10'>
                 {session && session.user!.email === 'zentechie7@gmail.com' && (
                   <div className='text-xs underline flex gap-3'>
-                    <Link href=''>수정</Link>
-                    <Link href=''>삭제</Link>
+                    <Link href='' className='cursor-pointer'>
+                      수정
+                    </Link>
+                    <Link href='' className='cursor-pointer'>
+                      삭제
+                    </Link>
                   </div>
                 )}
                 <button

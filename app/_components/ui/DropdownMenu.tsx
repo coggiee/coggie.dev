@@ -15,12 +15,17 @@ type Props = {
 
 export default function DropdownMenu({ handleOnLogin, session }: Props) {
   return (
-    <details className='dropdown dropdown-bottom dropdown-end'>
-      <summary className='btn p-3 m-1 bg-[white] border-none rounded-xl shadow-md hover:bg-[#c1c1c12f] dark:bg-inherit dark:text-[white]'>
+    <div className='dropdown dropdown-bottom dropdown-end'>
+      <label
+        tabIndex={0}
+        className='btn m-1 p-3 bg-[white] border-none rounded-xl shadow-md hover:bg-[#c1c1c12f] dark:bg-inherit dark:text-[white]'
+      >
         <IconMenu className='text-xl' />
-      </summary>
-      <ul className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-lg font-thin font-sans'>
-        {/* 플레이리스트, 언어 스위쳐, 깃허브 로그인, 글쓰기*/}
+      </label>
+      <ul
+        tabIndex={0}
+        className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-lg font-thin font-sans'
+      >
         <li>
           <button>
             <Link
@@ -58,6 +63,6 @@ export default function DropdownMenu({ handleOnLogin, session }: Props) {
           </li>
         )}
       </ul>
-    </details>
+    </div>
   );
 }
