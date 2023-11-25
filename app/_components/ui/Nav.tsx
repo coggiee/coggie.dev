@@ -60,8 +60,10 @@ export const Nav = () => {
           </button>
         </Tooltip>
         <Tooltip dataTip='playlist'>
-          <button className=' btn-disabled'>
-            <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
+          <button className=''>
+            <Link href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY' target='_blank'>
+              <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
+            </Link>
           </button>
         </Tooltip>
         <Tooltip dataTip='language'>

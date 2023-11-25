@@ -23,8 +23,14 @@ export default function DropdownMenu({ handleOnLogin, session }: Props) {
         {/* 플레이리스트, 언어 스위쳐, 깃허브 로그인, 글쓰기*/}
         <li>
           <button>
-            <span>Playlist</span>
-            <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-black dark:hover:text-[#ff5474]' />
+            <Link
+              href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY'
+              target='_blank'
+              className='flex items-center gap-2'
+            >
+              <span>Playlist</span>
+              <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-black dark:hover:text-[#ff5474]' />
+            </Link>
           </button>
         </li>
         <li>
