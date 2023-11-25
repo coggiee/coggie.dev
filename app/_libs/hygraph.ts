@@ -5,21 +5,20 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 export async function getTotalPosts() {
   const query = gql`
     {
-      postsConnection(first: 50) {
+      postsConnection {
         edges {
           node {
             content
-            createdAt
             date
             description
             hot
             id
-            publishedAt
-            slug
             tags
             title
-            updatedAt
           }
+        }
+        aggregate {
+          count
         }
       }
     }
@@ -30,7 +29,7 @@ export async function getTotalPosts() {
       'hyg-stale-while-revalidate': '27',
     },
   });
-  return results.postsConnection.edges;
+  return results.postsConnection;
 }
 
 export async function getSinglePost(id: string) {
@@ -39,14 +38,10 @@ export async function getSinglePost(id: string) {
       post(where: { id: $id }) {
         id
         content
-        createdAt
         date
         hot
-        slug
         tags
         title
-        updatedAt
-        publishedAt
         description
       }
     }
@@ -65,16 +60,12 @@ export async function getHotPosts() {
         edges {
           node {
             content
-            createdAt
             date
             description
             hot
             id
-            publishedAt
-            slug
             tags
             title
-            updatedAt
           }
         }
       }
@@ -213,4 +204,25 @@ export async function createPost(
   });
 
   return results;
+}
+
+export async function getPostsOnScroll(after: string) {
+  const query = gql`
+    query getPostsOnScroll($after: String) {
+      posts(after: $after) {
+        content
+        date
+        description
+        hot
+        id
+        tags
+        title
+      }
+    }
+  `;
+
+  const results: any = await graphcms.request(query, {
+    after,
+  });
+  return results.posts;
 }
