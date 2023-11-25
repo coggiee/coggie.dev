@@ -1,27 +1,16 @@
 'use client';
 
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  MouseEventHandler,
-  useRef,
-  useState,
-} from 'react';
+import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import TuiEditor from '@/app/(write)/_components/TuiEditor';
 import Title from '@/app/(write)/_components/Title';
 import { Octokit } from 'octokit';
 import { Alert } from '../../_components/ui/Alert';
 import { useRouter } from 'next/navigation';
-import { set } from 'date-fns';
 import dayjs from 'dayjs';
 import { createPost } from '@/app/_libs/hygraph';
 import Loading from '@/app/loading';
 
 type Props = {};
-
-const octokit = new Octokit({
-  auth: process.env.NEXT_PUBLIC_GITHUB_TOKEN,
-});
 
 // 글 작성 완료 시 date 처리 추가하는 로직
 // 설명 어떻게 추가하여 전송할지
@@ -43,7 +32,11 @@ export default function EditSection({}: Props) {
     const content: string = editorRef.current.getInstance().getMarkdown();
 
     // 제목과 내용이 없는 예외처리
-    if (content.trim().length === 0 || title.trim().length === 0) {
+    if (
+      content.trim().length === 0 ||
+      title.trim().length === 0 ||
+      tagList.length === 0
+    ) {
       setIsAlertVisible(true);
       setTimeout(() => {
         setIsAlertVisible(false);
@@ -68,7 +61,7 @@ export default function EditSection({}: Props) {
     const data = response.createPost;
     if (data) {
       setIsLoading(false);
-      router.push(`/blog`);
+      router.push('/');
     }
   };
 
@@ -141,7 +134,7 @@ export default function EditSection({}: Props) {
         editorRef={editorRef}
         handleOnSave={handleOnSave}
       />
-      {isAlertVisible && <Alert title='제목과 내용을 입력해주세요.' />}
+      {isAlertVisible && <Alert title='제목과 내용, 태그를 확인해주세요.' />}
       {isLoading && <Loading />}
     </div>
   );
