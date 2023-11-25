@@ -3,9 +3,10 @@ import React from 'react';
 type Props = {
   tags: string[];
   handleOnClickTag: (tag: string) => void;
+  selectedTag: string;
 };
 
-export default function TagFilter({ tags, handleOnClickTag }: Props) {
+export default function TagFilter({ tags, handleOnClickTag, selectedTag }: Props) {
   return (
     <div className='w-full mb-5 flex flex-col'>
       <div className='w-full flex gap-2 items-center self-start flex-shrink-0 mb-3'>
@@ -18,7 +19,7 @@ export default function TagFilter({ tags, handleOnClickTag }: Props) {
         {tags.map((tag) => (
           <li
             key={tag}
-            className='badge border border-[#f7ab0a] cursor-pointer rounded-lg py-5 dark:bg-[#dfd1d12f] dark:text-white shadow-md hover:shadow-lg flex-shrink-0 font-thin font-sans text-lg hover:bg-[#f7ab0a] hover:text-white transition-all ease-in-out dark:hover:bg-[#f7ab0a] dark:hover:text-white'
+            className={`badge border border-[#f7ab0a] cursor-pointer rounded-lg py-5 dark:bg-[#dfd1d12f] dark:text-white shadow-md hover:shadow-lg flex-shrink-0 font-thin font-sans text-lg hover:bg-[#f7ab0a] hover:text-white transition-all ease-in-out dark:hover:bg-[#f7ab0a] dark:hover:text-white ${selectedTag === tag? 'bg-[#f7ab0a] text-white' : ''}}`}
             onClick={handleOnClickTag.bind(null, tag)}
           >
             <span># {tag}</span>
