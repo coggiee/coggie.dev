@@ -15,6 +15,7 @@ import {
 } from '@/app/_libs/hygraph';
 import TagFilter from './TagFilter';
 import Loading from '@/app/loading';
+import SearchBarXS from '@/app/_components/ui/SearchBarXS';
 
 type Props = {
   posts: any;
@@ -98,6 +99,10 @@ export default function BlogSection({
             <strong>트러블 슈팅</strong>
             등에 대한 내용이 포함됩니다.
           </header>
+          <div className='sm:hidden mb-5'>
+            <SearchBarXS />
+          </div>
+
           {/* <div>Select Tag</div> */}
           <TagFilter
             tags={uniqueTags}

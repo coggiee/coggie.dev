@@ -12,6 +12,7 @@ import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import GithubLogin from './GithubLogin';
 import DropdownMenu from './DropdownMenu';
+import SearchBar from './SearchBar';
 
 export const Nav = () => {
   const pathname = usePathname();
@@ -21,7 +22,7 @@ export const Nav = () => {
     signIn('github');
   };
   return (
-    <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
+    <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full'>
       <div className='flex justify-between items-center gap-5'>
         <div>
           <Link
@@ -45,20 +46,18 @@ export const Nav = () => {
           ))}
         </div>
       </div>
-      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-5 text-[30px]'>
+      <div className='hidden sm:block ml-auto mr-5'>
+        <SearchBar />
+      </div>
+      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
-              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#5c3f27] font-bold' />
             </button>
           </Tooltip>
         )}
-        <Tooltip dataTip='search'>
-          <button className=' btn-disabled'>
-            <IconSearch className='dark:text-white hover:text-[#66b558] dark:hover:text-[#66b558]' />
-          </button>
-        </Tooltip>
         <Tooltip dataTip='playlist'>
           <button className=''>
             <Link
@@ -70,7 +69,7 @@ export const Nav = () => {
           </button>
         </Tooltip>
         <Tooltip dataTip='language'>
-          <button className=' btn-disabled'>
+          <button className='btn-disabled'>
             <IconGlobe className='transition-colors hover:text-[#4860ff] dark:text-white dark:hover:text-[#4860ff]' />
           </button>
         </Tooltip>
