@@ -226,3 +226,24 @@ export async function getPostsOnScroll(after: string) {
   });
   return results.posts;
 }
+
+export async function searchPostByTitle(title: string) {
+  const query = gql`
+    query searchPostByTitle($title_contains: String) {
+      posts(where: { title_contains: $title_contains }) {
+        content
+        date
+        description
+        hot
+        id
+        tags
+        title
+      }
+    }
+  `;
+
+  const results: any = await graphcms.request(query, {
+    title_contains: title,
+  });
+  return results.posts;
+}
