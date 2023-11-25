@@ -16,9 +16,9 @@ export default function Title({ title, handleOnTypeTitle }: Props) {
   };
 
   return (
-    <div className='h-auto mb-3 flex-grow'>
+    <div className='h-auto mb-3 flex-grow border-l-4 border-[#f7ab0a]'>
       <textarea
-        className='w-full resize-none outline-none text-3xl font-bold overflow-visible min-h-[3.5em]'
+        className='w-full p-2 resize-none outline-none text-3xl font-bold overflow-visible min-h-[3.5em]'
         // style={{ height: calculateTextAreaHeight() }}
         placeholder='제목을 입력하세요'
         value={title}
