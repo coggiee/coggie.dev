@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { createPost } from '@/app/_libs/hygraph';
 import Loading from '@/app/loading';
+import IconBack from '@/app/_icons/IconBack';
 
 type Props = {};
 
@@ -21,6 +22,7 @@ export default function EditSection({}: Props) {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
+  const [isPostCreated, setIsPostCreated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isHotPost, setIsHotPost] = useState<boolean>(false);
   const [tags, setTags] = useState('');
@@ -58,9 +60,12 @@ export default function EditSection({}: Props) {
       isHotPost,
       new Date(date)
     );
+
     const data = response.createPost;
+
     if (data) {
       setIsLoading(false);
+      setIsPostCreated(true);
       router.push('/');
     }
   };
@@ -94,7 +99,7 @@ export default function EditSection({}: Props) {
     setTagList(tagList.filter((tag) => tag !== tagToRemove));
   };
   return (
-    <div className='flex flex-col flex-grow flex-3'>
+    <div className='flex flex-col flex-grow flex-3 relative w-full'>
       <Title title={title} handleOnTypeTitle={handleOnTypeTitle} />
       <div>
         <textarea
@@ -129,12 +134,24 @@ export default function EditSection({}: Props) {
           ))}
         </ul>
       </div>
-      <TuiEditor
-        content={''}
-        editorRef={editorRef}
-        handleOnSave={handleOnSave}
-      />
+      <TuiEditor content={''} editorRef={editorRef} />
+      <div className='w-full flex gap-3 justify-end fixed bottom-0 px-10 py-3'>
+        <button
+          className='p-3 flex gap-2 items-center cursor-pointer'
+          onClick={() => router.back()}
+        >
+          <IconBack />
+          <span>나가기</span>
+        </button>
+        <button
+          className='p-3 rounded-xl bg-[#f7ab0a] drop-shadow-md shadow-md font-mono cursor-pointer'
+          onClick={handleOnSave}
+        >
+          출간하기
+        </button>
+      </div>
       {isAlertVisible && <Alert title='제목과 내용, 태그를 확인해주세요.' />}
+      {isPostCreated && <Alert title='글이 작성되었습니다.' />}
       {isLoading && <Loading />}
     </div>
   );

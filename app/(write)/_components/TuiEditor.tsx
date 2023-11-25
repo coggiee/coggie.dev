@@ -18,13 +18,11 @@ import { useRouter } from 'next/navigation';
 interface Props {
   content: string;
   editorRef: React.MutableRefObject<any>;
-  handleOnSave: () => void;
 }
 
 export default function TuiEditor({
   content = '',
   editorRef,
-  handleOnSave,
 }: Props) {
   const toolbarItems = [
     ['heading', 'bold', 'italic', 'strike'],
@@ -35,6 +33,7 @@ export default function TuiEditor({
   ];
   const { theme } = useTheme();
   const router = useRouter();
+  
 
   return (
     <div className='flex-grow'>
@@ -64,21 +63,6 @@ export default function TuiEditor({
               colorSyntax,
             ]}
           />
-          <div className='flex gap-3 self-end'>
-            <button
-              className='p-3 flex gap-2 items-center'
-              onClick={() => router.back()}
-            >
-              <IconBack />
-              <span>나가기</span>
-            </button>
-            <button
-              className='p-3 rounded-xl bg-[#f7ab0a] drop-shadow-md shadow-md font-mono'
-              onClick={handleOnSave}
-            >
-              출간하기
-            </button>
-          </div>
         </div>
       )}
     </div>
