@@ -18,7 +18,7 @@ export const Nav = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const handleOnLogin = () => {
-    signIn();
+    signIn('github');
   };
   return (
     <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full shadow-md'>
@@ -47,6 +47,13 @@ export const Nav = () => {
       </div>
       <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-5 text-[30px]'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
+        <Tooltip dataTip='write'>
+          <button>
+            <Link href='/write'>
+              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#ff5474] font-bold' />
+            </Link>
+          </button>
+        </Tooltip>
         {session && session.user!.email === 'zentechie7@gmail.com' && (
           <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
@@ -61,7 +68,10 @@ export const Nav = () => {
         </Tooltip>
         <Tooltip dataTip='playlist'>
           <button className=''>
-            <Link href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY' target='_blank'>
+            <Link
+              href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY'
+              target='_blank'
+            >
               <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
             </Link>
           </button>
