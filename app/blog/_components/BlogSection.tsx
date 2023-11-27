@@ -1,11 +1,6 @@
 'use client';
 
-import React, {
-  ChangeEvent,
-  Suspense,
-  useEffect,
-  useRef,
-} from 'react';
+import React, { ChangeEvent, Suspense, useEffect, useRef } from 'react';
 import { Fallback } from '../../_components/ui/Fallback';
 import { PostCard } from '../../_components/common/PostCard';
 import {
@@ -104,7 +99,7 @@ export default function BlogSection({
       window.removeEventListener('scroll', onScroll);
     };
   }, [currentPosts, lastPostCursor, isLoading, totalPostSize]);
-  
+
   return (
     <>
       {/* <div className='w-full flex flex-row-reverse gap-5'> */}
@@ -154,6 +149,7 @@ export default function BlogSection({
                   description={post.description}
                   path={post.id}
                   tags={post.tags}
+                  coverImage={post?.coverImage}
                   readTimeMinutes={formatReadingMinutes(post.content)}
                 />
               ))}

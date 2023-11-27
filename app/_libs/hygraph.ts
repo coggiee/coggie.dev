@@ -15,6 +15,11 @@ export async function getTotalPosts() {
             id
             tags
             title
+            coverImage {
+              handle
+              fileName
+              url
+            }
           }
         }
         aggregate {
@@ -66,6 +71,11 @@ export async function getHotPosts() {
             id
             tags
             title
+            coverImage {
+              fileName
+              url
+              handle
+            }
           }
         }
       }
@@ -97,6 +107,11 @@ export async function getRecentPosts() {
             tags
             title
             updatedAt
+            coverImage {
+              url
+              handle
+              fileName
+            }
           }
         }
       }
@@ -142,6 +157,11 @@ export async function getPostsByTag(tag: any[]) {
         hot
         title
         updatedAt
+        coverImage {
+          url
+          handle
+          fileName
+        }
       }
     }
   `;
@@ -217,6 +237,11 @@ export async function getPostsOnScroll(after: string) {
         id
         tags
         title
+        coverImage {
+          url
+          handle
+          fileName
+        }
       }
     }
   `;
@@ -238,6 +263,11 @@ export async function searchPostByTitle(title: string) {
         id
         tags
         title
+        coverImage {
+          url
+          handle
+          fileName
+        }
       }
     }
   `;

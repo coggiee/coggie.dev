@@ -33,6 +33,7 @@ export const PostSection = ({
             description={node.description}
             path={node.id}
             tags={node.tags}
+            coverImage={node?.coverImage}
             readTimeMinutes={formatReadingMinutes(node.content)}
           />
         ))}
