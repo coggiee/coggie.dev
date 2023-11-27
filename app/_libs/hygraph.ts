@@ -179,7 +179,8 @@ export async function createPost(
   content: string,
   tags: any[],
   hot: boolean,
-  date: Date
+  date: Date,
+  id: string
 ) {
   const query = gql`
     mutation createPost(
@@ -189,6 +190,7 @@ export async function createPost(
       $tags: [Tags!]
       $hot: Boolean
       $date: DateTime
+      $id: ID
     ) {
       createPost(
         data: {
@@ -198,6 +200,7 @@ export async function createPost(
           title: $title
           date: $date
           tags: $tags
+          coverImage: { connect: { id: $id } }
         }
       ) {
         content
@@ -206,7 +209,6 @@ export async function createPost(
         title
         date
         description
-        id
       }
     }
   `;
@@ -218,6 +220,7 @@ export async function createPost(
     tags,
     hot,
     date,
+    id,
     headers: {
       'hyg-stale-while-revalidate': '27',
     },
