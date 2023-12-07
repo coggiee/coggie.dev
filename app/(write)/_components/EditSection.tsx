@@ -18,6 +18,7 @@ export default function EditSection({}: Props) {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+  const [coverImage, setCoverImage] = useState<any>(null);
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isPostCreated, setIsPostCreated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -37,6 +38,7 @@ export default function EditSection({}: Props) {
       title.trim().length === 0 ||
       tagList.length === 0
     ) {
+      setIsLoading(false);
       setIsAlertVisible(true);
       setTimeout(() => {
         setIsAlertVisible(false);
@@ -48,6 +50,22 @@ export default function EditSection({}: Props) {
       setTitle(title.slice(0, title.length - 1));
     }
 
+    const form = new FormData();
+
+    form.append('fileUpload', coverImage);
+
+    const assetResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
+        },
+        body: form,
+      }
+    );
+    const { id } = await assetResponse.json();
+
     const date = dayjs().format();
 
     const response = await createPost(
@@ -56,7 +74,8 @@ export default function EditSection({}: Props) {
       content,
       tagList,
       isHotPost,
-      new Date(date)
+      new Date(date),
+      id
     );
 
     const data = response.createPost;
@@ -70,7 +89,6 @@ export default function EditSection({}: Props) {
 
   const addTags = () => {
     if (tags.trim() !== '') {
-      const newTags = tags.trim().split(/\s+/);
       setTagList([...tagList, tags.trim()]);
       setTags('');
     }
@@ -85,7 +103,6 @@ export default function EditSection({}: Props) {
   };
   const handleOnTypeDesc = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setDescription(e.target.value);
-    console.log(description);
   };
 
   const handleOnToggleHotPost = () => {
@@ -96,6 +113,12 @@ export default function EditSection({}: Props) {
     if (e.key === 'Enter') {
       addTags();
     }
+  };
+
+  const handleOnFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    // 썸네일은 무조건 추가해야 한다.
+    const file = e.target.files![0];
+    setCoverImage(file);
   };
 
   const handleOnClickTag = (tagToRemove: string) => {
@@ -142,6 +165,7 @@ export default function EditSection({}: Props) {
           handleOnTypeDesc={handleOnTypeDesc}
           handleOnToggleHotPost={handleOnToggleHotPost}
           handleOnClickSaveBtn={handleOnSave}
+          handleOnFileChange={handleOnFileChange}
         />
       </div>
       {isAlertVisible && <Alert title='제목과 내용, 태그를 확인해주세요.' />}
