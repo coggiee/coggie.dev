@@ -10,7 +10,7 @@ export const Social = ({ fontSize }: { fontSize: string }) => {
       className={`flex items-center gap-2 text-white font-mono ${fontSize} `}
     >
       <div className='tooltip tooltip-bottom' data-tip='github'>
-        <button className='rounded-2xl p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white drop-shadow-md shadow-md'>
+        <button className=' p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white '>
           <Link
             href='https://github.com/lunarmoon7'
             passHref
@@ -21,7 +21,7 @@ export const Social = ({ fontSize }: { fontSize: string }) => {
         </button>
       </div>
       <div className='tooltip tooltip-bottom' data-tip='previous blog'>
-        <button className='rounded-2xl p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white drop-shadow-md shadow-md'>
+        <button className='p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white'>
           <Link
             href='https://velog.io/@49crehbgr'
             passHref
@@ -32,7 +32,7 @@ export const Social = ({ fontSize }: { fontSize: string }) => {
         </button>
       </div>
       <div className='tooltip tooltip-bottom' data-tip='mail'>
-        <button className='rounded-2xl p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white drop-shadow-md shadow-md'>
+        <button className='p-2 hover:bg-white text-black hover:text-black dark:hover:text-black dark:text-white'>
           <Link
             href='mailto:zentechie7@gmail.com'
             passHref

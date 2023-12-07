@@ -6,23 +6,23 @@ import { Social } from '../ui/Social';
 
 export const Hero = () => {
   return (
-    <section className='p-5 rounded-xl shadow-xl dark:text-white'>
+    <section className='p-5 dark:text-white'>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-10 lg:flex-row'>
           <aside className='flex justify-center'>
-            <div className='h-80 w-80 relative lg:w-96 lg:h-96 rounded-2xl'>
+            <div className='h-52 w-52 relative lg:w-60 lg:h-60 rounded-lg overflow-hidden'>
               <Image
                 src={'/profile2.jpg'}
                 layout='fill'
                 objectFit='contain'
                 alt='프로필 이미지'
-                className='absolute rounded-2xl'
+                className='absolute'
               />
             </div>
           </aside>
-          <main className='flex flex-col gap-10'>
-            <div className='flex flex-col gap-5'>
-              <h1 className='text-[27px] font-thin font-mono leading-tight'>
+          <main className='flex flex-col gap-7'>
+            <div className='flex flex-col gap-3'>
+              <h1 className='text-[23px] font-thin font-mono leading-tight'>
                 <p>안녕하세요</p>
                 <p>프론트엔드 개발자 문휘식입니다</p>
               </h1>

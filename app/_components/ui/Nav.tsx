@@ -29,7 +29,7 @@ export const Nav = () => {
         <div>
           <Link
             href='/'
-            className=' font-indieFlower text-4xl dark:text-[#ffc76d]'
+            className='font-indieFlower text-4xl dark:text-[#ffc76d]'
           >
             Coggie
           </Link>
@@ -48,7 +48,7 @@ export const Nav = () => {
           ))}
         </div>
       </div>
-      <div className='menu menu-horizontal bg-base-200 dark:bg-[#48484853] rounded-box hidden lg:flex gap-3 text-xl p-2'>
+      <div className='menu menu-horizontal dark:bg-[#48484853] rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
           <Tooltip dataTip='write'>
