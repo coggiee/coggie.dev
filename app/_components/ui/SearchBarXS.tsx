@@ -15,7 +15,7 @@ export default function SearchBarXS({
         <input
           type='text'
           placeholder='Search with title..'
-          className='input input-xs input-ghost w-full max-w-full focus:bg-inherit dark:text-white font-thin font-sans focus:outline-none focus:border-none'
+          className='input input-xs input-ghost w-full max-w-full focus:bg-inherit dark:text-white font-thin font-sans focus:outline-none focus:border-none '
           onChange={handleOnSearch}
           onKeyDown={handleOnPressEnter}
         />

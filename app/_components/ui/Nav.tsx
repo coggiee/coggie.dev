@@ -24,7 +24,7 @@ export const Nav = () => {
   };
 
   return (
-    <nav className='sticky top-0 left-0 h-24 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full'>
+    <nav className='sticky top-0 left-0 h-16 px-5 md:px-10 text-lg flex justify-between items-center backdrop-blur-md mb-10 z-10 flex-shrink-0 w-full'>
       <div className='flex justify-between items-center gap-5'>
         <div>
           <Link
@@ -48,7 +48,7 @@ export const Nav = () => {
           ))}
         </div>
       </div>
-      <div className='menu menu-horizontal dark:bg-[#48484853] rounded-box hidden lg:flex gap-3 text-xl p-2'>
+      <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
           <Tooltip dataTip='write'>

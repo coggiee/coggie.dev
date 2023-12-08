@@ -24,7 +24,7 @@ export default function PostSideCard({
   readTimeMinutes,
 }: PostCardProps) {
   return (
-    <div className='card rounded-none rounded-e-lg font-notosanskr m-2 dark:text-white'>
+    <div className='card card-bordered rounded-lg border-[#e1e1e163] font-notosanskr m-2 dark:text-white '>
       <div className='card-body p-3 px-5'>
         <Link
           href={`/blog/${path}`}
@@ -42,7 +42,7 @@ export default function PostSideCard({
                 {time} - {readTimeMinutes} min read
               </div>
             </div>
-            <h2 className='text-sm w-full break-words'>{title}</h2>
+            <h2 className='text-sm w-full truncate'>{title}</h2>
           </div>
         </Link>
       </div>
