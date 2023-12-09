@@ -3,7 +3,7 @@
 import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import TuiEditor from '@/app/(write)/_components/TuiEditor';
 import EditTitle from '@/app/(write)/_components/EditTitle';
-import { Alert } from '../../_components/ui/Alert';
+import { Alert } from '../../_components/common/Alert';
 import { useRouter } from 'next/navigation';
 import dayjs from 'dayjs';
 import { createPost } from '@/app/_libs/hygraph';

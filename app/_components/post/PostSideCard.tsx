@@ -32,7 +32,7 @@ export default function PostSideCard({
       <div className='card-body p-2'>
         <Link href={`/blog/${path}`} passHref className='block'>
           <div className='flex flex-row gap-5'>
-            <div className='relative w-20 h-16 flex-shrink-0 rounded-lg'>
+            <div className='relative w-32 h-32 flex-shrink-0 rounded-lg'>
               {coverImage && (
                 <Image
                   src={coverImage.url}

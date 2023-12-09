@@ -1,8 +1,9 @@
 import Image from 'next/image';
-import { SocialGroup } from '../ui/SocialGroup';
-import { Sidebar } from '../sidebar/Sidebar';
-import Badge from '../ui/Badge';
+import { SocialGroup } from '../common/SocialGroup';
+import Badge from '../common/Badge';
 import { skill } from '@/app/_data/skill';
+import Bio from '../sidebar/Bio';
+import { Avatar } from '../common/Avatar';
 
 type HeroProps = {
   src: string;
@@ -10,27 +11,18 @@ type HeroProps = {
 
 export const Hero = ({ src }: HeroProps) => {
   return (
-    <section className='flex-grow-0 flex-shrink-0 p-5 dark:text-white border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark w-full shadow-md'>
+    <section className='w-full shadow-md flex-grow-0 flex-shrink-0 p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-5'>
           <div className='flex justify-between'>
-            <div className='w-28 h-28 relative rounded-full'>
-              <Image
-                src={src}
-                layout='fill'
-                objectFit='contain'
-                alt='프로필 이미지'
-                className='absolute rounded-full grayscale'
-              />
-              <div className='absolute w-4 h-4 bg-[#4be76a] rounded-full bottom-2 right-2 drop-shadow-md' />
-            </div>
+            <Avatar src='/profile2.jpg' />
             <SocialGroup fontSize='text-sm' />
           </div>
 
           <main className='flex flex-col gap-7 border-b border-item-border-light dark:border-item-border-dark pb-7'>
             <div className='flex flex-col gap-3'>
-              <h1 className='text-xl font-bold'>Coggie(Moon Hwisik)</h1>
-              <div className='flex gap-2 flex-wrap'>
+              <h1 className='text-xl font-bold mb-2'>Coggie(Moon Hwisik)</h1>
+              <div className='flex gap-2 flex-wrap mb-5'>
                 {skill.map((s) => (
                   <Badge key={s.title} text={s.title} />
                 ))}
@@ -54,9 +46,8 @@ export const Hero = ({ src }: HeroProps) => {
               </div>
             </div>
           </main>
-          <Sidebar />
+          <Bio />
         </div>
-        {/* <InfoSection /> */}
       </div>
     </section>
   );

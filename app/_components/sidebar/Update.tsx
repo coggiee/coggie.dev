@@ -2,9 +2,9 @@ import { updateList } from '../../_data/updateList';
 
 export const Update = () => {
   return (
-    <div className='collapse collapse-arrow rounded-lg dark:text-[#fff]'>
+    <div className='collapse collapse-arrow dark:text-[#fff] border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
       <input type='checkbox' />
-      <div className='collapse-title pl-0'>
+      <div className='collapse-title'>
         <h4 className='text-base relative inline-block'>
           <span className='relative font-bold'>About to update</span>
         </h4>

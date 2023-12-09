@@ -1,4 +1,4 @@
-import { PostDetail } from '@/app/_components/common/PostDetail';
+import { PostDetail } from '@/app/_components/post/PostDetail';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
 import Loading from '@/app/loading';
@@ -6,12 +6,12 @@ import Loading from '@/app/loading';
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { Suspense } from 'react';
 
-export const dynamic = 'force-static'
+export const dynamic = 'force-static';
 
 // Return a list of `params` to populate the [...slug] dynamic segment
 // at build time.
 export async function generateStaticParams() {
-  const {edges, aggregate } = (await getTotalPosts()) || [];
+  const { edges, aggregate } = (await getTotalPosts()) || [];
   const paths = edges.map(({ node: { id } }) => ({ params: { slug: id } }));
   return paths;
 }

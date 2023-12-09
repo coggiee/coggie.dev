@@ -6,10 +6,10 @@ import IconBxCalendarStar from '@/app/_icons/IconBxCalendarStar';
 import IconLink from '@/app/_icons/IconLink';
 import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 import useDetectScroll from '../../_hooks/useDetectScroll';
-import HorizontalProgress from '../ui/HorizontalProgress';
+import HorizontalProgress from '../common/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
-import { Alert } from '../ui/Alert';
+import { Alert } from '../common/Alert';
 import Giscus from '../../blog/_components/Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { Post } from '@/app/_libs/posts';
@@ -23,6 +23,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import FooterHero from '@/app/blog/_components/FooterHero';
+import Badge from '../common/Badge';
 
 export const PostDetail = ({
   post,
@@ -59,7 +60,9 @@ export const PostDetail = ({
               {post!.title}
             </h1>
             <div className='flex justify-start items-center gap-2 mb-5 flex-wrap'>
-              {post!.tags?.map((tag: string) => <Tag key={tag} tag={tag} />)}
+              {post!.tags?.map((tag: string) => (
+                <Badge key={tag} text={`# ${tag}`} />
+              ))}
             </div>
             <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c] mb-10'>
               <time

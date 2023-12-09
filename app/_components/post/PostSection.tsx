@@ -1,5 +1,5 @@
 import { PostCard } from './PostCard';
-import { Fallback } from '../ui/Fallback';
+import { Fallback } from '../common/Fallback';
 import {
   formatCreatedAt,
   formatCreatedTime,
@@ -15,7 +15,7 @@ export const PostSection = ({
   title: string;
 }) => {
   return (
-    <section className='w-full p-3 rounded-lg font-mono border border-item-border-light bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
+    <section className='w-full p-3 grow rounded-lg font-mono border border-item-border-light bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
       <div className='flex items-center mb-5 gap-2'>
         <h1 className='text-lg font-semibold dark:text-white min-w-fit'>
           {title}

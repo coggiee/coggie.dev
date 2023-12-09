@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Tag } from '../ui/Tag';
+import { Tag } from '../common/Tag';
 import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
 import IconTimerSand from '../../_icons/IconTimerSand';
 import { CoverImage } from '@/types/type';

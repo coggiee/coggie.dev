@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Nav } from './_components/ui/Nav';
+import { Nav } from './_components/common/Nav';
 import '@/app/_styles/globals.css';
 import {
   blackHanSans,
@@ -11,7 +11,7 @@ import {
   indieFlower,
   permanentMarker,
 } from '../assets/fonts';
-import { Footer } from './_components/ui/Footer';
+import { Footer } from './_components/common/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';
 

@@ -51,7 +51,7 @@ export const Nav = () => {
       <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
-          <Tooltip dataTip='write'>
+          <Tooltip dataTip='write' >
             <button onClick={() => router.push('/write')}>
               <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#5c3f27] font-bold' />
             </button>

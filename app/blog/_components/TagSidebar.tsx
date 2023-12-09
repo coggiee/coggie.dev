@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag } from '../../_components/ui/Tag';
+import { Tag } from '../../_components/common/Tag';
 
 type Props = {
   tags: string[];

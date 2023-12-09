@@ -1,8 +1,8 @@
 'use client';
 
 import React, { ChangeEvent, Suspense, useEffect, useRef } from 'react';
-import { Fallback } from '../../_components/ui/Fallback';
-import { PostCard } from '../../_components/common/PostCard';
+import { Fallback } from '../../_components/common/Fallback';
+import { PostCard } from '../../_components/post/PostCard';
 import {
   formatCreatedAt,
   formatCreatedTime,
@@ -16,7 +16,7 @@ import {
 } from '@/app/_libs/hygraph';
 import TagFilter from './TagFilter';
 import Loading from '@/app/loading';
-import SearchBarXS from '@/app/_components/ui/SearchBarXS';
+import SearchBarXS from '@/app/_components/common/SearchBarXS';
 
 type Props = {
   posts: any;
