@@ -29,7 +29,7 @@ const config: Config = {
       transitionProperty: {
         'max-height': 'max-height',
       },
-      typography: (theme) => ({
+      typography: (theme: any) => ({
         DEFAULT: {
           css: {
             //...
@@ -39,6 +39,17 @@ const config: Config = {
           },
         },
       }),
+      colors: {
+        'item-light': '#f8f8f898',
+        'hover-light': '#99999923',
+        'hover-dark': '#434343',
+        'item-border-light': '#dcdcdc',
+        'item-dark': '#282828',
+        'item-border-dark': '#353535',
+        'brand-color': 'dodgerblue',
+        'sub-light': '#ffffff8d',
+        'sub-dark': '#3e3e3e'
+      },
     },
   },
   darkMode: 'class',
