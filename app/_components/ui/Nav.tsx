@@ -29,7 +29,7 @@ export const Nav = () => {
         <div>
           <Link
             href='/'
-            className='font-indieFlower text-4xl dark:text-[#ffc76d]'
+            className='font-indieFlower text-4xl dark:text-[dodgerblue]'
           >
             Coggie
           </Link>

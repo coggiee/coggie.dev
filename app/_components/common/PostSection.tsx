@@ -15,15 +15,15 @@ export const PostSection = ({
   title: string;
 }) => {
   return (
-    <section className='w-full mt-10 mb-10 font-mono'>
-      <div className='flex items-center mb-7 gap-2'>
+    <section className='w-full p-3 rounded-lg font-mono border border-item-border-light bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
+      <div className='flex items-center mb-5 gap-2'>
         <h1 className='text-lg font-semibold dark:text-white min-w-fit'>
           {title}
         </h1>
         <div className='h-[1px] bg-[#00000047] w-full dark:bg-[#5d5d5d]'></div>
       </div>
 
-      <div className='flex flex-col'>
+      <div className='flex flex-col gap-5'>
         {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
         {posts.map(({ node }: { node: any }) => (
           <PostSideCard
@@ -34,6 +34,7 @@ export const PostSection = ({
             description={node.description}
             path={node.id}
             tags={node.tags}
+            coverImage={node.coverImage}
             readTimeMinutes={formatReadingMinutes(node.content)}
           />
         ))}
@@ -42,7 +43,8 @@ export const PostSection = ({
   );
 };
 
-{/* <div className="w-full">
+{
+  /* <div className="w-full">
             <h2 className="text-lg font-semibold mb-2">Recent Posts</h2>
             <div className="flex items-start mb-2">
               <img
@@ -92,4 +94,5 @@ export const PostSection = ({
                 Post 3
               </Link>
             </div>
-          </div> */}
+          </div> */
+}

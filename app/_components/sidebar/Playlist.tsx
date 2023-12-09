@@ -12,14 +12,16 @@ export const Playlist = async () => {
   const playlist = await getPlaylist();
 
   return (
-    <div className='flex flex-col justify-start gap-2 h-full relative p-3 pt-0 rounded-2xl shadow-lg'>
-      <header className='sticky top-0 left-0 pb-3 pt-3'>
-        <h4 className='flex gap-3 items-center font-lato'>
-          <span className='dark:text-[#fff] font-permanentMarker'>Playlist</span>
+    <div className='flex flex-col justify-start gap-2 h-full relative p-3 pt-0 rounded-lg basis-64 border border-item-border-light bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
+      <header className='sticky top-0 left-0 pt-3 pl-3'>
+        <h4 className='flex gap-3 items-center'>
+          <span className='dark:text-[#fff] text-lg font-bold'>
+            Playlist
+          </span>
           <IconYoutubemusic className='text-xs text-[#9a9a9a]' />
         </h4>
       </header>
-      <main className='h-40 p-3 pt-0 overflow-y-scroll overscroll-none'>
+      <main className='h-40 p-3 pt-0 overflow-y-scroll overscroll-none grow'>
         {playlist.map((item) => (
           <div
             key={item.title}

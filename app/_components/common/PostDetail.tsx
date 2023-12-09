@@ -51,7 +51,7 @@ export const PostDetail = ({
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
       <HorizontalProgress scroll={scroll} />
-      {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />}
+      {/* {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />} */}
       <div className='mb-5 flex-grow w-full'>
         <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
           <div className='mb-8 flex flex-col w-full'>
@@ -89,7 +89,7 @@ export const PostDetail = ({
                   </div>
                 )}
                 <button
-                  className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[#f7ab0a] flex justify-center items-center self-start hover:bg-[#ff915a] hover:drop-shadow-lg hover:shadow-lg'
+                  className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[dodgerblue]/70 flex justify-center items-center self-start hover:bg-[dodgerblue] hover:drop-shadow-lg hover:shadow-lg'
                   onClick={handleOnClickCopyButton}
                 >
                   <div className='tooltip tooltip-bottom' data-tip='링크 복사'>
