@@ -1,9 +1,9 @@
 import Link from 'next/link';
-import { Tag } from '../common/Tag';
 import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
 import IconTimerSand from '../../_icons/IconTimerSand';
 import { CoverImage } from '@/types/type';
 import Image from 'next/image';
+import Badge from '../common/Badge';
 interface PostCardProps {
   date: string;
   time: string;
@@ -47,7 +47,7 @@ export const PostCard = ({
               {description}
             </div>
             <div className='card-actions sm:flex-grow sm:justify-items-end'>
-              {tags && tags.map((tag) => <Tag key={tag} tag={tag} />)}
+              {tags && tags.map((tag) => <Badge key={tag} text={tag} />)}
             </div>
           </div>
           {coverImage && (
