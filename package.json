@@ -49,14 +49,6 @@
     "ytmusic-api": "^4.4.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.4",
-    "@storybook/addon-interactions": "^7.6.4",
-    "@storybook/addon-links": "^7.6.4",
-    "@storybook/addon-onboarding": "^1.0.9",
-    "@storybook/blocks": "^7.6.4",
-    "@storybook/nextjs": "^7.6.4",
-    "@storybook/react": "^7.6.4",
-    "@storybook/test": "^7.6.4",
     "@tailwindcss/typography": "^0.5.10",
     "@types/glob": "^8.1.0",
     "@types/node": "^20",
