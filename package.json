@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "^3.8.7",
@@ -28,7 +26,7 @@
     "next": "14.0.2",
     "next-auth": "^4.24.5",
     "next-contentlayer": "^0.3.4",
-    "next-mdx-remote": "^4.4.1",
+    "next-mdx-remote": "4.2.1",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.2.1",
     "node-youtube-music": "^0.10.3",
