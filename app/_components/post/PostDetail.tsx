@@ -1,10 +1,8 @@
 'use client';
 
-import { Tag } from '@/app/_components/ui/Tag';
 import IconTimerSand from '@/app/_icons/IconTimerSand';
 import IconBxCalendarStar from '@/app/_icons/IconBxCalendarStar';
 import IconLink from '@/app/_icons/IconLink';
-import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 import useDetectScroll from '../../_hooks/useDetectScroll';
 import HorizontalProgress from '../common/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
@@ -16,23 +14,24 @@ import { Post } from '@/app/_libs/posts';
 import {
   formatCreatedAt,
   formatCreatedTime,
-  formatReadTime,
   formatReadingMinutes,
 } from '@/utils/formatTime';
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import FooterHero from '@/app/blog/_components/FooterHero';
 import Badge from '../common/Badge';
+import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 
 export const PostDetail = ({
   post,
   mdx,
   toc,
+  isFullSize,
 }: {
   post: Post;
   mdx: MDXRemoteSerializeResult;
   toc: any;
+  isFullSize?: boolean;
 }) => {
   const { scroll } = useDetectScroll();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
@@ -52,7 +51,7 @@ export const PostDetail = ({
     // relative 삭제했음.
     <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
       <HorizontalProgress scroll={scroll} />
-      {/* {toc.length > 0 && <TocSidebar tableOfContents={toc} isSidebar={true} />} */}
+      {toc.length > 0 && isFullSize && <TocSidebar tableOfContents={toc} isSidebar={true} />}
       <div className='mb-5 flex-grow w-full'>
         <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
           <div className='mb-8 flex flex-col w-full'>

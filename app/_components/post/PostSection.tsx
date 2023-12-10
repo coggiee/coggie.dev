@@ -1,4 +1,5 @@
-import { PostCard } from './PostCard';
+'use client';
+
 import { Fallback } from '../common/Fallback';
 import {
   formatCreatedAt,
@@ -10,9 +11,11 @@ import PostSideCard from './PostSideCard';
 export const PostSection = ({
   posts,
   title,
+  onClickPost,
 }: {
   posts: any;
   title: string;
+  onClickPost: (path: string) => void;
 }) => {
   return (
     <section className='w-full p-3 grow rounded-lg font-mono border border-item-border-light bg-item-light dark:bg-item-dark dark:border-item-border-dark'>
@@ -36,63 +39,10 @@ export const PostSection = ({
             tags={node.tags}
             coverImage={node.coverImage}
             readTimeMinutes={formatReadingMinutes(node.content)}
+            onClickPost={() => onClickPost(node.id)}
           />
         ))}
       </div>
     </section>
   );
 };
-
-{
-  /* <div className="w-full">
-            <h2 className="text-lg font-semibold mb-2">Recent Posts</h2>
-            <div className="flex items-start mb-2">
-              <img
-                alt="Post thumbnail"
-                className="mr-2 overflow-hidden rounded-lg object-cover"
-                height="50"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "50/50",
-                  objectFit: "cover",
-                }}
-                width="50"
-              />
-              <Link className="block text-sm" href="#">
-                Post 1
-              </Link>
-            </div>
-            <div className="flex items-start mb-2">
-              <img
-                alt="Post thumbnail"
-                className="mr-2 overflow-hidden rounded-lg object-cover"
-                height="50"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "50/50",
-                  objectFit: "cover",
-                }}
-                width="50"
-              />
-              <Link className="block text-sm" href="#">
-                Post 2
-              </Link>
-            </div>
-            <div className="flex items-start mb-2">
-              <img
-                alt="Post thumbnail"
-                className="mr-2 overflow-hidden rounded-lg object-cover"
-                height="50"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "50/50",
-                  objectFit: "cover",
-                }}
-                width="50"
-              />
-              <Link className="block text-sm" href="#">
-                Post 3
-              </Link>
-            </div>
-          </div> */
-}
