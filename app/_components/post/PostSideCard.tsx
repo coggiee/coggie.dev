@@ -4,6 +4,8 @@ import IconTimerSand from '../../_icons/IconTimerSand';
 import { CoverImage } from '@/types/type';
 import Image from 'next/image';
 import IconNoImage from '@/app/_icons/IconNoImage';
+import { motion } from 'framer-motion';
+
 interface PostCardProps {
   date: string;
   time: string;
@@ -28,7 +30,12 @@ export default function PostSideCard({
   onClickPost,
 }: PostCardProps) {
   return (
-    <div className='card rounded-lg m-0 font-notosanskr dark:text-white hover:bg-hover-light hover:dark:bg-hover-dark cursor-pointer transition-colors ease-in-out duration-300'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className='card rounded-lg m-0 font-notosanskr dark:text-white hover:bg-hover-light hover:dark:bg-hover-dark cursor-pointer transition-colors ease-in-out duration-300'
+    >
       <div className='card-body p-2' onClick={() => onClickPost(path)}>
         {/* <Link href={`/blog/${pth}`} passHref className='block'> */}
         <div className='flex flex-row gap-5'>
@@ -62,6 +69,6 @@ export default function PostSideCard({
         </div>
         {/* </Link> */}
       </div>
-    </div>
+    </motion.div>
   );
 }

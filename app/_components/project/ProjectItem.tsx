@@ -2,6 +2,7 @@ import IconGithub from '@/app/_icons/IconGithub';
 import React from 'react';
 import Link from 'next/link';
 import IconDemo from '@/app/_icons/IconDemo';
+import { motion } from 'framer-motion';
 
 type Props = {
   projectTitle: string;
@@ -17,7 +18,12 @@ export default function ProjectItem({
   projectDemoLink,
 }: Props) {
   return (
-    <div className='w-full min-w-0 flex flex-col grow justify-between flex-shrink-0 gap-5 px-3 py-5 rounded-lg cursor-pointer  hover:bg-hover-light dark:hover:bg-hover-dark xl:flex-row xl:items-center'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      className='w-full min-w-0 flex flex-col grow justify-between flex-shrink-0 gap-5 px-3 py-5 rounded-lg cursor-pointer  hover:bg-hover-light dark:hover:bg-hover-dark xl:flex-row xl:items-center'
+    >
       <div className='flex flex-col gap-2'>
         <div className='font-semibold text-lg'>{projectTitle}</div>
         <div className='text-sm'>{projectDescription}</div>
@@ -40,6 +46,6 @@ export default function ProjectItem({
           <IconDemo />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 }

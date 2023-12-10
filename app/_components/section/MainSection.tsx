@@ -8,6 +8,7 @@ import { PostDetail } from '../post/PostDetail';
 import IconBackToHome from '@/app/_icons/IconBackToHome';
 import Link from 'next/link';
 import IconScale from '@/app/_icons/IconScale';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
   hotPosts: any[];
@@ -41,45 +42,78 @@ export default function MainSection({ hotPosts, recentPosts }: Props) {
   return (
     <>
       {isPostClicked && (
-        <section className='flex flex-col gap-5 mt-4'>
-          <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
-            <button
-              className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg '
-              onClick={() => setIsPostClicked(false)}
-            >
-              <IconBackToHome className='text-lg' />
-            </button>
-            <button className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
-              <Link href={`/blog/${postId}`} passHref>
-                <IconScale className='text-lg'></IconScale>
-              </Link>
-            </button>
-          </div>
+        <AnimatePresence>
+          <motion.div
+            initial={{
+              y: 500,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            exit={{ opacity: 0 }}
+          >
+            <section className='flex flex-col gap-5'>
+              <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+                <button
+                  className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg '
+                  onClick={() => setIsPostClicked(false)}
+                >
+                  <IconBackToHome className='text-lg' />
+                </button>
+                <button className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
+                  <Link href={`/blog/${postId}`} passHref>
+                    <IconScale className='text-lg'></IconScale>
+                  </Link>
+                </button>
+              </div>
 
-          <section className='p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
-            <PostDetail
-              post={currentPost!}
-              mdx={mdx!}
-              toc={parsedToc}
-              isFullSize={false}
-            />
-          </section>
-        </section>
+              <section className='p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+                <PostDetail
+                  post={currentPost!}
+                  mdx={mdx!}
+                  toc={parsedToc}
+                  isFullSize={false}
+                />
+              </section>
+            </section>
+          </motion.div>
+        </AnimatePresence>
       )}
       {!isPostClicked && (
-        <>
-          <Introduction />
-          <PostSection
-            posts={hotPosts}
-            title={'읽어 볼만한 포스트'}
-            onClickPost={handleOnClickPost}
-          />
-          <PostSection
-            posts={recentPosts}
-            title={'최근 포스트'}
-            onClickPost={handleOnClickPost}
-          />
-        </>
+        <AnimatePresence>
+          <motion.div
+            initial={{
+              y: 500,
+              opacity: 0,
+            }}
+            animate={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            exit={{ opacity: 0 }}
+            className='flex flex-col gap-5'
+          >
+            <Introduction />
+            <PostSection
+              posts={hotPosts}
+              title={'읽어 볼만한 포스트'}
+              onClickPost={handleOnClickPost}
+            />
+            <PostSection
+              posts={recentPosts}
+              title={'최근 포스트'}
+              onClickPost={handleOnClickPost}
+            />
+          </motion.div>
+        </AnimatePresence>
       )}
     </>
   );
