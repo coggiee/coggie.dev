@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import React from 'react';
+import MorePostLink from './MorePostLink';
 
 type Props = {};
 
@@ -11,11 +11,7 @@ export default function Introduction({}: Props) {
         <header className='w-full rounded-lg p-5 pl-4 mb-5 leading-loose dark:text-white'>
           <div className='flex justify-between items-center'>
             <h1 className='text-xl font-semibold mb-3'>Dev Blog</h1>
-            <Link href='/blog'>
-              <div className='p-2 text-xs rounded-lg transition-all duration-200 ease-in-out drop-shadow-lg border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-105 hover:bg-hover-light dark:hover:bg-hover-dark hover:animate-bounce'>
-                More Posts
-              </div>
-            </Link>
+            <MorePostLink />
           </div>
 
           <p className='dark:text-[rgb(141, 140, 142)]'>
