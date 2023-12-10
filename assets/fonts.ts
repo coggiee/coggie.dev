@@ -1,4 +1,13 @@
-import { Inter, Lato, Noto_Sans_KR, Marhey, Pacifico, Indie_Flower, Permanent_Marker } from 'next/font/google';
+import {
+  Inter,
+  Lato,
+  Noto_Sans_KR,
+  Marhey,
+  Pacifico,
+  Indie_Flower,
+  Permanent_Marker,
+  Dhurjati,
+} from 'next/font/google';
 import { Black_Han_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
 
@@ -56,6 +65,12 @@ export const permanentMarker = Permanent_Marker({
   variable: '--font-permanentMarker',
 });
 
+export const dhurjati = Dhurjati({
+  weight: ['400'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-dhurjati',
+});
 // export const pretendard = localFont({
 //   src: '../public/fonts/PretendardVariable.ttf',
 //   display: 'swap',

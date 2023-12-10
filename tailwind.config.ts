@@ -23,6 +23,7 @@ const config: Config = {
         pacifico: ['var(--font-pacifico)'],
         indieFlower: ['var(--font-indieFlower)'],
         permanentMarker: ['var(--font-permanentMarker)'],
+        'dhurjati': ['var(--font-dhurjati)'],
         // pretendard: ['var(--font-pretendard)'],
         // tossface: ['var(--font-tossface)'],
       },
