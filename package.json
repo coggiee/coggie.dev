@@ -20,6 +20,7 @@
     "contentlayer": "^0.3.4",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.10",
+    "framer-motion": "^10.16.16",
     "github-slugger": "^2.0.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
