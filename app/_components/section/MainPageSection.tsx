@@ -21,9 +21,6 @@ export default function MainPageSection({ hotPosts, recentPosts }: Props) {
       </aside>
       {/* Detail Post on Center */}
       <main className='w-full basis-1/2 rounded-lg flex-col gap-5 flex md:hidden xl:flex'>
-        <button className='text-white rounded-lg border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-105 transition-all duration-200 ease-in-out drop-shadow-lg'>
-          <Link href='/blog'>See All Posts</Link>
-        </button>
         <PostShowSection hotPosts={hotPosts} recentPosts={recentPosts} />
       </main>
       {/* Post on Right Side */}
