@@ -10,7 +10,7 @@ export default function Introduction({}: Props) {
         <aside className='text-9xl dark:text-white px-8 pr-5'>;</aside>
         <header className='w-full rounded-lg p-5 pl-4 mb-5 leading-loose dark:text-white'>
           <div className='flex justify-between items-center'>
-            <h1 className='text-xl font-semibold mb-3'>Dev Blog</h1>
+            <h1 className='text-4xl font-semibold mb-3 font-dhurjati'>Dev Blog</h1>
             <MorePostLink />
           </div>
 

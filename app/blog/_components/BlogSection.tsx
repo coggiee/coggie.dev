@@ -153,10 +153,10 @@ export default function BlogSection({
             className='grow basis-2/3 w-full min-w-[25%]'
           >
             <div className='mb-5'>
-              <h1 className='font-sbold text-2xl inline-block mr-2 font-lato'>
+              <h1 className='font-sbold text-4xl inline-block mr-2 font-dhurjati'>
                 {selectedTag}
               </h1>
-              <span className='font-bold'>({currentPosts.length})</span>
+              <span className='font-bold text-lg font-dhurjati'>({currentPosts.length})</span>
             </div>
             <div
               className='flex-1 flex flex-col gap-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'

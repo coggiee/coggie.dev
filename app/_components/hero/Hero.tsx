@@ -21,7 +21,10 @@ export const Hero = ({ src }: HeroProps) => {
 
           <main className='flex flex-col gap-7 border-b border-item-border-light dark:border-item-border-dark pb-7'>
             <div className='flex flex-col gap-3'>
-              <h1 className='text-xl font-bold mb-2'>Coggie(Moon Hwisik)</h1>
+              <h1 className='text-xl font-bold mb-2'>
+                <span className='font-dhurjati text-3xl'>Coggie </span>
+                <span className='font-teko'>(Moon Hwisik)</span>
+              </h1>
               <div className='flex gap-2 flex-wrap mb-5'>
                 {skill.map((s) => (
                   <Badge key={s.title} text={s.title} />

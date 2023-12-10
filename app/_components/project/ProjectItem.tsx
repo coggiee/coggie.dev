@@ -25,7 +25,7 @@ export default function ProjectItem({
       className='w-full min-w-0 flex flex-col grow justify-between flex-shrink-0 gap-5 px-3 py-5 rounded-lg cursor-pointer  hover:bg-hover-light dark:hover:bg-hover-dark xl:flex-row xl:items-center'
     >
       <div className='flex flex-col gap-2'>
-        <div className='font-semibold text-lg'>{projectTitle}</div>
+        <div className='font-semibold text-2xl font-dhurjati'>{projectTitle}</div>
         <div className='text-sm'>{projectDescription}</div>
       </div>
       <div className='flex gap-2 h-fit self-end xl:self-auto'>
