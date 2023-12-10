@@ -10,8 +10,8 @@ export default function Bio({}: Props) {
       <ul className='font-thin text-sm flex flex-col gap-2'>
         {bio.map((item) => (
           <li className='flex gap-2' key={item.title}>
-            <span>{item.duration}</span>
-            <span className='font-bold'>{item.title}</span>
+            <span className='text-xs'>{item.duration}</span>
+            <span className='font-bold text-xs'>{item.title}</span>
           </li>
         ))}
       </ul>
