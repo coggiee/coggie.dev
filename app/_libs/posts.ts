@@ -23,6 +23,7 @@ export type Post = PostMatter & {
   time: string
   readingMinutes: number;
   wordCount: number;
+  id: string;
 }
 
 const BASE_PATH = '/posts';

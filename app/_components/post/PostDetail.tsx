@@ -10,7 +10,6 @@ import { useState } from 'react';
 import { Alert } from '../common/Alert';
 import Giscus from '../../blog/_components/Giscus';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { Post } from '@/app/_libs/posts';
 import {
   formatCreatedAt,
   formatCreatedTime,
@@ -29,7 +28,7 @@ export const PostDetail = ({
   toc,
   isFullSize,
 }: {
-  post: Post;
+  post: any;
   mdx: MDXRemoteSerializeResult;
   toc: any;
   isFullSize?: boolean;
@@ -39,7 +38,7 @@ export const PostDetail = ({
   const { data: session } = useSession();
 
   const handleOnClickCopyButton = () => {
-    copyToClipboard();
+    copyToClipboard(post.id);
 
     setIsAlertVisible(true);
     setTimeout(() => {
