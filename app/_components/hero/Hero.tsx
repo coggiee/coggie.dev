@@ -15,7 +15,7 @@ export const Hero = ({ src }: HeroProps) => {
       <div className='flex flex-col gap-5'>
         <div className='flex flex-col gap-5'>
           <div className='flex justify-between'>
-            <Avatar src='/profile2.jpg' />
+            <Avatar src='/mimoji.png' />
             <SocialGroup fontSize='text-sm' />
           </div>
 
