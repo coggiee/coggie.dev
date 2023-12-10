@@ -34,7 +34,7 @@ export const Nav = () => {
             Coggie
           </Link>
         </div>
-        <div className='flex items-center gap-5 font-mono'>
+        {/* <div className='flex items-center gap-5 font-mono'>
           {navLinks.map((nav) => (
             <Link
               href={nav.link}
@@ -46,7 +46,7 @@ export const Nav = () => {
               {nav.title}
             </Link>
           ))}
-        </div>
+        </div> */}
       </div>
       <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
