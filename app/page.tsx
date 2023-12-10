@@ -41,7 +41,7 @@ export default async function Home() {
         <InfoSiderbar />
       </aside>
       {/* Detail Post on Center */}
-      <div className='w-full basis-1/2 hidden rounded-lg flex-col gap-5 xl:flex'>
+      <div className='w-full basis-1/2 rounded-lg flex-col gap-5 flex sm:hidden xl:flex'>
         <Introduction />
         <PostSection posts={hotPosts} title={'읽어 볼만한 포스트'} />
         <PostSection posts={recentPosts} title={'최근 포스트'} />

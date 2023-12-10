@@ -17,7 +17,7 @@ export const SocialGroup = ({ fontSize, justify, align }: SocialGroupProps) => {
     >
       <Tooltip
         dataTip='github'
-        style='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark '
+        style='border bg-sub-light dark:bg-sub-dark border-item-border-light dark:border-item-border-dark '
       >
         <Link href='https://github.com/lunarmoon7' passHref>
           <IconGithub />
