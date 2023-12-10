@@ -3,11 +3,13 @@ import SearchBarXS from './_components/common/SearchBarXS';
 import InfoSiderbar from './_components/sidebar/InfoSiderbar';
 import ProjectList from './_components/project/ProjectList';
 import MainSection from './_components/section/MainSection';
+import RightSidebar from './_components/sidebar/RightSidebar';
 
 async function getProps() {
   const hotPosts = (await getHotPosts()) || [];
   const recentPosts = (await getRecentPosts()) || [];
   const post = await getSinglePost('clp9p26576fkf0b17k58fve2v');
+
   return {
     props: {
       hotPosts,
@@ -34,10 +36,7 @@ export default async function Home() {
       </main>
       {/* Post on Right Side */}
       <aside className='w-full min-w-[25%] relative md:basis-1/2  md:min-w-min basis-1/4 flex flex-col md:max-w-sm flex-grow-0 flex-shrink-0 gap-5'>
-        <aside className='w-full flex flex-col gap-5 flex-shrink-0 sticky top-[120px] right-0'>
-          <SearchBarXS />
-          <ProjectList />
-        </aside>
+        <RightSidebar />
       </aside>
     </section>
   );
