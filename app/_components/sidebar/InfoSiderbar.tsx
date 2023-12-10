@@ -19,13 +19,12 @@ export default function InfoSiderbar({}: Props) {
         opacity: 1,
       }}
       transition={{
-        duration: .7,
+        duration: 0.7,
       }}
+      className='w-full flex flex-col gap-3 flex-shrink-0 xl:sticky xl:top-[120px] xl:left-0'
     >
-      <div className='sticky top-[120px] left-0 w-full flex flex-col gap-3 flex-shrink-0'>
-        <Hero src={'/profile2.jpg'} />
-        {/* <Sidebar /> */}
-      </div>
+      <Hero src={'/profile2.jpg'} />
+      {/* <Sidebar /> */}
     </motion.div>
   );
 }

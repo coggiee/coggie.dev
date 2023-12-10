@@ -36,10 +36,11 @@ export default function BlogSection({
   const [lastPostCursor, setLastPostCursor] = React.useState<string>(cursor);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
-
+  const [selectedTag, setSelectedTag] = React.useState<string>('# All');
   const target = useRef<HTMLDivElement>(null);
 
   const handleOnClickTag = async (tag: string) => {
+    setSelectedTag((prev: string) => '# ' + tag);
     if (tag === 'All') {
       const { edges } = (await getTotalPosts()) || [];
       const posts = edges.map((post: any) => post.node);
@@ -153,7 +154,7 @@ export default function BlogSection({
           >
             <div className='mb-5'>
               <h1 className='font-sbold text-2xl inline-block mr-2 font-lato'>
-                All posts
+                {selectedTag}
               </h1>
               <span className='font-bold'>({currentPosts.length})</span>
             </div>

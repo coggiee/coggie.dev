@@ -8,10 +8,10 @@ type Props = {
 export default function TagFilter({ tags, handleOnClickTag }: Props) {
   const [selectedTag, setSelectedTag] = React.useState<string>('');
   const handleOnClick = (tag: string) => {
-    setSelectedTag(tag);
+    setSelectedTag((prev) => tag);
     handleOnClickTag && handleOnClickTag(tag);
   };
-  
+
   return (
     <div className='w-full mb-5 p-5 flex flex-col border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
       <div className='w-full flex gap-2 items-center self-start flex-shrink-0 mb-3'>
@@ -24,9 +24,11 @@ export default function TagFilter({ tags, handleOnClickTag }: Props) {
         {tags.map((tag) => (
           <li
             key={tag}
-            className={`badge border border-item-border-light cursor-pointer rounded-xl py-5  shadow-md hover:shadow-lg flex-shrink-0 font-thin font-sans text-lg hover:bg-[dodgerblue] hover:text-white transition-all ease-in-out  ${
-              selectedTag === tag ? 'bg-[dodgerblue] text-white' : ''
-            }} dark:bg-[#5f5f5f2f] dark:text-white dark:hover:text-white dark:hover:bg-[dodgerblue]/50 dark:border-item-border-dark`}
+            className={`badge border border-item-border-light cursor-pointer rounded-xl py-5 hover:shadow-lg flex-shrink-0 font-thin font-sans text-lg hover:bg-[dodgerblue] hover:text-white transition-all ease-in-out dark:text-white dark:hover:text-white dark:hover:bg-[dodgerblue] dark:border-item-border-dark ${
+              selectedTag === tag
+                ? 'bg-[dodgerblue] text-white'
+                : 'dark:bg-item-dark'
+            }`}
             onClick={() => handleOnClick(tag)}
           >
             <span># {tag}</span>

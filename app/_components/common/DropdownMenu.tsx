@@ -18,7 +18,7 @@ export default function DropdownMenu({ handleOnLogin, session }: Props) {
     <div className='dropdown dropdown-bottom dropdown-end'>
       <label
         tabIndex={0}
-        className='btn m-1 p-3 bg-[white] border-none shadow-none rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit dark:text-[white]'
+        className='btn m-1 bg-transparent p-3 border-none shadow-none rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit dark:text-[white]'
       >
         <IconMenu className='text-xl' />
       </label>

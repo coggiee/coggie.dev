@@ -16,7 +16,7 @@ export default function MainPageSection({ hotPosts, recentPosts }: Props) {
 
   return (
     <>
-      <aside className='w-full min-w-[25%] relative md:basis-1/2 basis-1/4 md:max-w-sm md:min-w-min lg:pl-4 flex flex-col flex-grow-0 flex-shrink-0 gap-5'>
+      <aside className='w-full min-w-[25%] md:basis-1/2 basis-1/4 md:max-w-sm md:min-w-min lg:pl-4 flex flex-col flex-grow-0 flex-shrink-0 gap-5 xl:sticky xl:top-[120px] xl:left-0'>
         <InfoSiderbar />
       </aside>
       {/* Detail Post on Center */}

@@ -34,19 +34,6 @@ export const Nav = () => {
             Coggie
           </Link>
         </div>
-        {/* <div className='flex items-center gap-5 font-mono'>
-          {navLinks.map((nav) => (
-            <Link
-              href={nav.link}
-              key={nav.title}
-              className={`${
-                pathname === nav.link ? 'before:w-full' : ''
-              }  dark:text-[#fff] text-lg relative before:absolute before:h-1 before:bg-[#f7ab0a] before:w-[0%] before:-bottom-2 before:left-1/2 before:translate-x-[-50%] hover:before:w-full before:transition-all font-thin`}
-            >
-              {nav.title}
-            </Link>
-          ))}
-        </div> */}
       </div>
       <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
