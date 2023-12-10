@@ -6,6 +6,8 @@ import { PostSection } from '../post/PostSection';
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { PostDetail } from '../post/PostDetail';
 import IconBackToHome from '@/app/_icons/IconBackToHome';
+import Link from 'next/link';
+import IconScale from '@/app/_icons/IconScale';
 
 type Props = {
   hotPosts: any[];
@@ -17,6 +19,7 @@ export default function MainSection({ hotPosts, recentPosts }: Props) {
   const [currentPost, setCurrentPost] = useState<any>();
   const [mdx, setMdx] = useState<any>();
   const [parsedToc, setParsedToc] = useState<any>();
+  const [postId, setPostId] = useState<string>();
 
   const handleOnClickPost = async (path: string) => {
     if (!isPostClicked) {
@@ -30,6 +33,7 @@ export default function MainSection({ hotPosts, recentPosts }: Props) {
       setParsedToc(parseHeaderForTOC(post!.content));
       setMdx(serializedMdx);
       setCurrentPost(post);
+      setPostId(path);
     }
     setIsPostClicked((prev) => !prev);
   };
@@ -38,12 +42,17 @@ export default function MainSection({ hotPosts, recentPosts }: Props) {
     <>
       {isPostClicked && (
         <section className='flex flex-col gap-5 mt-4'>
-          <div className='p-3 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+          <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
             <button
               className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg '
               onClick={() => setIsPostClicked(false)}
             >
               <IconBackToHome className='text-lg' />
+            </button>
+            <button className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
+              <Link href={`/blog/${postId}`} passHref>
+                <IconScale className='text-lg'></IconScale>
+              </Link>
             </button>
           </div>
 
