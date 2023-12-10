@@ -60,14 +60,14 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
             <section className='flex flex-col gap-5'>
               <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
                 <button
-                  className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
+                  className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
                   onClick={() => setIsPostClicked(false)}
                 >
-                  <IconBackToHome className='text-lg' />
+                  <IconBackToHome className='text-sm' />
                 </button>
-                <button className='p-1 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
+                <button className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
                   <Link href={`/blog/${postId}`} passHref>
-                    <IconScale className='text-lg'></IconScale>
+                    <IconScale className='text-sm'></IconScale>
                   </Link>
                 </button>
               </div>
