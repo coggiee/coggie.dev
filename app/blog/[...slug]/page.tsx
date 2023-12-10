@@ -40,7 +40,7 @@ export default async function PostPage({ params }: { params: { slug: any } }) {
   return (
     <div className='prose dark:prose-dark mt-4 w-full max-w-none'>
       <Suspense fallback={<Loading />}>
-        <PostDetail post={post!} mdx={mdx!} toc={parsedToc} />
+        <PostDetail post={post!} mdx={mdx!} toc={parsedToc} isFullSize={true} />
       </Suspense>
     </div>
   );
