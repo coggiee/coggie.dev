@@ -137,7 +137,7 @@ export default function EditSection({}: Props) {
           value={tags}
           onChange={handleOnTypeTags}
           onKeyPress={handleKeyPress}
-          className='mt-1 p-2 outline-none border-l-4 border-[#f7ab0a]'
+          className='mt-1 p-2 outline-none border-l-4 border-brand-color'
         />
       </div>
       <div className='mb-4'>
@@ -145,7 +145,7 @@ export default function EditSection({}: Props) {
           {tagList.map((tag, index) => (
             <li
               key={index}
-              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-xl cursor-pointer mb-2 border border-[#f7ab0a]'
+              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-xl cursor-pointer mb-2 border border-brand-color'
               onClick={() => handleOnClickTag(tag)}
             >
               # {tag}

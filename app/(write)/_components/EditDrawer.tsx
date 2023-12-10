@@ -36,7 +36,7 @@ export default function EditDrawer({
         {/* Page content here */}
         <label
           htmlFor='my-drawer-4'
-          className='drawer-button btn glass bg-[#f7ab0a]'
+          className='drawer-button btn glass bg-brand-color'
         >
           출간하기
         </label>
@@ -98,7 +98,7 @@ export default function EditDrawer({
           </li>
 
           <button
-            className='btn glass bg-[#f7ab0a]'
+            className='btn glass bg-brand-color'
             onClick={handleOnClickSaveBtn}
           >
             출간하기
