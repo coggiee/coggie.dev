@@ -32,7 +32,6 @@ export default function BlogSection({
   cursor,
   totalPostSize,
 }: Props) {
-  const [selectedTag, setSelectedTag] = React.useState<string>('');
   const [currentPosts, setCurrentPosts] = React.useState<any>(posts);
   const [lastPostCursor, setLastPostCursor] = React.useState<string>(cursor);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -41,7 +40,6 @@ export default function BlogSection({
   const target = useRef<HTMLDivElement>(null);
 
   const handleOnClickTag = async (tag: string) => {
-    setSelectedTag(tag);
     if (tag === 'All') {
       const { edges } = (await getTotalPosts()) || [];
       const posts = edges.map((post: any) => post.node);
