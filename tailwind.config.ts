@@ -23,7 +23,8 @@ const config: Config = {
         pacifico: ['var(--font-pacifico)'],
         indieFlower: ['var(--font-indieFlower)'],
         permanentMarker: ['var(--font-permanentMarker)'],
-        'dhurjati': ['var(--font-dhurjati)'],
+        dhurjati: ['var(--font-dhurjati)'],
+        teko: ['var(--font-teko)'],
         // pretendard: ['var(--font-pretendard)'],
         // tossface: ['var(--font-tossface)'],
       },
@@ -49,7 +50,7 @@ const config: Config = {
         'item-border-dark': '#353535',
         'brand-color': 'dodgerblue',
         'sub-light': '#ffffff8d',
-        'sub-dark': '#3e3e3e'
+        'sub-dark': '#3e3e3e',
       },
     },
   },

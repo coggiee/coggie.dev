@@ -7,6 +7,7 @@ import {
   Indie_Flower,
   Permanent_Marker,
   Dhurjati,
+  Teko,
 } from 'next/font/google';
 import { Black_Han_Sans } from 'next/font/google';
 import localFont from 'next/font/local';
@@ -70,6 +71,13 @@ export const dhurjati = Dhurjati({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-dhurjati',
+});
+
+export const teko = Teko({
+  weight: ['300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-teko',
 });
 // export const pretendard = localFont({
 //   src: '../public/fonts/PretendardVariable.ttf',
