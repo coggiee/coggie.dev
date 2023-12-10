@@ -17,6 +17,7 @@ import {
 import TagFilter from './TagFilter';
 import Loading from '@/app/loading';
 import SearchBarXS from '@/app/_components/common/SearchBarXS';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type Props = {
   posts: any;
@@ -101,64 +102,89 @@ export default function BlogSection({
   }, [currentPosts, lastPostCursor, isLoading, totalPostSize]);
 
   return (
-    <>
-      {/* <div className='w-full flex flex-row-reverse gap-5'> */}
+    <motion.div
+      initial={{
+        y: 500,
+        opacity: 0,
+      }}
+      animate={{
+        y: 0,
+        opacity: 1,
+      }}
+      transition={{
+        duration: 0.7,
+      }}
+      exit={{ opacity: 0, y: 500 }}
+      className='flex-grow min-w-0 w-full h-full mb-3 relative'
+    >
       <Suspense fallback={<Loading />}>
-        <div className='flex-grow min-w-0 w-full mb-3 h-full'>
-          <header className='w-full rounded-lg bg-[dodgerblue]/50 p-5 mb-5 shadow-md'>
-            이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
-            <br />
-            알고리즘 문제 풀이 제외, 각종 <strong>
-              프로젝트 개발기
-            </strong>와 <strong>회고</strong> 그리고{' '}
-            <strong>트러블 슈팅</strong>
-            등에 대한 내용이 포함됩니다.
-            <br />
-            포스팅의 내용은 <strong>주관적</strong>이며 부정확한 정보가 포함되어
-            있을 수 있습니다.
-          </header>
-
-          <SearchBarXS
-            handleOnSearch={handleOnSearch}
-            handleOnPressEnter={handleOnPressEnter}
-          />
-
-          {/* <div>Select Tag</div> */}
-          <TagFilter
-            tags={uniqueTags}
-            handleOnClickTag={handleOnClickTag}
-            selectedTag={selectedTag}
-          />
-          <div className='flex-1 flex flex-col gap-5' ref={target}>
-            <div>
-              <h1 className='font-thin text-3xl inline-block mr-2 font-lato'>
+        <div className='flex flex-col md:flex-row gap-5 relative'>
+          <motion.div
+            initial={{
+              x: -500,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className='basis-1/3 md:max-w-sm min-w-fit mr-10 flex flex-col gap-5 w-full'
+          >
+            <SearchBarXS
+              handleOnSearch={handleOnSearch}
+              handleOnPressEnter={handleOnPressEnter}
+            />
+            <TagFilter tags={uniqueTags} handleOnClickTag={handleOnClickTag} />
+          </motion.div>
+          <motion.div
+            initial={{
+              x: 500,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.7,
+            }}
+            className='grow basis-2/3 w-full min-w-[25%]'
+          >
+            <div className='mb-5'>
+              <h1 className='font-sbold text-2xl inline-block mr-2 font-lato'>
                 All posts
               </h1>
               <span className='font-bold'>({currentPosts.length})</span>
             </div>
-            <div className='flex flex-col'>
-              {currentPosts.length === 0 && (
-                <Fallback title={'아직 포스트가 없습니다.'} />
-              )}
-              {currentPosts.map((post: any) => (
-                <PostCard
-                  key={post.id}
-                  date={formatCreatedAt(post.date)}
-                  time={formatCreatedTime(post.date)}
-                  title={post.title}
-                  description={post.description}
-                  path={post.id}
-                  tags={post.tags}
-                  coverImage={post?.coverImage}
-                  readTimeMinutes={formatReadingMinutes(post.content)}
-                />
-              ))}
+            <div
+              className='flex-1 flex flex-col gap-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'
+              ref={target}
+            >
+              <div className='flex flex-col'>
+                {currentPosts.length === 0 && (
+                  <Fallback title={'아직 포스트가 없습니다.'} />
+                )}
+                {currentPosts.map((post: any) => (
+                  <PostCard
+                    key={post.id}
+                    date={formatCreatedAt(post.date)}
+                    time={formatCreatedTime(post.date)}
+                    title={post.title}
+                    description={post.description}
+                    path={post.id}
+                    tags={post.tags}
+                    coverImage={post?.coverImage}
+                    readTimeMinutes={formatReadingMinutes(post.content)}
+                  />
+                ))}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </Suspense>
-      {/* <TagSidebar tags={uniqueTags} handleOnClickTag={handleOnClickTag} /> */}
-      {/* </div> */}
-    </>
+    </motion.div>
   );
 }
