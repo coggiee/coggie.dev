@@ -33,7 +33,7 @@ export default async function Blog() {
   } = await getProps();
 
   return (
-    <section className='w-full mx-auto flex flex-col md:max-w-6xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
+    <section className='w-full mx-auto flex flex-col max-w-screen-7xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
       <Suspense fallback={<div>Loading...</div>}>
         <DynamicBlogSection
           posts={posts}

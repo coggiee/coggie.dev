@@ -5,6 +5,7 @@ import { CoverImage } from '@/types/type';
 import Image from 'next/image';
 import IconNoImage from '@/app/_icons/IconNoImage';
 import { motion } from 'framer-motion';
+import Badge from '../common/Badge';
 
 interface PostCardProps {
   date: string;
@@ -37,7 +38,6 @@ export default function PostSideCard({
       className='card rounded-lg m-0 font-notosanskr dark:text-white hover:bg-hover-light hover:dark:bg-hover-dark cursor-pointer transition-colors ease-in-out duration-300'
     >
       <div className='card-body p-2' onClick={() => onClickPost(path)}>
-        {/* <Link href={`/blog/${pth}`} passHref className='block'> */}
         <div className='flex flex-row gap-5'>
           <div className='relative w-32 h-32 flex-shrink-0 rounded-lg'>
             {coverImage && (
@@ -64,7 +64,15 @@ export default function PostSideCard({
                 {time} - {readTimeMinutes} min read
               </div>
             </div>
-            <h2 className='text-sm w-full truncate'>{title}</h2>
+            <div className='flex flex-col gap-3'>
+              <h2 className='text-sm w-full truncate'>{title}</h2>
+              <p className='text-xs w-full truncate'>{description}</p>
+            </div>
+            <div className='grow flex items-end gap-2 '>
+              {tags.map((tag) => (
+                <Badge key={tag} text={tag} />
+              ))}
+            </div>
           </div>
         </div>
         {/* </Link> */}
