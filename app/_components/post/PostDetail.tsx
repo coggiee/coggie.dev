@@ -67,7 +67,7 @@ export const PostDetail = ({
         {toc.length > 0 && isFullSize && (
           <TocSidebar tableOfContents={toc} isSidebar={true} />
         )}
-        <div className='mb-5 flex-grow w-full'>
+        <div className='mb-5 flex-grow w-full min-w-0 p-5  rounded-lg  dark:bg-item-dark'>
           <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
             <div className='mb-8 flex flex-col w-full'>
               <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
