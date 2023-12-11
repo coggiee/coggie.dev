@@ -1,0 +1,29 @@
+h2#toc {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+h2#toc + ul {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+h2#toc + ul li a {
+  text-decoration: underline;
+  display: block;
+  width: 100%;
+  overflow-wrap: break-words;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 1024px) {
+  h2#toc {
+    display: none;
+  }
+  h2#toc + ul {
+    display: none;
+  }
+}
