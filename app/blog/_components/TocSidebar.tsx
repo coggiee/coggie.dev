@@ -93,14 +93,14 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
         isSidebar
           ? 'hidden lg:block sticky top-[120px] right-0 h-fit min-w-[240px] max-w-[260px] mb-10'
           : 'block lg:hidden w-full h-fit'
-      } ${!tableOfContents.length ? '' : 'border-b-2 border-[#f7ab0a]/50'}`}
+      } ${!tableOfContents.length ? '' : 'border-b-2 border-[dodgerblue]/50'}`}
     >
       {tableOfContents.length ? (
         <div className={`${isSidebar ? 'p-5' : ''}`}>
           <div
             className={`${
               isSidebar ? '' : 'text-2xl'
-            } font-semibold underline underline-offset-8 decoration-[#f7ab0a]/50 decoration-wavy`}
+            } font-semibold underline underline-offset-8 decoration-[dodgerblue]/50 decoration-wavy`}
           >
             목차
           </div>
@@ -129,7 +129,7 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
                   href={`#${toc.slug}`}
                   className={`${
                     numberToStringMap[toc.level] === 'one' ? '' : 'gap-1'
-                  } flex items-center hover:text-[#f7ab0a] transition-colors dark:text-[#fff]`}
+                  } flex items-center hover:text-[dodgerblue] transition-colors dark:text-[#fff]`}
                 >
                   {numberToStringMap[toc.level] === 'one' ? null : isSidebar ? (
                     <IconChevronRight />

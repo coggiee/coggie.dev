@@ -21,7 +21,7 @@ export default function InfoSiderbar({}: Props) {
       transition={{
         duration: 0.7,
       }}
-      className='w-full flex flex-col gap-3 flex-shrink-0 xl:sticky xl:top-[120px] xl:left-0'
+      className='w-full flex flex-col gap-3 flex-shrink-0 '
     >
       <Hero src={'/profile2.jpg'} />
       {/* <Sidebar /> */}

@@ -43,7 +43,7 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
     <>
       {isPostClicked && (
         <AnimatePresence>
-          <motion.div
+          <motion.section
             initial={{
               y: 500,
               opacity: 0,
@@ -56,32 +56,31 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
               duration: 0.7,
             }}
             exit={{ opacity: 0, y: 500 }}
+            className='flex flex-col gap-5'
           >
-            <section className='flex flex-col gap-5'>
-              <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
-                <button
-                  className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
-                  onClick={() => setIsPostClicked(false)}
-                >
-                  <IconBackToHome className='text-sm' />
-                </button>
-                <button className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
-                  <Link href={`/blog/${postId}`} passHref>
-                    <IconScale className='text-sm'></IconScale>
-                  </Link>
-                </button>
-              </div>
+            <div className='p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+              <button
+                className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
+                onClick={() => setIsPostClicked(false)}
+              >
+                <IconBackToHome className='text-sm' />
+              </button>
+              <button className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
+                <Link href={`/blog/${postId}`} passHref>
+                  <IconScale className='text-sm'></IconScale>
+                </Link>
+              </button>
+            </div>
 
-              <section className='p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
-                <PostDetail
-                  post={currentPost!}
-                  mdx={mdx!}
-                  toc={parsedToc}
-                  isFullSize={false}
-                />
-              </section>
+            <section className='p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+              <PostDetail
+                post={currentPost!}
+                mdx={mdx!}
+                toc={parsedToc}
+                isFullSize={false}
+              />
             </section>
-          </motion.div>
+          </motion.section>
         </AnimatePresence>
       )}
       {!isPostClicked && (
