@@ -16,7 +16,6 @@ import {
 import { Footer } from './_components/common/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';
-import { AnimatePresence } from 'framer-motion';
 import FramerProvider from './_provider/FramerProvider';
 
 export const dynamic = 'dynamic';
