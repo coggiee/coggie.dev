@@ -72,7 +72,7 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
               </button>
             </div>
 
-            <section className='p-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+            <section className='p-1 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
               <PostDetail
                 post={currentPost!}
                 mdx={mdx!}

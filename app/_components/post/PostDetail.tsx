@@ -68,7 +68,7 @@ export const PostDetail = ({
           <TocSidebar tableOfContents={toc} isSidebar={true} />
         )}
         <div className='mb-5 flex-grow w-full min-w-0 p-5  rounded-lg  dark:bg-item-dark'>
-          <article className='min-w-0 w-full max-w-full mx-auto py-8 border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
+          <article className='min-w-0 w-full max-w-full mx-auto border-b-[1px] border-gray-300 dark:border-[#a9a9a96c] relative break-words mb-20'>
             <div className='mb-8 flex flex-col w-full'>
               <h1 className='text-4xl font-bold w-full break-words dark:text-[#fff]'>
                 {post!.title}
@@ -78,7 +78,7 @@ export const PostDetail = ({
                   <Badge key={tag} text={`# ${tag}`} />
                 ))}
               </div>
-              <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c] mb-10'>
+              <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c]'>
                 <time
                   dateTime={post!.date}
                   className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
@@ -94,9 +94,8 @@ export const PostDetail = ({
                   </div>
                 </time>
                 {/* Copy link when click */}
-                <div className='flex items-center gap-10'>
-                  {session &&
-                    session.user!.email === 'zentechie7@gmail.com' && (
+                <div className='flex items-center gap-3'>
+                  
                       <div className='text-xs underline flex gap-3'>
                         <Link href='' className='cursor-pointer'>
                           수정
@@ -105,7 +104,6 @@ export const PostDetail = ({
                           삭제
                         </Link>
                       </div>
-                    )}
                   <button
                     className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[dodgerblue]/70 flex justify-center items-center self-start hover:bg-[dodgerblue] hover:drop-shadow-lg hover:shadow-lg'
                     onClick={handleOnClickCopyButton}
