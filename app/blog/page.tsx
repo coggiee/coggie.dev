@@ -1,56 +1,48 @@
-import { allPosts } from '@/.contentlayer/generated';
-import { PostCard } from '../components/post/PostCard';
-import { Fallback } from '../components/ui/Fallback';
+import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
+import dynamic, * as Dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+
+const DynamicBlogSection = dynamic(() => import('./_components/BlogSection'), {
+  ssr: false,
+});
 
 async function getProps() {
-  const posts = allPosts.sort(
-    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
+  const { edges, aggregate } = (await getTotalPosts()) || [];
+  const posts = edges.map((post: any) => post.node);
+  const lastPostCursor = posts[posts.length - 1].id;
+  const tags = (await getTotalTags()) || [];
+  const uniqueTags = Array.from(
+    new Set<string>(tags.flatMap((post: any) => post.tags))
   );
+  uniqueTags.unshift('All');
 
   return {
     props: {
       posts,
+      uniqueTags,
+      lastPostCursor,
+      totalPostsSize: aggregate.count,
     },
+    revalidate: 60,
   };
 }
 
 export default async function Blog() {
   const {
-    props: { posts },
+    props: { posts, uniqueTags, lastPostCursor, totalPostsSize },
   } = await getProps();
+
   return (
-    <section className='w-full mx-auto flex-grow md:max-w-3xl flex flex-col gap-3 dark:text-[#fff]'>
-      
-      <header className='w-full rounded-lg bg-[#f7ab0a]/50 p-5 mb-5 shadow-md'>
-        이 곳에는 개발 관련 포스팅이 올라옵니다. 👨🏻‍💻
-        <br />
-        알고리즘 문제 풀이 제외, 각종 <strong>프로젝트 개발기</strong>와{' '}
-        <strong>회고</strong> 그리고 <strong>트러블 슈팅</strong>
-        등에 대한 내용이 포함됩니다.
-      </header>
-      {/* <div>Select Tag</div> */}
-      <div className='flex-1 flex flex-col gap-5'>
-        <div>
-          <h1 className='font-bold text-2xl inline-block mr-2'>
-            📝 All posts
-          </h1>
-          <span className='font-bold'>({posts.length})</span>
-        </div>
-        <div className='flex flex-col'>
-          {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
-          {posts.map((post) => (
-            <PostCard
-              key={post._id}
-              date={post.date}
-              title={post.title}
-              description={post.description}
-              path={post._raw.flattenedPath}
-              tags={post.tags!}
-              readTimeMinutes={post.readTimeMinutes}
-            />
-          ))}
-        </div>
-      </div>
+    <section className='w-full mx-auto flex flex-col max-w-screen-7xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DynamicBlogSection
+          posts={posts}
+          uniqueTags={uniqueTags}
+          cursor={lastPostCursor}
+          totalPostSize={totalPostsSize}
+        />
+      </Suspense>
+      {/* 태그 클릭 시, 해당 태그를 가지고 있는 포스트를 보여줌 */}
     </section>
   );
 }

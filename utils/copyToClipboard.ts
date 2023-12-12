@@ -1,4 +1,9 @@
-export const copyToClipboard = () => {
+export const copyToClipboard = (path: string) => {
   const currentPath = window.location.toString();
-  navigator.clipboard.writeText(currentPath);
+  if (currentPath.includes('/blog')) {
+    navigator.clipboard.writeText(currentPath);
+  } else {
+    const currentPath = window.location.toString() + `blog/${path}`;
+    navigator.clipboard.writeText(currentPath);
+  }
 };

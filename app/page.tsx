@@ -1,22 +1,16 @@
-import { Hero } from './components/Hero';
-import { PostSection } from './components/post/PostSection';
-import { allPosts } from '@/.contentlayer/generated';
-import { Sidebar } from './components/sidebar/Sidebar';
+import { getHotPosts, getRecentPosts } from './_libs/hygraph';
+import MainPageSection from './_components/section/MainPageSection';
 
 async function getProps() {
-  const posts = allPosts.sort(
-    (a, b) => Number(new Date(b.date)) - Number(new Date(a.date))
-  );
-
-  // 읽을 만한 포스트 필터링
-  const hotPosts = posts.filter((post) => post?.hot === true);
-  const recentPosts = posts.slice(0, 5);
+  const hotPosts = (await getHotPosts()) || [];
+  const recentPosts = (await getRecentPosts()) || [];
 
   return {
     props: {
       hotPosts,
       recentPosts,
     },
+    revalidate: 60,
   };
 }
 
@@ -24,15 +18,10 @@ export default async function Home() {
   const {
     props: { hotPosts, recentPosts },
   } = await getProps();
-
   return (
-    <section className='w-full mx-auto flex flex-col md:max-w-6xl md:flex-row gap-5 relative'>
-      <div className='flex flex-col flex-grow min-w-0 w-full mb-3'>
-        <Hero />
-        <PostSection posts={hotPosts} title={'🔥 읽어 볼만한 포스트'} />
-        <PostSection posts={recentPosts} title={'📅 최근 포스트'} />
-      </div>
-      <Sidebar />
+    <section className='w-full relative mx-auto max-w-screen-7xl flex flex-col md:flex-row gap-5 md:justify-center mb-7'>
+      {/* Hero on Left Side */}
+      <MainPageSection hotPosts={hotPosts} recentPosts={recentPosts} />
     </section>
   );
 }

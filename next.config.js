@@ -1,12 +1,12 @@
-const { withContentlayer } = require('next-contentlayer');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: false,
   typescript: {
     ignoreBuildErrors: true,
   },
+  images: {
+    domains: ['media.graphassets.com'],
+  },
 };
 
-module.exports = withContentlayer(nextConfig);
+module.exports = nextConfig;
