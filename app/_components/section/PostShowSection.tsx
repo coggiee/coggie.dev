@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Introduction from '../common/Introduction';
 import { PostSection } from '../post/PostSection';
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
@@ -21,6 +21,7 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
   const [mdx, setMdx] = useState<any>();
   const [parsedToc, setParsedToc] = useState<any>();
   const [postId, setPostId] = useState<string>();
+  const postDetailRef = useRef<HTMLDivElement>(null); // Ref 추가
 
   const handleOnClickPost = async (path: string) => {
     if (!isPostClicked) {
@@ -38,6 +39,16 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
     }
     setIsPostClicked((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (isPostClicked && postDetailRef.current) {
+      if (window.innerWidth < 768) {
+        window.scrollTo({ top: 643, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }, [isPostClicked]);
 
   return (
     <>
@@ -72,7 +83,10 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
               </button>
             </div>
 
-            <section className='p-1 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'>
+            <section
+              className='p-1 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'
+              ref={postDetailRef}
+            >
               <PostDetail
                 post={currentPost!}
                 mdx={mdx!}
