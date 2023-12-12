@@ -27,6 +27,9 @@
 .prose blockquote {
   border-left: 4px solid dodgerblue;
 }
+.prose h1 {
+  @apply font-bold mb-4 mt-8;
+}
 
 .prose h4 a {
   @apply text-lg
