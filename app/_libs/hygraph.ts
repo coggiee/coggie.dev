@@ -280,3 +280,18 @@ export async function searchPostByTitle(title: string) {
   });
   return results.posts;
 }
+
+export async function deletePost(id: string) {
+  const query = gql`
+    mutation deletePost($id: ID = "") {
+      deletePost(where: { id: $id }) {
+        id
+      }
+    }
+  `;
+  const results: any = await graphcms.request(query, {
+    id,
+  });
+
+  return results.deletePost;
+}

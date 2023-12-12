@@ -15,12 +15,14 @@ import {
   formatCreatedTime,
   formatReadingMinutes,
 } from '@/utils/formatTime';
-import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import FooterHero from '@/app/blog/_components/FooterHero';
 import Badge from '../common/Badge';
 import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 import { motion } from 'framer-motion';
+import DeleteModal from '../common/DeleteModal';
+import { deletePost } from '@/app/_libs/hygraph';
+import { useRouter } from 'next/navigation';
 
 export const PostDetail = ({
   post,
@@ -35,7 +37,12 @@ export const PostDetail = ({
 }) => {
   const { scroll } = useDetectScroll();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
+  const [isDeleteModalVisible, setIsDeleteModalVisible] =
+    useState<boolean>(false);
+  const [isCallback, setIsCallback] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>();
   const { data: session } = useSession();
+  const router = useRouter();
 
   const handleOnClickCopyButton = () => {
     copyToClipboard(post.id);
@@ -45,8 +52,24 @@ export const PostDetail = ({
       setIsAlertVisible(false);
     }, 3000);
   };
-  // date는 이걸 넣으면 된다.
-  // dayjs().toISOString()
+
+  const handleOnClickModalButton = async (isSubmit: boolean) => {
+    if (isSubmit) {
+      const data = await deletePost(post.id);
+      if (data !== null) {
+        setIsError(false);
+        router.push('/');
+      } else {
+        setIsError(true);
+      }
+    }
+    setIsCallback(true);
+    setTimeout(() => {
+      setIsCallback(false);
+    }, 3000);
+    setIsDeleteModalVisible((prev) => !prev);
+  };
+
   return (
     <motion.div
       initial={{
@@ -95,15 +118,15 @@ export const PostDetail = ({
                 </time>
                 {/* Copy link when click */}
                 <div className='flex items-center gap-3'>
-                  
-                      <div className='text-xs underline flex gap-3'>
-                        <Link href='' className='cursor-pointer'>
-                          수정
-                        </Link>
-                        <Link href='' className='cursor-pointer'>
-                          삭제
-                        </Link>
-                      </div>
+                  <div className='text-xs underline flex gap-3'>
+                    <button className='cursor-pointer'>수정</button>
+                    <button
+                      className='cursor-pointer'
+                      onClick={() => setIsDeleteModalVisible(true)}
+                    >
+                      삭제
+                    </button>
+                  </div>
                   <button
                     className='text-[16px] w-[30px] h-[30px] box-content rounded-full bg-[dodgerblue]/70 flex justify-center items-center self-start hover:bg-[dodgerblue] hover:drop-shadow-lg hover:shadow-lg'
                     onClick={handleOnClickCopyButton}
@@ -124,6 +147,21 @@ export const PostDetail = ({
           <Giscus />
         </div>
         {isAlertVisible && <Alert title={'링크가 복사되었습니다.'} />}
+        {isDeleteModalVisible && (
+          <DeleteModal
+            isOpen={isDeleteModalVisible}
+            onClick={handleOnClickModalButton}
+          />
+        )}
+        {isCallback && (
+          <Alert
+            title={
+              isError
+                ? '포스트 삭제에 에러가 발생했습니다.'
+                : '포스트를 삭제했습니다.'
+            }
+          />
+        )}
       </div>
     </motion.div>
   );
