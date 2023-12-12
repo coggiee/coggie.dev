@@ -19,7 +19,7 @@ export default async function Home() {
     props: { hotPosts, recentPosts },
   } = await getProps();
   return (
-    <section className='w-full relative mx-auto max-w-screen-7xl flex flex-col md:flex-row gap-5 md:justify-center mb-7'>
+    <section className='snap-y snap-mandatory scroll-smooth overflow-y-scroll w-full relative mx-auto max-w-screen-7xl flex flex-col md:flex-row gap-5 md:justify-center mb-7'>
       {/* Hero on Left Side */}
       <MainPageSection hotPosts={hotPosts} recentPosts={recentPosts} />
     </section>
