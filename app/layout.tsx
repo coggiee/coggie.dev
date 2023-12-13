@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   description: '프론트엔드 개발 블로그 coggie.dev입니다.',
   icons: {
-    icon: '/metaImage.jpg',
-    apple: '/metaImage.jpg',
+    icon: '/mimoji.png',
+    apple: '/mimoji.png',
   },
   other: {
     'naver-site-verification': 'db583c8efc6a2ebd36e6b839daf24a146b414c49',
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'coggie.dev',
     images: [
       {
-        url: 'https://i.ibb.co/sgKx1bG/meta-Image.png',
+        url: 'https://i.ibb.co/XX8jkbW/mimoji.png',
         width: 800,
         height: 600,
       },
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     title: 'coggie.dev',
     description: '프론트엔드 개발 블로그 coggie.dev입니다.',
     creator: '@coggie',
-    images: ['https://i.ibb.co/sgKx1bG/meta-Image.png'],
+    images: ['https://i.ibb.co/XX8jkbW/mimoji.png'],
   },
 };
 
