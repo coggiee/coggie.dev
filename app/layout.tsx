@@ -29,22 +29,22 @@ export const metadata: Metadata = {
     template: '%s | Coggie',
     default: 'coggie.dev',
   },
-  description: '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
+  description: '프론트엔드 개발 블로그 coggie.dev입니다.',
   icons: {
-    icon: '/profile.jpg',
-    apple: '/profile.jpg',
+    icon: '/metaImage.jpg',
+    apple: '/metaImage.jpg',
   },
   other: {
     'naver-site-verification': 'db583c8efc6a2ebd36e6b839daf24a146b414c49',
   },
   openGraph: {
     title: 'coggie.dev',
-    description: '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
+    description: '프론트엔드 개발 블로그 coggie.dev입니다.',
     url: 'https://coggie.dev',
     siteName: 'coggie.dev',
     images: [
       {
-        url: 'https://i.ibb.co/87LtM03/profile.jpg',
+        url: 'https://i.ibb.co/sgKx1bG/meta-Image.png',
         width: 800,
         height: 600,
       },
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'coggie.dev',
-    description: '프론트엔드 개발 관련 포스팅이 올라오는 coggie.dev입니다.',
+    description: '프론트엔드 개발 블로그 coggie.dev입니다.',
     creator: '@coggie',
-    images: ['https://i.ibb.co/87LtM03/profile.jpg'],
+    images: ['https://i.ibb.co/sgKx1bG/meta-Image.png'],
   },
 };
 
@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='ko' suppressHydrationWarning>
       <body
         className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${marhey.variable} ${pacifico.variable} ${indieFlower.variable} ${permanentMarker.variable}  ${dhurjati.variable} ${teko.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
       >
