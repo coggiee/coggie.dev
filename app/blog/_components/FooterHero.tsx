@@ -14,7 +14,7 @@ export default function FooterHero({}: Props) {
       <div className='flex items-center gap-10'>
         <aside className='relative w-28 h-28'>
           <Image
-            src={'/profile2.jpg'}
+            src={'/mimoji.jpg'}
             layout='fill'
             objectFit='cover'
             alt='프로필 이미지'
