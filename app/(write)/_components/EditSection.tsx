@@ -168,8 +168,12 @@ export default function EditSection({}: Props) {
           handleOnFileChange={handleOnFileChange}
         />
       </div>
-      {isAlertVisible && <Alert title='제목과 내용, 태그를 확인해주세요.' />}
-      {isPostCreated && <Alert title='글이 작성되었습니다.' />}
+      {isAlertVisible && (
+        <Alert title='제목과 내용, 태그를 확인해주세요.' bgColor='crimson' />
+      )}
+      {isPostCreated && (
+        <Alert title='글이 작성되었습니다.' bgColor='crimson' />
+      )}
       {isLoading && <Loading />}
     </div>
   );

@@ -146,7 +146,9 @@ export const PostDetail = ({
           <FooterHero />
           <Giscus />
         </div>
-        {isAlertVisible && <Alert title={'링크가 복사되었습니다.'} />}
+        {isAlertVisible && (
+          <Alert title={'링크가 복사되었습니다.'} bgColor='dodgerblue' />
+        )}
         {isDeleteModalVisible && (
           <DeleteModal
             isOpen={isDeleteModalVisible}
@@ -160,6 +162,7 @@ export const PostDetail = ({
                 ? '포스트 삭제에 에러가 발생했습니다.'
                 : '포스트를 삭제했습니다.'
             }
+            bgColor='crimson'
           />
         )}
       </div>
