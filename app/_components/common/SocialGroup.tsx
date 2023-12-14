@@ -14,7 +14,7 @@ interface SocialGroupProps {
 }
 
 const customProps =
-  'border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full';
+  'border border-item-border-light p-2 rounded-full bg-sub-light text-black dark:text-white dark:bg-sub-dark  dark:border-item-border-dark';
 
 export const SocialGroup = ({
   fontSize = '14px',
@@ -27,7 +27,7 @@ export const SocialGroup = ({
 }: SocialGroupProps) => {
   return (
     <div
-      className={`${display} flex-${direction} justify-${justify} items-${align} gap-${gap} text-white font-mono text-[${fontSize}] self-start `}
+      className={`${display} flex-${direction} justify-${justify} items-${align} gap-${gap} text-black dark:text-white font-mono text-[${fontSize}] self-start `}
     >
       <Link
         href='https://github.com/lunarmoon7'
