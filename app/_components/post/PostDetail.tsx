@@ -15,7 +15,6 @@ import {
   formatCreatedTime,
   formatReadingMinutes,
 } from '@/utils/formatTime';
-import { useSession } from 'next-auth/react';
 import FooterHero from '@/app/blog/_components/FooterHero';
 import Badge from '../common/Badge';
 import { TocSidebar } from '@/app/blog/_components/TocSidebar';
@@ -23,6 +22,7 @@ import { motion } from 'framer-motion';
 import DeleteModal from '../common/DeleteModal';
 import { deletePost } from '@/app/_libs/hygraph';
 import { useRouter } from 'next/navigation';
+import { useModal } from '@/app/hooks/useModal';
 
 export const PostDetail = ({
   post,
@@ -37,11 +37,11 @@ export const PostDetail = ({
 }) => {
   const { scroll } = useDetectScroll();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
-  const [isDeleteModalVisible, setIsDeleteModalVisible] =
-    useState<boolean>(false);
+  // const [isDeleteModalVisible, setIsDeleteModalVisible] =
+  //   useState<boolean>(false);
+  const [isOpen, toggleModal] = useModal(false);
   const [isCallback, setIsCallback] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>();
-  const { data: session } = useSession();
   const router = useRouter();
 
   const handleOnClickCopyButton = () => {
@@ -67,7 +67,7 @@ export const PostDetail = ({
     setTimeout(() => {
       setIsCallback(false);
     }, 3000);
-    setIsDeleteModalVisible((prev) => !prev);
+    toggleModal();
   };
 
   return (
@@ -122,7 +122,7 @@ export const PostDetail = ({
                     <button className='cursor-pointer'>수정</button>
                     <button
                       className='cursor-pointer'
-                      onClick={() => setIsDeleteModalVisible(true)}
+                      onClick={() => toggleModal(true)}
                     >
                       삭제
                     </button>
@@ -149,11 +149,8 @@ export const PostDetail = ({
         {isAlertVisible && (
           <Alert title={'링크가 복사되었습니다.'} bgColor='dodgerblue' />
         )}
-        {isDeleteModalVisible && (
-          <DeleteModal
-            isOpen={isDeleteModalVisible}
-            onClick={handleOnClickModalButton}
-          />
+        {isOpen && (
+          <DeleteModal isOpen={isOpen} onClick={handleOnClickModalButton} />
         )}
         {isCallback && (
           <Alert
