@@ -36,12 +36,12 @@ export const PostDetail = ({
   isFullSize?: boolean;
 }) => {
   const { scroll } = useDetectScroll();
+  
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
-  // const [isDeleteModalVisible, setIsDeleteModalVisible] =
-  //   useState<boolean>(false);
   const [isOpen, toggleModal] = useModal(false);
-  const [isCallback, setIsCallback] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>();
+  const [isFallback, setisFallback] = useState<boolean>(false);
+  const [alertTitle, setAlertTitle] = useState<string>('');
+
   const router = useRouter();
 
   const handleOnClickCopyButton = () => {
@@ -54,20 +54,26 @@ export const PostDetail = ({
   };
 
   const handleOnClickModalButton = async (isSubmit: boolean) => {
+    if (!isSubmit) {
+      toggleModal();
+      return;
+    }
+
     if (isSubmit) {
       const data = await deletePost(post.id);
       if (data !== null) {
-        setIsError(false);
+        setAlertTitle('포스트를 삭제했습니다.');
         router.push('/');
       } else {
-        setIsError(true);
+        setAlertTitle('포스트 삭제에 에러가 발생했습니다.');
       }
+
+      setisFallback(true);
+      setTimeout(() => {
+        setisFallback(false);
+      }, 3000);
+      toggleModal();
     }
-    setIsCallback(true);
-    setTimeout(() => {
-      setIsCallback(false);
-    }, 3000);
-    toggleModal();
   };
 
   return (
@@ -152,16 +158,7 @@ export const PostDetail = ({
         {isOpen && (
           <DeleteModal isOpen={isOpen} onClick={handleOnClickModalButton} />
         )}
-        {isCallback && (
-          <Alert
-            title={
-              isError
-                ? '포스트 삭제에 에러가 발생했습니다.'
-                : '포스트를 삭제했습니다.'
-            }
-            bgColor='crimson'
-          />
-        )}
+        {isFallback && <Alert title={alertTitle} bgColor='crimson' />}
       </div>
     </motion.div>
   );
