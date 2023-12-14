@@ -27,6 +27,7 @@ export default function FooterHero({}: Props) {
             align='center'
             direction='row'
             gap={2}
+            isGroup={true}
           />
         </aside>
       </div>

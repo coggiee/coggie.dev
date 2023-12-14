@@ -23,6 +23,7 @@ export const Hero = ({ src }: HeroProps) => {
               align='center'
               direction='row'
               gap={2}
+              isGroup={true}
             />
           </div>
 

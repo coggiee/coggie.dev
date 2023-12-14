@@ -1,9 +1,7 @@
 import IconGithub from '@/app/_icons/IconGithub';
 import IconGmail from '@/app/_icons/IconGmail';
-import IconPrevBlog from '@/app/_icons/IconPrevBlog';
 import IconVelog from '@/app/_icons/IconVelog';
 import Link from 'next/link';
-import { Tooltip } from './Tooltip';
 
 interface SocialGroupProps {
   fontSize: string;
@@ -12,7 +10,12 @@ interface SocialGroupProps {
   align?: string;
   direction?: string;
   gap?: number;
+  isGroup: boolean;
 }
+
+const customProps =
+  'border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full';
+
 export const SocialGroup = ({
   fontSize = '14px',
   display = 'flex',
@@ -20,15 +23,16 @@ export const SocialGroup = ({
   align = 'normal',
   direction = 'row',
   gap = 2,
+  isGroup = false,
 }: SocialGroupProps) => {
   return (
     <div
-      className={`${display} flex-${direction} justify-${justify} items-${align} gap-${gap} text-white font-mono ${fontSize} self-start `}
+      className={`${display} flex-${direction} justify-${justify} items-${align} gap-${gap} text-white font-mono text-[${fontSize}] self-start `}
     >
       <Link
         href='https://github.com/lunarmoon7'
         passHref
-        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
+        className={`${isGroup ? customProps : ''}`}
       >
         <IconGithub />
       </Link>
@@ -36,19 +40,17 @@ export const SocialGroup = ({
       <Link
         href='https://velog.io/@49crehbgr'
         passHref
-        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
+        className={`${isGroup ? customProps : ''}`}
       >
         <IconVelog />
       </Link>
       <Link
         href='mailto:zentechie7@gmail.com'
         passHref
-        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
+        className={`${isGroup ? customProps : ''}`}
       >
         <IconGmail />
       </Link>
     </div>
   );
 };
-
-// border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark
