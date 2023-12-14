@@ -7,38 +7,48 @@ import { Tooltip } from './Tooltip';
 
 interface SocialGroupProps {
   fontSize: string;
+  display: string;
   justify?: string;
   align?: string;
+  direction?: string;
+  gap?: number;
 }
-export const SocialGroup = ({ fontSize, justify, align }: SocialGroupProps) => {
+export const SocialGroup = ({
+  fontSize = '14px',
+  display = 'flex',
+  justify = 'normal',
+  align = 'normal',
+  direction = 'row',
+  gap = 2,
+}: SocialGroupProps) => {
   return (
     <div
-      className={`flex items-center gap-2 text-white font-mono ${fontSize} self-start`}
+      className={`${display} flex-${direction} justify-${justify} items-${align} gap-${gap} text-white font-mono ${fontSize} self-start `}
     >
-      <Tooltip
-        dataTip='github'
-        style='border bg-sub-light dark:bg-sub-dark border-item-border-light dark:border-item-border-dark '
+      <Link
+        href='https://github.com/lunarmoon7'
+        passHref
+        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
       >
-        <Link href='https://github.com/lunarmoon7' passHref>
-          <IconGithub />
-        </Link>
-      </Tooltip>
-      <Tooltip
-        dataTip='previous blog'
-        style='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark '
+        <IconGithub />
+      </Link>
+
+      <Link
+        href='https://velog.io/@49crehbgr'
+        passHref
+        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
       >
-        <Link href='https://velog.io/@49crehbgr' passHref>
-          <IconVelog />
-        </Link>
-      </Tooltip>
-      <Tooltip
-        dataTip='mail'
-        style='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark '
+        <IconVelog />
+      </Link>
+      <Link
+        href='mailto:zentechie7@gmail.com'
+        passHref
+        className='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark p-2 rounded-full'
       >
-        <Link href='mailto:zentechie7@gmail.com' passHref>
-          <IconGmail />
-        </Link>
-      </Tooltip>
+        <IconGmail />
+      </Link>
     </div>
   );
 };
+
+// border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark

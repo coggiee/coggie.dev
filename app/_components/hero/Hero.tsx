@@ -16,7 +16,14 @@ export const Hero = ({ src }: HeroProps) => {
         <div className='flex flex-col gap-5'>
           <div className='flex justify-between'>
             <Avatar src='/mimoji.png' />
-            <SocialGroup fontSize='text-sm' />
+            <SocialGroup
+              fontSize='text-sm'
+              display='flex'
+              justify='between'
+              align='center'
+              direction='row'
+              gap={2}
+            />
           </div>
 
           <main className='flex flex-col gap-7 border-b border-item-border-light dark:border-item-border-dark pb-7'>
