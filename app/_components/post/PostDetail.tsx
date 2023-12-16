@@ -1,7 +1,5 @@
 'use client';
 
-import IconTimerSand from '@/app/_icons/IconTimerSand';
-import IconBxCalendarStar from '@/app/_icons/IconBxCalendarStar';
 import IconLink from '@/app/_icons/IconLink';
 import useDetectScroll from '../../_hooks/useDetectScroll';
 import HorizontalProgress from '../common/HorizontalProgress';
@@ -9,12 +7,8 @@ import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import { Alert } from '../common/Alert';
 import Giscus from '../../blog/_components/Giscus';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import {
-  formatCreatedAt,
-  formatCreatedTime,
-  formatReadingMinutes,
-} from '@/utils/formatTime';
+import { MDXRemote } from 'next-mdx-remote';
+
 import FooterHero from '@/app/blog/_components/FooterHero';
 import Badge from '../common/Badge';
 import { TocSidebar } from '@/app/blog/_components/TocSidebar';
@@ -23,20 +17,12 @@ import DeleteModal from '../common/DeleteModal';
 import { deletePost } from '@/app/_libs/hygraph';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/app/hooks/useModal';
+import PostTime from './PostTime';
+import { PostDetailProps } from '@/types/type';
 
-export const PostDetail = ({
-  post,
-  mdx,
-  toc,
-  isFullSize,
-}: {
-  post: any;
-  mdx: MDXRemoteSerializeResult;
-  toc: any;
-  isFullSize?: boolean;
-}) => {
+export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const { scroll } = useDetectScroll();
-  
+
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isOpen, toggleModal] = useModal(false);
   const [isFallback, setisFallback] = useState<boolean>(false);
@@ -108,20 +94,7 @@ export const PostDetail = ({
                 ))}
               </div>
               <div className='w-full flex justify-between items-center pb-10 border-b-[1px] dark:border-[#a9a9a96c]'>
-                <time
-                  dateTime={post!.date}
-                  className='mb-1 text-xs text-black flex flex-col justify-center gap-3'
-                >
-                  <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
-                    <IconBxCalendarStar />
-                    {formatCreatedAt(post.date)}
-                  </div>
-                  <div className='text-xs text-black flex gap-2 items-center dark:text-[#fff]'>
-                    <IconTimerSand />
-                    {formatCreatedTime(post.date)} -{' '}
-                    {formatReadingMinutes(post.content)} min read
-                  </div>
-                </time>
+                <PostTime date={post!.date} content={post!.content} />
                 {/* Copy link when click */}
                 <div className='flex items-center gap-3'>
                   <div className='text-xs underline flex gap-3'>

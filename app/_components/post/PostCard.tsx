@@ -1,22 +1,11 @@
 import Link from 'next/link';
 import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
 import IconTimerSand from '../../_icons/IconTimerSand';
-import { CoverImage } from '@/types/type';
+import { PostCardProps } from '@/types/type';
 import Image from 'next/image';
 import Badge from '../common/Badge';
 import { motion } from 'framer-motion';
 import IconNoImage from '@/app/_icons/IconNoImage';
-
-interface PostCardProps {
-  date: string;
-  time: string;
-  title: string;
-  description: string;
-  path: string;
-  tags: string[];
-  coverImage?: CoverImage;
-  readTimeMinutes: string;
-}
 
 export const PostCard = ({
   date,
