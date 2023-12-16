@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Hero } from '../hero/Hero';
-import { Sidebar } from './Sidebar';
 import { motion } from 'framer-motion';
+import HeroSection from '../hero/HeroSection';
 
 type Props = {};
 
@@ -23,8 +22,7 @@ export default function InfoSiderbar({}: Props) {
       }}
       className='w-full flex flex-col gap-3 flex-shrink-0 '
     >
-      <Hero src={'/profile2.jpg'} />
-      {/* <Sidebar /> */}
+      <HeroSection src={'/mimoji.png'} />
     </motion.div>
   );
 }
