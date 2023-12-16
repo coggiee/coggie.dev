@@ -132,3 +132,10 @@ interface SocialGroupProps {
   gap?: number;
   isGroup: boolean;
 }
+
+interface ProjectItemProps {
+  projectTitle: string;
+  projectDescription: string;
+  projectGithubLink: string;
+  projectDemoLink: string;
+}

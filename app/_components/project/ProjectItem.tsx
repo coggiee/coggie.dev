@@ -3,20 +3,14 @@ import React from 'react';
 import Link from 'next/link';
 import IconDemo from '@/app/_icons/IconDemo';
 import { motion } from 'framer-motion';
-
-type Props = {
-  projectTitle: string;
-  projectDescription: string;
-  projectGithubLink: string;
-  projectDemoLink: string;
-};
+import { ProjectItemProps } from '@/types/type';
 
 export default function ProjectItem({
   projectTitle,
   projectDescription,
   projectGithubLink,
   projectDemoLink,
-}: Props) {
+}: ProjectItemProps) {
   return (
     <motion.div
       initial={{ opacity: 0 }}
