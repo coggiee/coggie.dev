@@ -15,7 +15,7 @@ import { TocSidebar } from '@/app/blog/_components/TocSidebar';
 import DeleteModal from '../common/DeleteModal';
 import { deletePost } from '@/app/_libs/hygraph';
 import { useRouter } from 'next/navigation';
-import { useModal } from '@/app/hooks/useModal';
+import { useModal } from '@/app/_hooks/useModal';
 import PostTime from './PostTime';
 import { PostDetailProps } from '@/types/type';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
