@@ -1,20 +1,15 @@
+import { DividerProps } from '@/types/type';
 import React from 'react';
 
-interface DividerProps {
-  isHorizontal: boolean;
-  bgColor: string;
-  darkBgColor: string;
-  width?: 'full' | string;
-  height?: 'full' | string;
-}
 
-export default function Divider({
+
+const Divider = ({
   isHorizontal,
   bgColor,
   darkBgColor,
   width,
   height,
-}: DividerProps) {
+}: DividerProps) => {
   return (
     <>
       {isHorizontal && (
@@ -30,3 +25,5 @@ export default function Divider({
     </>
   );
 }
+
+export default Divider;

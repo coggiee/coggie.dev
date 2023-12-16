@@ -1,18 +1,17 @@
 'use client';
 
-import { navLinks } from '@/app/_data/navlinks';
 import Link from 'next/link';
 import IconApplemusic from '../../_icons/IconAppleMusic';
 import IconGlobe from '../../_icons/IconGlobe';
 import { usePathname, useRouter } from 'next/navigation';
-import { ThemeSwitcher } from './ThemeSwitcher';
-import { Tooltip } from './Tooltip';
+import ThemeSwitcher from './ThemeSwitcher';
+import Tooltip from './Tooltip';
 import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import GithubLogin from './GithubLogin';
 import DropdownMenu from './DropdownMenu';
 
-export const Nav = () => {
+const Nav = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
@@ -38,7 +37,7 @@ export const Nav = () => {
       <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
-          <Tooltip dataTip='write' >
+          <Tooltip dataTip='write'>
             <button onClick={() => router.push('/write')}>
               <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#5c3f27] font-bold' />
             </button>
@@ -68,3 +67,5 @@ export const Nav = () => {
     </nav>
   );
 };
+
+export default Nav;

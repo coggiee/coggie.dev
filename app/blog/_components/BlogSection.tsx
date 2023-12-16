@@ -19,20 +19,14 @@ import Loading from '@/app/loading';
 import SearchBarXS from '@/app/_components/common/SearchBarXS';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
 import MotionHorizontalProvider from '@/app/_provider/MotionHorizontalProvider';
-
-type Props = {
-  posts: any;
-  uniqueTags: string[];
-  cursor: string;
-  totalPostSize: number;
-};
+import { BlogSectionProps } from '@/types/type';
 
 export default function BlogSection({
   posts,
   uniqueTags,
   cursor,
   totalPostSize,
-}: Props) {
+}: BlogSectionProps) {
   const [currentPosts, setCurrentPosts] = React.useState<any>(posts);
   const [lastPostCursor, setLastPostCursor] = React.useState<string>(cursor);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);

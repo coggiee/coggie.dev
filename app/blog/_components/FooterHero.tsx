@@ -1,11 +1,5 @@
-import { Avatar } from '@/app/_components/common/Avatar';
-import { SocialGroup } from '@/app/_components/common/SocialGroup';
-import IconGithub from '@/app/_icons/IconGithub';
-import IconGmail from '@/app/_icons/IconGmail';
-import IconPrevBlog from '@/app/_icons/IconPrevBlog';
-import IconVelog from '@/app/_icons/IconVelog';
-import Image from 'next/image';
-import Link from 'next/link';
+import Avatar from '@/app/_components/common/Avatar';
+import SocialGroup from '@/app/_components/common/SocialGroup';
 import React from 'react';
 
 type Props = {};

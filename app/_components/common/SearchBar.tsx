@@ -1,16 +1,12 @@
 'use client';
 
-import React, { ChangeEvent } from 'react';
+import { SearchBarProps } from '@/types/type';
+import React from 'react';
 
-type Props = {
-  handleOnSearch: (e: ChangeEvent) => void;
-  handleOnPressEnter: (e: any) => void;
-};
-
-export default function SearchBar({
+const SearchBar = ({
   handleOnSearch,
   handleOnPressEnter,
-}: Props) {
+}: SearchBarProps) => {
   return (
     <div>
       <button
@@ -41,3 +37,5 @@ export default function SearchBar({
     </div>
   );
 }
+
+export default SearchBar;

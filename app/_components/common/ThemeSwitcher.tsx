@@ -3,7 +3,7 @@ import IconMoon from '@/app/_icons/IconMoon';
 import IconSun from '@/app/_icons/IconSun';
 import { useTheme } from 'next-themes';
 
-export const ThemeSwitcher = () => {
+const ThemeSwitcher = () => {
   const { theme, resolvedTheme, setTheme } = useTheme();
   return (
     <div
@@ -50,3 +50,5 @@ export const ThemeSwitcher = () => {
     </div>
   );
 };
+
+export default ThemeSwitcher;

@@ -1,21 +1,15 @@
 'use client';
 
+import { EditDrawerProps } from '@/types/type';
 import Image from 'next/image';
 import React, { useState } from 'react';
-
-type Props = {
-  handleOnTypeDesc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  handleOnToggleHotPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnClickSaveBtn: () => void;
-  handleOnFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
 
 export default function EditDrawer({
   handleOnTypeDesc,
   handleOnToggleHotPost,
   handleOnClickSaveBtn,
   handleOnFileChange,
-}: Props) {
+}: EditDrawerProps) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState<string | null>(null); // 이미지 url 주소 in string
 

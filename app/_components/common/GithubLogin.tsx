@@ -1,12 +1,9 @@
 import React from 'react';
-import { Tooltip } from './Tooltip';
+import Tooltip from './Tooltip';
 import IconGithub from '@/app/_icons/IconGithub';
+import { GithubLoginProps } from '@/types/type';
 
-type Props = {
-  handleOnLogin: () => void;
-};
-
-export default function GithubLogin({ handleOnLogin }: Props) {
+const GithubLogin = ({ handleOnLogin }: GithubLoginProps) => {
   return (
     <Tooltip dataTip='login'>
       <button onClick={handleOnLogin} className='flex items-center gap-2'>
@@ -15,3 +12,5 @@ export default function GithubLogin({ handleOnLogin }: Props) {
     </Tooltip>
   );
 }
+
+export default GithubLogin;

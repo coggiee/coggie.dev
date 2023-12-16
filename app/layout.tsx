@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Nav } from './_components/common/Nav';
+import Nav from './_components/common/Nav';
 import '@/app/_styles/globals.css';
 import {
   blackHanSans,
@@ -13,7 +13,7 @@ import {
   dhurjati,
   teko,
 } from '../assets/fonts';
-import { Footer } from './_components/common/Footer';
+import Footer from './_components/common/Footer';
 import { Providers } from './_provider/providers';
 import AuthProvider from './_provider/AuthProvider';
 import FramerProvider from './_provider/FramerProvider';

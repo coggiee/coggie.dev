@@ -1,6 +1,6 @@
 'use client';
 
-import { Fallback } from '../common/Fallback';
+import Fallback from '../common/Fallback';
 import {
   formatCreatedAt,
   formatCreatedTime,

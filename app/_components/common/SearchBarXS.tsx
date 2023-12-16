@@ -1,14 +1,10 @@
-import React, { ChangeEvent } from 'react';
+import { SearchBarProps } from '@/types/type';
+import React from 'react';
 
-type Props = {
-  handleOnSearch?: (e: ChangeEvent) => void;
-  handleOnPressEnter?: (e: any) => void;
-};
-
-export default function SearchBarXS({
+const SearchBarXS = ({
   handleOnSearch,
   handleOnPressEnter,
-}: Props) {
+}: SearchBarProps) => {
   return (
     <div>
       <button className='flex cursor-pointer justify-between items-center rounded-lg px-2 py-1 text-xs bg-item-light transition-colors hover:bg-tertiary dark:bg-[#48484853] dark:text-[white] hover:bg-hover-light w-full gap-3'>
@@ -25,4 +21,6 @@ export default function SearchBarXS({
       </button>
     </div>
   );
-}
+};
+
+export default SearchBarXS;

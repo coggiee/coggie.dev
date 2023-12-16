@@ -1,11 +1,7 @@
+import { TagFilterProps } from '@/types/type';
 import React from 'react';
 
-type Props = {
-  tags: string[];
-  handleOnClickTag: (tag: string) => void;
-};
-
-export default function TagFilter({ tags, handleOnClickTag }: Props) {
+export default function TagFilter({ tags, handleOnClickTag }: TagFilterProps) {
   const [selectedTag, setSelectedTag] = React.useState<string>('');
   const handleOnClick = (tag: string) => {
     setSelectedTag((prev) => tag);

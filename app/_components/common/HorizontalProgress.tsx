@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import styles from 'styles/components/HorizontalProgress.module.scss';
 
 const HorizontalProgress = ({ scroll }: { scroll: string }) => {
   return (

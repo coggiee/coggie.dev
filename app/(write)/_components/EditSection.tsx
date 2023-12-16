@@ -12,9 +12,7 @@ import IconBack from '@/app/_icons/IconBack';
 import EditDrawer from './EditDrawer';
 import Link from 'next/link';
 
-type Props = {};
-
-export default function EditSection({}: Props) {
+export default function EditSection() {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');

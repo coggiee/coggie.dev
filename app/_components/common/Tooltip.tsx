@@ -1,4 +1,4 @@
-export const Tooltip = ({
+const Tooltip = ({
   dataTip,
   style,
   children,
@@ -16,3 +16,5 @@ export const Tooltip = ({
     </div>
   );
 };
+
+export default Tooltip;

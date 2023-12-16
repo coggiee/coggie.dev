@@ -5,7 +5,7 @@ import useDetectScroll from '../../_hooks/useDetectScroll';
 import HorizontalProgress from '../common/HorizontalProgress';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
-import { Alert } from '../common/Alert';
+import Alert from '../common/Alert';
 import Giscus from '../../blog/_components/Giscus';
 import { MDXRemote } from 'next-mdx-remote';
 

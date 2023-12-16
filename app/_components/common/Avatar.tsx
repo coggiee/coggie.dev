@@ -1,11 +1,7 @@
+import { AvatarProps } from '@/types/type';
 import Image from 'next/image';
 
-type AvatarProps = {
-  src: string;
-  width?: number;
-  height?: number;
-};
-export const Avatar = ({ src, width = 28, height = 28 }: AvatarProps) => {
+const Avatar = ({ src, width = 28, height = 28 }: AvatarProps) => {
   return (
     <div className='avatar online'>
       <div
@@ -22,3 +18,5 @@ export const Avatar = ({ src, width = 28, height = 28 }: AvatarProps) => {
     </div>
   );
 };
+
+export default Avatar;

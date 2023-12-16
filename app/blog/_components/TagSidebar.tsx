@@ -1,12 +1,7 @@
 import React from 'react';
-import { Tag } from '../../_components/common/Tag';
+import { TagFilterProps } from '@/types/type';
 
-type Props = {
-  tags: string[];
-  handleOnClickTag: (tag: string) => void;
-};
-
-export default function TagSidebar({ tags, handleOnClickTag }: Props) {
+export default function TagSidebar({ tags, handleOnClickTag }: TagFilterProps) {
   return (
     <aside className='hidden sticky top-[120px] right-0 flex-shrink-0 min-w-[170px] flex-grow-0 h-fit max-w-[170px] px-2 pb-5 md:flex flex-col gap-5 items-center font-sans border-b border-b-[#00000047] dark:border-b-[#5d5d5d] overflow-y-scroll overscroll-none'>
       <div className='w-full flex gap-2 items-center self-start flex-shrink-0'>

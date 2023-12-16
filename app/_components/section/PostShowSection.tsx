@@ -10,13 +10,12 @@ import Link from 'next/link';
 import IconScale from '@/app/_icons/IconScale';
 import Divider from '../common/Divider';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
+import { PostShowSectionProps } from '@/types/type';
 
-type Props = {
-  hotPosts: any[];
-  recentPosts: any[];
-};
-
-export default function PostShowSection({ hotPosts, recentPosts }: Props) {
+export default function PostShowSection({
+  hotPosts,
+  recentPosts,
+}: PostShowSectionProps) {
   const [isPostClicked, setIsPostClicked] = useState(false);
   const [currentPost, setCurrentPost] = useState<any>();
   const [mdx, setMdx] = useState<any>();

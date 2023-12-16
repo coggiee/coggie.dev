@@ -1,22 +1,13 @@
 import IconGithub from '@/app/_icons/IconGithub';
 import IconGmail from '@/app/_icons/IconGmail';
 import IconVelog from '@/app/_icons/IconVelog';
+import { SocialGroupProps } from '@/types/type';
 import Link from 'next/link';
-
-interface SocialGroupProps {
-  fontSize: string;
-  display: string;
-  justify?: string;
-  align?: string;
-  direction?: string;
-  gap?: number;
-  isGroup: boolean;
-}
 
 const customProps =
   'border border-item-border-light p-2 rounded-full bg-sub-light text-black dark:text-white dark:bg-sub-dark  dark:border-item-border-dark';
 
-export const SocialGroup = ({
+const SocialGroup = ({
   fontSize = '14px',
   display = 'flex',
   justify = 'normal',
@@ -54,3 +45,5 @@ export const SocialGroup = ({
     </div>
   );
 };
+
+export default SocialGroup;

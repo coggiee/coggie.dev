@@ -1,9 +1,7 @@
 import React from 'react';
 import MorePostLink from './MorePostLink';
 
-type Props = {};
-
-export default function Introduction({}: Props) {
+const Introduction = () => {
   return (
     <>
       <div className='flex justify-center'>
@@ -34,3 +32,5 @@ export default function Introduction({}: Props) {
     </>
   );
 }
+
+export default Introduction;

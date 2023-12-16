@@ -7,13 +7,12 @@ import IconMenu from '@/app/_icons/IconMenu';
 import IconWrite from '@/app/_icons/IconWrite';
 import React from 'react';
 import Link from 'next/link';
+import { DropDownProps } from '@/types/type';
 
-type Props = {
-  handleOnLogin: () => void;
-  session: any;
-};
-
-export default function DropdownMenu({ handleOnLogin, session }: Props) {
+const DropdownMenu = ({
+  handleOnLogin,
+  session,
+}: DropDownProps) => {
   return (
     <div className='dropdown dropdown-bottom dropdown-end'>
       <label
@@ -66,3 +65,5 @@ export default function DropdownMenu({ handleOnLogin, session }: Props) {
     </div>
   );
 }
+
+export default DropdownMenu;

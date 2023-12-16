@@ -1,11 +1,7 @@
+import { ModalProps } from '@/types/type';
 import React from 'react';
 
-type Props = {
-  isOpen: boolean;
-  onClick: (isSubmit: boolean) => void;
-};
-
-export default function DeleteModal({ isOpen, onClick }: Props) {
+const DeleteModal = ({ isOpen, onClick }: ModalProps) => {
   return (
     <dialog
       id='deleteModal'
@@ -26,4 +22,6 @@ export default function DeleteModal({ isOpen, onClick }: Props) {
       </div>
     </dialog>
   );
-}
+};
+
+export default DeleteModal;

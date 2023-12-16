@@ -4,13 +4,12 @@ import React from 'react';
 import InfoSiderbar from '../sidebar/InfoSiderbar';
 import PostShowSection from './PostShowSection';
 import RightSidebar from '../sidebar/RightSidebar';
+import { MainPageSectionProps } from '@/types/type';
 
-type Props = {
-  hotPosts: any[];
-  recentPosts: any[];
-};
-
-export default function MainPageSection({ hotPosts, recentPosts }: Props) {
+export default function MainPageSection({
+  hotPosts,
+  recentPosts,
+}: MainPageSectionProps) {
   return (
     <>
       <aside className='snap-start w-full min-w-[25%] md:basis-1/2 basis-1/4 md:max-w-sm md:min-w-min lg:pl-4 flex flex-col flex-grow-0 flex-shrink-0 gap-5'>

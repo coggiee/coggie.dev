@@ -1,6 +1,6 @@
-import { SocialGroup } from '../common/SocialGroup';
+import SocialGroup from '../common/SocialGroup';
 import Bio from '../sidebar/Bio';
-import { Avatar } from '../common/Avatar';
+import Avatar from '../common/Avatar';
 import Hero from './Hero';
 
 type HeroProps = {

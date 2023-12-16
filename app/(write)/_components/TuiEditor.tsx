@@ -11,13 +11,9 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import 'prismjs/themes/prism.css';
 import Prism from 'prismjs';
 import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import { EditorProps } from '@/types/type';
 
-interface Props {
-  content: string;
-  editorRef: React.MutableRefObject<any>;
-}
-
-export default function TuiEditor({ content = '', editorRef }: Props) {
+export default function TuiEditor({ content = '', editorRef }: EditorProps) {
   const toolbarItems = [['heading', 'bold', 'italic', 'strike']];
   return (
     <div className='flex-grow'>

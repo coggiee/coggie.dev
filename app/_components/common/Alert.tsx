@@ -1,10 +1,7 @@
 import IconLink from '@/app/_icons/IconLink';
+import { AlertProps } from '@/types/type';
 
-interface AlertProps {
-  title: string;
-  bgColor: string;
-}
-export const Alert = ({ title, bgColor = 'dodgerblue' }: AlertProps) => {
+const Alert = ({ title, bgColor = 'dodgerblue' }: AlertProps) => {
   return (
     <div className='toast toast-end z-[999]'>
       <div
@@ -17,3 +14,5 @@ export const Alert = ({ title, bgColor = 'dodgerblue' }: AlertProps) => {
     </div>
   );
 };
+
+export default Alert;
