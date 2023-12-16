@@ -12,13 +12,13 @@ import { MDXRemote } from 'next-mdx-remote';
 import FooterHero from '@/app/blog/_components/FooterHero';
 import Badge from '../common/Badge';
 import { TocSidebar } from '@/app/blog/_components/TocSidebar';
-import { motion } from 'framer-motion';
 import DeleteModal from '../common/DeleteModal';
 import { deletePost } from '@/app/_libs/hygraph';
 import { useRouter } from 'next/navigation';
 import { useModal } from '@/app/hooks/useModal';
 import PostTime from './PostTime';
 import { PostDetailProps } from '@/types/type';
+import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
 
 export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const { scroll } = useDetectScroll();
@@ -63,20 +63,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   };
 
   return (
-    <motion.div
-      initial={{
-        y: 500,
-        opacity: 0,
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-      }}
-      transition={{
-        duration: 0.7,
-      }}
-      exit={{ opacity: 0 }}
-    >
+    <MotionVerticalProvider duration={0.7} fromY={500} toY={0}>
       <div className='prose dark:prose-dark w-full md:max-w-7xl max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert'>
         <HorizontalProgress scroll={scroll} />
         {toc.length > 0 && isFullSize && (
@@ -133,6 +120,6 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
         )}
         {isFallback && <Alert title={alertTitle} bgColor='crimson' />}
       </div>
-    </motion.div>
+    </MotionVerticalProvider>
   );
 };

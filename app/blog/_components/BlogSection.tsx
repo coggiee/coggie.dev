@@ -17,7 +17,8 @@ import {
 import TagFilter from './TagFilter';
 import Loading from '@/app/loading';
 import SearchBarXS from '@/app/_components/common/SearchBarXS';
-import { motion, AnimatePresence } from 'framer-motion';
+import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
+import MotionHorizontalProvider from '@/app/_provider/MotionHorizontalProvider';
 
 type Props = {
   posts: any;
@@ -101,35 +102,18 @@ export default function BlogSection({
   }, [currentPosts, lastPostCursor, isLoading, totalPostSize]);
 
   return (
-    <motion.div
-      initial={{
-        y: 500,
-        opacity: 0,
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-      }}
-      transition={{
-        duration: 0.7,
-      }}
-      exit={{ opacity: 0, y: 500 }}
+    <MotionVerticalProvider
+      fromY={500}
+      toY={0}
+      duration={0.7}
       className='flex-grow min-w-0 w-full h-full mb-3 relative'
     >
       <Suspense fallback={<Loading />}>
         <div className='flex flex-col md:flex-row gap-5 relative'>
-          <motion.div
-            initial={{
-              x: -500,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
+          <MotionHorizontalProvider
+            duration={0.7}
+            fromX={-500}
+            toX={0}
             className='basis-1/3 md:max-w-sm min-w-fit mr-10 flex flex-col gap-5 w-full'
           >
             <SearchBarXS
@@ -137,26 +121,20 @@ export default function BlogSection({
               handleOnPressEnter={handleOnPressEnter}
             />
             <TagFilter tags={uniqueTags} handleOnClickTag={handleOnClickTag} />
-          </motion.div>
-          <motion.div
-            initial={{
-              x: 500,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.7,
-            }}
+          </MotionHorizontalProvider>
+          <MotionHorizontalProvider
+            duration={0.7}
+            fromX={500}
+            toX={0}
             className='grow basis-2/3 w-full min-w-[25%]'
           >
             <div className='mb-5'>
               <h1 className='font-sbold text-4xl inline-block mr-2 font-dhurjati'>
                 {selectedTag}
               </h1>
-              <span className='font-bold text-lg font-dhurjati'>({currentPosts.length})</span>
+              <span className='font-bold text-lg font-dhurjati'>
+                ({currentPosts.length})
+              </span>
             </div>
             <div
               className='flex-1 flex flex-col gap-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'
@@ -181,9 +159,9 @@ export default function BlogSection({
                 ))}
               </div>
             </div>
-          </motion.div>
+          </MotionHorizontalProvider>
         </div>
       </Suspense>
-    </motion.div>
+    </MotionVerticalProvider>
   );
 }
