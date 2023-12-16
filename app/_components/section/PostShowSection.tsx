@@ -9,6 +9,7 @@ import IconBackToHome from '@/app/_icons/IconBackToHome';
 import Link from 'next/link';
 import IconScale from '@/app/_icons/IconScale';
 import { motion, AnimatePresence } from 'framer-motion';
+import Divider from '../common/Divider';
 
 type Props = {
   hotPosts: any[];
@@ -78,7 +79,7 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
               </button>
               <button className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
                 <Link href={`/blog/${postId}`} passHref>
-                  <IconScale className='text-sm'></IconScale>
+                  <IconScale className='text-sm' />
                 </Link>
               </button>
             </div>
@@ -115,6 +116,13 @@ export default function PostShowSection({ hotPosts, recentPosts }: Props) {
             className='flex flex-col gap-5'
           >
             <Introduction />
+            <Divider
+              isHorizontal={true}
+              bgColor='#00000047'
+              darkBgColor='#5d5d5d'
+              width='full'
+              height='1px'
+            />
             <PostSection
               posts={hotPosts}
               title={'읽어 볼만한 포스트'}

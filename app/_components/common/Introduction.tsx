@@ -6,7 +6,7 @@ type Props = {};
 export default function Introduction({}: Props) {
   return (
     <>
-      <div className='flex justify-center border-b border-b-item-border-dark dark:border-b-item-border-light'>
+      <div className='flex justify-center'>
         <aside className='text-9xl dark:text-white px-8 pr-5'>;</aside>
         <header className='w-full rounded-lg p-5 pl-4 mb-5 leading-loose dark:text-white'>
           <div className='flex justify-between items-center'>

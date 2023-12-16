@@ -7,6 +7,7 @@ import {
   formatReadingMinutes,
 } from '@/utils/formatTime';
 import PostSideCard from './PostSideCard';
+import Divider from '../common/Divider';
 
 export const PostSection = ({
   posts,
@@ -23,7 +24,13 @@ export const PostSection = ({
         <h1 className='text-lg font-semibold dark:text-white min-w-fit'>
           {title}
         </h1>
-        <div className='h-[1px] bg-[#00000047] w-full dark:bg-[#5d5d5d]'></div>
+        <Divider
+          isHorizontal={true}
+          bgColor='#00000047'
+          darkBgColor='#5d5d5d'
+          width='full'
+          height='1px'
+        />
       </div>
 
       <div className='flex flex-col gap-5'>
