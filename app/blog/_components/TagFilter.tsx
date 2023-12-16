@@ -24,7 +24,7 @@ export default function TagFilter({ tags, handleOnClickTag }: Props) {
         {tags.map((tag) => (
           <li
             key={tag}
-            className={`badge border border-item-border-light cursor-pointer rounded-xl py-5 hover:shadow-lg flex-shrink-0 font-thin font-sans text-lg hover:bg-[dodgerblue] hover:text-white transition-all ease-in-out dark:text-white dark:hover:text-white dark:hover:bg-[dodgerblue] dark:border-item-border-dark ${
+            className={`badge border border-item-border-light cursor-pointer rounded-xl py-5 hover:shadow-lg flex-shrink-0 font-thin font-sans text-sm hover:bg-[dodgerblue] hover:text-white transition-all ease-in-out dark:text-white dark:hover:text-white dark:hover:bg-[dodgerblue] dark:border-item-border-dark ${
               selectedTag === tag
                 ? 'bg-[dodgerblue] text-white'
                 : 'dark:bg-item-dark'
