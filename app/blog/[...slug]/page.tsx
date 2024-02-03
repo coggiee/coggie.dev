@@ -1,7 +1,6 @@
 import { PostDetail } from '@/app/_components/post/PostDetail';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
-import Loading from '@/app/loading';
 
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { Suspense } from 'react';
@@ -31,7 +30,7 @@ export default async function PostPage({ params }: { params: { slug: any } }) {
 
   return (
     <div className='prose dark:prose-dark mt-4 w-full max-w-none'>
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div>Loading...</div>}>
         <PostDetail post={post!} mdx={mdx!} toc={parsedToc} isFullSize={true} />
       </Suspense>
     </div>

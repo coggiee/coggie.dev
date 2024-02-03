@@ -102,7 +102,7 @@ export default function BlogSection({
       duration={0.7}
       className='flex-grow min-w-0 w-full h-full mb-3 relative'
     >
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div>Loading...</div>}>
         <div className='flex flex-col md:flex-row gap-5 relative'>
           <MotionHorizontalProvider
             duration={0.7}

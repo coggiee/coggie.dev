@@ -172,7 +172,7 @@ export default function EditSection() {
       {isPostCreated && (
         <Alert title='글이 작성되었습니다.' bgColor='crimson' />
       )}
-      {isLoading && <Loading />}
+      {isLoading && <div>Loading...</div>}
     </div>
   );
 }
