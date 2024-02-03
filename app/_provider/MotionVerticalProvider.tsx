@@ -5,6 +5,7 @@ import React from 'react';
 export default function MotionVerticalProvider({
   children,
   duration,
+  delay,
   fromY,
   toY,
   className,
@@ -12,18 +13,17 @@ export default function MotionVerticalProvider({
   return (
     <AnimatePresence>
       <motion.section
-        initial={{
-          y: fromY,
-          opacity: 0,
-        }}
+        initial={{ y: fromY, opacity: 0 }}
         animate={{
           y: toY,
           opacity: 1,
+          transition: {
+            duration: duration,
+            delay: delay,
+            type: 'spring',
+            stiffness: 200,
+          },
         }}
-        transition={{
-          duration: duration,
-        }}
-        exit={{ opacity: 0, y: fromY }}
         className={className}
       >
         {children}

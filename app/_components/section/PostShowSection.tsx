@@ -54,8 +54,9 @@ export default function PostShowSection({
     <>
       {isPostClicked && (
         <MotionVerticalProvider
-          duration={0.7}
-          fromY={500}
+          duration={0.8}
+          delay={0.6}
+          fromY={100}
           toY={0}
           className={'flex flex-col gap-5'}
         >
