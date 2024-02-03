@@ -16,7 +16,6 @@ interface PostCardProps {
   tags: string[];
   coverImage?: CoverImage;
   readTimeMinutes: string;
-  onClickPost: (path: string) => void;
 }
 
 export default function PostSideCard({
@@ -28,7 +27,6 @@ export default function PostSideCard({
   tags,
   coverImage,
   readTimeMinutes,
-  onClickPost,
 }: PostCardProps) {
   return (
     <motion.div
@@ -37,7 +35,7 @@ export default function PostSideCard({
       transition={{ duration: 1.5 }}
       className='card rounded-lg m-0 font-notosanskr dark:text-white hover:bg-hover-light hover:dark:bg-hover-dark cursor-pointer transition-colors ease-in-out duration-300'
     >
-      <div className='card-body p-2' onClick={() => onClickPost(path)}>
+      <div className='card-body p-2'>
         <div className='flex flex-row gap-5'>
           <div className='relative w-32 h-32 flex-shrink-0 rounded-lg'>
             {coverImage && (
@@ -75,7 +73,6 @@ export default function PostSideCard({
             </div>
           </div>
         </div>
-        {/* </Link> */}
       </div>
     </motion.div>
   );

@@ -1,5 +1,8 @@
+import React from 'react';
 import MainPageSection from './_components/section/MainPageSection';
 
-export default function Home() {
+type Props = {};
+
+export default function DefaultPage({}: Props) {
   return <MainPageSection />;
 }

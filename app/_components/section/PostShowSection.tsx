@@ -67,11 +67,13 @@ export default function PostShowSection({
             >
               <IconBackToHome className='text-sm' />
             </button>
-            <button className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'>
-              <Link href={`/blog/${postId}`} passHref>
-                <IconScale className='text-sm' />
-              </Link>
-            </button>
+            <Link
+              href={`/blog/${postId}`}
+              passHref
+              className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
+            >
+              <IconScale className='text-sm' />
+            </Link>
           </div>
 
           <section
