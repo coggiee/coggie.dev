@@ -19,6 +19,7 @@ import AuthProvider from './_provider/AuthProvider';
 import FramerProvider from './_provider/FramerProvider';
 import InfoSiderbar from './_components/sidebar/InfoSiderbar';
 import RightSidebar from './_components/sidebar/RightSidebar';
+import UIProvider from './_provider/UIProvider';
 
 export const dynamic = 'dynamic';
 
@@ -78,17 +79,19 @@ export default function RootLayout({
         <AuthProvider>
           <Providers>
             <FramerProvider>
-              <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
-                <Nav />
-                <main className='flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline font-notosanskr gap-3 pb-5'>
-                  {children}
-                  {post}
-                  <aside className='snap-start hidden w-full min-w-0 relative basis-1/5 2xl:flex flex-col self-start  flex-grow-0 flex-shrink-0 md:snap-none'>
-                    <RightSidebar />
-                  </aside>
-                </main>
-                <Footer />
-              </div>
+              <UIProvider>
+                <div className='flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-main-dark'>
+                  <Nav />
+                  <main className='flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline font-notosanskr gap-3 pb-5'>
+                    {children}
+                    {post}
+                    <aside className='snap-start hidden w-full min-w-0 relative basis-1/5 2xl:flex flex-col self-start  flex-grow-0 flex-shrink-0 md:snap-none'>
+                      <RightSidebar />
+                    </aside>
+                  </main>
+                  <Footer />
+                </div>
+              </UIProvider>
             </FramerProvider>
           </Providers>
         </AuthProvider>
