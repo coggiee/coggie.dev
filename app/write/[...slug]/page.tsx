@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
 const DynamicEditSection = dynamic(
-  () => import('@/app/(write)/_components/EditSection'),
+  () => import('@/app/write/_components/EditSection'),
   {
     ssr: false,
   }
