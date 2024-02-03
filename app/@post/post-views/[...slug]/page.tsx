@@ -1,7 +1,7 @@
-import ParallelPostSection from '@/app/@post/_components/ParallelPostDetail';
+import ParallelPostDetail from '@/app/@post/_components/ParallelPostDetail';
+import SkeletonPost from '@/app/_components/skeleton/SkeletonPost';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
-import Loading from '@/app/loading';
 
 import { parseHeaderForTOC } from '@/utils/parseHeaderForTOC';
 import { Suspense } from 'react';
@@ -31,8 +31,9 @@ export default async function PostPage({ params }: { params: { slug: any } }) {
 
   return (
     <div className='snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none prose dark:prose-dark self-start'>
-      <Suspense fallback={<Loading />}>
-        <ParallelPostSection
+      <Suspense fallback={<SkeletonPost />}>
+        {/* <SkeletonPost /> */}
+        <ParallelPostDetail
           currentPost={post!}
           mdx={mdx!}
           parsedToc={parsedToc}
