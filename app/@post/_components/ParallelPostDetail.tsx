@@ -36,13 +36,13 @@ export default function ParallelPostDetail({
         >
           <IconBackToHome className='text-sm' />
         </Link>
-        <Link
+        {/* <Link
           href={`/blog/${postId}`}
           passHref
           className='p-2 rounded-full border border-item-border-light bg-sub-light dark:bg-sub-dark dark:border-item-border-dark dark:text-white hover:scale-125 transition-all duration-200 ease-in-out drop-shadow-lg'
         >
           <IconScale className='text-sm' />
-        </Link>
+        </Link> */}
       </div>
 
       <section
