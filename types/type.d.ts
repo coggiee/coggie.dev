@@ -37,10 +37,11 @@ interface MotionProviderProps {
   children: React.ReactNode;
   duration: number;
   className?: string;
+  delay?: number;
 }
 interface MotionVerticalProviderProps extends MotionProviderProps {
-  fromY: number;
-  toY: number;
+  fromY?: number;
+  toY?: number;
 }
 
 interface MotionHorizontalProviderProps extends MotionProviderProps {
