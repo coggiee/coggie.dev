@@ -42,7 +42,7 @@ export default function ParallelPostDetail({
       <div className='sticky top-16 p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg dark:border-item-border-dark dark:text-white backdrop-blur-md z-[50]'>
         <div className='flex gap-2 items-center'>
           <Button
-            href={'/post-view'}
+            href={'/blog'}
             as={Link}
             variant='flat'
             radius='full'
@@ -60,7 +60,7 @@ export default function ParallelPostDetail({
         </div>
 
         <Button
-          href={`/blog/${postId}`}
+          href={`/post/${postId}`}
           as={Link}
           variant='flat'
           radius='full'

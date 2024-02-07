@@ -31,7 +31,7 @@ export const PostSection = ({
         <CardBody className='flex flex-col p-0'>
           {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
           {posts.map(({ node }: { node: any }) => (
-            <Link href={`/post-views/${node.id}`} passHref key={node.id}>
+            <Link href={`/blog/${node.id}`} passHref key={node.id}>
               <PostSideCard
                 key={node.id}
                 date={formatCreatedAt(node.date)}

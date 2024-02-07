@@ -1,5 +1,5 @@
-import MainPageSection from './_components/section/MainPageSection';
+import DashboardSection from './_components/section/DashboardSection';
 
 export default function Home() {
-  return <MainPageSection />;
+  return <DashboardSection />;
 }

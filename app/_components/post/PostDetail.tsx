@@ -5,11 +5,11 @@ import useDetectScroll from '../../_hooks/useDetectScroll';
 import { copyToClipboard } from '@/utils/copyToClipboard';
 import { useState } from 'react';
 import Alert from '../common/Alert';
-import Giscus from '../../blog/_components/Giscus';
+import Giscus from '../../post/_components/Giscus';
 import { MDXRemote } from 'next-mdx-remote';
 
-import FooterHero from '@/app/blog/_components/FooterHero';
-import { TocSidebar } from '@/app/blog/_components/TocSidebar';
+import FooterHero from '@/app/post/_components/FooterHero';
+import { TocSidebar } from '@/app/post/_components/TocSidebar';
 import DeleteModal from '../common/DeleteModal';
 import { deletePost } from '@/app/_libs/hygraph';
 import { useRouter } from 'next/navigation';
@@ -42,7 +42,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const router = useRouter();
 
   const handleOnClickCopyButton = () => {
-    console.log(post.id)
+    console.log(post.id);
     copyToClipboard(post.id);
 
     setIsAlertVisible(true);

@@ -1,5 +1,4 @@
-import ParallelPostDetail from '@/app/@post/_components/ParallelPostDetail';
-import SkeletonPost from '@/app/_components/skeleton/SkeletonPost';
+import { PostDetail } from '@/app/_components/post/PostDetail';
 import { getSinglePost, getTotalPosts } from '@/app/_libs/hygraph';
 import { serializeMdx } from '@/app/_libs/mdx';
 
@@ -30,15 +29,9 @@ export default async function PostPage({ params }: { params: { slug: any } }) {
   const mdx = await serializeMdx(post!.content);
 
   return (
-    <div className='snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none prose dark:prose-dark self-start'>
-      <Suspense fallback={<SkeletonPost />}>
-        {/* <SkeletonPost /> */}
-        <ParallelPostDetail
-          currentPost={post!}
-          mdx={mdx!}
-          parsedToc={parsedToc}
-          postId={post!.id}
-        />
+    <div className='prose dark:prose-dark mt-4 w-full max-w-screen-2xl mx-auto'>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PostDetail post={post!} mdx={mdx!} toc={parsedToc} isFullSize={true} />
       </Suspense>
     </div>
   );
