@@ -1,7 +1,7 @@
 'use client';
 
 import React, { ChangeEvent, Suspense, useEffect, useRef } from 'react';
-import { Fallback } from '../../_components/common/Fallback';
+import Fallback from '@/app/_components/common/Fallback';
 import { PostCard } from '../../_components/post/PostCard';
 import {
   formatCreatedAt,
@@ -15,7 +15,6 @@ import {
   searchPostByTitle,
 } from '@/app/_libs/hygraph';
 import TagFilter from './TagFilter';
-import Loading from '@/app/loading';
 import SearchBarXS from '@/app/_components/common/SearchBarXS';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
 import MotionHorizontalProvider from '@/app/_provider/MotionHorizontalProvider';
