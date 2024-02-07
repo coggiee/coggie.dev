@@ -6,14 +6,10 @@ import { useTheme } from 'next-themes';
 const ThemeSwitcher = () => {
   const { theme, resolvedTheme, setTheme } = useTheme();
   return (
-    <div
-      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit'
-      data-tip='theme'
-    >
+    <div className='cursor-pointer p-2 rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit'>
       <div className='flex justify-center items-center'>
         {resolvedTheme === 'dark' ? (
           <label className='swap swap-rotate'>
-            {/* this hidden checkbox controls the state */}
             <input
               type='checkbox'
               className='theme-controller'
@@ -30,7 +26,6 @@ const ThemeSwitcher = () => {
           </label>
         ) : (
           <label className='swap swap-rotate'>
-            {/* this hidden checkbox controls the state */}
             <input
               type='checkbox'
               className='theme-controller'

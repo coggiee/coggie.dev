@@ -1,5 +1,4 @@
 import React from 'react';
-import MorePostLink from './MorePostLink';
 
 const Introduction = () => {
   return (
@@ -9,9 +8,7 @@ const Introduction = () => {
         <header className='w-full rounded-lg p-5 pl-4 mb-5 leading-loose dark:text-white'>
           <div className='flex justify-between items-center'>
             <h1 className='text-4xl font-semibold mb-3 font-dhurjati'>Dev Blog</h1>
-            <MorePostLink />
           </div>
-
           <p className='dark:text-[rgb(141, 140, 142)]'>
             <span>개발 관련 포스팅이 올라옵니다.</span>
             <br />

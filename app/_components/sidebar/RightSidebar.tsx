@@ -15,10 +15,7 @@ export default function RightSidebar() {
       toY={0}
       className={'w-full flex flex-col gap-5 flex-shrink-0'}
     >
-      <SearchBarXS />
-      <div className='hidden md:block xl:hidden'>
-        <MorePostLink />
-      </div>
+      {/* <SearchBarXS /> */}
       <ProjectList />
     </MotionVerticalProvider>
   );

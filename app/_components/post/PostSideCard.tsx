@@ -2,10 +2,9 @@ import React from 'react';
 import IconBxCalendarStar from '../../_icons/IconBxCalendarStar';
 import IconTimerSand from '../../_icons/IconTimerSand';
 import { CoverImage } from '@/types/type';
-import Image from 'next/image';
 import IconNoImage from '@/app/_icons/IconNoImage';
-import { motion } from 'framer-motion';
-import Badge from '../common/Badge';
+import { Card, CardBody, Image, Chip } from '@nextui-org/react';
+import NextImage from 'next/image';
 
 interface PostCardProps {
   date: string;
@@ -29,22 +28,24 @@ export default function PostSideCard({
   readTimeMinutes,
 }: PostCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className='card rounded-lg m-0 font-notosanskr dark:text-white hover:bg-hover-light hover:dark:bg-hover-dark cursor-pointer transition-colors ease-in-out duration-300'
+    <Card
+      isBlurred
+      isHoverable
+      radius='none'
+      shadow='none'
+      className='font-notosanskr dark:text-white cursor-pointer bg-transparent p-3'
     >
-      <div className='card-body p-2'>
+      <CardBody className='p-2'>
         <div className='flex flex-row gap-5'>
           <div className='relative w-32 h-32 flex-shrink-0 rounded-lg'>
             {coverImage && (
               <Image
+                as={NextImage}
                 src={coverImage.url}
+                width={300}
+                height={300}
                 alt={coverImage.fileName}
-                layout='fill'
-                objectFit='cover'
-                className='absolute rounded-lg grayscale'
+                className='h-32 object-cover absolute rounded-lg grayscale'
               />
             )}
             {!coverImage && (
@@ -53,27 +54,29 @@ export default function PostSideCard({
           </div>
           <div className='flex flex-col gap-2 grow w-full min-w-0'>
             <div className='flex flex-col gap-2 sm:gap-0 sm:flex-row justify-between'>
-              <div className='font-medium text-[10px] text-gray-700 flex gap-2 items-center dark:text-white'>
+              <div className='font-medium text-[12px] text-gray-700 flex gap-2 items-center dark:text-white'>
                 <IconBxCalendarStar />
                 {date}
               </div>
-              <div className='font-medium text-[10px] text-gray-700 flex gap-1 items-center dark:text-white'>
+              <div className='font-medium text-[12px] text-gray-700 flex gap-1 items-center dark:text-white'>
                 <IconTimerSand />
                 {time} - {readTimeMinutes} min read
               </div>
             </div>
             <div className='flex flex-col gap-3'>
-              <h2 className='text-sm w-full truncate'>{title}</h2>
+              <h2 className='font-bold text-sm w-full truncate'>{title}</h2>
               <p className='text-xs w-full truncate'>{description}</p>
             </div>
             <div className='grow flex items-end gap-2 '>
               {tags.map((tag) => (
-                <Badge key={tag} text={tag} />
+                <Chip key={tag} variant='flat' radius='md' size='sm' color='danger'>
+                  {tag}
+                </Chip>
               ))}
             </div>
           </div>
         </div>
-      </div>
-    </motion.div>
+      </CardBody>
+    </Card>
   );
 }

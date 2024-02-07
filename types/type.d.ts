@@ -131,7 +131,6 @@ interface SocialGroupProps {
   align?: string;
   direction?: string;
   gap?: number;
-  isGroup: boolean;
 }
 
 interface ProjectItemProps {

@@ -5,11 +5,11 @@ import IconApplemusic from '../../_icons/IconAppleMusic';
 import IconGlobe from '../../_icons/IconGlobe';
 import { usePathname, useRouter } from 'next/navigation';
 import ThemeSwitcher from './ThemeSwitcher';
-import Tooltip from './Tooltip';
 import IconWrite from '@/app/_icons/IconWrite';
 import { signIn, useSession } from 'next-auth/react';
 import GithubLogin from './GithubLogin';
 import DropdownMenu from './DropdownMenu';
+import { Button, Tooltip } from '@nextui-org/react';
 
 const Nav = () => {
   const pathname = usePathname();
@@ -37,26 +37,32 @@ const Nav = () => {
       <div className='menu menu-horizontal rounded-box hidden lg:flex gap-3 text-xl p-2'>
         {!session && <GithubLogin handleOnLogin={handleOnLogin} />}
         {session && session.user!.email === 'zentechie7@gmail.com' && (
-          <Tooltip dataTip='write'>
-            <button onClick={() => router.push('/write')}>
-              <IconWrite className='transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#5c3f27] font-bold' />
-            </button>
+          <Tooltip showArrow={true} placement='bottom' content='글 쓰기'>
+            <Button
+              size='md'
+              variant='light'
+              isIconOnly
+              onClick={() => router.push('/write')}
+            >
+              <IconWrite className='text-lg transition-colors hover:text-[#5c3f27] dark:text-[#fff] dark:hover:text-[#5c3f27] font-bold' />
+            </Button>
           </Tooltip>
         )}
-        <Tooltip dataTip='playlist'>
-          <button className=''>
-            <Link
-              href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY'
-              target='_blank'
-            >
-              <IconApplemusic className='transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
-            </Link>
-          </button>
+        <Tooltip showArrow={true} placement='bottom' content='플리'>
+          <Button
+            href='https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY'
+            size='md'
+            variant='light'
+            isIconOnly
+            as={Link}
+          >
+            <IconApplemusic className='text-lg transition-colors hover:text-[#ff5474] dark:text-[#fff] dark:hover:text-[#ff5474]' />
+          </Button>
         </Tooltip>
-        <Tooltip dataTip='language'>
-          <button className='btn-disabled'>
-            <IconGlobe className='transition-colors hover:text-[#4860ff] dark:text-white dark:hover:text-[#4860ff]' />
-          </button>
+        <Tooltip showArrow={true} placement='bottom' content='언어 변경'>
+          <Button size='md' variant='light' isIconOnly isDisabled>
+            <IconGlobe className='text-lg transition-colors hover:text-[#4860ff] dark:text-white dark:hover:text-[#4860ff]' />
+          </Button>
         </Tooltip>
         <ThemeSwitcher />
       </div>
