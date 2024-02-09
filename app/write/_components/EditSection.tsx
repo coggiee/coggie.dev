@@ -1,27 +1,28 @@
-'use client';
+"use client";
 
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
-import TuiEditor from '@/app/write/_components/TuiEditor';
-import EditTitle from '@/app/write/_components/EditTitle';
-import Alert from '../../_components/common/Alert';
-import { useRouter } from 'next/navigation';
-import dayjs from 'dayjs';
-import { createPost } from '@/app/_libs/hygraph';
-import IconBack from '@/app/_icons/IconBack';
-import EditDrawer from './EditDrawer';
-import Link from 'next/link';
+import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import TuiEditor from "@/app/write/_components/TuiEditor";
+import EditTitle from "@/app/write/_components/EditTitle";
+import Alert from "../../_components/common/Alert";
+import { useRouter } from "next/navigation";
+import dayjs from "dayjs";
+import { createPost } from "@/app/_libs/hygraph";
+import EditDrawer from "./EditDrawer";
+import Link from "next/link";
+import { Button, Chip, Input, useDisclosure } from "@nextui-org/react";
 
 export default function EditSection() {
   const editorRef = useRef<any>(null);
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
   const [coverImage, setCoverImage] = useState<any>(null);
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isPostCreated, setIsPostCreated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isHotPost, setIsHotPost] = useState<boolean>(false);
-  const [tags, setTags] = useState('');
+  const [tags, setTags] = useState("");
   const [tagList, setTagList] = useState<string[]>([]);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
   const handleOnSave = async () => {
@@ -43,23 +44,23 @@ export default function EditSection() {
       return;
     }
 
-    if (title.endsWith('.')) {
+    if (title.endsWith(".")) {
       setTitle(title.slice(0, title.length - 1));
     }
 
     const form = new FormData();
 
-    form.append('fileUpload', coverImage);
+    form.append("fileUpload", coverImage);
 
     const assetResponse = await fetch(
       `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
           Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
         },
         body: form,
-      }
+      },
     );
     const { id } = await assetResponse.json();
 
@@ -72,7 +73,7 @@ export default function EditSection() {
       tagList,
       isHotPost,
       new Date(date),
-      id
+      id,
     );
 
     const data = response.createPost;
@@ -80,14 +81,14 @@ export default function EditSection() {
     if (data) {
       setIsLoading(false);
       setIsPostCreated(true);
-      router.push('/');
+      router.push("/");
     }
   };
 
   const addTags = () => {
-    if (tags.trim() !== '') {
+    if (tags.trim() !== "") {
       setTagList([...tagList, tags.trim()]);
-      setTags('');
+      setTags("");
     }
   };
 
@@ -98,7 +99,7 @@ export default function EditSection() {
   const handleOnTypeTags = (e: ChangeEvent<HTMLInputElement>) => {
     setTags(e.target.value);
   };
-  const handleOnTypeDesc = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleOnTypeDesc = (e: ChangeEvent<HTMLInputElement>) => {
     setDescription(e.target.value);
   };
 
@@ -107,7 +108,7 @@ export default function EditSection() {
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addTags();
     }
   };
@@ -123,42 +124,51 @@ export default function EditSection() {
   };
 
   return (
-    <div className='flex flex-col flex-grow flex-3 relative w-full'>
+    <div className="flex flex-col flex-grow flex-3 relative w-full pt-10">
       <EditTitle title={title} handleOnTypeTitle={handleOnTypeTitle} />
-      <div className='mb-4'>
-        <input
-          type='text'
-          id='tags'
-          name='tags'
-          placeholder='태그를 입력하세요'
+      <div className="mb-4">
+        <Input
+          id="tags"
+          name="tags"
+          type="text"
+          placeholder="태그를 추가하세요."
+          size="lg"
+          variant="underlined"
+          label="태그"
+          className="font-bold"
+          isRequired
           value={tags}
           onChange={handleOnTypeTags}
-          onKeyPress={handleKeyPress}
-          className='mt-1 p-2 outline-none border-l-4 border-brand-color'
+          onKeyDown={handleKeyPress}
         />
       </div>
-      <div className='mb-4'>
-        <ul className='flex flex-wrap justify-start items-center'>
+      <div className="mb-4">
+        <ul className="flex flex-wrap justify-start items-center">
           {tagList.map((tag, index) => (
-            <li
+            <Chip
               key={index}
-              className='inline-block text-gray-800 px-2 py-1 mr-2 rounded-xl cursor-pointer mb-2 border border-brand-color'
-              onClick={() => handleOnClickTag(tag)}
+              size="lg"
+              variant="solid"
+              color="success"
+              className="cursor-pointer"
+              onClose={() => handleOnClickTag(tag)}
             >
-              # {tag}
-            </li>
+              {tag}
+            </Chip>
           ))}
         </ul>
       </div>
-      <TuiEditor content={''} editorRef={editorRef} />
-      <div className='w-full flex gap-3 fixed bottom-0 px-10 py-3 justify-end'>
-        <button className='btn glass ghost p-3'>
-          <Link href='/' className='flex gap-2 items-center'>
-            <IconBack />
-            <span>나가기</span>
-          </Link>
-        </button>
+      <TuiEditor content={""} editorRef={editorRef} />
+      <div className="w-full flex gap-3 fixed bottom-0 px-10 py-3 justify-end">
+        <Button as={Link} href="/blog">
+          <span>나가기</span>
+        </Button>
+        <Button color="success" onPress={onOpen}>
+          출간하기
+        </Button>
         <EditDrawer
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
           handleOnTypeDesc={handleOnTypeDesc}
           handleOnToggleHotPost={handleOnToggleHotPost}
           handleOnClickSaveBtn={handleOnSave}
@@ -166,10 +176,10 @@ export default function EditSection() {
         />
       </div>
       {isAlertVisible && (
-        <Alert title='제목과 내용, 태그를 확인해주세요.' bgColor='crimson' />
+        <Alert title="제목과 내용, 태그를 확인해주세요." bgColor="crimson" />
       )}
       {isPostCreated && (
-        <Alert title='글이 작성되었습니다.' bgColor='crimson' />
+        <Alert title="글이 작성되었습니다." bgColor="crimson" />
       )}
       {isLoading && <div>Loading...</div>}
     </div>

@@ -1,4 +1,4 @@
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 interface Toc {
   level: 1 | 2 | 3;
@@ -70,7 +70,9 @@ interface TagFilterProps {
 }
 
 interface EditDrawerProps {
-  handleOnTypeDesc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isOpen: boolean;
+  onOpenChange: () => void;
+  handleOnTypeDesc: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleOnToggleHotPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleOnClickSaveBtn: () => void;
   handleOnFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -106,8 +108,8 @@ interface DividerProps {
   isHorizontal: boolean;
   bgColor: string;
   darkBgColor: string;
-  width?: 'full' | string;
-  height?: 'full' | string;
+  width?: "full" | string;
+  height?: "full" | string;
 }
 
 interface DropDownProps {

@@ -1,10 +1,25 @@
-'use client';
+"use client";
 
-import { EditDrawerProps } from '@/types/type';
-import Image from 'next/image';
-import React, { useState } from 'react';
+import { EditDrawerProps } from "@/types/type";
+import {
+  Button,
+  Image,
+  Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Switch,
+  Textarea,
+} from "@nextui-org/react";
+import React, { useState } from "react";
+import NextImage from "next/image";
+import IconRemove from "@/app/_icons/IconRemove";
 
 export default function EditDrawer({
+  isOpen,
+  onOpenChange,
   handleOnTypeDesc,
   handleOnToggleHotPost,
   handleOnClickSaveBtn,
@@ -23,82 +38,108 @@ export default function EditDrawer({
       setPreview(reader.result as string);
     };
   };
+
+  const handleRemoveImage = () => {
+    setPreview(null);
+  };
+
   return (
-    <div className='drawer drawer-end w-fit'>
-      <input id='my-drawer-4' type='checkbox' className='drawer-toggle' />
-      <div className='drawer-content'>
-        {/* Page content here */}
-        <label
-          htmlFor='my-drawer-4'
-          className='drawer-button btn glass bg-brand-color'
-        >
-          출간하기
-        </label>
-      </div>
-      <div className='drawer-side'>
-        <label
-          htmlFor='my-drawer-4'
-          aria-label='close sidebar'
-          className='drawer-overlay'
-        ></label>
-        <ul className='menu p-4 w-80 min-h-full bg-base-200 text-base-content gap-5'>
-          <li className='mb-5'>
-            <p className='mb-3'>설명</p>
-            <textarea
-              className='w-full resize-none outline-none text-base font-bold overflow-visible min-h-[5em]'
-              placeholder='설명을 입력하세요'
-              // value={description}
-              onChange={handleOnTypeDesc}
-            ></textarea>
-          </li>
-          <li>
-            <label htmlFor='coverImage'>썸네일</label>
-            <input
-              type='file'
-              accept='image/*'
-              id='coverImage'
-              name='coverImage'
-              className='file-input file-input-bordered w-full max-w-xs mb-3'
-              onChange={handleCoverImage}
-            />
-            <div className='w-full h-40 relative'>
-              {!preview && (
-                <div className='absolute inset-0 flex justify-center items-center'>
-                  <span className='text-lg font-mono'>🖼 미리보기</span>
-                </div>
-              )}
-              {preview && (
-                <Image
-                  src={preview}
-                  alt='Thumbnail'
-                  layout='fill'
-                  objectFit='cover'
-                  className='absolute rounded-lg'
-                />
-              )}
-            </div>
-          </li>
-          <li>
-            <div className='form-control'>
-              <label className='label cursor-pointer'>
-                <span className='label-text mr-5'>읽었으면 하나요?</span>
-                <input
-                  type='checkbox'
-                  className='toggle toggle-sm toggle-warning'
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onOpenChange}
+      backdrop="blur"
+      classNames={{
+        backdrop:
+          "bg-gradient-to-t from-zinc-900 to-zinc-900/10 backdrop-opacity-20",
+      }}
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">
+              상세 정보를 채워주세요!
+            </ModalHeader>
+            <ModalBody>
+              <label htmlFor="desc" className="font-bold">
+                설명
+              </label>
+              <Textarea
+                id="desc"
+                className="w-full resize-none outline-none text-base font-bold overflow-visible min-h-[5em]"
+                placeholder="설명을 입력하세요"
+                variant="underlined"
+                // value={description}
+                onChange={handleOnTypeDesc}
+              />
+
+              <div className="w-full mb-7">
+                <div className="font-bold mb-3">썸네일</div>
+                {!preview && (
+                  <div className="flex flex-col">
+                    <Input
+                      type="file"
+                      accept="image/*"
+                      id="coverImage"
+                      name="coverImage"
+                      className="w-full max-w-xs mb-3 hidden"
+                      hidden
+                      onChange={handleCoverImage}
+                    />
+                    <div className="h-52 flex justify-center items-center border border-dotted border-black dark:border-[#909090] rounded-lg ">
+                      <label htmlFor="coverImage" className="font-bold">
+                        사진을 선택해주세요!
+                      </label>
+                    </div>
+                  </div>
+                )}
+                {preview && (
+                  <div className="flex flex-col justify-center items-center gap-3">
+                    <Image
+                      as={NextImage}
+                      alt="Thumbnail"
+                      src={preview}
+                      width={400}
+                      height={400}
+                      className="object-cover w-full h-full rounded-lg"
+                    />
+                    <Button
+                      isIconOnly
+                      radius="full"
+                      variant="ghost"
+                      onPress={handleRemoveImage}
+                    >
+                      <IconRemove />
+                    </Button>
+                  </div>
+                )}
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mr-5 font-bold">📍 Pinned?</span>
+                <Switch
+                  defaultSelected
+                  color="success"
+                  size="sm"
                   onChange={handleOnToggleHotPost}
                 />
-              </label>
-            </div>
-          </li>
-
-          <button
-            className='btn glass bg-brand-color'
-            onClick={handleOnClickSaveBtn}
-          >
-            출간하기
-          </button>
-        </ul>
-      </div>
-    </div>
+              </div>
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" onPress={onClose}>
+                취소
+              </Button>
+              <Button
+                color="success"
+                onPress={() => {
+                  handleOnClickSaveBtn();
+                  onClose();
+                }}
+              >
+                출간
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
   );
 }

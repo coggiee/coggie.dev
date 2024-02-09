@@ -21,8 +21,8 @@ export default function ParallelPostSection({ hotPosts, recentPosts }: Props) {
     >
       <Introduction />
       <Divider />
-      <PostSection posts={hotPosts} title={'읽어 볼만한 포스트'} />
-      <PostSection posts={recentPosts} title={'최근 포스트'} />
+      <PostSection posts={hotPosts} title={'Pinned Posts'} />
+      <PostSection posts={recentPosts} title={'Recent Posts'} />
     </MotionVerticalProvider>
   );
 }
