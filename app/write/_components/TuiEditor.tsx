@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -23,6 +23,33 @@ export default function TuiEditor({ content = "", editorRef }: EditorProps) {
     ["image"],
   ];
   const theme = useTheme().theme;
+
+  useEffect(() => {
+    if (editorRef.current) {
+      editorRef.current.getInstance().removeHook("addImageBlobHook");
+      editorRef.current
+        .getInstance()
+        .addHook("addImageBlobHook", (file: File | Blob, callback: any) => {
+          (async () => {
+            const form = new FormData();
+            form.append("fileUpload", file);
+
+            const response = await fetch("/api/upload", {
+              method: "POST",
+              body: form,
+            });
+
+            const { data } = await response.json();
+            const { url } = data;
+            callback(url, "image");
+          })();
+
+          return false;
+        });
+    }
+
+    return () => {};
+  }, [editorRef]);
 
   return (
     <div className="flex-grow">
