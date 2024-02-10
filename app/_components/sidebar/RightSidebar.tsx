@@ -1,9 +1,7 @@
 'use client';
 
 import React from 'react';
-import SearchBarXS from '../common/SearchBarXS';
 import ProjectList from '../project/ProjectList';
-import MorePostLink from '../common/MorePostLink';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
 
 export default function RightSidebar() {
@@ -15,7 +13,6 @@ export default function RightSidebar() {
       toY={0}
       className={'w-full flex flex-col gap-5 flex-shrink-0'}
     >
-      {/* <SearchBarXS /> */}
       <ProjectList />
     </MotionVerticalProvider>
   );

@@ -7,9 +7,8 @@ import {
   formatReadingMinutes,
 } from '@/utils/formatTime';
 import PostSideCard from './PostSideCard';
-import Divider from '../common/Divider';
 import Link from 'next/link';
-import { Card, CardBody, CardHeader } from '@nextui-org/react';
+import { Card, CardBody } from '@nextui-org/react';
 
 export const PostSection = ({
   posts,
@@ -26,7 +25,7 @@ export const PostSection = ({
       <Card
         isBlurred
         shadow='md'
-        className='w-full grow rounded-lg font-mono bg-item-light dark:bg-item-dark '
+        className='w-full grow rounded-lg font-mono bg-item-light dark:bg-item-dark'
       >
         <CardBody className='flex flex-col p-0'>
           {posts.length === 0 && <Fallback title={'아직 포스트가 없습니다.'} />}
