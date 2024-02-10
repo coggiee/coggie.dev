@@ -27,8 +27,6 @@ const config: Config = {
         permanentMarker: ['var(--font-permanentMarker)'],
         dhurjati: ['var(--font-dhurjati)'],
         teko: ['var(--font-teko)'],
-        // pretendard: ['var(--font-pretendard)'],
-        // tossface: ['var(--font-tossface)'],
       },
       transitionProperty: {
         'max-height': 'max-height',
@@ -48,7 +46,7 @@ const config: Config = {
         'hover-light': '#99999923',
         'hover-dark': '#434343',
         'item-border-light': '#dcdcdc',
-        'item-dark': '#282828',
+        'item-dark': '#1c1c1c',
         'item-border-dark': '#353535',
         'brand-color': 'dodgerblue',
         'sub-light': '#ffffff8d',
