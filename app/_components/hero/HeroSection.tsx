@@ -12,7 +12,7 @@ const HeroSection = ({ src }: HeroProps) => {
     <Card
       isBlurred
       shadow='md'
-      className='w-full flex-grow-0 flex-shrink-0 p-3 rounded-lg bg-item-light/70 dark:bg-item-dark/20 dark:text-white'
+      className='w-full flex-grow-0 flex-shrink-0 p-3 rounded-lg dark:bg-item-dark dark:text-white'
     >
       <CardHeader className='flex justify-between'>
         <Avatar
