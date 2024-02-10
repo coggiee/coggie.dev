@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Editor } from "@toast-ui/react-editor";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -13,24 +13,17 @@ import Prism from "prismjs";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { EditorProps } from "@/types/type";
 import { useTheme } from "next-themes";
+import { useResize } from "@/app/_hooks/useResize";
 
 export default function TuiEditor({ content = "", editorRef }: EditorProps) {
-  const [direction, setDirection] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.innerWidth > 768 ? "vertical" : "tab";
-    }
-  });
-
-  const toolbarItems = [["heading", "bold", "italic", "strike"]];
+  const { direction } = useResize();
+  const toolbarItems = [
+    ["heading", "bold", "italic", "strike"],
+    ["code", "codeblock"],
+    ["image"],
+  ];
   const theme = useTheme().theme;
-  useEffect(() => {
-    if (window.innerWidth > 768) {
-      setDirection("vertical");
-    } else {
-      setDirection("tab");
-    }
-  }, [window.innerWidth]);
-  
+
   return (
     <div className="flex-grow">
       {editorRef && (
@@ -38,12 +31,12 @@ export default function TuiEditor({ content = "", editorRef }: EditorProps) {
           <Editor
             ref={editorRef}
             height="800px"
-            placeholder="Write your content here..."
-            previewStyle={window.innerWidth > 768 ? "vertical" : "tab"}
+            placeholder="포스트 내용을 채워주세요!"
+            previewStyle={direction}
             theme={`${theme === "light" ? "light" : "dark"}`}
             initialEditType="markdown"
             hideModeSwitch={true}
-            initialValue={""}
+            initialValue={" "}
             useCommandShortcut={true}
             toolbarItems={toolbarItems}
             plugins={[
