@@ -10,6 +10,7 @@ import { createPost } from "@/app/_libs/hygraph";
 import EditDrawer from "./EditDrawer";
 import Link from "next/link";
 import { Button, Chip, Input, useDisclosure } from "@nextui-org/react";
+import Loading from "@/app/loading";
 
 export default function EditSection() {
   const editorRef = useRef<any>(null);
@@ -81,7 +82,7 @@ export default function EditSection() {
     if (data) {
       setIsLoading(false);
       setIsPostCreated(true);
-      router.push("/");
+      router.push("/blog");
     }
   };
 
@@ -181,7 +182,7 @@ export default function EditSection() {
       {isPostCreated && (
         <Alert title="글이 작성되었습니다." bgColor="crimson" />
       )}
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loading />}
     </div>
   );
 }
