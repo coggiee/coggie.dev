@@ -1,7 +1,7 @@
 "use client";
 import IconMoon from "@/app/_icons/IconMoon";
 import IconSun from "@/app/_icons/IconSun";
-import { Switch } from "@nextui-org/react";
+import { Switch, VisuallyHidden, useSwitch } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -28,6 +28,15 @@ const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
+  const {
+    Component,
+    slots,
+    isSelected,
+    getBaseProps,
+    getInputProps,
+    getWrapperProps,
+  } = useSwitch();
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -35,20 +44,45 @@ const ThemeSwitcher = () => {
   if (!mounted) return null;
 
   return (
-    <Switch
-      defaultSelected
-      size="lg"
-      color="success"
-      startContent={<IconSun />}
-      endContent={<IconMoon />}
-      onClick={() => {
-        if (theme === "dark") {
-          setTheme("light");
-        } else {
-          setTheme("dark");
-        }
-      }}
-    />
+    <Component {...getBaseProps()}>
+      <VisuallyHidden>
+        <input {...getInputProps()} />
+      </VisuallyHidden>
+      <div
+        {...getWrapperProps()}
+        className={slots.wrapper({
+          class: [
+            "w-8 h-8",
+            "flex items-center justify-center",
+            "rounded-lg text-white bg-[#8046ff] hover:bg-[#6644b2]",
+          ],
+          color: "warning",
+        })}
+        onClick={() => {
+          if (theme === "dark") {
+            setTheme("light");
+          } else {
+            setTheme("dark");
+          }
+        }}
+      >
+        {isSelected ? <IconSun /> : <IconMoon />}
+      </div>
+    </Component>
+    // <Switch
+    //   defaultSelected
+    //   size="lg"
+    //   color="success"
+    //   startContent={<IconSun />}
+    //   endContent={<IconMoon />}
+    //   onClick={() => {
+    //     if (theme === "dark") {
+    //       setTheme("light");
+    //     } else {
+    //       setTheme("dark");
+    //     }
+    //   }}
+    // />
   );
   // return (
   //   <div className='cursor-pointer p-2 rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit'>
