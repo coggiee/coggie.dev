@@ -4,7 +4,7 @@ import IconBackToHome from "@/app/_icons/IconBackToHome";
 import IconScale from "@/app/_icons/IconScale";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import React, { useRef } from "react";
-import { PostDetail } from "../../_components/post/PostDetail";
+import { PostDetail } from "./PostDetail";
 import {
   BreadcrumbItem,
   Breadcrumbs,
@@ -22,7 +22,7 @@ type Props = {
   parsedToc: any;
 };
 
-export default function ParallelPostDetail({
+export default function PostViewDashboard({
   postId,
   currentPost,
   mdx,

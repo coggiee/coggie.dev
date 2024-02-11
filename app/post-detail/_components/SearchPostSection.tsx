@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import React, { ChangeEvent, Suspense, useEffect, useRef } from 'react';
-import Fallback from '@/app/_components/common/Fallback';
-import { PostCard } from '../../_components/post/PostCard';
+import React, { ChangeEvent, Suspense, useEffect, useRef } from "react";
+import Fallback from "@/app/_components/common/Fallback";
 import {
   formatCreatedAt,
   formatCreatedTime,
   formatReadingMinutes,
-} from '@/utils/formatTime';
+} from "@/utils/formatTime";
 import {
   getPostsByTag,
   getPostsOnScroll,
   getTotalPosts,
   searchPostByTitle,
-} from '@/app/_libs/hygraph';
-import TagFilter from './TagFilter';
-import SearchBarXS from '@/app/_components/common/SearchBarXS';
-import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
-import MotionHorizontalProvider from '@/app/_provider/MotionHorizontalProvider';
-import { BlogSectionProps } from '@/types/type';
+} from "@/app/_libs/hygraph";
+import TagFilter from "./TagFilter";
+import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
+import MotionHorizontalProvider from "@/app/_provider/MotionHorizontalProvider";
+import { BlogSectionProps } from "@/types/type";
+import PostSideCard from "@/app/blog/_components/PostSideCard";
+import Link from "next/link";
 
 export default function BlogSection({
   posts,
@@ -29,13 +29,13 @@ export default function BlogSection({
   const [currentPosts, setCurrentPosts] = React.useState<any>(posts);
   const [lastPostCursor, setLastPostCursor] = React.useState<string>(cursor);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = React.useState<string>('');
-  const [selectedTag, setSelectedTag] = React.useState<string>('# All');
+  const [searchQuery, setSearchQuery] = React.useState<string>("");
+  const [selectedTag, setSelectedTag] = React.useState<string>("# All");
   const target = useRef<HTMLDivElement>(null);
 
   const handleOnClickTag = async (tag: string) => {
-    setSelectedTag((prev: string) => '# ' + tag);
-    if (tag === 'All') {
+    setSelectedTag((prev: string) => "# " + tag);
+    if (tag === "All") {
       const { edges } = (await getTotalPosts()) || [];
       const posts = edges.map((post: any) => post.node);
       setCurrentPosts((prev: any) => [...posts]);
@@ -52,7 +52,7 @@ export default function BlogSection({
 
   const handleOnPressEnter = async (e: any) => {
     const { key } = e;
-    if (key === 'Enter') {
+    if (key === "Enter") {
       const trimmedQuery = searchQuery.trim();
       const searchedPosts = await searchPostByTitle(trimmedQuery);
       setCurrentPosts((prev: any) => [...searchedPosts]);
@@ -67,7 +67,7 @@ export default function BlogSection({
       if (nextPosts.length > 0) {
         setCurrentPosts((prev: any) => [...prev, ...nextPosts]);
         setLastPostCursor(
-          (prev: string) => nextPosts[nextPosts.length - 1].id ?? null
+          (prev: string) => nextPosts[nextPosts.length - 1].id ?? null,
         );
       }
       setIsLoading(false);
@@ -87,10 +87,10 @@ export default function BlogSection({
         onScrollEnded();
       }
     };
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [currentPosts, lastPostCursor, isLoading, totalPostSize]);
 
@@ -99,56 +99,53 @@ export default function BlogSection({
       fromY={500}
       toY={0}
       duration={0.7}
-      className='flex-grow min-w-0 w-full h-full mb-3 relative'
+      className="flex-grow min-w-0 w-full h-full mb-3 relative"
     >
       <Suspense fallback={<div>Loading...</div>}>
-        <div className='flex flex-col md:flex-row gap-5 relative'>
+        <div className="flex flex-col md:flex-row gap-5 relative">
           <MotionHorizontalProvider
             duration={0.7}
             fromX={-500}
             toX={0}
-            className='basis-1/3 md:max-w-sm min-w-fit mr-10 flex flex-col gap-5 w-full'
+            className="basis-1/3 md:max-w-sm min-w-fit mr-10 flex flex-col gap-5 w-full"
           >
-            <SearchBarXS
-              handleOnSearch={handleOnSearch}
-              handleOnPressEnter={handleOnPressEnter}
-            />
             <TagFilter tags={uniqueTags} handleOnClickTag={handleOnClickTag} />
           </MotionHorizontalProvider>
           <MotionHorizontalProvider
             duration={0.7}
             fromX={500}
             toX={0}
-            className='grow basis-2/3 w-full min-w-[25%]'
+            className="grow basis-2/3 w-full min-w-[25%]"
           >
-            <div className='mb-5'>
-              <h1 className='font-sbold text-4xl inline-block mr-2 font-dhurjati'>
+            <div className="mb-5">
+              <h1 className="font-sbold text-4xl inline-block mr-2 font-dhurjati">
                 {selectedTag}
               </h1>
-              <span className='font-bold text-lg font-dhurjati'>
+              <span className="font-bold text-lg font-dhurjati">
                 ({currentPosts.length})
               </span>
             </div>
             <div
-              className='flex-1 flex flex-col gap-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white'
+              className="flex-1 flex flex-col gap-5 border border-item-border-light rounded-lg bg-item-light dark:bg-item-dark dark:border-item-border-dark dark:text-white"
               ref={target}
             >
-              <div className='flex flex-col'>
+              <div className="flex flex-col">
                 {currentPosts.length === 0 && (
-                  <Fallback title={'아직 포스트가 없습니다.'} />
+                  <Fallback title={"아직 포스트가 없습니다."} />
                 )}
                 {currentPosts.map((post: any) => (
-                  <PostCard
-                    key={post.id}
-                    date={formatCreatedAt(post.date)}
-                    time={formatCreatedTime(post.date)}
-                    title={post.title}
-                    description={post.description}
-                    path={post.id}
-                    tags={post.tags}
-                    coverImage={post?.coverImage}
-                    readTimeMinutes={formatReadingMinutes(post.content)}
-                  />
+                  <Link href={`/post-detail/${post.id}`} passHref key={post.id}>
+                    <PostSideCard
+                      key={post.id}
+                      date={formatCreatedAt(post.date)}
+                      time={formatCreatedTime(post.date)}
+                      title={post.title}
+                      description={post.description}
+                      tags={post.tags}
+                      coverImage={post?.coverImage}
+                      readTimeMinutes={formatReadingMinutes(post.content)}
+                    />
+                  </Link>
                 ))}
               </div>
             </div>

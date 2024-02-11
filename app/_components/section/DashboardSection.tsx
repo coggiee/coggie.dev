@@ -6,7 +6,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import IconHome from "@/app/_icons/IconHome";
 import IconCamera from "@/app/_icons/IconCamera";
-import Spline from "@splinetool/react-spline";
 
 export default function DashboardSection() {
   return (

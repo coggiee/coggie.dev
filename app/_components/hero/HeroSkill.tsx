@@ -1,5 +1,4 @@
 import React from "react";
-import Badge from "../common/Badge";
 import { skill } from "@/app/_data/skill";
 import { Chip } from "@nextui-org/react";
 

@@ -4,15 +4,14 @@ import IconLink from "@/app/_icons/IconLink";
 import useDetectScroll from "../../_hooks/useDetectScroll";
 import { copyToClipboard } from "@/utils/copyToClipboard";
 import { useState } from "react";
-import Alert from "../common/Alert";
-import Giscus from "../../post-detail/_components/Giscus";
+import Alert from "../../_components/common/Alert";
 import { MDXRemote } from "next-mdx-remote";
 
-import FooterHero from "@/app/post-detail/_components/FooterHero";
+import AuthorSection from "@/app/blog/_components/AuthorSection";
 import { TocSidebar } from "@/app/post-detail/_components/TocSidebar";
 import { deletePost } from "@/app/_libs/hygraph";
 import { useRouter } from "next/navigation";
-import PostTime from "./PostTime";
+import PostTimeBox from "./PostTimeBox";
 import { PostDetailProps } from "@/types/type";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import {
@@ -28,6 +27,7 @@ import {
   Tooltip,
 } from "@nextui-org/react";
 import IconCheck from "@/app/_icons/IconCheck";
+import CommentSection from "./CommentSection";
 
 export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const { scroll } = useDetectScroll();
@@ -94,7 +94,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
                 ))}
               </div>
               <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-5 pb-10">
-                <PostTime date={post!.date} content={post!.content} />
+                <PostTimeBox date={post!.date} content={post!.content} />
                 <div className="flex items-center gap-3 self-end sm:self-auto">
                   <div className="text-xs flex gap-3">
                     <Button
@@ -140,8 +140,8 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
             </div>
           </article>
           <Divider />
-          <FooterHero />
-          <Giscus />
+          <AuthorSection />
+          <CommentSection />
         </div>
         {isAlertVisible && (
           <Alert title={"링크가 복사되었습니다."} bgColor="dodgerblue" />

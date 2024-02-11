@@ -2,9 +2,7 @@ import SocialGroup from '@/app/_components/common/SocialGroup';
 import { Avatar } from '@nextui-org/react';
 import React from 'react';
 
-type Props = {};
-
-export default function FooterHero({}: Props) {
+export default function AuthorSection() {
   return (
     <section className='w-full flex justify-center items-center min-h-fit mb-10'>
       <div className='flex items-center gap-10'>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
 
-export default function Giscus() {
+export default function CommentSection() {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
   const theme = resolvedTheme === 'dark' ? 'dark_dimmed' : 'light';
@@ -28,7 +28,7 @@ export default function Giscus() {
     scriptElem.setAttribute('data-lang', 'ko');
     scriptElem.setAttribute('data-loading', 'lazy');
     ref.current.appendChild(scriptElem);
-  }, []);
+  }, [theme]);
 
   useEffect(() => {
     const iframe = document.querySelector<HTMLIFrameElement>(

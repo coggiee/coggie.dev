@@ -1,4 +1,4 @@
-import ParallelPostDetail from "@/app/blog/_components/ParallelPostDetail";
+import PostViewDashboard from "@/app/blog/_components/PostViewDashboard";
 import { getSinglePost, getTotalPosts } from "@/app/_libs/hygraph";
 import { serializeMdx } from "@/app/_libs/mdx";
 import { parseHeaderForTOC } from "@/utils/parseHeaderForTOC";
@@ -21,14 +21,14 @@ async function getProps({ params }: { params: { slug: any } }) {
   };
 }
 
-export default async function PostPage({ params }: { params: { slug: any } }) {
+export default async function BlogPostPage({ params }: { params: { slug: any } }) {
   const { post } = await getProps({ params });
   const parsedToc = parseHeaderForTOC(post!.content);
   const mdx = await serializeMdx(post!.content);
 
   return (
     <div className="snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none prose dark:prose-dark self-start">
-      <ParallelPostDetail
+      <PostViewDashboard
         currentPost={post!}
         mdx={mdx!}
         parsedToc={parsedToc}

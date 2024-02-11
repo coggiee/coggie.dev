@@ -12,7 +12,7 @@ type Props = {
   content: string;
 };
 
-export default function PostTime({ date, content }: Props) {
+export default function PostTimeBox({ date, content }: Props) {
   return (
     <time
       dateTime={date}

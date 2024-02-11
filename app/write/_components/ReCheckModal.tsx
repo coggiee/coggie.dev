@@ -1,6 +1,5 @@
 "use client";
 
-import { EditDrawerProps } from "@/types/type";
 import {
   Button,
   Image,
@@ -16,15 +15,16 @@ import {
 import React, { useState } from "react";
 import NextImage from "next/image";
 import IconRemove from "@/app/_icons/IconRemove";
+import { ReCheckModalkProps } from "@/types/type";
 
-export default function EditDrawer({
+export default function ReCheckModal({
   isOpen,
   onOpenChange,
   handleOnTypeDesc,
   handleOnToggleHotPost,
   handleOnClickSaveBtn,
   handleOnFileChange,
-}: EditDrawerProps) {
+}: ReCheckModalkProps) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState<string | null>(null); // 이미지 url 주소 in string
 

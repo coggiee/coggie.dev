@@ -69,7 +69,7 @@ interface TagFilterProps {
   handleOnClickTag: (tag: string) => void;
 }
 
-interface EditDrawerProps {
+interface ReCheckModalkProps {
   isOpen: boolean;
   onOpenChange: () => void;
   handleOnTypeDesc: (e: React.ChangeEvent<HTMLInputElement>) => void;

@@ -2,7 +2,7 @@ import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
 import dynamic, * as Dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 
-const DynamicBlogSection = dynamic(() => import('./_components/BlogSection'), {
+const DynamicSearchPostSection = dynamic(() => import('./_components/SearchPostSection'), {
   ssr: false,
 });
 
@@ -35,7 +35,7 @@ export default async function Blog() {
   return (
     <section className='w-full h-full flex flex-col max-w-7xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
       <Suspense fallback={<div>Loading...</div>}>
-        <DynamicBlogSection
+        <DynamicSearchPostSection
           posts={posts}
           uniqueTags={uniqueTags}
           cursor={lastPostCursor}

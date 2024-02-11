@@ -1,6 +1,6 @@
-import React from 'react';
-import { getHotPosts, getRecentPosts } from '../_libs/hygraph';
-import ParallelPostSection from './_components/ParallelPostSection';
+import React from "react";
+import { getHotPosts, getRecentPosts } from "../_libs/hygraph";
+import PostDashboard from "./_components/PostDashboard";
 
 async function getProps() {
   const hotPosts = (await getHotPosts()) || [];
@@ -15,13 +15,13 @@ async function getProps() {
   };
 }
 
-export default async function PostPage() {
+export default async function BlogPage() {
   const {
     props: { hotPosts, recentPosts },
   } = await getProps();
   return (
-    <main className='snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none'>
-      <ParallelPostSection hotPosts={hotPosts} recentPosts={recentPosts} />
+    <main className="snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none">
+      <PostDashboard hotPosts={hotPosts} recentPosts={recentPosts} />
     </main>
   );
 }

@@ -12,7 +12,6 @@ interface PostCardProps {
   time: string;
   title: string;
   description: string;
-  path: string;
   tags: string[];
   coverImage?: CoverImage;
   readTimeMinutes: string;
@@ -23,7 +22,6 @@ export default function PostSideCard({
   time,
   title,
   description,
-  path,
   tags,
   coverImage,
   readTimeMinutes,

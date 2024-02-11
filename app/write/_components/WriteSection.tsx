@@ -1,18 +1,19 @@
 "use client";
 
 import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
-import TuiEditor from "@/app/write/_components/TuiEditor";
-import EditTitle from "@/app/write/_components/EditTitle";
+import TuiEditor from "@/app/write/_components/Editor";
 import Alert from "../../_components/common/Alert";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import { createPost } from "@/app/_libs/hygraph";
-import EditDrawer from "./EditDrawer";
+import ReCheckModal from "./ReCheckModal";
 import Link from "next/link";
-import { Button, Chip, Input, useDisclosure } from "@nextui-org/react";
+import { Button, Chip, useDisclosure } from "@nextui-org/react";
 import Loading from "@/app/loading";
+import TitleInput from "@/app/write/_components/TitleInput";
+import TagInput from "./TagInput";
 
-export default function EditSection() {
+export default function WriteSection() {
   const editorRef = useRef<any>(null);
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -126,25 +127,14 @@ export default function EditSection() {
 
   return (
     <div className="flex flex-col flex-grow flex-3 relative w-full pt-10">
-      <EditTitle title={title} handleOnTypeTitle={handleOnTypeTitle} />
+      <TitleInput title={title} handleOnTypeTitle={handleOnTypeTitle} />
+      <TagInput
+        tags={tags}
+        handleKeyPress={handleKeyPress}
+        handleOnTypeTags={handleOnTypeTags}
+      />
       <div className="mb-4">
-        <Input
-          id="tags"
-          name="tags"
-          type="text"
-          placeholder="태그를 추가하세요."
-          size="lg"
-          variant="underlined"
-          label="태그"
-          className="font-bold"
-          isRequired
-          value={tags}
-          onChange={handleOnTypeTags}
-          onKeyDown={handleKeyPress}
-        />
-      </div>
-      <div className="mb-4">
-        <ul className="flex flex-wrap justify-start items-center">
+        <ul className="flex flex-wrap justify-start items-center gap-2">
           {tagList.map((tag, index) => (
             <Chip
               key={index}
@@ -167,7 +157,7 @@ export default function EditSection() {
         <Button color="success" onPress={onOpen}>
           출간하기
         </Button>
-        <EditDrawer
+        <ReCheckModal
           isOpen={isOpen}
           onOpenChange={onOpenChange}
           handleOnTypeDesc={handleOnTypeDesc}

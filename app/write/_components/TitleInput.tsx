@@ -2,7 +2,7 @@ import { EditTitleProps } from "@/types/type";
 import { Textarea } from "@nextui-org/react";
 import React from "react";
 
-export default function Title({ title, handleOnTypeTitle }: EditTitleProps) {
+export default function TitleInput({ title, handleOnTypeTitle }: EditTitleProps) {
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     handleOnTypeTitle(event.target.value);
   };

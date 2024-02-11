@@ -1,7 +1,7 @@
 import IconLink from '@/app/_icons/IconLink';
 import { AlertProps } from '@/types/type';
 
-const Alert = ({ title, bgColor = 'dodgerblue' }: AlertProps) => {
+export default function Alert ({ title, bgColor = 'dodgerblue' }: AlertProps) {
   return (
     <div className='toast toast-end top-0 right-0 z-[999]'>
       <div
@@ -14,5 +14,3 @@ const Alert = ({ title, bgColor = 'dodgerblue' }: AlertProps) => {
     </div>
   );
 };
-
-export default Alert;
