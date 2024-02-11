@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import IconBackToHome from '@/app/_icons/IconBackToHome';
-import IconScale from '@/app/_icons/IconScale';
-import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
-import React, { useRef } from 'react';
-import { PostDetail } from '../../_components/post/PostDetail';
+import IconBackToHome from "@/app/_icons/IconBackToHome";
+import IconScale from "@/app/_icons/IconScale";
+import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
+import React, { useRef } from "react";
+import { PostDetail } from "../../_components/post/PostDetail";
 import {
   BreadcrumbItem,
   Breadcrumbs,
@@ -12,8 +12,8 @@ import {
   Card,
   CardBody,
   Link,
-} from '@nextui-org/react';
-import { usePathname } from 'next/navigation';
+} from "@nextui-org/react";
+import { usePathname, useRouter } from "next/navigation";
 
 type Props = {
   postId: string;
@@ -29,7 +29,8 @@ export default function ParallelPostDetail({
   parsedToc,
 }: Props) {
   const postDetailRef = useRef<HTMLDivElement>(null); // Ref 추가
-  const pathname = usePathname().split('/').slice(1);
+  const pathname = usePathname().split("/")[1];
+  const router = useRouter();
 
   return (
     <MotionVerticalProvider
@@ -37,49 +38,46 @@ export default function ParallelPostDetail({
       delay={0.6}
       fromY={100}
       toY={0}
-      className={'flex flex-col gap-5'}
+      className={"flex flex-col gap-5"}
     >
-      <div className='sticky top-16 p-3 flex gap-3 justify-between items-center border border-item-border-light rounded-lg dark:border-item-border-dark dark:text-white backdrop-blur-md z-[50]'>
-        <div className='flex gap-2 items-center'>
-          <Button
-            href={'/blog'}
-            as={Link}
-            variant='flat'
-            radius='full'
-            size='sm'
-            isIconOnly
-            className='dark:text-white'
-          >
-            <IconBackToHome className='text-sm' />
-          </Button>
-          <Breadcrumbs size='sm' variant='light'>
-            {pathname.map((path) => (
-              <BreadcrumbItem key={path}>{path}</BreadcrumbItem>
-            ))}
-          </Breadcrumbs>
-        </div>
-
+      <div className="sticky top-16 p-3 shrink-0 w-full flex gap-3 justify-between items-center border border-item-border-light rounded-lg dark:border-item-border-dark dark:text-white backdrop-blur-md z-[50]">
         <Button
-          href={`/post/${postId}`}
-          as={Link}
-          variant='flat'
-          radius='full'
-          size='sm'
+          variant="flat"
+          radius="full"
+          size="sm"
           isIconOnly
-          className='dark:text-white'
+          className="dark:text-white"
+          onPress={() => router.back()}
         >
-          <IconScale className='text-sm' />
+          <IconBackToHome className="text-sm" />
+        </Button>
+        <Breadcrumbs size="sm" variant="light" className="grow">
+          <BreadcrumbItem>{pathname}</BreadcrumbItem>
+          <BreadcrumbItem id="breadcrumb-title">
+            {currentPost.title}
+          </BreadcrumbItem>
+        </Breadcrumbs>
+        <Button
+          href={`/post-detail/${postId}`}
+          as={Link}
+          variant="flat"
+          radius="full"
+          size="sm"
+          isIconOnly
+          className="dark:text-white"
+        >
+          <IconScale className="text-sm" />
         </Button>
       </div>
 
       <Card
         isBlurred
-        radius='lg'
-        className='dark:text-white w-full'
-        shadow='md'
+        radius="lg"
+        className="dark:text-white w-full"
+        shadow="md"
         ref={postDetailRef}
       >
-        <CardBody className='p-0 w-full'>
+        <CardBody className="p-0 w-full">
           <PostDetail
             post={currentPost!}
             mdx={mdx!}

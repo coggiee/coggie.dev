@@ -5,15 +5,13 @@ import useDetectScroll from "../../_hooks/useDetectScroll";
 import { copyToClipboard } from "@/utils/copyToClipboard";
 import { useState } from "react";
 import Alert from "../common/Alert";
-import Giscus from "../../post/_components/Giscus";
+import Giscus from "../../post-detail/_components/Giscus";
 import { MDXRemote } from "next-mdx-remote";
 
-import FooterHero from "@/app/post/_components/FooterHero";
-import { TocSidebar } from "@/app/post/_components/TocSidebar";
-import DeleteModal from "../common/DeleteModal";
+import FooterHero from "@/app/post-detail/_components/FooterHero";
+import { TocSidebar } from "@/app/post-detail/_components/TocSidebar";
 import { deletePost } from "@/app/_libs/hygraph";
 import { useRouter } from "next/navigation";
-import { useModal } from "@/app/_hooks/useModal";
 import PostTime from "./PostTime";
 import { PostDetailProps } from "@/types/type";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
@@ -27,7 +25,6 @@ import {
   useDisclosure,
   Chip,
   Divider,
-  Link,
   Tooltip,
 } from "@nextui-org/react";
 import IconCheck from "@/app/_icons/IconCheck";
@@ -96,9 +93,9 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
                   </Chip>
                 ))}
               </div>
-              <div className="w-full flex justify-between items-center pb-10">
+              <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-5 pb-10">
                 <PostTime date={post!.date} content={post!.content} />
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 self-end sm:self-auto">
                   <div className="text-xs flex gap-3">
                     <Button
                       size="sm"

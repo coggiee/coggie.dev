@@ -27,7 +27,7 @@ const Nav = () => {
       <div className='flex justify-between items-center gap-5'>
         <div>
           <Link
-            href='/'
+            href='/blog'
             className='font-indieFlower text-4xl dark:text-[dodgerblue]'
           >
             Coggie
