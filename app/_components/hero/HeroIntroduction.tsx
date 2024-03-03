@@ -1,23 +1,27 @@
-import React from 'react';
+import React from "react";
 
 export default function HeroIntroduction() {
   return (
     <>
-      <h3 className='text-base font-thin font-mono leading-tight'>
-        <p>프론트엔드 개발자 문휘식입니다</p>
+      <h3 className="text-base font-thin font-mono leading-tight">
+        <p>
+          안녕하세요! 끊임없이 고민하고 성장을 갈구하는
+          <strong>FE 개발자 문휘식</strong>입니다.😃
+        </p>
       </h3>
-      <div className='flex flex-col gap-1 font-mono text-xs'>
+      <div className="flex flex-col gap-1 font-mono text-xs">
         <p>
-          <span>인터렉티브한 웹</span>
-          <span>에 관심이 있습니다. </span>
+          나만의 코드가 아닌{" "}
+          <strong>모두가 이해할 수 있고 스스로 설명할 수 있는 코드</strong>를
+          작성하려고 노력하며{" "}
+          <strong>
+            부족한 부분은 성장의 기회로 삼아 적극적으로 배우려고 합니다.
+          </strong>
         </p>
         <p>
-          최근에는 오버엔지니어링을 하지 않고, 어떻게{' '}
-          <span>재사용성 높은 컴포넌트</span>{' '}
-          <span>를 만들 수 있을지 고민하고 있습니다.</span>
-        </p>
-        <p>
-          <span>코드를 깔끔하게 작성하는 것을 좋아합니다.</span>
+          항상 더 나은 코드는 없을지 <strong>개선점을 고민</strong>하면서 개발에
+          임하는 동시에
+          <strong>정해진 기간을 엄수</strong>하려고 노력합니다.
         </p>
       </div>
     </>
