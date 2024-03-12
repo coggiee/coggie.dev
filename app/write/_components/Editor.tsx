@@ -16,7 +16,7 @@ import { useTheme } from "next-themes";
 import { useResize } from "@/app/_hooks/useResize";
 import UploadLoading from "./UploadLoading";
 
-export default function TuiEditor({ content = "", editorRef }: EditorProps) {
+export default function TuiEditor({ content = " ", editorRef }: EditorProps) {
   const { direction } = useResize();
   const toolbarItems = [
     ["heading", "bold", "italic", "strike"],
@@ -56,7 +56,7 @@ export default function TuiEditor({ content = "", editorRef }: EditorProps) {
             theme={`${theme === "light" ? "light" : "dark"}`}
             initialEditType="markdown"
             hideModeSwitch={true}
-            initialValue={" "}
+            initialValue={content}
             useCommandShortcut={true}
             toolbarItems={toolbarItems}
             hooks={{

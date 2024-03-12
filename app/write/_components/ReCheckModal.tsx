@@ -24,9 +24,11 @@ export default function ReCheckModal({
   handleOnToggleHotPost,
   handleOnClickSaveBtn,
   handleOnFileChange,
+  description,
+  coverImageUrl,
 }: ReCheckModalkProps) {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [preview, setPreview] = useState<string | null>(null); // 이미지 url 주소 in string
+  const [preview, setPreview] = useState<string | null>(coverImageUrl ?? null); // 이미지 url 주소 in string
 
   const handleCoverImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files![0];
@@ -68,7 +70,7 @@ export default function ReCheckModal({
                 className="w-full resize-none outline-none text-base font-bold overflow-visible min-h-[5em]"
                 placeholder="설명을 입력하세요"
                 variant="underlined"
-                // value={description}
+                value={description}
                 onChange={handleOnTypeDesc}
               />
 

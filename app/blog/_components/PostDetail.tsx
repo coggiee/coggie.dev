@@ -66,6 +66,11 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
     }
   };
 
+  const handleOnClickModifyButton = () => {
+    const { id } = post;
+    router.push(`/write/${id}?isUpdate=true`);
+  };
+
   return (
     <MotionVerticalProvider duration={0.7} fromY={500} toY={0}>
       <div className="prose dark:prose-dark w-full max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert">
@@ -103,6 +108,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
                       variant="flat"
                       radius="md"
                       className="p-0"
+                      onClick={handleOnClickModifyButton}
                     >
                       수정
                     </Button>

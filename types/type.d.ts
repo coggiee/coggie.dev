@@ -76,6 +76,8 @@ interface ReCheckModalkProps {
   handleOnToggleHotPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleOnClickSaveBtn: () => void;
   handleOnFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  description: string;
+  coverImageUrl: string;
 }
 
 interface EditTitleProps {

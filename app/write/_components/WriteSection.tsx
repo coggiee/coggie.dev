@@ -3,9 +3,9 @@
 import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
 import TuiEditor from "@/app/write/_components/Editor";
 import Alert from "../../_components/common/Alert";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import dayjs from "dayjs";
-import { createPost } from "@/app/_libs/hygraph";
+import { createPost, updatePost } from "@/app/_libs/hygraph";
 import ReCheckModal from "./ReCheckModal";
 import Link from "next/link";
 import { Button, Chip, useDisclosure } from "@nextui-org/react";
@@ -13,19 +13,32 @@ import Loading from "@/app/loading";
 import TitleInput from "@/app/write/_components/TitleInput";
 import TagInput from "./TagInput";
 
-export default function WriteSection() {
+interface WriteSectionProps {
+  post?: any;
+}
+
+export default function WriteSection({ post }: WriteSectionProps) {
+  const searchParams = useSearchParams();
   const editorRef = useRef<any>(null);
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [coverImage, setCoverImage] = useState<any>(null);
+  const [title, setTitle] = useState<string>(post ? post.title : "");
+  const [description, setDescription] = useState<string>(
+    post ? post.description : "",
+  );
+  const [coverImage, setCoverImage] = useState<any>(
+    post ? post.coverImage.url : null,
+  );
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isPostCreated, setIsPostCreated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isHotPost, setIsHotPost] = useState<boolean>(false);
+  const [isHotPost, setIsHotPost] = useState<boolean>(post ? post.hot : false);
   const [tags, setTags] = useState("");
-  const [tagList, setTagList] = useState<string[]>([]);
+  const [tagList, setTagList] = useState<string[]>(post ? post.tags : []);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const router = useRouter();
+  const isUpdate = searchParams.has("isUpdate")
+    ? searchParams.get("isUpdate")
+    : false;
 
   const handleOnSave = async () => {
     setIsLoading(true);
@@ -50,40 +63,59 @@ export default function WriteSection() {
       setTitle(title.slice(0, title.length - 1));
     }
 
-    const form = new FormData();
-
-    form.append("fileUpload", coverImage);
-
-    const assetResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
-        },
-        body: form,
-      },
-    );
-    const { id } = await assetResponse.json();
-
     const date = dayjs().format();
 
-    const response = await createPost(
-      title,
-      description,
-      content,
-      tagList,
-      isHotPost,
-      new Date(date),
-      id,
-    );
+    let response = null;
+    let coverImageId = null;
+    const isCoverImageChanged = coverImage !== post.coverImage.url;
 
-    const data = response.createPost;
+    if (isCoverImageChanged) {
+      const form = new FormData();
+
+      form.append("fileUpload", coverImage);
+
+      const assetResponse = await fetch(
+        `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
+          },
+          body: form,
+        },
+      );
+
+      const { id } = await assetResponse.json();
+      coverImageId = id;
+    }
+    if (!isUpdate) {
+      response = await createPost(
+        title,
+        description,
+        content,
+        tagList,
+        isHotPost,
+        new Date(date),
+        coverImageId,
+      );
+    } else {
+      response = await updatePost(
+        isCoverImageChanged ? coverImageId : post.coverImage.id,
+        content,
+        description,
+        isHotPost,
+        tagList,
+        title,
+        post.id,
+      );
+    }
+
+    const data = response;
 
     if (data) {
       setIsLoading(false);
       setIsPostCreated(true);
-      router.push("/blog");
+      router.back();
     }
   };
 
@@ -125,6 +157,10 @@ export default function WriteSection() {
     setTagList(tagList.filter((tag) => tag !== tagToRemove));
   };
 
+  const handleBack = () => {
+    router.back();
+  };
+
   return (
     <div className="flex flex-col flex-grow flex-3 relative w-full pt-10">
       <TitleInput title={title} handleOnTypeTitle={handleOnTypeTitle} />
@@ -149,9 +185,9 @@ export default function WriteSection() {
           ))}
         </ul>
       </div>
-      <TuiEditor content={""} editorRef={editorRef} />
+      <TuiEditor content={post ? post.content : " "} editorRef={editorRef} />
       <div className="w-full flex gap-3 fixed bottom-0 px-10 py-3 justify-end">
-        <Button as={Link} href="/blog">
+        <Button onPress={handleBack}>
           <span>나가기</span>
         </Button>
         <Button color="success" onPress={onOpen}>
@@ -164,6 +200,8 @@ export default function WriteSection() {
           handleOnToggleHotPost={handleOnToggleHotPost}
           handleOnClickSaveBtn={handleOnSave}
           handleOnFileChange={handleOnFileChange}
+          description={description}
+          coverImageUrl={post.coverImage.url}
         />
       </div>
       {isAlertVisible && (
