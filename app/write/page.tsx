@@ -9,9 +9,7 @@ const DynamicWriteSection = dynamic(
   },
 );
 
-type Props = {};
-
-export default function page({}: Props) {
+export default function page() {
   return (
     <div className="dark:text-[#fff] w-full mx-auto flex flex-col  md:flex-row gap-5 relative">
       <Suspense fallback={<div>Loading...</div>}>
