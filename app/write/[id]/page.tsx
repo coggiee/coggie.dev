@@ -22,7 +22,6 @@ export default async function WritePage({
 }: {
   params: { id: string };
 }) {
-  console.log(params.id);
   const { post } = await getCurrentPost(params.id);
   return (
     <div className="dark:text-[#fff] w-full mx-auto flex flex-col  md:flex-row gap-5 relative">
