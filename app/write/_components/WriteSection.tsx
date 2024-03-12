@@ -201,7 +201,7 @@ export default function WriteSection({ post }: WriteSectionProps) {
           handleOnClickSaveBtn={handleOnSave}
           handleOnFileChange={handleOnFileChange}
           description={description}
-          coverImageUrl={post.coverImage.url}
+          coverImageUrl={post ? post.coverImage.url : null}
         />
       </div>
       {isAlertVisible && (
