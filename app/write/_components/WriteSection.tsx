@@ -27,6 +27,7 @@ export default function WriteSection({ post }: WriteSectionProps) {
   const [coverImage, setCoverImage] = useState<any>(
     post ? post.coverImage.url : null,
   );
+
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isPostCreated, setIsPostCreated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -112,12 +113,12 @@ export default function WriteSection({ post }: WriteSectionProps) {
       );
     }
 
-    const data = response;
+    const { id } = response;
 
-    if (data) {
+    if (id) {
       setIsLoading(false);
       setIsPostCreated(true);
-      router.back();
+      router.push(`/blog/${id}`);
     }
   };
 
@@ -150,7 +151,6 @@ export default function WriteSection({ post }: WriteSectionProps) {
   };
 
   const handleOnFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // 썸네일은 무조건 추가해야 한다.
     const file = e.target.files![0];
     setCoverImage(file);
   };
@@ -204,6 +204,7 @@ export default function WriteSection({ post }: WriteSectionProps) {
           handleOnFileChange={handleOnFileChange}
           description={description}
           coverImageUrl={post ? post.coverImage.url : null}
+          defaultSelected={isHotPost}
         />
       </div>
       {isAlertVisible && (
