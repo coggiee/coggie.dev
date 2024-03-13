@@ -26,6 +26,7 @@ export default function ReCheckModal({
   handleOnFileChange,
   description,
   coverImageUrl,
+  defaultSelected,
 }: ReCheckModalkProps) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState<string | null>(coverImageUrl ?? null); // 이미지 url 주소 in string
@@ -118,7 +119,7 @@ export default function ReCheckModal({
               <div className="flex items-center">
                 <span className="text-sm mr-5 font-bold">📍 Pinned?</span>
                 <Switch
-                  defaultSelected
+                  isSelected={defaultSelected}
                   color="success"
                   size="sm"
                   onChange={handleOnToggleHotPost}
