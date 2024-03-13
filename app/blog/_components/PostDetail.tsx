@@ -53,7 +53,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
       const data = await deletePost(post.id);
       if (data !== null) {
         setAlertTitle("포스트를 삭제했습니다.");
-        router.push("/");
+        router.push("/blog");
       } else {
         setAlertTitle("포스트 삭제에 에러가 발생했습니다.");
       }
