@@ -214,6 +214,7 @@ export async function createPost(
         title
         date
         description
+        id
       }
     }
   `;
@@ -231,7 +232,7 @@ export async function createPost(
     },
   });
 
-  return results;
+  return results.createPost;
 }
 
 export async function getPostsOnScroll(after: string) {
@@ -345,5 +346,5 @@ export async function updatePost(
     postId,
   });
 
-  return results;
+  return results.updatePost;
 }
