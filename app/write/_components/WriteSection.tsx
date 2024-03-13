@@ -67,7 +67,9 @@ export default function WriteSection({ post }: WriteSectionProps) {
 
     let response = null;
     let coverImageId = null;
-    const isCoverImageChanged = coverImage !== post.coverImage.url;
+    const isCoverImageChanged = post
+      ? coverImage !== post.coverImage.url
+      : true;
 
     if (isCoverImageChanged) {
       const form = new FormData();
