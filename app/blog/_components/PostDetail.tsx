@@ -28,6 +28,7 @@ import {
 } from "@nextui-org/react";
 import IconCheck from "@/app/_icons/IconCheck";
 import CommentSection from "./CommentSection";
+import { useSession } from "next-auth/react";
 
 export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const { scroll } = useDetectScroll();
@@ -35,11 +36,10 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isFallback, setisFallback] = useState<boolean>(false);
   const [alertTitle, setAlertTitle] = useState<string>("");
-
+  const { data: session } = useSession();
   const router = useRouter();
 
   const handleOnClickCopyButton = () => {
-    console.log(post.id);
     copyToClipboard(post.id);
 
     setIsAlertVisible(true);
@@ -101,28 +101,31 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
               <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-5 pb-10">
                 <PostTimeBox date={post!.date} content={post!.content} />
                 <div className="flex items-center gap-3 self-end sm:self-auto">
-                  <div className="text-xs flex gap-3">
-                    <Button
-                      size="sm"
-                      color="success"
-                      variant="flat"
-                      radius="md"
-                      className="p-0"
-                      onClick={handleOnClickModifyButton}
-                    >
-                      수정
-                    </Button>
-                    <Button
-                      size="sm"
-                      color="danger"
-                      variant="flat"
-                      radius="md"
-                      className="p-0"
-                      onPress={() => onOpen()}
-                    >
-                      삭제
-                    </Button>
-                  </div>
+                  {session &&
+                    session.user?.email === "zentechie7@gmail.com" && (
+                      <div className="text-xs flex gap-3">
+                        <Button
+                          size="sm"
+                          color="success"
+                          variant="flat"
+                          radius="md"
+                          className="p-0"
+                          onClick={handleOnClickModifyButton}
+                        >
+                          수정
+                        </Button>
+                        <Button
+                          size="sm"
+                          color="danger"
+                          variant="flat"
+                          radius="md"
+                          className="p-0"
+                          onPress={() => onOpen()}
+                        >
+                          삭제
+                        </Button>
+                      </div>
+                    )}
                   <Tooltip
                     showArrow={true}
                     placement="bottom"
