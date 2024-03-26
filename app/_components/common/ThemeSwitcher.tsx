@@ -1,52 +1,55 @@
-'use client';
-import IconMoon from '@/app/_icons/IconMoon';
-import IconSun from '@/app/_icons/IconSun';
-import { useTheme } from 'next-themes';
+"use client";
 
-export const ThemeSwitcher = () => {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+import IconMoon from "@/app/_icons/IconMoon";
+import IconSun from "@/app/_icons/IconSun";
+import { VisuallyHidden, useSwitch } from "@nextui-org/react";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
+
+export default function ThemeSwitcher() {
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  const {
+    Component,
+    slots,
+    isSelected,
+    getBaseProps,
+    getInputProps,
+    getWrapperProps,
+  } = useSwitch();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-    <div
-      className='tooltip tooltip-bottom cursor-pointer p-2 rounded-xl hover:bg-[#c1c1c12f] dark:bg-inherit'
-      data-tip='theme'
-    >
-      <div className='flex justify-center items-center'>
-        {resolvedTheme === 'dark' ? (
-          <label className='swap swap-rotate'>
-            {/* this hidden checkbox controls the state */}
-            <input
-              type='checkbox'
-              className='theme-controller'
-              value='synthwave'
-            />
-            <IconSun
-              className='swap-on fill-current text-[#ffde49]'
-              onClick={() => setTheme('dark')}
-            />
-            <IconMoon
-              className='swap-off fill-current text-[#8046ff]'
-              onClick={() => setTheme('light')}
-            />
-          </label>
-        ) : (
-          <label className='swap swap-rotate'>
-            {/* this hidden checkbox controls the state */}
-            <input
-              type='checkbox'
-              className='theme-controller'
-              value='synthwave'
-            />
-            <IconSun
-              className='swap-on fill-current text-[#ffde49]'
-              onClick={() => setTheme('dark')}
-            />
-            <IconMoon
-              className='swap-off fill-current text-[#8046ff]'
-              onClick={() => setTheme('light')}
-            />
-          </label>
-        )}
+    <Component {...getBaseProps()}>
+      <VisuallyHidden>
+        <input {...getInputProps()} />
+      </VisuallyHidden>
+      <div
+        {...getWrapperProps()}
+        className={slots.wrapper({
+          class: [
+            "w-8 h-8 mr-0",
+            "flex items-center justify-center",
+            "rounded-lg text-white bg-[#8046ff] hover:bg-[#6644b2]",
+          ],
+          color: "warning",
+        })}
+        onClick={() => {
+          if (theme === "dark") {
+            setTheme("light");
+          } else {
+            setTheme("dark");
+          }
+        }}
+      >
+        {isSelected ? <IconSun /> : <IconMoon />}
       </div>
-    </div>
+    </Component>
   );
-};
+}

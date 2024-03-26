@@ -1,48 +1,27 @@
-import { getTotalTags, getTotalPosts } from '../_libs/hygraph';
-import dynamic, * as Dynamic from 'next/dynamic';
-import { Suspense } from 'react';
-
-const DynamicBlogSection = dynamic(() => import('./_components/BlogSection'), {
-  ssr: false,
-});
+import React from "react";
+import { getHotPosts, getRecentPosts } from "../_libs/hygraph";
+import PostDashboard from "./_components/PostDashboard";
 
 async function getProps() {
-  const { edges, aggregate } = (await getTotalPosts()) || [];
-  const posts = edges.map((post: any) => post.node);
-  const lastPostCursor = posts[posts.length - 1].id;
-  const tags = (await getTotalTags()) || [];
-  const uniqueTags = Array.from(
-    new Set<string>(tags.flatMap((post: any) => post.tags))
-  );
-  uniqueTags.unshift('All');
+  const hotPosts = (await getHotPosts()) || [];
+  const recentPosts = (await getRecentPosts()) || [];
 
   return {
     props: {
-      posts,
-      uniqueTags,
-      lastPostCursor,
-      totalPostsSize: aggregate.count,
+      hotPosts,
+      recentPosts,
     },
     revalidate: 60,
   };
 }
 
-export default async function Blog() {
+export default async function BlogPage() {
   const {
-    props: { posts, uniqueTags, lastPostCursor, totalPostsSize },
+    props: { hotPosts, recentPosts },
   } = await getProps();
-
   return (
-    <section className='w-full mx-auto flex flex-col max-w-screen-7xl gap-10 dark:text-[#fff] md:flex-row-reverse relative'>
-      <Suspense fallback={<div>Loading...</div>}>
-        <DynamicBlogSection
-          posts={posts}
-          uniqueTags={uniqueTags}
-          cursor={lastPostCursor}
-          totalPostSize={totalPostsSize}
-        />
-      </Suspense>
-      {/* 태그 클릭 시, 해당 태그를 가지고 있는 포스트를 보여줌 */}
-    </section>
+    <main className="snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none">
+      <PostDashboard hotPosts={hotPosts} recentPosts={recentPosts} />
+    </main>
   );
 }

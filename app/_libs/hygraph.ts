@@ -1,4 +1,4 @@
-import { GraphQLClient, gql } from 'graphql-request';
+import { GraphQLClient, gql } from "graphql-request";
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 
@@ -31,7 +31,7 @@ export async function getTotalPosts() {
 
   const results: any = await graphcms.request(query, {
     headers: {
-      'hyg-stale-while-revalidate': '27',
+      "hyg-stale-while-revalidate": "27",
     },
   });
   return results.postsConnection;
@@ -48,6 +48,11 @@ export async function getSinglePost(id: string) {
         tags
         title
         description
+        coverImage {
+          url
+          handle
+          id
+        }
       }
     }
   `;
@@ -84,7 +89,7 @@ export async function getHotPosts() {
 
   const results: any = await graphcms.request(query, {
     headers: {
-      'hyg-stale-while-revalidate': '27',
+      "hyg-stale-while-revalidate": "27",
     },
   });
   return results.postsConnection.edges;
@@ -120,7 +125,7 @@ export async function getRecentPosts() {
 
   const results: any = await graphcms.request(query, {
     headers: {
-      'hyg-stale-while-revalidate': '27',
+      "hyg-stale-while-revalidate": "27",
     },
   });
   return results.postsConnection.edges;
@@ -137,7 +142,7 @@ export async function getTotalTags() {
 
   const results: any = await graphcms.request(query, {
     headers: {
-      'hyg-stale-while-revalidate': '27',
+      "hyg-stale-while-revalidate": "27",
     },
   });
   return results.posts;
@@ -168,7 +173,7 @@ export async function getPostsByTag(tag: any[]) {
 
   const results: any = await graphcms.request(query, {
     tags_contains_some: tag,
-    'hyg-stale-while-revalidate': '27',
+    "hyg-stale-while-revalidate": "27",
   });
   return results.posts;
 }
@@ -180,7 +185,7 @@ export async function createPost(
   tags: any[],
   hot: boolean,
   date: Date,
-  id: string
+  id: string,
 ) {
   const query = gql`
     mutation createPost(
@@ -209,6 +214,7 @@ export async function createPost(
         title
         date
         description
+        id
       }
     }
   `;
@@ -222,11 +228,11 @@ export async function createPost(
     date,
     id,
     headers: {
-      'hyg-stale-while-revalidate': '27',
+      "hyg-stale-while-revalidate": "27",
     },
   });
 
-  return results;
+  return results.createPost;
 }
 
 export async function getPostsOnScroll(after: string) {
@@ -279,4 +285,66 @@ export async function searchPostByTitle(title: string) {
     title_contains: title,
   });
   return results.posts;
+}
+
+export async function deletePost(id: string) {
+  const query = gql`
+    mutation deletePost($id: ID = "") {
+      deletePost(where: { id: $id }) {
+        id
+      }
+    }
+  `;
+  const results: any = await graphcms.request(query, {
+    id,
+  });
+
+  return results.deletePost;
+}
+
+export async function updatePost(
+  coverImageId: string,
+  content: string,
+  description: string,
+  hot: boolean,
+  tags: any[],
+  title: string,
+  postId: string,
+) {
+  const query = gql`
+    mutation MyMutation(
+      $coverImageId: ID
+      $content: String
+      $description: String
+      $hot: Boolean
+      $tags: [Tags!]
+      $title: String
+      $postId: ID
+    ) {
+      updatePost(
+        data: {
+          description: $description
+          tags: $tags
+          title: $title
+          coverImage: { connect: { id: $coverImageId } }
+          content: $content
+          hot: $hot
+        }
+        where: { id: $postId }
+      ) {
+        id
+      }
+    }
+  `;
+  const results: any = await graphcms.request(query, {
+    coverImageId,
+    content,
+    description,
+    hot,
+    tags,
+    title,
+    postId,
+  });
+
+  return results.updatePost;
 }

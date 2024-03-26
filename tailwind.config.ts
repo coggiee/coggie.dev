@@ -1,11 +1,13 @@
 import type { Config } from 'tailwindcss';
 const { spacing } = require('tailwindcss/defaultTheme');
+const {nextui} = require("@nextui-org/react")
 
 const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -25,8 +27,6 @@ const config: Config = {
         permanentMarker: ['var(--font-permanentMarker)'],
         dhurjati: ['var(--font-dhurjati)'],
         teko: ['var(--font-teko)'],
-        // pretendard: ['var(--font-pretendard)'],
-        // tossface: ['var(--font-tossface)'],
       },
       transitionProperty: {
         'max-height': 'max-height',
@@ -46,7 +46,7 @@ const config: Config = {
         'hover-light': '#99999923',
         'hover-dark': '#434343',
         'item-border-light': '#dcdcdc',
-        'item-dark': '#282828',
+        'item-dark': '#1c1c1c',
         'item-border-dark': '#353535',
         'brand-color': 'dodgerblue',
         'sub-light': '#ffffff8d',
@@ -60,6 +60,7 @@ const config: Config = {
     require('daisyui'),
     'prettier-plugin-tailwindcss',
     require('tailwind-scrollbar'),
+    nextui(),
   ],
 };
 export default config;

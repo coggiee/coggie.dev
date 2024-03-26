@@ -1,44 +1,50 @@
-import IconGithub from '@/app/_icons/IconGithub';
-import IconGmail from '@/app/_icons/IconGmail';
-import IconPrevBlog from '@/app/_icons/IconPrevBlog';
-import IconVelog from '@/app/_icons/IconVelog';
-import Link from 'next/link';
-import { Tooltip } from './Tooltip';
+import IconGithub from "@/app/_icons/IconGithub";
+import IconGmail from "@/app/_icons/IconGmail";
+import IconVelog from "@/app/_icons/IconVelog";
+import { SocialGroupProps } from "@/types/type";
+import { Button, ButtonGroup, Link } from "@nextui-org/react";
 
-interface SocialGroupProps {
-  fontSize: string;
-  justify?: string;
-  align?: string;
-}
-export const SocialGroup = ({ fontSize, justify, align }: SocialGroupProps) => {
+export default function SocialGroup({
+  fontSize = "14px",
+  display = "flex",
+  justify = "normal",
+  align = "normal",
+  direction = "row",
+}: SocialGroupProps) {
   return (
-    <div
-      className={`flex items-center gap-2 text-white font-mono ${fontSize} self-start`}
+    <ButtonGroup
+      className={`${display} flex-${direction} justify-${justify} items-${align} text-[${fontSize}] self-start `}
     >
-      <Tooltip
-        dataTip='github'
-        style='border bg-sub-light dark:bg-sub-dark border-item-border-light dark:border-item-border-dark '
+      <Button
+        href="https://github.com/coggiee"
+        as={Link}
+        variant="flat"
+        radius="full"
+        size="md"
+        isIconOnly
       >
-        <Link href='https://github.com/lunarmoon7' passHref>
-          <IconGithub />
-        </Link>
-      </Tooltip>
-      <Tooltip
-        dataTip='previous blog'
-        style='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark '
+        <IconGithub />
+      </Button>
+      <Button
+        href="https://velog.io/@49crehbgr"
+        as={Link}
+        variant="flat"
+        radius="full"
+        size="md"
+        isIconOnly
       >
-        <Link href='https://velog.io/@49crehbgr' passHref>
-          <IconVelog />
-        </Link>
-      </Tooltip>
-      <Tooltip
-        dataTip='mail'
-        style='border bg-sub-light dark:bg-sub-dark  border-item-border-light dark:border-item-border-dark '
+        <IconVelog />
+      </Button>
+      <Button
+        href="mailto:zentechie7@gmail.com"
+        as={Link}
+        variant="flat"
+        radius="full"
+        size="md"
+        isIconOnly
       >
-        <Link href='mailto:zentechie7@gmail.com' passHref>
-          <IconGmail />
-        </Link>
-      </Tooltip>
-    </div>
+        <IconGmail />
+      </Button>
+    </ButtonGroup>
   );
-};
+}

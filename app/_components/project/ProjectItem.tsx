@@ -2,50 +2,70 @@ import IconGithub from '@/app/_icons/IconGithub';
 import React from 'react';
 import Link from 'next/link';
 import IconDemo from '@/app/_icons/IconDemo';
-import { motion } from 'framer-motion';
-
-type Props = {
-  projectTitle: string;
-  projectDescription: string;
-  projectGithubLink: string;
-  projectDemoLink: string;
-};
+import { ProjectItemProps } from '@/types/type';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Image,
+} from '@nextui-org/react';
 
 export default function ProjectItem({
   projectTitle,
   projectDescription,
   projectGithubLink,
   projectDemoLink,
-}: Props) {
+}: ProjectItemProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className='w-full min-w-0 flex flex-col grow justify-between flex-shrink-0 gap-5 px-3 py-5 rounded-lg cursor-pointer  hover:bg-hover-light dark:hover:bg-hover-dark xl:flex-row xl:items-center'
+    <Card
+      isFooterBlurred
+      isBlurred
+      isHoverable
+      shadow='lg'
+      radius='lg'
+      className='relative w-full h-36 min-w-0 grow flex-shrink-0 gap-5 cursor-pointer'
     >
-      <div className='flex flex-col gap-2'>
-        <div className='font-semibold text-2xl font-dhurjati'>{projectTitle}</div>
-        <div className='text-sm'>{projectDescription}</div>
-      </div>
-      <div className='flex gap-2 h-fit self-end xl:self-auto'>
-        <Link
+      <CardHeader className='flex flex-col gap-2 text-white absolute top-0 left-0 z-50'>
+        <div className='w-full font-semibold text-xl font-dhurjati text-left'>
+          {projectTitle}
+        </div>
+        <div className='w-full text-xs'>{projectDescription}</div>
+      </CardHeader>
+      <CardBody className='p-0'>
+        <Image
+          alt='project-image'
+          className='object-cover grayscale'
+          height='100%'
+          width='100%'
+          src='https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg'
+        />
+      </CardBody>
+      <CardFooter className='px-0 mx-2 gap-2 before:bg-white/10 overflow-hidden py-1 absolute before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_15px)] shadow-small z-10'>
+        <Button
+          as={Link}
           href={`${projectGithubLink}`}
-          passHref
-          target='_blank'
-          className='p-2 rounded-full border border-item-border-light dark:border-item-border-dark text-black hover:bg-white hover:text-black dark:hover:text-black dark:text-white'
+          variant='light'
+          radius='full'
+          isIconOnly
+          aria-label='github'
+          className='border-none'
         >
           <IconGithub />
-        </Link>
-        <Link
+        </Button>
+        <Button
+          as={Link}
           href={`${projectDemoLink}`}
-          passHref
-          target='_blank'
-          className='p-2 rounded-full border border-item-border-light dark:border-item-border-dark text-black hover:bg-white hover:text-black dark:hover:text-black dark:text-white'
+          variant='light'
+          radius='full'
+          isIconOnly
+          aria-label='demo'
+          className='border-none'
         >
           <IconDemo />
-        </Link>
-      </div>
-    </motion.div>
+        </Button>
+      </CardFooter>
+    </Card>
   );
 }
