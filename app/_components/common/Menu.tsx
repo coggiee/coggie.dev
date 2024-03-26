@@ -16,7 +16,11 @@ import {
 } from "@nextui-org/react";
 import { IconEdit } from "@/app/_icons/IconEdit";
 
-export default function Menu({ handleOnLogin, session }: DropDownProps) {
+export default function Menu({
+  handleOnLogin,
+  session,
+  handleOnLogout,
+}: DropDownProps) {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
   return (
@@ -57,19 +61,31 @@ export default function Menu({ handleOnLogin, session }: DropDownProps) {
           </DropdownItem>
         )}
         {session && session.user!.email === "zentechie7@gmail.com" && (
-          <DropdownItem
-            key="write"
-            className="text-danger"
-            color="danger"
-            shortcut="⌘⇧D"
-            description="Allows you to write post"
-            startContent={
-              <IconEdit className={cn(iconClasses, "text-danger")} />
-            }
-            href="/write"
-          >
-            Write Post
-          </DropdownItem>
+          <>
+            <DropdownItem
+              key="write"
+              className="text-danger"
+              color="danger"
+              shortcut="⌘⇧D"
+              description="Allows you to write post"
+              startContent={
+                <IconEdit className={cn(iconClasses, "text-danger")} />
+              }
+              href="/write"
+            >
+              Write Post
+            </DropdownItem>
+            <DropdownItem
+              key="logout"
+              shortcut="⌘⇧A"
+              showDivider
+              description="Logout"
+              startContent={<IconGithub className={iconClasses} />}
+              onPress={handleOnLogout}
+            >
+              Logout
+            </DropdownItem>
+          </>
         )}
       </DropdownMenu>
     </Dropdown>

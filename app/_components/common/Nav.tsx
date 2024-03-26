@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import ThemeSwitcher from "./ThemeSwitcher";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import {
   Navbar,
   NavbarBrand,
@@ -19,6 +19,10 @@ export default function Nav() {
     signIn("github");
   };
 
+  const handleOnLogout = () => {
+    signOut();
+  };
+
   return (
     <Navbar isBlurred className="bg-transparent grow w-full flex-shrink-0">
       <NavbarBrand>
@@ -31,7 +35,7 @@ export default function Nav() {
       </NavbarBrand>
       <NavbarContent justify="end" className="flex items-center">
         <NavbarItem>
-          <Menu handleOnLogin={handleOnLogin} session={session} />
+          <Menu session={session} handleOnLogin={handleOnLogin} handleOnLogout={handleOnLogout} />
         </NavbarItem>
         <NavbarItem>
           <ThemeSwitcher />

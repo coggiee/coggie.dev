@@ -117,6 +117,7 @@ interface DividerProps {
 
 interface DropDownProps {
   handleOnLogin: () => void;
+  handleOnLogout: () => void;
   session: any;
 }
 
