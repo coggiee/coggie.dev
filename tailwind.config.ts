@@ -34,7 +34,6 @@ const config: Config = {
       typography: (theme: any) => ({
         DEFAULT: {
           css: {
-            //...
             "h1,h2,h3,h4": {
               "scroll-margin-top": spacing[32],
             },

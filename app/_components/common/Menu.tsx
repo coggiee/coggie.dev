@@ -23,6 +23,7 @@ export default function Menu({
 }: DropDownProps) {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
+    
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -48,44 +49,30 @@ export default function Menu({
         >
           Language Switcher
         </DropdownItem>
-        {!session && (
-          <DropdownItem
-            key="login"
-            shortcut="⌘⇧E"
-            showDivider
-            description="Login with Github"
-            startContent={<IconGithub className={iconClasses} />}
-            onPress={handleOnLogin}
-          >
-            Login
-          </DropdownItem>
-        )}
+        <DropdownItem
+          key={session ? "logout" : "login"}
+          shortcut="⌘⇧E"
+          showDivider
+          description={session ? "Logout" : "Login with Github"}
+          startContent={<IconGithub className={iconClasses} />}
+          onPress={session ? handleOnLogout : handleOnLogin}
+        >
+          {session ? "Logout" : "Login"}
+        </DropdownItem>
         {session && session.user!.email === "zentechie7@gmail.com" && (
-          <>
-            <DropdownItem
-              key="write"
-              className="text-danger"
-              color="danger"
-              shortcut="⌘⇧D"
-              description="Allows you to write post"
-              startContent={
-                <IconEdit className={cn(iconClasses, "text-danger")} />
-              }
-              href="/write"
-            >
-              Write Post
-            </DropdownItem>
-            <DropdownItem
-              key="logout"
-              shortcut="⌘⇧A"
-              showDivider
-              description="Logout"
-              startContent={<IconGithub className={iconClasses} />}
-              onPress={handleOnLogout}
-            >
-              Logout
-            </DropdownItem>
-          </>
+          <DropdownItem
+            key="write"
+            className="text-danger"
+            color="danger"
+            shortcut="⌘⇧D"
+            description="Allows you to write post"
+            startContent={
+              <IconEdit className={cn(iconClasses, "text-danger")} />
+            }
+            href="/write"
+          >
+            Write Post
+          </DropdownItem>
         )}
       </DropdownMenu>
     </Dropdown>
