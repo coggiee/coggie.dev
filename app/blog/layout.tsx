@@ -7,8 +7,12 @@ import Loading from "./loading";
 
 export default function PostLayout({
   children,
+  pinnedpost,
+  recentpost,
 }: {
   children: React.ReactNode;
+  pinnedpost: React.ReactNode;
+  recentpost: React.ReactNode;
 }) {
   return (
     <div className="w-full h-full min-h-full">
@@ -18,10 +22,12 @@ export default function PostLayout({
           <Suspense fallback={<Loading />}>
             <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
               <InfoSiderbar />
+              <RightSidebar />
             </aside>
             {children}
-            <aside className="snap-start hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col self-start flex-grow-0 flex-shrink-0 md:snap-none">
-              <RightSidebar />
+            <aside className="snap-start hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0 md:snap-none">
+              {pinnedpost}
+              {recentpost}
             </aside>
           </Suspense>
         </main>
