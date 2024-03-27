@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import ProjectList from '../project/ProjectList';
-import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
+import React from "react";
+import ProjectList from "../project/ProjectList";
+import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 
 export default function RightSidebar() {
   return (
@@ -11,7 +11,9 @@ export default function RightSidebar() {
       delay={0.6}
       fromY={100}
       toY={0}
-      className={'w-full flex flex-col gap-5 flex-shrink-0'}
+      className={
+        "w-full flex-col gap-5 snap-start hidden min-w-0 2xl:flex 2xl:flex-col self-start flex-grow-0 flex-shrink-0 md:snap-none"
+      }
     >
       <ProjectList />
     </MotionVerticalProvider>

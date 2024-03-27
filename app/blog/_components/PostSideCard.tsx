@@ -32,7 +32,7 @@ export default function PostSideCard({
       isHoverable
       radius="none"
       shadow="none"
-      className="font-notosanskr dark:text-white cursor-pointer bg-transparent p-3"
+      className="font-notosanskr dark:text-white cursor-pointer bg-transparent p-3 rounded-lg"
     >
       <CardBody className="p-2">
         <div className="flex flex-row gap-5">
