@@ -6,12 +6,17 @@ import Introduction from "../../_components/common/Introduction";
 import PostList from "./PostList";
 import { Divider } from "@nextui-org/react";
 
-type Props = {
-  hotPosts: any;
-  recentPosts: any;
-};
+interface PostDashboardProps {
+  totalPosts: any;
+  lastCursor: string;
+  totalPageSize: number;
+}
 
-export default function PostDashboard({ hotPosts, recentPosts }: Props) {
+export default function PostDashboard({
+  totalPosts,
+  lastCursor,
+  totalPageSize,
+}: PostDashboardProps) {
   return (
     <MotionVerticalProvider
       duration={0.7}
@@ -21,8 +26,12 @@ export default function PostDashboard({ hotPosts, recentPosts }: Props) {
     >
       <Introduction />
       <Divider />
-      <PostList posts={hotPosts} title={"Pinned Posts"} />
-      <PostList posts={recentPosts} title={"Recent Posts"} />
+      <PostList
+        posts={totalPosts}
+        title={"Total Posts"}
+        lastCursor={lastCursor}
+        totalPageSize={totalPageSize}
+      />
     </MotionVerticalProvider>
   );
 }

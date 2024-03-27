@@ -8,43 +8,68 @@ import {
 } from "@/utils/formatTime";
 import PostSideCard from "./PostSideCard";
 import Link from "next/link";
-import { Card, CardBody } from "@nextui-org/react";
+import { Button, ScrollShadow } from "@nextui-org/react";
+import SearchBar from "./SearchBar";
+import { useLoadPost } from "@/app/_hooks/useLoadPost";
 
 export default function PostList({
   posts,
   title,
+  lastCursor,
+  totalPageSize,
 }: {
   posts: any;
   title: string;
+  lastCursor: string;
+  totalPageSize: number;
 }) {
+  const { postList, isLoading, handleOnClickLoadButton } = useLoadPost({
+    initialPosts: posts,
+    cursor: lastCursor,
+    totalPageSize: totalPageSize,
+  });
+
   return (
-    <>
+    <aside className="space-y-5 flex flex-col">
+      <SearchBar />
       <h1 className="text-lg font-semibold dark:text-white min-w-fit">
         {title}
       </h1>
-      <Card
-        isBlurred
-        shadow="md"
-        className="w-full grow rounded-lg font-mono bg-item-light dark:bg-item-dark"
+      <ScrollShadow
+        size={100}
+        className="flex flex-col overflow-y-scroll overscroll-y-none  max-h-[900px]"
       >
-        <CardBody className="flex flex-col p-0">
-          {posts.length === 0 && <Fallback title={"아직 포스트가 없습니다."} />}
-          {posts.map(({ node }: { node: any }) => (
-            <Link href={`/blog/${node.id}`} passHref key={node.id}>
+        <main className="flex flex-col gap-2">
+          {postList.length === 0 && (
+            <Fallback title={"아직 포스트가 없습니다."} />
+          )}
+          {postList.map((post: any) => (
+            <Link href={`/blog/${post.id}`} passHref key={post.id}>
               <PostSideCard
-                key={node.id}
-                date={formatCreatedAt(node.date)}
-                time={formatCreatedTime(node.date)}
-                title={node.title}
-                description={node.description}
-                tags={node.tags}
-                coverImage={node.coverImage}
-                readTimeMinutes={formatReadingMinutes(node.content)}
+                key={post.id}
+                date={formatCreatedAt(post.date)}
+                time={formatCreatedTime(post.date)}
+                title={post.title}
+                description={post.description}
+                tags={post.tags}
+                coverImage={post.coverImage}
+                readTimeMinutes={formatReadingMinutes(post.content)}
               />
             </Link>
           ))}
-        </CardBody>
-      </Card>
-    </>
+          <footer className="flex justify-center items-center">
+            <Button
+              onClick={handleOnClickLoadButton}
+              isLoading={isLoading}
+              className="w-fit"
+              color="warning"
+              variant="flat"
+            >
+              Load
+            </Button>
+          </footer>
+        </main>
+      </ScrollShadow>
+    </aside>
   );
 }
