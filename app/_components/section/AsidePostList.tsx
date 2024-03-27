@@ -29,8 +29,10 @@ export default function AsidePostList({ posts, title }: PostListProps) {
                 <CardHeader>
                   <h2 className="text-sm w-full truncate">{node.title}</h2>
                 </CardHeader>
-                <CardBody className="text-xs truncate text-gray-700 dark:text-gray-300 py-0 pb-3">
-                  {node.description}
+                <CardBody className="py-0 pb-3">
+                  <p className="text-xs truncate text-gray-700 dark:text-gray-300 w-full">
+                    {node.description}
+                  </p>
                 </CardBody>
               </Card>
             </Link>
