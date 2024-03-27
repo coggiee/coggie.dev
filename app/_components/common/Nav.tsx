@@ -26,16 +26,17 @@ export default function Nav() {
   return (
     <Navbar isBlurred className="bg-transparent grow w-full flex-shrink-0">
       <NavbarBrand>
-        <Link
-          href="/blog"
-          className="font-indieFlower text-4xl dark:text-[dodgerblue]"
-        >
+        <p className="font-indieFlower text-4xl dark:text-[dodgerblue]">
           Coggie
-        </Link>
+        </p>
       </NavbarBrand>
       <NavbarContent justify="end" className="flex items-center">
         <NavbarItem>
-          <Menu session={session} handleOnLogin={handleOnLogin} handleOnLogout={handleOnLogout} />
+          <Menu
+            session={session}
+            handleOnLogin={handleOnLogin}
+            handleOnLogout={handleOnLogout}
+          />
         </NavbarItem>
         <NavbarItem>
           <ThemeSwitcher />
