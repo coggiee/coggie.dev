@@ -1,16 +1,15 @@
-import IconLink from '@/app/_icons/IconLink';
-import { AlertProps } from '@/types/type';
+import IconLink from "@/app/_icons/IconLink";
+import { AlertProps } from "@/types/type";
 
-export default function Alert ({ title, bgColor = 'dodgerblue' }: AlertProps) {
+export default function Alert({ title, bgColor = "dodgerblue" }: AlertProps) {
   return (
-    <div className='toast toast-end top-0 right-0 z-[999]'>
+    <div className="fixed top-5 right-5 z-[999] transition-all duration-300">
       <div
-        role='alert'
-        className={`alert border-none bg-[${bgColor}] w-52 shadow-lg md:w-96 transition-all ease-in-out duration-1000 p-5 text-xs flex`}
+        className={`rounded-lg bg-[${bgColor}] w-52 shadow-lg md:w-96 transition-all ease-in-out duration-1000 p-5 text-xs flex`}
       >
-        <IconLink />
+        <IconLink className="text-center" />
         <span>{title}</span>
       </div>
     </div>
   );
-};
+}
