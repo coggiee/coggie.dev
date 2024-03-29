@@ -1,5 +1,5 @@
 .prose a {
-  @apply transition-all no-underline;
+  @apply transition-all text-[#629ee3];
 }
 
 /* 💻 Code block */
@@ -32,13 +32,18 @@
 }
 
 .prose h4 a {
-  @apply text-lg;
+  @apply text-lg no-underline text-inherit;
 }
 
 .prose h5 a {
-  @apply text-lg font-semibold;
+  @apply text-lg font-semibold no-underline text-inherit;
 }
 
+.prose h1 a,
+.prose h2 a,
+.prose h3 a {
+  @apply no-underline text-inherit;
+}
 /*
 .prose .anchor {
   @apply invisible absolute no-underline;
@@ -60,7 +65,7 @@
   @apply visible;
 } */
 
-.prose ol[data-slot='list'] {
+.prose ol[data-slot="list"] {
   margin-top: 0;
   margin-bottom: 0;
   padding: 4px 12px;
