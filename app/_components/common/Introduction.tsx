@@ -14,7 +14,6 @@ export default function Introduction() {
           <p className="dark:text-[rgb(141, 140, 142)]">
             <span>개발 관련 포스팅이 올라옵니다.</span>
             <br />
-            <span>알고리즘 문제 풀이 제외, </span>
             <span>
               <strong>프로젝트 개발기</strong>와 <strong>회고</strong> 그리고{" "}
             </span>

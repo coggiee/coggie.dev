@@ -44,7 +44,7 @@ export default function PostSideCard({
                 width={300}
                 height={300}
                 alt={coverImage.fileName}
-                className="h-32 object-cover absolute rounded-lg grayscale"
+                className="h-32 object-cover absolute rounded-lg"
               />
             )}
             {!coverImage && (
