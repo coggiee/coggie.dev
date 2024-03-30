@@ -8,7 +8,6 @@ import Alert from "../../_components/common/Alert";
 import { MDXRemote } from "next-mdx-remote";
 
 import AuthorSection from "@/app/blog/_components/AuthorSection";
-import { TocSidebar } from "@/app/post-detail/_components/TocSidebar";
 import { deletePost } from "@/app/_libs/hygraph";
 import { useRouter } from "next/navigation";
 import PostTimeBox from "./PostTimeBox";
@@ -74,10 +73,6 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
   return (
     <MotionVerticalProvider duration={0.7} fromY={500} toY={0}>
       <div className="prose dark:prose-dark w-full max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert">
-        {/* <HorizontalProgress scroll={scroll} /> */}
-        {toc.length > 0 && isFullSize && (
-          <TocSidebar tableOfContents={toc} isSidebar={true} />
-        )}
         <div className="flex-grow w-full min-w-0 p-5 rounded-lg dark:bg-item-dark">
           <article className="min-w-0 w-full max-w-full mx-auto relative break-words mb-20">
             <div className="mb-8 flex flex-col w-full">
