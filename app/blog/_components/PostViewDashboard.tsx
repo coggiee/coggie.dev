@@ -52,7 +52,7 @@ export default function PostViewDashboard({
           <IconBackToHome className="text-sm" />
         </Button>
         <Breadcrumbs size="sm" variant="light" className="grow">
-          <BreadcrumbItem>{pathname}</BreadcrumbItem>
+          <BreadcrumbItem href="/blog">{pathname}</BreadcrumbItem>
           <BreadcrumbItem id="breadcrumb-title">
             {currentPost.title}
           </BreadcrumbItem>
