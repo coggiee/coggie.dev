@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import IconChevronRight from '@/app/_icons/IconChevronRight';
-import { Toc } from '@/types/type';
-import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import IconChevronRight from "@/app/_icons/IconChevronRight";
+import { Toc } from "@/types/type";
+import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
 const numberToStringMap = {
-  1: 'one',
-  2: 'two',
-  3: 'three',
+  1: "one",
+  2: "two",
+  3: "three",
 };
 
 const getScrollTop = () => {
   if (!document.body) return 0;
-  if (document.documentElement && 'scrollTop' in document.documentElement) {
+  if (document.documentElement && "scrollTop" in document.documentElement) {
     return document.documentElement.scrollTop || document.body.scrollTop;
   } else {
     return document.body.scrollTop;
@@ -31,7 +31,7 @@ interface TocSideProps {
 }
 
 export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
-  const [activeToc, setActiveToc] = useState('');
+  const [activeToc, setActiveToc] = useState("");
   const [headingTops, setHeadingTops] = useState<null | IHeadingTops[]>([]);
 
   const settingHeadingTops = useCallback(() => {
@@ -77,38 +77,39 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
       if (currentHeading) {
         setActiveToc(currentHeading.slug);
       } else {
-        setActiveToc('');
+        setActiveToc("");
       }
     };
     onScroll();
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
     return () => {
-      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [headingTops]);
 
   return (
     <div
+      id="toc"
       className={`${
-        isSidebar
-          ? 'hidden lg:block sticky top-[120px] right-0 h-fit min-w-[240px] max-w-[260px] mb-10'
-          : 'block lg:hidden w-full h-fit'
-      } ${!tableOfContents.length ? '' : 'border-b-2 border-[dodgerblue]/50'}`}
+        !isSidebar
+          ? "hidden 2xl:block absolute -right-10 h-fit min-w-[240px] max-w-[300px] mb-10 z-[9999]"
+          : "block lg:hidden w-full h-fit"
+      } ${!tableOfContents.length ? "" : "border-b-2 border-[dodgerblue]/50"}`}
     >
       {tableOfContents.length ? (
-        <div className={`${isSidebar ? 'p-5' : ''}`}>
+        <div className={`${!isSidebar ? "p-5" : ""}`}>
           <div
             className={`${
-              isSidebar ? '' : 'text-2xl'
+              !isSidebar ? "" : "text-2xl"
             } font-semibold underline underline-offset-8 decoration-[dodgerblue]/50 decoration-wavy`}
           >
             목차
           </div>
           <ul
             className={`${
-              isSidebar
-                ? 'mt-2 list-none m-0 p-0 flex flex-col items-start justify-start text-sm'
-                : 'mt-10 text-lg'
+              !isSidebar
+                ? "mt-2 list-none m-0 p-0 flex flex-col items-start justify-start text-sm"
+                : "mt-10 text-lg"
             } dark:text-[#fff]`}
           >
             {tableOfContents.map((toc, i) => (
@@ -116,25 +117,26 @@ export const TocSidebar = ({ isSidebar, tableOfContents }: TocSideProps) => {
                 data-level={numberToStringMap[toc.level]}
                 key={i}
                 className={`${
-                  isSidebar
+                  !isSidebar
                     ? `my-1 p-0  w-full ${
-                        numberToStringMap[toc.level] === 'two' ? 'ml-4 ' : ''
+                        numberToStringMap[toc.level] === "two" ? "ml-4" : ""
                       } ${
-                        numberToStringMap[toc.level] === 'three' ? 'ml-8' : ''
+                        numberToStringMap[toc.level] === "three" ? "ml-8" : ""
                       }`
-                    : 'mb-5'
-                } ${activeToc === toc.slug ? 'active' : ''}`}
+                    : "mb-5"
+                } ${activeToc === toc.slug ? "active" : ""}`}
               >
                 <Link
                   href={`#${toc.slug}`}
                   className={`${
-                    numberToStringMap[toc.level] === 'one' ? '' : 'gap-1'
+                    numberToStringMap[toc.level] === "one" ? "" : "gap-1"
                   } flex items-center hover:text-[dodgerblue] transition-colors dark:text-[#fff]`}
                 >
-                  {numberToStringMap[toc.level] === 'one' ? null : isSidebar ? (
+                  {numberToStringMap[toc.level] ===
+                  "one" ? null : !isSidebar ? (
                     <IconChevronRight />
                   ) : null}
-                  <span className='truncate overflow-hidden whitespace-nowrap'>
+                  <span className="truncate overflow-hidden whitespace-nowrap">
                     {toc.text}
                   </span>
                 </Link>
