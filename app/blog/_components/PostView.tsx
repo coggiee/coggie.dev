@@ -9,29 +9,21 @@ import {
 import PostSideCard from "./PostSideCard";
 import Link from "next/link";
 import { Button, ScrollShadow } from "@nextui-org/react";
-import SearchBar from "./SearchBar";
-import { useLoadPost } from "@/app/_hooks/useLoadPost";
 
-export default function PostList({
-  posts,
-  title,
-  lastCursor,
-  totalPageSize,
-}: {
-  posts: any;
+interface PostViewProps {
+  postList: any;
   title: string;
-  lastCursor: string;
-  totalPageSize: number;
-}) {
-  const { postList, isLoading, handleOnClickLoadButton } = useLoadPost({
-    initialPosts: posts,
-    cursor: lastCursor,
-    totalPageSize: totalPageSize,
-  });
-
+  handleLoad: () => void;
+  isLoading: boolean;
+}
+export default function PostView({
+  postList,
+  title,
+  handleLoad,
+  isLoading,
+}: PostViewProps) {
   return (
     <aside className="space-y-5 flex flex-col">
-      <SearchBar />
       <h1 className="text-lg font-semibold dark:text-white min-w-fit">
         {title}
       </h1>
@@ -59,7 +51,7 @@ export default function PostList({
           ))}
           <footer className="flex justify-center items-center">
             <Button
-              onClick={handleOnClickLoadButton}
+              onClick={handleLoad}
               isLoading={isLoading}
               className="w-fit"
               color="warning"
