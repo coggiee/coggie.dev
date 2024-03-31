@@ -264,18 +264,25 @@ export async function getPostsOnScroll(after: string) {
 export async function searchPostByTitle(title: string) {
   const query = gql`
     query searchPostByTitle($title_contains: String) {
-      posts(where: { title_contains: $title_contains }) {
-        content
-        date
-        description
-        hot
-        id
-        tags
-        title
-        coverImage {
-          url
-          handle
-          fileName
+      postsConnection(where: { title_contains: $title_contains }) {
+        aggregate {
+          count
+        }
+        edges {
+          node {
+            content
+            date
+            description
+            id
+            hot
+            tags
+            title
+            coverImage {
+              handle
+              fileName
+              url
+            }
+          }
         }
       }
     }
@@ -284,7 +291,7 @@ export async function searchPostByTitle(title: string) {
   const results: any = await graphcms.request(query, {
     title_contains: title,
   });
-  return results.posts;
+  return results.postsConnection;
 }
 
 export async function deletePost(id: string) {
