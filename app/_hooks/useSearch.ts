@@ -21,9 +21,13 @@ export const useSearch = () => {
   };
 
   const handleOnPressEnter = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && searchQuery) {
+    if (e.key === "Enter") {
       const trimmedQuery = searchQuery.trim();
-      if (trimmedQuery.length === 0) return;
+      
+      if (trimmedQuery.length === 0) {
+        setPostList(null);
+        return;
+      }
 
       const { edges, aggregate } = await searchPostByTitle(trimmedQuery);
       const posts = edges.map((post: any) => post.node);
