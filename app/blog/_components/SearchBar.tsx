@@ -16,7 +16,7 @@ function SearchBar({
   query,
 }: SearchBarProps) {
   return (
-    <div className="w-full h-full rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg">
+    <div className="w-full h-full rounded-2xl flex justify-center items-center bg-gradient-to-tr from-[#cba6f3] to-[#66abf0] text-white shadow-lg">
       <Input
         label="Search"
         isClearable
@@ -49,7 +49,7 @@ function SearchBar({
         }}
         placeholder="Type to search..."
         startContent={
-          <IconSearch className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
+          <IconSearch className="text-black/50 mb-0.5 dark:text-white/90 pointer-events-none flex-shrink-0" />
         }
       />
     </div>
