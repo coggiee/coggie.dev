@@ -35,7 +35,7 @@ export default async function BlogPage() {
   return (
     <main className="snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none">
       <PostDashboard
-        totalPosts={posts}
+        totalPostList={posts}
         lastCursor={lastPostCursor}
         totalPageSize={totalPostsSize}
       />
