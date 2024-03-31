@@ -23,9 +23,8 @@ export const useSearch = () => {
   const handleOnPressEnter = async (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       const trimmedQuery = searchQuery.trim();
-      
+
       if (trimmedQuery.length === 0) {
-        setPostList(null);
         return;
       }
 
