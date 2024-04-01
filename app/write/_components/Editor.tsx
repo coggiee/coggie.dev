@@ -16,65 +16,71 @@ import { useTheme } from "next-themes";
 import { useResize } from "@/app/_hooks/useResize";
 import UploadLoading from "./UploadLoading";
 
-export default function TuiEditor({ content = " ", editorRef }: EditorProps) {
-  const { direction } = useResize();
-  const toolbarItems = [
-    ["heading", "bold", "italic", "strike"],
-    ["code", "codeblock"],
-    ["image"],
-  ];
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+const TuiEditor = React.forwardRef(
+  ({ content = " ", editorRef }: EditorProps, ref) => {
+    const { direction } = useResize();
+    const toolbarItems = [
+      ["heading", "bold", "italic", "strike"],
+      ["code", "codeblock"],
+      ["image"],
+    ];
+    const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  const theme = useTheme().theme;
+    const theme = useTheme().theme;
 
-  const handleAddImageBlob = async (file: File | Blob, callback: any) => {
-    setIsLoading(true);
-    const form = new FormData();
-    form.append("fileUpload", file);
+    const handleAddImageBlob = async (file: File | Blob, callback: any) => {
+      setIsLoading(true);
+      const form = new FormData();
+      form.append("fileUpload", file);
 
-    const response = await fetch("/api/upload", {
-      method: "POST",
-      body: form,
-    });
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: form,
+      });
 
-    const { data } = await response.json();
-    const { url } = data;
-    callback(url, "image");
-    setIsLoading(false);
-    return false;
-  };
+      const { data } = await response.json();
+      const { url } = data;
+      callback(url, "image");
+      setIsLoading(false);
+      return false;
+    };
 
-  return (
-    <div className="flex-grow relative">
-      {editorRef && (
-        <div className="flex flex-col gap-3 mb-3">
-          <Editor
-            ref={editorRef}
-            height="800px"
-            placeholder="포스트 내용을 채워주세요!"
-            previewStyle={direction}
-            theme={`${theme === "light" ? "light" : "dark"}`}
-            initialEditType="markdown"
-            hideModeSwitch={true}
-            initialValue={content}
-            useCommandShortcut={true}
-            toolbarItems={toolbarItems}
-            hooks={{
-              addImageBlobHook: handleAddImageBlob,
-            }}
-            plugins={[
-              [
-                codeSyntaxHighlight,
-                {
-                  highlighter: Prism,
-                },
-              ],
-              colorSyntax,
-            ]}
-          />
-        </div>
-      )}
-      {isLoading && <UploadLoading />}
-    </div>
-  );
-}
+    return (
+      <div className="flex-grow relative">
+        {editorRef && (
+          <div className="flex flex-col gap-3 mb-3">
+            <Editor
+              ref={editorRef}
+              height="800px"
+              placeholder="포스트 내용을 채워주세요!"
+              previewStyle={direction}
+              theme={`${theme === "light" ? "light" : "dark"}`}
+              initialEditType="markdown"
+              hideModeSwitch={true}
+              initialValue={content}
+              useCommandShortcut={true}
+              toolbarItems={toolbarItems}
+              hooks={{
+                addImageBlobHook: handleAddImageBlob,
+              }}
+              plugins={[
+                [
+                  codeSyntaxHighlight,
+                  {
+                    highlighter: Prism,
+                  },
+                ],
+                colorSyntax,
+              ]}
+            />
+          </div>
+        )}
+        {isLoading && <UploadLoading />}
+      </div>
+    );
+  },
+);
+
+TuiEditor.displayName = "TuiEditor";
+
+export default TuiEditor;
