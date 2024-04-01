@@ -29,7 +29,7 @@ async function getProps() {
 
 export default async function BlogPage() {
   const {
-    props: { posts, uniqueTags, lastPostCursor, totalPostsSize },
+    props: { posts, uniqueTags: tagList, lastPostCursor, totalPostsSize },
   } = await getProps();
 
   return (
@@ -37,6 +37,7 @@ export default async function BlogPage() {
       <PostDashboard
         totalPostList={posts}
         lastCursor={lastPostCursor}
+        tagList={tagList}
         totalPageSize={totalPostsSize}
       />
     </main>

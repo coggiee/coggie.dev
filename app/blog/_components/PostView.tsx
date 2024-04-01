@@ -15,12 +15,14 @@ interface PostViewProps {
   title: string;
   handleLoad: () => void;
   isLoading: boolean;
+  isDisabledLoad: boolean;
 }
 export default function PostView({
   postList,
   title,
   handleLoad,
   isLoading,
+  isDisabledLoad,
 }: PostViewProps) {
   return (
     <aside className="space-y-5 flex flex-col">
@@ -58,8 +60,8 @@ export default function PostView({
                 onClick={handleLoad}
                 isLoading={isLoading}
                 className="w-fit"
-                color="warning"
                 variant="flat"
+                isDisabled={isDisabledLoad}
               >
                 Load
               </Button>
