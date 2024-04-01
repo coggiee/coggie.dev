@@ -1,40 +1,43 @@
 "use client";
 
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
-import React from "react";
+import React, { useEffect } from "react";
 import Introduction from "../../_components/common/Introduction";
 import PostView from "./PostView";
 import { Divider } from "@nextui-org/react";
 import { useSearch } from "@/app/_hooks/useSearch";
 import SearchBar from "./SearchBar";
 import { useLoadPost } from "@/app/_hooks/useLoadPost";
+import TagSelector from "./TagSelector";
+import { useSelectTag } from "@/app/_hooks/useSelectTag";
+import { usePostStore } from "@/app/_store/usePostStore";
 
 interface PostDashboardProps {
   totalPostList: any;
+  tagList: string[];
   lastCursor: string;
   totalPageSize: number;
 }
 
 export default function PostDashboard({
   totalPostList,
+  tagList,
   lastCursor,
   totalPageSize,
 }: PostDashboardProps) {
-  const {
-    postList: searchedPostList,
-    searchQuery,
-    cursor,
-    pageSize,
-    handleClearQuery,
-    handleOnSearch,
-    handleOnPressEnter,
-  } = useSearch();
+  const { postState, setPost } = usePostStore();
+  const { searchQuery, handleClearQuery, handleOnSearch, handleOnPressEnter } =
+    useSearch();
+  const { isLoading, handleOnClickLoadButton } = useLoadPost();
+  const { selectedTag, handleOnSelect } = useSelectTag();
 
-  const { postList, isLoading, handleOnClickLoadButton } = useLoadPost({
-    initialPosts: searchedPostList ?? totalPostList,
-    cursor: cursor ?? lastCursor,
-    totalPageSize: pageSize ?? totalPageSize,
-  });
+  useEffect(() => {
+    setPost({
+      postList: totalPostList,
+      cursor: lastCursor,
+      pageSize: totalPageSize,
+    });
+  }, [lastCursor, totalPostList, totalPageSize]);
 
   return (
     <MotionVerticalProvider
@@ -51,11 +54,20 @@ export default function PostDashboard({
         handleClearQuery={handleClearQuery}
         query={searchQuery}
       />
+      <TagSelector
+        tagList={tagList}
+        onSelect={handleOnSelect}
+        selectedTag={selectedTag}
+      />
+      <Divider />
       <PostView
-        postList={postList}
+        postList={postState.postList ?? []}
         title={"Total Posts"}
         handleLoad={handleOnClickLoadButton}
         isLoading={isLoading}
+        isDisabledLoad={
+          postState.postList && postState.postList.length === postState.pageSize
+        }
       />
     </MotionVerticalProvider>
   );
