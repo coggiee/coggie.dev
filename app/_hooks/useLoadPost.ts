@@ -1,42 +1,35 @@
 import { useEffect, useState } from "react";
 import { getPostsOnScroll } from "../_libs/hygraph";
+import { usePostStore } from "../_store/usePostStore";
 
-interface useLoadPostProps {
-  initialPosts: any;
-  cursor: string;
-  totalPageSize: number;
-}
-
-export const useLoadPost = ({
-  initialPosts,
-  cursor,
-  totalPageSize,
-}: useLoadPostProps) => {
-  const [postList, setPostList] = useState(initialPosts);
-  const [lastCursor, setLastCursor] = useState<string | null>(cursor);
+export const useLoadPost = () => {
+  const { postState, setPost } = usePostStore();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOnClickLoadButton = async () => {
-    if (!lastCursor || totalPageSize <= postList.length) return;
+    if (!postState.cursor || postState.pageSize <= postState.postList.length)
+      return;
 
     setIsLoading(true);
 
-    const nextPostList = await getPostsOnScroll(lastCursor);
+    const nextPostList = await getPostsOnScroll(postState.cursor);
     if (nextPostList.length > 0) {
       const newCursor = nextPostList[nextPostList.length - 1].id;
-      setPostList((prev: any) => [...prev, ...nextPostList]);
-      setLastCursor(newCursor);
+      setPost({
+        ...postState,
+        postList: [...postState.postList, ...nextPostList],
+        cursor: newCursor,
+      });
     } else {
-      setLastCursor(null);
+      setPost({
+        ...postState,
+        cursor: "",
+      });
     }
 
     setIsLoading(false);
   };
 
-  useEffect(() => {
-    setPostList(initialPosts);
-  }, [initialPosts]);
-
-  return { postList, isLoading, handleOnClickLoadButton };
+  return { isLoading, handleOnClickLoadButton };
 };
