@@ -1,6 +1,6 @@
 # Coggie.dev
 [개인 개발 블로그](https://coggie.dev/blog)입니다.
-> 현재 [v4_build](https://github.com/coggiee/zentechie-blog/tree/v4-build)브랜치에서 최신 작업을 확인하실 수 있습니다.
+> 현재 [dev](https://github.com/coggiee/zentechie-blog/tree/dev)브랜치에서 최신 작업을 확인하실 수 있습니다.
 
 ## 기술 스택
 NextJS로 개발했으며, Hygraph(CMS)를 사용하여 동적 포스팅이 가능합니다.
