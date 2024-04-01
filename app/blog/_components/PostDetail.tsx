@@ -48,12 +48,11 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
     }, 3000);
   };
 
-  const handleOnClickModalButton = async (isSubmit: boolean) => {
+  const handleClickDeleteButton = async (isSubmit: boolean) => {
     if (isSubmit) {
       const data = await deletePost(post.id);
       if (data !== null) {
         setAlertTitle("포스트를 삭제했습니다.");
-        router.push("/blog");
       } else {
         setAlertTitle("포스트 삭제에 에러가 발생했습니다.");
       }
@@ -170,7 +169,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
               <Button
                 color="danger"
                 variant="flat"
-                onPress={() => handleOnClickModalButton(true)}
+                onPress={() => handleClickDeleteButton(true)}
               >
                 삭제
               </Button>
