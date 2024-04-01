@@ -28,9 +28,10 @@ import {
 import IconCheck from "@/app/_icons/IconCheck";
 import CommentSection from "./CommentSection";
 import { useSession } from "next-auth/react";
+import { useFormStore } from "@/app/_store/useFormStore";
 
 export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
-  const { scroll } = useDetectScroll();
+  const { setForm, setIsUpdated } = useFormStore();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isFallback, setisFallback] = useState<boolean>(false);
@@ -67,7 +68,18 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
 
   const handleOnClickModifyButton = () => {
     const { id } = post;
-    router.push(`/write/${id}?isUpdate=true`);
+    setIsUpdated(true);
+    setForm({
+      id,
+      title: post!.title,
+      tagList: post!.tags,
+      description: post!.description,
+      coverImage: post!.coverImage,
+      isPinned: post!.hot,
+      content: post!.content,
+      tagInput: "",
+    });
+    router.push(`/write/${id}`);
   };
 
   return (
