@@ -10,14 +10,14 @@ interface TagSelectorProps {
 function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
   return (
     <section className="text-white">
-      <main className="flex gap-2">
+      <main className="flex gap-2 flex-wrap">
         {tagList.map((tag) => (
           <Chip
             key={tag}
-            variant="dot"
+            variant="bordered"
             radius="lg"
             color={selectedTag !== tag ? "default" : "primary"}
-            className="cursor-pointer"
+            className="cursor-pointer transition-colors duration-75"
             onClick={() => onSelect(tag)}
           >
             {tag}
