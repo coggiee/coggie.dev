@@ -151,21 +151,25 @@ export async function getTotalTags() {
 export async function getPostsByTag(tag: any[]) {
   const query = gql`
     query getPostByTag($tags_contains_some: [Tags!]) {
-      posts(where: { tags_contains_some: $tags_contains_some }) {
-        tags
-        content
-        createdAt
-        date
-        description
-        publishedAt
-        id
-        hot
-        title
-        updatedAt
-        coverImage {
-          url
-          handle
-          fileName
+      postsConnection(where: { tags_contains_some: $tags_contains_some }) {
+        aggregate {
+          count
+        }
+        edges {
+          node {
+            content
+            date
+            description
+            hot
+            id
+            tags
+            title
+            coverImage {
+              handle
+              url
+              fileName
+            }
+          }
         }
       }
     }
@@ -175,7 +179,7 @@ export async function getPostsByTag(tag: any[]) {
     tags_contains_some: tag,
     "hyg-stale-while-revalidate": "27",
   });
-  return results.posts;
+  return results.postsConnection;
 }
 
 export async function createPost(
