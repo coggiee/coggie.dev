@@ -35,9 +35,7 @@ export const useForm = () => {
     if (
       content.trim().length === 0 ||
       title.trim().length === 0 ||
-      tagList.length === 0 ||
-      !coverImage ||
-      !coverImage?.id
+      tagList.length === 0
     ) {
       setIsLoading(false);
       setIsToast(true);
