@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ChangeEvent } from "react";
 
 interface Toc {
   level: 1 | 2 | 3;
@@ -83,7 +84,7 @@ interface ReCheckModalkProps {
 
 interface EditTitleProps {
   title: string;
-  handleOnTypeTitle: (value: string) => void;
+  handleOnTypeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface EditorProps {
