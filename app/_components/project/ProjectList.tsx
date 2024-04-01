@@ -9,17 +9,15 @@ export default function ProjectList() {
       <div className="ml-2 font-bold text-4xl font-dhurjati">
         Featured Projects
       </div>
-      <div>
+      <div className="space-y-2">
         {Project.map((item) => (
-          <div key={item.title}>
-            <ProjectItem
-              projectTitle={item.title}
-              projectDescription={item.description}
-              projectGithubLink={item.githubLink}
-              projectDemoLink={item.demoLink}
-            />
-            <Spacer y={1} />
-          </div>
+          <ProjectItem
+            key={item.title}
+            projectTitle={item.title}
+            projectDescription={item.description}
+            projectGithubLink={item.githubLink}
+            projectDemoLink={item.demoLink}
+          />
         ))}
       </div>
     </div>
