@@ -50,26 +50,24 @@ export default function PostView({
             >
               <main className="flex flex-col gap-2">
                 {postList.map((post: any) => (
-                  <>
-                    <Link
-                      href={`/blog/${post.id}`}
-                      passHref
+                  <Link
+                    href={`/blog/${post.id}`}
+                    passHref
+                    key={post.id}
+                    className="rounded-lg overflow-hidden space-y-2"
+                  >
+                    <PostSideCard
                       key={post.id}
-                      className="rounded-lg overflow-hidden"
-                    >
-                      <PostSideCard
-                        key={post.id}
-                        date={formatCreatedAt(post.date)}
-                        time={formatCreatedTime(post.date)}
-                        title={post.title}
-                        description={post.description}
-                        tags={post.tags}
-                        coverImage={post.coverImage}
-                        readTimeMinutes={formatReadingMinutes(post.content)}
-                      />
-                    </Link>
+                      date={formatCreatedAt(post.date)}
+                      time={formatCreatedTime(post.date)}
+                      title={post.title}
+                      description={post.description}
+                      tags={post.tags}
+                      coverImage={post.coverImage}
+                      readTimeMinutes={formatReadingMinutes(post.content)}
+                    />
                     <Divider />
-                  </>
+                  </Link>
                 ))}
                 <footer className="flex justify-center items-center font-amaranth">
                   <Button

@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import ThemeSwitcher from "./ThemeSwitcher";
 import { signIn, signOut, useSession } from "next-auth/react";
 import {

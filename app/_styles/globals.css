@@ -6,23 +6,6 @@
 @import "loading.css";
 @import "toc.css";
 
-// For theme switcher
-/* :root {
-  --background: white;
-  --foreground: black;
-}
-
-[data-theme='dark'] {
-  --background: black;
-  --foreground: white;
-}
-
-[data-theme='dark'] body {
-  color: #fff;
-  --foreground: white;
-  --background: black;
-} */
-
 pre {
   overflow-x: auto;
 }

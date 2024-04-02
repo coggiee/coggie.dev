@@ -13,7 +13,7 @@ export default function InfoSiderbar() {
       toY={0}
       className={'w-full flex flex-col gap-3 flex-shrink-0'}
     >
-      <HeroSection src={'/mimoji.png'} />
+      <HeroSection />
     </MotionVerticalProvider>
   );
 }
