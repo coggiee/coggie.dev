@@ -1,77 +1,61 @@
-.prose a {
-  @apply transition-all;
-}
+@tailwind utilities;
 
-/* 💻 Code block */
+@layer utilities {
+  .prose pre {
+    @apply overflow-x-auto;
+  }
+  
+  .prose a {
+    @apply transition-all;
+  }
 
-/* pretty-code (shiki) recommend */
-.prose pre > code {
-  display: grid;
-}
+  .prose pre > code {
+    @apply grid;
+  }
 
-/* Fenced Code block - hide horizontal scrollbar: webkit */
-.prose pre::-webkit-scrollbar {
-  display: none;
-}
+  .prose pre::-webkit-scrollbar {
+    @apply hidden;
+  }
 
-/* Fenced Code block - hide horizontal scrollbar: mozila */
-.prose pre {
-  scrollbar-width: none;
-}
+  .prose pre {
+    @apply scrollbar-none;
+  }
 
-/* Fenced Code block - line style */
-.prose pre span[data-line] {
-  @apply inline-block px-4 py-0.5 leading-snug;
-}
+  .prose pre span[data-line] {
+    @apply inline-block px-4 py-0.5 leading-snug;
+  }
 
-.prose blockquote {
-  border-left: 4px solid dodgerblue;
-}
-.prose h1 {
-  @apply font-bold mb-4 mt-8;
-}
+  .prose blockquote {
+    @apply border-l-1 border-[dodgerblue];
+  }
+  .prose h1 {
+    @apply font-bold mb-4 mt-8;
+  }
 
-.prose h4 a {
-  @apply text-lg no-underline text-inherit;
-}
+  .prose h4 a {
+    @apply text-lg no-underline text-inherit;
+  }
 
-.prose h5 a {
-  @apply text-lg font-semibold no-underline text-inherit;
-}
+  .prose h5 a {
+    @apply text-lg font-semibold no-underline text-inherit;
+  }
 
-.prose h1 a,
-.prose h2 a,
-.prose h3 a {
-  @apply no-underline text-inherit;
-}
-/*
-.prose .anchor {
-  @apply invisible absolute no-underline;
+  .prose h1 a,
+  .prose h2 a,
+  .prose h3 a {
+    @apply no-underline text-inherit;
+  }
 
-  margin-left: -1em;
-  padding-right: 0.5em;
-  cursor: pointer;
-}
+  .prose ol,
+  .prose ul {
+    @apply m-0;
+  }
+  .prose ol[data-slot="list"] {
+    @apply mt-0 mb-0 py-1 px-3;
+  }
 
-.prose .anchor:after {
-  @apply text-gray-300 dark:text-gray-700;
-
-  content: '#';
-
-}
-
-.anchor:hover,
-.prose *:hover > .anchor {
-  @apply visible;
-} */
-
-.prose ol[data-slot="list"] {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 4px 12px;
-}
-
-.prose article ul a,
-.prose article ol a {
-  @apply text-[#629ee3];
+  .prose article ul a,
+  .prose article ol a {
+    @apply text-[#629ee3];
+  }
 }
