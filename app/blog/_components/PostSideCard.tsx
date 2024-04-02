@@ -3,9 +3,10 @@ import IconBxCalendarStar from "../../_icons/IconBxCalendarStar";
 import IconTimerSand from "../../_icons/IconTimerSand";
 import { CoverImage } from "@/types/type";
 import IconNoImage from "@/app/_icons/IconNoImage";
-import { Card, CardBody, Image, Chip } from "@nextui-org/react";
+import { Card, CardBody, Chip } from "@nextui-org/react";
 import NextImage from "next/image";
 import IconCheck from "@/app/_icons/IconCheck";
+import Image from "next/image";
 
 interface PostCardProps {
   date: string;
@@ -37,10 +38,11 @@ export default function PostSideCard({
           <div className="relative w-32 h-32 flex-shrink-0 rounded-lg">
             {coverImage && (
               <Image
-                as={NextImage}
                 src={coverImage.url}
                 width={300}
                 height={300}
+                quality={30}
+                priority={true}
                 alt={coverImage.fileName}
                 className="h-32 object-cover absolute rounded-lg"
               />

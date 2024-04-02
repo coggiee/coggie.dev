@@ -1,13 +1,10 @@
-import { Avatar, Card, CardHeader, CardBody } from "@nextui-org/react";
+import { Card, CardHeader, CardBody } from "@nextui-org/react";
 import SocialGroup from "../common/SocialGroup";
 import HeroBio from "./HeroBio";
 import HeroCardDetail from "./HeroCardDetail";
+import Image from "next/image";
 
-type HeroCardProps = {
-  src: string;
-};
-
-export default function HeroCard({ src }: HeroCardProps) {
+export default function HeroCard() {
   return (
     <Card
       isBlurred
@@ -15,12 +12,12 @@ export default function HeroCard({ src }: HeroCardProps) {
       className="w-full flex-grow-0 flex-shrink-0 p-3 rounded-lg dark:bg-item-dark dark:text-white"
     >
       <CardHeader className="flex justify-between">
-        <Avatar
-          color="success"
-          name="coggie"
-          isBordered
-          src={src}
-          className="w-28 h-28 text-large bg-transparent"
+        <Image
+          width={120}
+          height={120}
+          alt="profile"
+          src={"https://i.ibb.co/2SwpytM/mimoji.png"}
+          className="rounded-full border-2"
         />
         <SocialGroup
           fontSize="text-sm"
