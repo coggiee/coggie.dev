@@ -16,7 +16,7 @@ function SearchBar({
   query,
 }: SearchBarProps) {
   return (
-    <div className="w-full h-full rounded-2xl flex justify-center items-center bg-gradient-to-tr from-[#cba6f3] to-[#66abf0] text-white shadow-lg">
+    <div className="w-full h-full rounded-2xl flex justify-center items-center bg-gradient-to-tr from-[#cba6f3] to-[#66abf0] text-white shadow-lg font-amaranth">
       <Input
         label="Search"
         isClearable

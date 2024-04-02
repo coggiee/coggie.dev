@@ -18,15 +18,8 @@ const config: Config = {
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
-        blackHanSans: ["var(--font-blackHanSans)"],
         notosanskr: ["var(--font-notosanskr)"],
-        lato: ["var(--font-lato)"],
-        marhey: ["var(--font-marhey)"],
-        pacifico: ["var(--font-pacifico)"],
-        indieFlower: ["var(--font-indieFlower)"],
-        permanentMarker: ["var(--font-permanentMarker)"],
-        dhurjati: ["var(--font-dhurjati)"],
-        teko: ["var(--font-teko)"],
+        amaranth: ["var(--font-amaranth)"],
       },
       transitionProperty: {
         "max-height": "max-height",

@@ -24,11 +24,13 @@ export default function Nav() {
   };
 
   return (
-    <Navbar isBlurred className="bg-transparent grow w-full flex-shrink-0">
+    <Navbar
+      isBlurred
+      className="bg-transparent grow w-full flex-shrink-0"
+      isBordered
+    >
       <NavbarBrand>
-        <p className="font-indieFlower text-4xl dark:text-[dodgerblue]">
-          Coggie
-        </p>
+        <p className="font-amaranth text-4xl dark:text-white">Coggie.dev</p>
       </NavbarBrand>
       <NavbarContent justify="end" className="flex items-center">
         <NavbarItem>

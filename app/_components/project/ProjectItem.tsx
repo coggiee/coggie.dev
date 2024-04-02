@@ -26,10 +26,10 @@ export default function ProjectItem({
       isHoverable
       shadow="lg"
       radius="lg"
-      className="w-full min-w-0 grow flex-shrink-0 cursor-pointer border border-item-border-light dark:border-item-border-dark"
+      className="w-full min-w-0 grow flex-shrink-0 cursor-pointer border border-item-border-light dark:border-item-border-dark dark:bg-item-dark"
     >
       <CardHeader className="flex flex-col gap-2 items-start">
-        <div className="w-full text-xl font-semibold text-left">
+        <div className="w-full text-xl font-semibold text-left font-sans">
           {projectTitle}
         </div>
         <div className="text-xs">{projectDescription}</div>

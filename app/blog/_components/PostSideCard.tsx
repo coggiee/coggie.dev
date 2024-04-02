@@ -28,13 +28,11 @@ export default function PostSideCard({
 }: PostCardProps) {
   return (
     <Card
-      isBlurred
       isHoverable
-      radius="none"
       shadow="none"
-      className="font-notosanskr dark:text-white cursor-pointer bg-transparent p-3 rounded-lg"
+      className="font-notosanskr cursor-pointer rounded-lg"
     >
-      <CardBody className="p-2">
+      <CardBody className="p-2 bg-item-dark hover:bg-item-dark/30">
         <div className="flex flex-row gap-5">
           <div className="relative w-32 h-32 flex-shrink-0 rounded-lg">
             {coverImage && (
@@ -62,8 +60,8 @@ export default function PostSideCard({
                 {time} - {readTimeMinutes} min read
               </div>
             </div>
-            <div className="flex flex-col gap-3">
-              <h2 className="font-bold text-sm w-full truncate">{title}</h2>
+            <div className="flex flex-col gap-3 font-notosanskr">
+              <h2 className="font-semibold text-sm w-full truncate">{title}</h2>
               <p className="text-xs w-full truncate">{description}</p>
             </div>
             <div className="grow flex items-end gap-2 ">

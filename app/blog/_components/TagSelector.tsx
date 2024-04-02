@@ -9,7 +9,7 @@ interface TagSelectorProps {
 
 function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
   return (
-    <section className="text-white">
+    <section className="text-white font-amaranth">
       <main className="flex gap-2 flex-wrap">
         {tagList.map((tag) => (
           <Chip

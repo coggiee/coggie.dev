@@ -31,7 +31,7 @@ export default function Menu({
           <IconMenu fontSize={18} />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu variant="faded" aria-label="Dropdown menu with description">
+      <DropdownMenu variant="faded" aria-label="Dropdown menu with description" className="font-amaranth">
         <DropdownItem
           key="music"
           shortcut="⌘N"

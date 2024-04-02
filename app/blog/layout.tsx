@@ -16,7 +16,7 @@ export default function PostLayout({
 }) {
   return (
     <div className="w-full h-full min-h-full">
-      <main className="flex flex-col justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
+      <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
         <Nav />
         <main className="h-full min-h-screen flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline font-notosanskr gap-7 pb-5">
           <Suspense fallback={<Loading />}>

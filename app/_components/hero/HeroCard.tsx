@@ -1,6 +1,6 @@
 import { Avatar, Card, CardHeader, CardBody } from "@nextui-org/react";
 import SocialGroup from "../common/SocialGroup";
-import Bio from "../sidebar/Bio";
+import HeroBio from "./HeroBio";
 import HeroCardDetail from "./HeroCardDetail";
 
 type HeroCardProps = {
@@ -34,7 +34,7 @@ export default function HeroCard({ src }: HeroCardProps) {
       <CardBody className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">
           <HeroCardDetail />
-          <Bio />
+          <HeroBio />
         </div>
       </CardBody>
     </Card>
