@@ -33,7 +33,7 @@ export default function PostSideCard({
       shadow="none"
       className="font-notosanskr cursor-pointer rounded-lg"
     >
-      <CardBody className="p-2 bg-item-dark hover:bg-item-dark/30">
+      <CardBody className="p-2 dark:bg-item-dark dark:hover:bg-item-dark/30">
         <div className="flex flex-row gap-5">
           <div className="relative w-32 h-32 flex-shrink-0 rounded-lg">
             {coverImage && (
