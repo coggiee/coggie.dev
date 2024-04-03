@@ -3,9 +3,8 @@
 @tailwind utilities;
 @import "prose.css";
 @import "prism-nord.css";
-@import "toc.css";
 
-@layer utilities {
+@layer base {
   nav[aria-label="Breadcrumbs"] ol {
     @apply flex-nowrap;
   }

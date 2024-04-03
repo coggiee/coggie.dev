@@ -1,10 +1,10 @@
-@tailwind utilities;
+@tailwind base;
 
-@layer utilities {
+@layer base {
   .prose pre {
     @apply overflow-x-auto;
   }
-  
+
   .prose a {
     @apply transition-all;
   }
