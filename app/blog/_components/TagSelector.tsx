@@ -14,9 +14,8 @@ function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
         {tagList.map((tag) => (
           <Chip
             key={tag}
-            variant="bordered"
-            radius="lg"
-            color={selectedTag !== tag ? "default" : "primary"}
+            radius="sm"
+            color={selectedTag !== tag ? "default" : "secondary"}
             className="cursor-pointer transition-colors duration-75"
             onClick={() => onSelect(tag)}
           >
