@@ -26,14 +26,14 @@
   }
 
   .prose blockquote {
-    @apply border-l-1 border-[dodgerblue];
+    @apply border-l-4 border-[#af83e9] bg-[#f7f7f7] dark:text-white dark:bg-[#323232];
   }
   .prose h1 {
     @apply font-bold mb-4 mt-8;
   }
 
   .prose h4 a {
-    @apply text-lg no-underline text-inherit;
+    @apply font-semibold text-lg no-underline text-inherit;
   }
 
   .prose h5 a {
@@ -43,7 +43,7 @@
   .prose h1 a,
   .prose h2 a,
   .prose h3 a {
-    @apply no-underline text-inherit;
+    @apply font-semibold no-underline text-inherit;
   }
 
   .prose ol,
