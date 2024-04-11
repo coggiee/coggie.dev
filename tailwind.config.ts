@@ -53,5 +53,6 @@ const config: Config = {
     require("tailwind-scrollbar"),
     nextui(),
   ],
+  important: true,
 };
 export default config;
