@@ -23,15 +23,19 @@ export default function Menu({
 }: DropDownProps) {
   const iconClasses =
     "text-xl text-default-500 pointer-events-none flex-shrink-0";
-    
+
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button size="sm" variant="flat" isIconOnly>
+        <Button size="sm" variant="flat" isIconOnly aria-label="menu">
           <IconMenu fontSize={18} />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu variant="faded" aria-label="Dropdown menu with description" className="font-amaranth">
+      <DropdownMenu
+        variant="faded"
+        aria-label="Dropdown menu with description"
+        className="font-amaranth"
+      >
         <DropdownItem
           key="music"
           shortcut="⌘N"

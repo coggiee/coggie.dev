@@ -28,7 +28,7 @@ export default function ThemeSwitcher() {
   return (
     <Component {...getBaseProps()}>
       <VisuallyHidden>
-        <input {...getInputProps()} />
+        <input {...getInputProps()} aria-label="theme switcher" />
       </VisuallyHidden>
       <div
         {...getWrapperProps()}

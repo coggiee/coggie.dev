@@ -22,6 +22,7 @@ export default function SocialGroup({
         radius="full"
         size="md"
         isIconOnly
+        aria-label="github"
       >
         <IconGithub />
       </Button>
@@ -32,6 +33,7 @@ export default function SocialGroup({
         radius="full"
         size="md"
         isIconOnly
+        aria-label="velog"
       >
         <IconVelog />
       </Button>
@@ -42,6 +44,7 @@ export default function SocialGroup({
         radius="full"
         size="md"
         isIconOnly
+        aria-label="gmail"
       >
         <IconGmail />
       </Button>
