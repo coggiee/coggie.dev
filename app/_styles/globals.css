@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import "prose.css";
 @import "prism-nord.css";
+@import "editor.css";
 
 @layer base {
   nav[aria-label="Breadcrumbs"] ol {
