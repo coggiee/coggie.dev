@@ -69,11 +69,10 @@ export default function PostSideCard({
             <div className="grow flex items-end gap-2 ">
               {tags.map((tag) => (
                 <Chip
-                  startContent={<IconCheck fontSize={18} />}
+                  startContent={<IconCheck fontSize={18} className="mr-1" />}
                   key={tag}
                   size="sm"
-                  radius="lg"
-                  color="success"
+                  radius="sm"
                   variant="flat"
                 >
                   {tag}

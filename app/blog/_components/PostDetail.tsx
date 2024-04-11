@@ -93,11 +93,10 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
               <div className="flex justify-start items-center gap-2 mb-5 flex-wrap">
                 {post!.tags?.map((tag: string) => (
                   <Chip
-                    startContent={<IconCheck fontSize={18} />}
+                    startContent={<IconCheck fontSize={18} className="mr-1" />}
                     key={tag}
                     size="sm"
-                    radius="lg"
-                    color="success"
+                    radius="sm"
                     variant="flat"
                   >
                     {tag}
