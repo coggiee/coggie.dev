@@ -21,20 +21,20 @@ export const metadata: Metadata = {
   },
   description: "프론트엔드 개발 블로그 coggie.dev입니다.",
   icons: {
-    icon: "/mimoji.png",
-    apple: "/mimoji.png",
+    icon: "https://i.ibb.co/2SwpytM/mimoji.png",
+    apple: "https://i.ibb.co/2SwpytM/mimoji.png",
   },
   other: {
     "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
   },
   openGraph: {
     title: "coggie.dev",
-    description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+    description: "FE 개발 블로그",
     url: "https://coggie.dev",
     siteName: "coggie.dev",
     images: [
       {
-        url: "https://i.ibb.co/XX8jkbW/mimoji.png",
+        url: "https://i.ibb.co/2SwpytM/mimoji.png",
         width: 800,
         height: 600,
       },
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     title: "coggie.dev",
     description: "프론트엔드 개발 블로그 coggie.dev입니다.",
     creator: "@coggie",
-    images: ["https://i.ibb.co/XX8jkbW/mimoji.png"],
+    images: ["https://i.ibb.co/2SwpytM/mimoji.png"],
   },
 };
 

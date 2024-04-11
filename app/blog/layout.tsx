@@ -1,9 +1,11 @@
 import React, { Suspense } from "react";
-import Nav from "../_components/common/Nav";
 import RightSidebar from "../_components/sidebar/RightSidebar";
 import Footer from "../_components/common/Footer";
 import InfoSiderbar from "../_components/sidebar/InfoSiderbar";
 import Loading from "./loading";
+import dynamic from "next/dynamic";
+
+const Nav = dynamic(() => import("../_components/common/Nav"));
 
 export default function PostLayout({
   children,
