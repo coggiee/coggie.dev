@@ -28,7 +28,6 @@ export default function ReCheckModal({
   coverImageUrl,
   defaultSelected,
 }: ReCheckModalkProps) {
-  const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState<string | null>(coverImageUrl ?? null); // 이미지 url 주소 in string
 
   const handleCoverImage = (e: React.ChangeEvent<HTMLInputElement>) => {
