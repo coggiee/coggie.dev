@@ -1,4 +1,4 @@
-import { Input } from "@nextui-org/react";
+import { Input, Textarea } from "@nextui-org/react";
 import React from "react";
 
 type Props = {
@@ -13,17 +13,13 @@ export default function TagInput({
   handleKeyPress,
 }: Props) {
   return (
-    <div className="mb-4">
-      <Input
-        id="tags"
-        name="tags"
-        type="text"
-        placeholder="태그를 추가하세요."
-        size="lg"
-        variant="underlined"
-        label="태그"
-        className="font-bold"
+    <div className="h-auto mb-4">
+      <Textarea
         isRequired
+        variant="flat"
+        label="태그"
+        labelPlacement="outside"
+        placeholder="태그를 추가하세요."
         value={tags}
         onChange={handleOnTypeTags}
         onKeyDown={handleKeyPress}

@@ -60,9 +60,8 @@ export default function WriteSection() {
           {tagList.map((tag, index) => (
             <Chip
               key={index}
-              size="lg"
               variant="solid"
-              color="success"
+              radius="sm"
               className="cursor-pointer"
               onClose={() => handleSelectTag(tag)}
             >

@@ -10,11 +10,10 @@ export default function TitleInput({
     <div className="h-auto mb-3 flex-grow">
       <Textarea
         isRequired
-        variant="underlined"
+        variant="flat"
         label="제목"
         labelPlacement="outside"
         placeholder="제목을 입력하세요."
-        className="font-bold"
         value={title}
         onChange={handleOnTypeTitle}
       />
