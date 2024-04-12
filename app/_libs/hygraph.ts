@@ -1,4 +1,5 @@
 import { GraphQLClient, gql } from "graphql-request";
+import dynamic from "next/dynamic";
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 
@@ -134,18 +135,14 @@ export async function getRecentPosts() {
 export async function getTotalTags() {
   const query = gql`
     query getTotalTags {
-      posts {
-        tags
+      tagLists(first: 16) {
+        tag
       }
     }
   `;
 
-  const results: any = await graphcms.request(query, {
-    headers: {
-      "hyg-stale-while-revalidate": "27",
-    },
-  });
-  return results.posts;
+  const results: any = await graphcms.request(query);
+  return results.tagLists;
 }
 
 export async function getPostsByTag(tag: any[]) {

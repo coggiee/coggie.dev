@@ -12,10 +12,7 @@ async function getProps() {
   const posts = edges.map((post: any) => post.node);
   const lastPostCursor = posts[posts.length - 1].id;
   const tags = (await getTotalTags()) || [];
-  const uniqueTags = Array.from(
-    new Set<string>(tags.flatMap((post: any) => post.tags)),
-  );
-  uniqueTags.unshift("All");
+  const uniqueTags = tags.map((tag: any) => tag.tag);
 
   return {
     props: {
