@@ -15,8 +15,10 @@ function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
           <Chip
             key={tag}
             radius="sm"
-            color={selectedTag !== tag ? "default" : "secondary"}
-            className="cursor-pointer transition-colors duration-75"
+            className={cn(
+              "cursor-pointer transition-colors duration-75 bg-gradient-to-tr",
+              selectedTag == tag ? "from-violet-400 to-[#94c9ff]" : "",
+            )}
             onClick={() => onSelect(tag)}
           >
             {tag}
