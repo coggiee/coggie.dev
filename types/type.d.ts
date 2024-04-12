@@ -89,6 +89,7 @@ interface EditTitleProps {
 
 interface EditorProps {
   content: string;
+  onChange: () => void;
   editorRef: React.MutableRefObject<any>;
 }
 

@@ -134,6 +134,14 @@ export const useForm = () => {
     });
   };
 
+  const handleChangeContent = () => {
+    const content = ref.current.getInstance().getMarkdown();
+    setForm({
+      ...form,
+      content,
+    });
+  };
+
   const handleChangeDesc = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
@@ -178,6 +186,7 @@ export const useForm = () => {
     isToast,
     handleSubmit,
     handleChangeTitle,
+    handleChangeContent,
     handleChangeDesc,
     handleChangeCoverImage,
     handleChangeTag,

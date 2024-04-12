@@ -17,7 +17,7 @@ import { useResize } from "@/app/_hooks/useResize";
 import UploadLoading from "./UploadLoading";
 
 const TuiEditor = React.forwardRef(
-  ({ content = " ", editorRef }: EditorProps, ref) => {
+  ({ content = " ", onChange, editorRef }: EditorProps, ref) => {
     const { direction } = useResize();
     const toolbarItems = [
       ["heading", "bold", "italic", "strike"],
@@ -60,6 +60,7 @@ const TuiEditor = React.forwardRef(
               initialValue={content}
               useCommandShortcut={true}
               toolbarItems={toolbarItems}
+              onChange={onChange}
               hooks={{
                 addImageBlobHook: handleAddImageBlob,
               }}

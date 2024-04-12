@@ -36,6 +36,7 @@ export default function WriteSection() {
     isToast,
     handleSubmit,
     handleChangeTitle,
+    handleChangeContent,
     handleChangeDesc,
     handleChangeCoverImage,
     handleChangeTag,
@@ -70,7 +71,11 @@ export default function WriteSection() {
           ))}
         </ul>
       </div>
-      <TuiEditor content={isUpdated ? content : " "} editorRef={ref} />
+      <TuiEditor
+        content={isUpdated ? content : " "}
+        editorRef={ref}
+        onChange={handleChangeContent}
+      />
       <div className="flex gap-3 py-3 justify-end">
         <Button onPress={handleBack}>
           <span>나가기</span>
