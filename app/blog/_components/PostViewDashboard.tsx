@@ -47,7 +47,7 @@ export default function PostViewDashboard({
           size="sm"
           isIconOnly
           className="dark:text-white"
-          onPress={() => router.back()}
+          onPress={() => router.push("/blog")}
         >
           <IconBackToHome className="text-sm" />
         </Button>
