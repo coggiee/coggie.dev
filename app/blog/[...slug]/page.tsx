@@ -6,7 +6,7 @@ import PostViewDashboard from "@/app/blog/_components/PostViewDashboard";
 //   () => import("@/app/blog/_components/PostViewDashboard"),
 // );
 
-const dynamic = 'force-static'
+export const dynamic = 'force-static'
 
 export async function generateStaticParams() {
   const { edges } = (await getTotalPosts()) || [];
