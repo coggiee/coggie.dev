@@ -1,10 +1,12 @@
-import dynamic from "next/dynamic";
 import { getSinglePost, getTotalPosts } from "@/app/_libs/hygraph";
 import { serializeMdx } from "@/app/_libs/mdx";
+import PostViewDashboard from "@/app/blog/_components/PostViewDashboard";
 
-const PostViewDashboard = dynamic(
-  () => import("@/app/blog/_components/PostViewDashboard"),
-);
+// const PostViewDashboard = dynamic(
+//   () => import("@/app/blog/_components/PostViewDashboard"),
+// );
+
+const dynamic = 'force-static'
 
 export async function generateStaticParams() {
   const { edges } = (await getTotalPosts()) || [];
