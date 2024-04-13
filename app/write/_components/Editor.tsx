@@ -12,11 +12,16 @@ import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "prismjs/themes/prism.css";
 import Prism from "prismjs";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
-import { EditorProps } from "@/types/type";
 import { useTheme } from "next-themes";
 import { useResize } from "@/app/_hooks/useResize";
 
 const UploadLoading = dynamic(() => import("./UploadLoading"));
+
+interface EditorProps {
+  content: string;
+  onChange: () => void;
+  editorRef?: React.MutableRefObject<any>;
+}
 
 const TuiEditor = React.forwardRef(
   ({ content = " ", onChange, editorRef }: EditorProps, ref) => {

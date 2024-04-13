@@ -85,11 +85,6 @@ interface EditTitleProps {
   handleOnTypeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface EditorProps {
-  content: string;
-  onChange: () => void;
-  editorRef?: React.MutableRefObject<any>;
-}
 
 interface AlertProps {
   title: string;
