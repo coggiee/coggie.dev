@@ -69,7 +69,8 @@ export default function ReCheckModal({
                 id="desc"
                 className="w-full resize-none outline-none text-base font-bold overflow-visible min-h-[5em]"
                 placeholder="설명을 입력하세요"
-                variant="underlined"
+                variant="flat"
+                labelPlacement="outside"
                 value={description}
                 onChange={handleOnTypeDesc}
               />
