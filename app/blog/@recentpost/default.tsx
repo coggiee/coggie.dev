@@ -1,7 +1,7 @@
-import React from "react";
-
 function Default() {
-  return null;
+  return <section>
+    RecentPost
+  </section>
 }
 
 export default Default;

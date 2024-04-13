@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import ProjectList from "../project/ProjectList";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";

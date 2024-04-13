@@ -1,13 +1,12 @@
 "use client";
 
-import Fallback from "../../_components/common/Fallback";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 import {
   formatCreatedAt,
   formatCreatedTime,
   formatReadingMinutes,
 } from "@/utils/formatTime";
-import PostSideCard from "./PostSideCard";
-import Link from "next/link";
 import {
   Button,
   Card,
@@ -16,6 +15,8 @@ import {
   ScrollShadow,
 } from "@nextui-org/react";
 
+const PostSideCard = dynamic(() => import("./PostSideCard"));
+
 interface PostViewProps {
   postList: any;
   title: string;
@@ -23,6 +24,7 @@ interface PostViewProps {
   isLoading: boolean;
   isDisabledLoad: boolean;
 }
+
 export default function PostView({
   postList,
   title,

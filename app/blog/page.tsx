@@ -1,11 +1,8 @@
 import React from "react";
-import {
-  getHotPosts,
-  getRecentPosts,
-  getTotalPosts,
-  getTotalTags,
-} from "../_libs/hygraph";
-import PostDashboard from "./_components/PostDashboard";
+import dynamic from "next/dynamic";
+import { getTotalPosts, getTotalTags } from "../_libs/hygraph";
+
+const PostDashboard = dynamic(() => import("./_components/PostDashboard"));
 
 async function getProps() {
   const { edges, aggregate } = (await getTotalPosts()) || [];

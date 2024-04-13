@@ -1,12 +1,9 @@
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
 import { useFormStore } from "../_store/useFormStore";
 import dayjs from "dayjs";
 import { createPost, updatePost } from "../_libs/hygraph";
 import { useRouter } from "next/navigation";
 
-interface useFormProps {
-  ref: React.MutableRefObject<any>;
-}
 export const useForm = () => {
   const ref = useRef<any>(null);
   const { form, isUpdated, setForm } = useFormStore();
@@ -20,7 +17,7 @@ export const useForm = () => {
 
     setIsLoading(true);
 
-    const content: string = ref.current.getInstance().getMarkdown();
+    const content: string = ref.current?.getInstance().getMarkdown();
     const {
       id: postId,
       title,
@@ -135,11 +132,13 @@ export const useForm = () => {
   };
 
   const handleChangeContent = () => {
-    const content = ref.current.getInstance().getMarkdown();
-    setForm({
-      ...form,
-      content,
-    });
+    if (ref.current) {
+      const content = ref.current?.getInstance().getMarkdown();
+      setForm({
+        ...form,
+        content,
+      });
+    }
   };
 
   const handleChangeDesc = (e: ChangeEvent<HTMLInputElement>) => {

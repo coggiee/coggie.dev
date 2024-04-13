@@ -1,5 +1,3 @@
-'use client';
-
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';
 import { Skeleton } from '@nextui-org/react';
 import React from 'react';

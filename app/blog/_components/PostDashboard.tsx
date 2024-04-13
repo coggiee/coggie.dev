@@ -3,15 +3,16 @@
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import React, { useEffect } from "react";
 import Introduction from "../../_components/common/Introduction";
-import PostView from "./PostView";
 import { Divider } from "@nextui-org/react";
 import { useSearch } from "@/app/_hooks/useSearch";
-import SearchBar from "./SearchBar";
 import { useLoadPost } from "@/app/_hooks/useLoadPost";
-import TagSelector from "./TagSelector";
 import { useSelectTag } from "@/app/_hooks/useSelectTag";
 import { usePostStore } from "@/app/_store/usePostStore";
+import dynamic from "next/dynamic";
 
+const PostView = dynamic(() => import("./PostView"));
+const SearchBar = dynamic(() => import("./SearchBar"));
+const TagSelector = dynamic(() => import("./TagSelector"));
 interface PostDashboardProps {
   totalPostList: any;
   tagList: string[];

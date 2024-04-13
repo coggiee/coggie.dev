@@ -1,36 +1,27 @@
 "use client";
 
-import IconBackToHome from "@/app/_icons/IconBackToHome";
-import IconScale from "@/app/_icons/IconScale";
-import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import React, { useRef } from "react";
-import { PostDetail } from "./PostDetail";
-import {
-  BreadcrumbItem,
-  Breadcrumbs,
-  Button,
-  Card,
-  CardBody,
-  Link,
-} from "@nextui-org/react";
-import { usePathname, useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
+import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
+import { Card, CardBody } from "@nextui-org/react";
 
-type Props = {
-  postId: string;
+const HomeButton = dynamic(() => import("./HomeButton"));
+const Breadcrumb = dynamic(() => import("./Breadcrumb"));
+const PostDetail = dynamic(() =>
+  import("./PostDetail").then((mod) => mod.PostDetail),
+);
+interface PostViewDashboardProps {
   currentPost: any;
   mdx: any;
-  parsedToc: any;
-};
+}
 
 export default function PostViewDashboard({
-  postId,
   currentPost,
   mdx,
-  parsedToc,
-}: Props) {
+}: PostViewDashboardProps) {
   const postDetailRef = useRef<HTMLDivElement>(null); // Ref 추가
   const pathname = usePathname().split("/")[1];
-  const router = useRouter();
 
   return (
     <MotionVerticalProvider
@@ -41,33 +32,8 @@ export default function PostViewDashboard({
       className={"flex flex-col gap-5"}
     >
       <div className="sticky top-16 p-3 shrink-0 w-full flex gap-3 justify-between items-center border border-item-border-light rounded-lg dark:border-item-border-dark dark:text-white backdrop-blur-md z-[50]">
-        <Button
-          variant="flat"
-          radius="full"
-          size="sm"
-          isIconOnly
-          className="dark:text-white"
-          onPress={() => router.push("/blog")}
-        >
-          <IconBackToHome className="text-sm" />
-        </Button>
-        <Breadcrumbs size="sm" variant="light" className="grow">
-          <BreadcrumbItem href="/blog">{pathname}</BreadcrumbItem>
-          <BreadcrumbItem id="breadcrumb-title">
-            {currentPost.title}
-          </BreadcrumbItem>
-        </Breadcrumbs>
-        <Button
-          href={`/post-detail/${postId}`}
-          as={Link}
-          variant="flat"
-          radius="full"
-          size="sm"
-          isIconOnly
-          className="dark:text-white"
-        >
-          <IconScale className="text-sm" />
-        </Button>
+        <HomeButton />
+        <Breadcrumb pathname={pathname} title={currentPost.title} />
       </div>
 
       <Card
@@ -78,12 +44,7 @@ export default function PostViewDashboard({
         ref={postDetailRef}
       >
         <CardBody className="p-0 w-full">
-          <PostDetail
-            post={currentPost!}
-            mdx={mdx!}
-            toc={parsedToc}
-            isFullSize={false}
-          />
+          <PostDetail post={currentPost!} mdx={mdx!} />
         </CardBody>
       </Card>
     </MotionVerticalProvider>

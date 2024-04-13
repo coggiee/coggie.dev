@@ -1,6 +1,8 @@
+'use client';
+
+import React from 'react';
 import { MotionVerticalProviderProps } from '@/types/type';
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
 
 export default function MotionVerticalProvider({
   children,

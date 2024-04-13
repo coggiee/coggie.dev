@@ -19,8 +19,6 @@ interface Skill {
 interface PostDetailProps {
   post: any;
   mdx: MDXRemoteSerializeResult;
-  toc: any;
-  isFullSize?: boolean;
 }
 
 interface PostCardProps {
@@ -90,7 +88,7 @@ interface EditTitleProps {
 interface EditorProps {
   content: string;
   onChange: () => void;
-  editorRef: React.MutableRefObject<any>;
+  editorRef?: React.MutableRefObject<any>;
 }
 
 interface AlertProps {

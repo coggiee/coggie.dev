@@ -1,5 +1,4 @@
 import React from "react";
-import IconGithub from "@/app/_icons/IconGithub";
 import { GithubLoginProps } from "@/types/type";
 import { Button } from "@nextui-org/react";
 

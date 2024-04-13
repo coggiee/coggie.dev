@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import { Editor } from "@toast-ui/react-editor";
 import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 import "@toast-ui/editor/dist/toastui-editor.css";
@@ -14,7 +15,8 @@ import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { EditorProps } from "@/types/type";
 import { useTheme } from "next-themes";
 import { useResize } from "@/app/_hooks/useResize";
-import UploadLoading from "./UploadLoading";
+
+const UploadLoading = dynamic(() => import("./UploadLoading"));
 
 const TuiEditor = React.forwardRef(
   ({ content = " ", onChange, editorRef }: EditorProps, ref) => {

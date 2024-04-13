@@ -1,6 +1,10 @@
-import AsidePostDashboard from "@/app/_components/section/AsidePostDashboard";
-import { getHotPosts } from "@/app/_libs/hygraph";
 import React from "react";
+import dynamic from "next/dynamic";
+import { getHotPosts } from "@/app/_libs/hygraph";
+
+const AsidePostDashboard = dynamic(
+  () => import("@/app/_components/section/AsidePostDashboard"),
+);
 
 async function getProps() {
   const pinnedPosts = (await getHotPosts()) || [];

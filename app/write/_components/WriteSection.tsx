@@ -1,19 +1,20 @@
 "use client";
 
-import React, { ChangeEvent, KeyboardEvent, useRef, useState } from "react";
-import TuiEditor from "@/app/write/_components/Editor";
-import Alert from "../../_components/common/Alert";
-import { useRouter, useSearchParams } from "next/navigation";
-import dayjs from "dayjs";
-import { createPost, updatePost } from "@/app/_libs/hygraph";
-import ReCheckModal from "./ReCheckModal";
-import Link from "next/link";
-import { Button, Chip, useDisclosure } from "@nextui-org/react";
-import Loading from "@/app/loading";
-import TitleInput from "@/app/write/_components/TitleInput";
-import TagInput from "./TagInput";
+import React from "react";
+import dynamic from "next/dynamic";
+import { Button, useDisclosure } from "@nextui-org/react";
 import { useFormStore } from "@/app/_store/useFormStore";
 import { useForm } from "@/app/_hooks/useForm";
+import TagList from "./TagList";
+
+const TitleInput = dynamic(() => import("@/app/write/_components/TitleInput"));
+const TagInput = dynamic(() => import("@/app/write/_components/TagInput"));
+const TuiEditor = dynamic(() => import("@/app/write/_components/Editor"));
+const Alert = dynamic(() => import("@/app/_components/common/Alert"));
+const ReCheckModal = dynamic(
+  () => import("@/app/write/_components/ReCheckModal"),
+);
+const Loading = dynamic(() => import("@/app/loading"));
 
 export default function WriteSection() {
   const {
@@ -56,21 +57,7 @@ export default function WriteSection() {
         handleKeyPress={handlePressEnter}
         handleOnTypeTags={handleChangeTag}
       />
-      <div className="mb-4">
-        <ul className="flex flex-wrap justify-start items-center gap-2">
-          {tagList.map((tag, index) => (
-            <Chip
-              key={index}
-              variant="solid"
-              radius="sm"
-              className="cursor-pointer"
-              onClose={() => handleSelectTag(tag)}
-            >
-              {tag}
-            </Chip>
-          ))}
-        </ul>
-      </div>
+      <TagList tagList={tagList} onClick={handleSelectTag} />
       <TuiEditor
         content={isUpdated ? content : " "}
         editorRef={ref}

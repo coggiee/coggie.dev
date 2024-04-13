@@ -1,6 +1,8 @@
-import { MotionHorizontalProviderProps } from '@/types/type';
-import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+"use client";
+
+import React from "react";
+import { MotionHorizontalProviderProps } from "@/types/type";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function MotionHorizontalProvider({
   children,

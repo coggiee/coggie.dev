@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import HeroSection from '../hero/HeroCard';
 import MotionVerticalProvider from '@/app/_provider/MotionVerticalProvider';

@@ -4,7 +4,6 @@ import IconTimerSand from "../../_icons/IconTimerSand";
 import { CoverImage } from "@/types/type";
 import IconNoImage from "@/app/_icons/IconNoImage";
 import { Card, CardBody, Chip } from "@nextui-org/react";
-import NextImage from "next/image";
 import IconCheck from "@/app/_icons/IconCheck";
 import Image from "next/image";
 

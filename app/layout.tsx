@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import "@/app/_styles/globals.css";
+import type { Metadata } from "next";
 import { amaranth, notosanskr } from "../assets/fonts";
 import { Providers } from "./_provider/providers";
 import AuthProvider from "./_provider/AuthProvider";

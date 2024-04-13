@@ -7,10 +7,8 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
   CardHeader,
   Divider,
-  Image,
 } from "@nextui-org/react";
 
 export default function ProjectItem({

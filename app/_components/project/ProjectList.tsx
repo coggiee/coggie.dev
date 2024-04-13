@@ -1,7 +1,6 @@
 import { Project } from "@/app/_data/project";
 import React from "react";
 import ProjectItem from "./ProjectItem";
-import { Card, CardBody, CardHeader, Spacer } from "@nextui-org/react";
 
 export default function ProjectList() {
   return (

@@ -1,38 +1,32 @@
 "use client";
 
-import IconLink from "@/app/_icons/IconLink";
-import useDetectScroll from "../../_hooks/useDetectScroll";
-import { copyToClipboard } from "@/utils/copyToClipboard";
 import { useState } from "react";
-import Alert from "../../_components/common/Alert";
-import { MDXRemote } from "next-mdx-remote";
-
-import AuthorSection from "@/app/blog/_components/AuthorSection";
-import { deletePost } from "@/app/_libs/hygraph";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useFormStore } from "@/app/_store/useFormStore";
+import { deletePost } from "@/app/_libs/hygraph";
+import { copyToClipboard } from "@/utils/copyToClipboard";
+import AuthorSection from "@/app/blog/_components/AuthorSection";
 import PostTimeBox from "./PostTimeBox";
 import { PostDetailProps } from "@/types/type";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
-import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-  Chip,
-  Divider,
-  Tooltip,
-} from "@nextui-org/react";
-import IconCheck from "@/app/_icons/IconCheck";
-import CommentSection from "./CommentSection";
-import { useSession } from "next-auth/react";
-import { useFormStore } from "@/app/_store/useFormStore";
+import { Button, Divider, useDisclosure } from "@nextui-org/react";
 
-export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
+const Alert = dynamic(() => import("../../_components/common/Alert"));
+const MDXRemote = dynamic(() =>
+  import("next-mdx-remote").then((mod) => ({ default: mod.MDXRemote })),
+);
+const CommentSection = dynamic(() => import("./CommentSection"), {
+  ssr: false,
+});
+const PostDeleteModal = dynamic(() => import("./PostDeleteModal"));
+const CopyButton = dynamic(() => import("./CopyButton"));
+const PostTag = dynamic(() => import("./PostTag"));
+
+export const PostDetail = ({ post, mdx }: PostDetailProps) => {
   const { setForm, setIsUpdated } = useFormStore();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
   const [isAlertVisible, setIsAlertVisible] = useState<boolean>(false);
   const [isFallback, setisFallback] = useState<boolean>(false);
   const [alertTitle, setAlertTitle] = useState<string>("");
@@ -62,6 +56,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
         setisFallback(false);
       }, 3000);
       onClose();
+      router.push("/blog");
     }
   };
 
@@ -78,7 +73,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
       content: post!.content,
       tagInput: "",
     });
-    router.push(`/write/${id}`);
+    router.push(`/write`);
   };
 
   return (
@@ -90,19 +85,7 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
               <h1 className="text-4xl font-bold w-full break-words dark:text-[#fff]">
                 {post!.title}
               </h1>
-              <div className="flex justify-start items-center gap-2 mb-5 flex-wrap">
-                {post!.tags?.map((tag: string) => (
-                  <Chip
-                    startContent={<IconCheck fontSize={18} className="mr-1" />}
-                    key={tag}
-                    size="sm"
-                    radius="sm"
-                    variant="flat"
-                  >
-                    {tag}
-                  </Chip>
-                ))}
-              </div>
+              <PostTag tags={post!.tags} />
               <div className="w-full flex flex-col justify-center sm:flex-row sm:justify-between sm:items-center gap-5 pb-10">
                 <PostTimeBox date={post!.date} content={post!.content} />
                 <div className="flex items-center gap-3 self-end sm:self-auto">
@@ -125,28 +108,13 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
                           variant="flat"
                           radius="md"
                           className="p-0"
-                          onPress={() => onOpen()}
+                          onPress={onOpen}
                         >
                           삭제
                         </Button>
                       </div>
                     )}
-                  <Tooltip
-                    showArrow={true}
-                    placement="bottom"
-                    content="링크 복사"
-                  >
-                    <Button
-                      size="sm"
-                      variant="flat"
-                      radius="md"
-                      isIconOnly
-                      className="rounded-full bg-[dodgerblue]/70"
-                      onClick={handleOnClickCopyButton}
-                    >
-                      <IconLink />
-                    </Button>
-                  </Tooltip>
+                  <CopyButton onCopy={handleOnClickCopyButton} />
                 </div>
               </div>
               <Divider className="mt-0" />
@@ -160,23 +128,12 @@ export const PostDetail = ({ post, mdx, toc, isFullSize }: PostDetailProps) => {
         {isAlertVisible && (
           <Alert title={"링크가 복사되었습니다."} bgColor="dodgerblue" />
         )}
-        <Modal backdrop="blur" isOpen={isOpen} onClose={onClose}>
-          <ModalContent>
-            <ModalHeader>정말 포스트를 삭제하시겠어요?</ModalHeader>
-            <ModalBody>한 번 삭제된 포스트는 되돌릴 수 없어요.</ModalBody>
-            <ModalFooter>
-              <Button
-                color="danger"
-                variant="flat"
-                onPress={() => handleClickDeleteButton(true)}
-              >
-                삭제
-              </Button>
-              <Button onPress={onClose}>취소</Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
         {isFallback && <Alert title={alertTitle} bgColor="crimson" />}
+        <PostDeleteModal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          onDelete={handleClickDeleteButton}
+        />
       </div>
     </MotionVerticalProvider>
   );
