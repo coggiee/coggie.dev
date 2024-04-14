@@ -16,6 +16,7 @@ export default function HeroCard() {
           width={120}
           height={120}
           alt="profile"
+          priority={true}
           src={"https://i.ibb.co/2SwpytM/mimoji.png"}
           className="rounded-full border-2"
         />
