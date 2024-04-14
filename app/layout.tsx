@@ -10,6 +10,8 @@ import Loading from "./loading";
 
 export const dynamic = "dynamic";
 
+const LOGO_IMAGE = "./logo.png";
+
 export const metadata: Metadata = {
   metadataBase:
     process.env.NODE_ENV === "production"
@@ -19,22 +21,22 @@ export const metadata: Metadata = {
     template: "%s | Coggie",
     default: "coggie.dev",
   },
-  description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+  description: "야망을 위한 발판",
   icons: {
-    icon: "https://i.ibb.co/2SwpytM/mimoji.png",
-    apple: "https://i.ibb.co/2SwpytM/mimoji.png",
+    icon: LOGO_IMAGE,
+    apple: LOGO_IMAGE,
   },
   other: {
     "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
   },
   openGraph: {
     title: "coggie.dev",
-    description: "FE 개발 블로그",
+    description: "야망을 위한 발판",
     url: "https://coggie.dev",
     siteName: "coggie.dev",
     images: [
       {
-        url: "https://i.ibb.co/2SwpytM/mimoji.png",
+        url: LOGO_IMAGE,
         width: 800,
         height: 600,
       },
@@ -45,9 +47,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "coggie.dev",
-    description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+    description: "야망을 위한 발판",
     creator: "@coggie",
-    images: ["https://i.ibb.co/2SwpytM/mimoji.png"],
+    images: [LOGO_IMAGE],
   },
 };
 
