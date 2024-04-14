@@ -10,7 +10,7 @@ import Loading from "./loading";
 
 export const dynamic = "dynamic";
 
-const LOGO_IMAGE = "./logo.png";
+const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";
 
 export const metadata: Metadata = {
   metadataBase:
