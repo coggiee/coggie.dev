@@ -19,21 +19,22 @@ export const metadata: Metadata = {
       : new URL("http://localhost:3000"),
   title: {
     template: "%s | Coggie",
-    default: "coggie.dev",
+    default: "COGGIE",
   },
-  description: "야망을 위한 발판",
+  description: "FE 개발 블로그",
   icons: {
     icon: LOGO_IMAGE,
     apple: LOGO_IMAGE,
   },
+  authors: [{ name: "Coggie" }],
   other: {
     "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
   },
   openGraph: {
-    title: "coggie.dev",
-    description: "야망을 위한 발판",
+    title: "COGGIE",
+    description: "FE 개발 블로그",
     url: "https://coggie.dev",
-    siteName: "coggie.dev",
+    siteName: "COGGIE.DEV",
     images: [
       {
         url: LOGO_IMAGE,
@@ -46,8 +47,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "coggie.dev",
-    description: "야망을 위한 발판",
+    title: "COGGIE.DEV",
+    description: "FE 개발 블로그",
     creator: "@coggie",
     images: [LOGO_IMAGE],
   },
