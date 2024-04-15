@@ -16,12 +16,12 @@ export default async function sitemap({
 }: {
   id: string;
 }): Promise<MetadataRoute.Sitemap> {
-  const post = await getSinglePost(id);
-  const post_route = {
-    url: `${BASE_URL}/${post.id}`,
-    lastModified: post.date,
-    priority: 0.8,
-  };
+  //   const post = await getSinglePost(id);
+  //   const post_route = {
+  //     url: `${BASE_URL}/${post.id}`,
+  //     lastModified: post.date,
+  //     priority: 0.8,
+  //   };
 
   const routes = [""].map((route) => ({
     url: `${BASE_URL}${route}`,
@@ -30,14 +30,14 @@ export default async function sitemap({
     priority: 1,
   }));
 
-    // const { edges } = await getTotalPosts(50);
-    // const posts = edges.map((post: any) => post.node);
+  const { edges } = await getTotalPosts(50);
+  const posts = edges.map((post: any) => post.node);
 
-    // const post_routes = posts.map((post: any) => ({
-    //   url: `${BASE_URL}/${post.id}`,
-    //   lastModified: post.date,
-    //   priority: 0.8,
-    // }));
+  const post_routes = posts.map((post: any) => ({
+    url: `${BASE_URL}/${post.id}`,
+    lastModified: post.date,
+    priority: 0.8,
+  }));
 
-  return [...routes, post_route];
+  return [...routes, ...post_routes];
 }
