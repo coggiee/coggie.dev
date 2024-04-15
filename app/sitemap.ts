@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = edges.map((post: any) => post.node);
 
   const post_routes = posts.map((post: any) => ({
-    url: `${BASE_URL}/${post.id}`,
+    url: `${BASE_URL}/blog/${post.id}`,
     lastModified: post.date,
     priority: 0.8,
   }));
