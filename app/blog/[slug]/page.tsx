@@ -1,20 +1,21 @@
-import { getSinglePost, getTotalPosts } from "@/app/_libs/hygraph";
+import { getSinglePost } from "@/app/_libs/hygraph";
 import { serializeMdx } from "@/app/_libs/mdx";
 import PostViewDashboard from "@/app/blog/_components/PostViewDashboard";
 
-export const dynamic = 'force-static'
+// export const dynamic = "force-static";
 
-export async function generateStaticParams() {
-  const { edges } = (await getTotalPosts()) || [];
-  const paths = edges.map(({ node: { id } }: { node: { id: string } }) => ({
-    params: { slug: id },
-  }));
-  return paths;
-}
+// export async function generateStaticParams() {
+//   const { edges } = (await getTotalPosts()) || [];
 
-async function getProps({ params }: { params: { slug: any } }) {
-  const { slug } = params as { slug: any };
-  const post = await getSinglePost(slug[0]);
+//   return edges.map(({ node: { id } }: { node: { id: string } }) => ({
+//     slug: id,
+//   }));
+// }
+
+async function getProps({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const post = await getSinglePost(slug);
+
   return {
     post,
   };
@@ -23,7 +24,7 @@ async function getProps({ params }: { params: { slug: any } }) {
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: any };
+  params: { slug: string };
 }) {
   const { post } = await getProps({ params });
   const mdx = await serializeMdx(post!.content);
