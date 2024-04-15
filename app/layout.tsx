@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Coggie" }],
   other: {
     "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
+    "google-site-verification": "0tnS6KVtqCXOMDRbpwRTkUZBQ5e0QJfw0SkCu8XHXA4",
   },
   openGraph: {
     title: "COGGIE",

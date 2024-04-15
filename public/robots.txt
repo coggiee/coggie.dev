@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://zentechie.vercel.app
+Host: https://coggie.dev
 
 # Sitemaps
-Sitemap: https://zentechie.vercel.app/sitemap.xml
+Sitemap: https://coggie.dev/sitemap.xml

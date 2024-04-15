@@ -30,6 +30,7 @@ export async function generateMetadata(
     },
     other: {
       "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
+      "google-site-verification": "0tnS6KVtqCXOMDRbpwRTkUZBQ5e0QJfw0SkCu8XHXA4",
     },
     title: title,
     description: desc,
