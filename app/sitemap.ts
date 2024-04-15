@@ -1,18 +1,24 @@
 import { MetadataRoute } from "next";
+import { getTotalPosts } from "./_libs/hygraph";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: "https://coggie.dev",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.5,
-    },
-    {
-      url: "https://coggie.dev/blog",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-  ];
+const BASE_URL = "https://coggie.dev/blog";
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { edges } = await getTotalPosts(50);
+  const posts = edges.map((post: any) => post.node);
+
+  const post_routes = posts.map((post: any) => ({
+    url: `${BASE_URL}/${post.id}`,
+    lastModified: post.date,
+    priority: 0.8,
+  }));
+
+  const routes = ["", "/blog"].map((route) => ({
+    url: `${BASE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...routes, ...post_routes];
 }
