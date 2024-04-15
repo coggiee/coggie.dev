@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 import { getTotalPosts } from "./_libs/hygraph";
 
-const BASE_URL = "https://coggie.dev/blog";
+const BASE_URL = "https://coggie.dev";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { edges } = await getTotalPosts(50);
