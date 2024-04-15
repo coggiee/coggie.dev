@@ -1,11 +1,12 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from "next";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/private/", "/write"],
     },
-    sitemap: 'https://zentechie.vercel.app/sitemap.xml',
-  }
+    sitemap: "https://coggie.dev/sitemap.xml",
+  };
 }
