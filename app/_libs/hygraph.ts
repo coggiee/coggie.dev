@@ -2,10 +2,10 @@ import { GraphQLClient, gql } from "graphql-request";
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 
-export async function getTotalPosts() {
+export async function getTotalPosts(first?: number) {
   const query = gql`
-    {
-      postsConnection {
+    query getAllPosts($first: Int) {
+      postsConnection(first: $first) {
         edges {
           node {
             content

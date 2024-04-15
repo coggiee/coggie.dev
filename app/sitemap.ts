@@ -1,30 +1,18 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from "next";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://zentechie.vercel.app',
+      url: "https://coggie.dev",
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    {
-      url: 'https://zentechie.vercel.app/blog',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: 'https://zentechie.vercel.app/posts',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "yearly",
       priority: 0.5,
     },
     {
-      url: 'https://zentechie.vercel.app/book',
+      url: "https://coggie.dev/blog",
       lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
+      changeFrequency: "monthly",
+      priority: 1,
     },
-  ]
+  ];
 }
