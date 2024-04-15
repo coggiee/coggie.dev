@@ -1,5 +1,4 @@
 import { GraphQLClient, gql } from "graphql-request";
-import dynamic from "next/dynamic";
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 
