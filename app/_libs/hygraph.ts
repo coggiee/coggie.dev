@@ -30,6 +30,7 @@ export async function getTotalPosts(first?: number) {
   `;
 
   const results: any = await graphcms.request(query, {
+    first,
     headers: {
       "hyg-stale-while-revalidate": "27",
     },
