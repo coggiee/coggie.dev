@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { getTotalPosts, getTotalTags } from "./_libs/hygraph";
 
 const PostDashboard = dynamic(
-  () => import("@/app/_components/post/PostDashboard"),
+  () => import("@/app/_common/post/PostDashboard"),
 );
 
 async function getProps() {

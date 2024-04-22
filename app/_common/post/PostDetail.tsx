@@ -7,13 +7,13 @@ import { useSession } from "next-auth/react";
 import { useFormStore } from "@/app/_store/useFormStore";
 import { deletePost } from "@/app/_libs/hygraph";
 import { copyToClipboard } from "@/utils/copyToClipboard";
-import AuthorSection from "@/app/_components/post/AuthorSection";
+import AuthorSection from "@/app/_common/post/AuthorSection";
 import PostTimeBox from "./PostTimeBox";
 import { PostDetailProps } from "@/types/type";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import { Button, Divider, useDisclosure } from "@nextui-org/react";
 
-const Alert = dynamic(() => import("../../_components/common/Alert"));
+const Alert = dynamic(() => import("../global/Alert"));
 const MDXRemote = dynamic(() =>
   import("next-mdx-remote").then((mod) => ({ default: mod.MDXRemote })),
 );

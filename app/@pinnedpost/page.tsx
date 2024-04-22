@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { getHotPosts } from "@/app/_libs/hygraph";
 
 const AsidePostDashboard = dynamic(
-  () => import("@/app/_components/section/AsidePostDashboard"),
+  () => import("@/app/_common/section/AsidePostDashboard"),
 );
 
 async function getProps() {

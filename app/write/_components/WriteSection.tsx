@@ -10,7 +10,7 @@ import TagList from "./TagList";
 const TitleInput = dynamic(() => import("@/app/write/_components/TitleInput"));
 const TagInput = dynamic(() => import("@/app/write/_components/TagInput"));
 const TuiEditor = dynamic(() => import("@/app/write/_components/Editor"));
-const Alert = dynamic(() => import("@/app/_components/common/Alert"));
+const Alert = dynamic(() => import("@/app/_common/global/Alert"));
 const ReCheckModal = dynamic(
   () => import("@/app/write/_components/ReCheckModal"),
 );

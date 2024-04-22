@@ -1,7 +1,7 @@
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import Link from "next/link";
 import React from "react";
-import Fallback from "../common/Fallback";
+import Fallback from "../global/Fallback";
 
 interface PostListProps {
   posts: any;

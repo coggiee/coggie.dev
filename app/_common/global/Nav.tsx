@@ -1,6 +1,6 @@
 "use client";
 
-import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import { signIn, signOut, useSession } from "next-auth/react";
 import {
   Navbar,
@@ -39,7 +39,7 @@ export default function Nav() {
           />
         </NavbarItem>
         <NavbarItem>
-          <ThemeSwitcher />
+          <ThemeToggle />
         </NavbarItem>
       </NavbarContent>
     </Navbar>

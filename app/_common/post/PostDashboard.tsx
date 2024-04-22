@@ -2,7 +2,7 @@
 
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import React, { useEffect } from "react";
-import Introduction from "../../_components/common/Introduction";
+import Introduction from "../global/Introduction";
 import { Divider } from "@nextui-org/react";
 import { useSearch } from "@/app/_hooks/useSearch";
 import { useLoadPost } from "@/app/_hooks/useLoadPost";

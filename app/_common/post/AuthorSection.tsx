@@ -1,4 +1,4 @@
-import SocialGroup from "@/app/_components/common/SocialGroup";
+import SocialGroup from "@/app/_common/global/SocialGroup";
 import Image from "next/image";
 import React from "react";
 
@@ -20,14 +20,7 @@ export default function AuthorSection() {
           <div className="font-thin font-notosanskr mb-2">
             프론트엔드 개발자
           </div>
-          <SocialGroup
-            fontSize="text-sm"
-            display="flex"
-            justify="between"
-            align="center"
-            direction="row"
-            gap={2}
-          />
+          <SocialGroup dir="justify-start" />
         </aside>
       </div>
     </section>

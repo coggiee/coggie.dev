@@ -14,7 +14,7 @@ import {
   Divider,
   ScrollShadow,
 } from "@nextui-org/react";
-import SkeletonPostCard from "@/app/_components/skeleton/SkeletonPostCard";
+import SkeletonPostCard from "@/app/_common/skeleton/SkeletonPostCard";
 
 const PostSideCard = dynamic(() => import("./PostSideCard"), {
   loading: () => <SkeletonPostCard />,
