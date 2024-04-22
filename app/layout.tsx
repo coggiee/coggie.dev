@@ -1,16 +1,16 @@
 import "@/app/_styles/globals.css";
 import type { Metadata } from "next";
 import { notosanskr, aritaburi } from "./_libs/fonts";
-import { Providers } from "./_provider/providers";
+import { ThemeProvider } from "./_provider/ThemeProvider";
 import AuthProvider from "./_provider/AuthProvider";
 import FramerProvider from "./_provider/FramerProvider";
 import UIProvider from "./_provider/UIProvider";
 import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
-import Nav from "./_components/common/Nav";
-import InfoSiderbar from "./_components/sidebar/InfoSiderbar";
-import RightSidebar from "./_components/sidebar/RightSidebar";
-import Footer from "./_components/common/Footer";
+import Nav from "./_common/global/Nav";
+import InfoSiderbar from "./_common/sidebar/InfoSiderbar";
+import RightSidebar from "./_common/sidebar/RightSidebar";
+import Footer from "./_common/global/Footer";
 import dynamic from "next/dynamic";
 
 const Loading = dynamic(() => import("./loading"));
@@ -75,7 +75,12 @@ export default function RootLayout({
         className={`${notosanskr.variable} ${aritaburi.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
       >
         <AuthProvider>
-          <Providers>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <FramerProvider>
               <UIProvider>
                 <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
@@ -98,7 +103,7 @@ export default function RootLayout({
                 <Analytics />
               </UIProvider>
             </FramerProvider>
-          </Providers>
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>
