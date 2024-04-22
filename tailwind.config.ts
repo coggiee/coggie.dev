@@ -19,7 +19,7 @@ const config: Config = {
       fontFamily: {
         inter: ["var(--font-inter)"],
         notosanskr: ["var(--font-notosanskr)"],
-        amaranth: ["var(--font-amaranth)"],
+        aritaburi: ["var(--font-aritaburi)"],
       },
       transitionProperty: {
         "max-height": "max-height",

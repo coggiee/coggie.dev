@@ -1,6 +1,6 @@
 import "@/app/_styles/globals.css";
 import type { Metadata } from "next";
-import { amaranth, notosanskr } from "../assets/fonts";
+import { notosanskr, aritaburi } from "./_libs/fonts";
 import { Providers } from "./_provider/providers";
 import AuthProvider from "./_provider/AuthProvider";
 import FramerProvider from "./_provider/FramerProvider";
@@ -72,7 +72,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`${notosanskr.variable} ${amaranth.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
+        className={`${notosanskr.variable} ${aritaburi.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
       >
         <AuthProvider>
           <Providers>
