@@ -1,6 +1,6 @@
 import { getSinglePost } from "@/app/_libs/hygraph";
 import { serializeMdx } from "@/app/_libs/mdx";
-import PostViewDashboard from "@/app/blog/_components/PostViewDashboard";
+import PostViewDashboard from "@/app/_components/post/PostViewDashboard";
 import type { Metadata, ResolvingMetadata } from "next";
 
 const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";

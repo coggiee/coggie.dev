@@ -9,7 +9,7 @@ interface BreadcrumbProps {
 export default function Breadcrumb({ pathname, title }: BreadcrumbProps) {
   return (
     <Breadcrumbs size="sm" variant="light" className="grow">
-      <BreadcrumbItem href="/blog">{pathname}</BreadcrumbItem>
+      <BreadcrumbItem href="/">{pathname}</BreadcrumbItem>
       <BreadcrumbItem id="breadcrumb-title">{title}</BreadcrumbItem>
     </Breadcrumbs>
   );

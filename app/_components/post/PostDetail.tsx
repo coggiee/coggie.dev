@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { useFormStore } from "@/app/_store/useFormStore";
 import { deletePost } from "@/app/_libs/hygraph";
 import { copyToClipboard } from "@/utils/copyToClipboard";
-import AuthorSection from "@/app/blog/_components/AuthorSection";
+import AuthorSection from "@/app/_components/post/AuthorSection";
 import PostTimeBox from "./PostTimeBox";
 import { PostDetailProps } from "@/types/type";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";

@@ -102,7 +102,7 @@ export const useForm = () => {
     if (id) {
       setIsLoading(false);
       useFormStore.persist.clearStorage();
-      router.push(`/blog/${id}`);
+      router.push(`/${id}`);
     }
   };
 

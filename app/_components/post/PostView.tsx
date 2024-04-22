@@ -55,7 +55,7 @@ export default function PostView({
               <main className="flex flex-col gap-2">
                 {postList.map((post: any) => (
                   <Link
-                    href={`/blog/${post.id}`}
+                    href={`/${post.id}`}
                     passHref
                     key={post.id}
                     className="rounded-lg overflow-hidden space-y-2"

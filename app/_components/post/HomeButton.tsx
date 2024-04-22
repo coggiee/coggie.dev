@@ -13,7 +13,7 @@ export default function HomeButton() {
       size="sm"
       isIconOnly
       className="dark:text-white"
-      onPress={() => router.push("/blog")}
+      onPress={() => router.push("/")}
     >
       <IconBackToHome className="text-sm" />
     </Button>
