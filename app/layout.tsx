@@ -7,6 +7,7 @@ import FramerProvider from "./_provider/FramerProvider";
 import UIProvider from "./_provider/UIProvider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { Analytics } from "@vercel/analytics/react";
 
 export const dynamic = "dynamic";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
               <UIProvider>
                 <main className="w-full h-screen min-h-screen dark:bg-item-dark">
                   <Suspense fallback={<Loading />}>{children}</Suspense>
+                  <Analytics />
                 </main>
               </UIProvider>
             </FramerProvider>
