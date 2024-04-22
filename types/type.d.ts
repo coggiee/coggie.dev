@@ -125,15 +125,6 @@ interface SearchBarProps {
   handleOnPressEnter: (e: any) => void;
 }
 
-interface SocialGroupProps {
-  fontSize: string;
-  display: string;
-  justify?: string;
-  align?: string;
-  direction?: string;
-  gap?: number;
-}
-
 interface ProjectItemProps {
   projectTitle: string;
   projectDescription: string;
