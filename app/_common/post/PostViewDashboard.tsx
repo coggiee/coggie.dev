@@ -2,9 +2,7 @@
 
 import React, { useRef } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
-import { Card, CardBody } from "@nextui-org/react";
 
 const HomeButton = dynamic(() => import("./HomeButton"));
 const PostDetail = dynamic(() =>

@@ -1,6 +1,5 @@
 import type { Config } from "tailwindcss";
 const { spacing } = require("tailwindcss/defaultTheme");
-const { nextui } = require("@nextui-org/react");
 
 const config = {
   darkMode: ["class"],
@@ -12,7 +11,6 @@ const config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   prefix: "",
   theme: {
@@ -116,7 +114,6 @@ const config = {
     require("@tailwindcss/typography"),
     "prettier-plugin-tailwindcss",
     require("tailwind-scrollbar"),
-    nextui(),
   ],
   important: true,
 } satisfies Config;

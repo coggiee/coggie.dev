@@ -1,12 +1,5 @@
 import React from "react";
 import {
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "@nextui-org/react";
-import {
   Dialog,
   DialogClose,
   DialogContent,

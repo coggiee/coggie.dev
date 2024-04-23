@@ -2,7 +2,6 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { useDisclosure } from "@nextui-org/react";
 import { useFormStore } from "@/app/_store/useFormStore";
 import { useForm } from "@/app/_hooks/useForm";
 import TagList from "./TagList";
@@ -54,7 +53,6 @@ export default function WriteSection() {
     handleBack,
   } = useForm();
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
     <div className="flex flex-col grow flex-3 relative w-full container pt-10">
@@ -80,8 +78,6 @@ export default function WriteSection() {
           나가기
         </Button>
         <ReCheckModal
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
           handleOnTypeDesc={handleChangeDesc}
           handleOnToggleHotPost={handleTogglePin}
           handleOnClickSaveBtn={handleSubmit}

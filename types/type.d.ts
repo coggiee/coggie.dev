@@ -69,8 +69,6 @@ interface TagFilterProps {
 }
 
 interface ReCheckModalkProps {
-  isOpen: boolean;
-  onOpenChange: () => void;
   handleOnTypeDesc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleOnToggleHotPost: () => void;
   handleOnClickSaveBtn: () => void;

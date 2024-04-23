@@ -16,6 +16,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const slug = params.slug;
   const post = await getSinglePost(slug);
+  if (!post) {
+    throw new Error("no metadata");
+  }
   const thumbnail =
     post.coverImage.url || (await parent).openGraph?.images || [];
   const title = post.title;

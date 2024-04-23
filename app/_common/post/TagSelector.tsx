@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Chip, cn } from "@nextui-org/react";
 import React from "react";
 
 interface TagSelectorProps {

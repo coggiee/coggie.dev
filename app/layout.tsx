@@ -4,7 +4,6 @@ import { notosanskr, aritaburi } from "./_libs/fonts";
 import { ThemeProvider } from "./_provider/ThemeProvider";
 import AuthProvider from "./_provider/AuthProvider";
 import FramerProvider from "./_provider/FramerProvider";
-import UIProvider from "./_provider/UIProvider";
 import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "./_common/global/Nav";
@@ -83,27 +82,25 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <FramerProvider>
-              <UIProvider>
-                <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
-                  <Nav />
-                  <main className="h-full min-h-screen flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline gap-7">
-                    <Suspense fallback={<Loading />}>
-                      {/* <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
+              <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
+                <Nav />
+                <main className="h-full min-h-screen flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline gap-7">
+                  <Suspense fallback={<Loading />}>
+                    {/* <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
                         <InfoSiderbar />
                         <RightSidebar />
                       </aside> */}
-                      {children}
-                      <aside className="snap-start hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0 md:snap-none">
-                        {pinnedpost}
-                        {recentpost}
-                      </aside>
-                    </Suspense>
-                  </main>
-                  <Footer />
+                    {children}
+                    <aside className="snap-start hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0 md:snap-none">
+                      {pinnedpost}
+                      {recentpost}
+                    </aside>
+                  </Suspense>
                 </main>
-                <Analytics />
-                <Toaster />
-              </UIProvider>
+                <Footer />
+              </main>
+              <Analytics />
+              <Toaster />
             </FramerProvider>
           </ThemeProvider>
         </AuthProvider>
