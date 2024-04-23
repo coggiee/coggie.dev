@@ -2,13 +2,19 @@
 
 import ThemeToggle from "./ThemeToggle";
 import { signIn, signOut, useSession } from "next-auth/react";
+
 import {
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-} from "@nextui-org/react";
-import Menu from "./Menu";
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+import { Languages, Menu, Music, NotebookPen, ScanFace } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Nav() {
   const { data: session } = useSession();
@@ -22,26 +28,52 @@ export default function Nav() {
   };
 
   return (
-    <Navbar
-      isBlurred
-      className="bg-transparent grow w-full flex-shrink-0"
-      isBordered
-    >
-      <NavbarBrand>
-        <p className="font-amaranth text-4xl dark:text-white">Coggie.dev</p>
-      </NavbarBrand>
-      <NavbarContent justify="end" className="flex items-center">
-        <NavbarItem>
-          <Menu
-            session={session}
-            handleOnLogin={handleOnLogin}
-            handleOnLogout={handleOnLogout}
-          />
-        </NavbarItem>
-        <NavbarItem>
-          <ThemeToggle />
-        </NavbarItem>
-      </NavbarContent>
-    </Navbar>
+    <nav className="flex justify-between items-center py-3 w-full container">
+      <div className="font-aritaburi text-2xl">Coggie.dev</div>
+      <div className="flex gap-3">
+        <Menubar>
+          <MenubarMenu>
+            <MenubarTrigger className="p-1 cursor-pointer">
+              <Menu />
+            </MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem>
+                <Link
+                  href="https://music.apple.com/kr/playlist/%EB%A7%9B%EB%8F%84%EB%A6%AC%EC%97%90%EC%9A%94/pl.u-06oxp93CYpLxloY"
+                  className="flex items-center gap-3"
+                >
+                  <Music className="w-4 h-4" />
+                  <span>Playlist</span>
+                </Link>
+              </MenubarItem>
+              <MenubarItem>
+                <p className="flex items-center gap-2">
+                  <Languages className="w-4 h-4" />
+                  Language
+                </p>
+                <MenubarShortcut>⌘N</MenubarShortcut>
+              </MenubarItem>
+              <MenubarSeparator />
+              {session && session.user!.email === "zentechie7@gmail.com" && (
+                <MenubarItem>
+                  <Link href="/write" className="flex items-center gap-3">
+                    <NotebookPen />
+                    <span>Write Post</span>
+                  </Link>
+                </MenubarItem>
+              )}
+              <MenubarItem onClick={session ? handleOnLogout : handleOnLogin}>
+                <p className="flex items-center gap-2">
+                  <ScanFace className="w-4 h-4" />{" "}
+                  {session ? "Logout" : "Login"}
+                </p>
+                <MenubarShortcut>⌘⇧L</MenubarShortcut>
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+        <ThemeToggle />
+      </div>
+    </nav>
   );
 }
