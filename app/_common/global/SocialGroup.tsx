@@ -10,19 +10,21 @@ interface SocialGroupProps {
 }
 
 const socialItems = [
-  { link: "https://github.com/coggiee", icon: <Github className="w-5 h-5" /> },
-  { link: "https://velog.io/@49crehbgr", icon: <Album className="w-5 h-5" /> },
-  { link: "mailto:zentechie7@gmail.com", icon: <Mail className="w-5 h-5" /> },
+  { title: "github", link: "https://github.com/coggiee" },
+  { title: "mail", link: "mailto:zentechie7@gmail.com" },
 ];
 
 export default function SocialGroup({ dir }: SocialGroupProps) {
   return (
-    <aside className={cn("flex h-fit gap-1", dir ?? "justify-center")}>
-      {socialItems.map(({ link, icon }) => (
-        <Button asChild variant="ghost" key={link} size="icon">
-          <Link key={link} href={link}>
-            {icon}
-          </Link>
+    <aside className={cn("flex h-fit gap-2", dir ?? "justify-center")}>
+      {socialItems.map(({ title, link }) => (
+        <Button
+          key={title}
+          asChild
+          variant="link"
+          className="p-0 after:content-['_↗']"
+        >
+          <Link href={link}>{title}</Link>
         </Button>
       ))}
     </aside>

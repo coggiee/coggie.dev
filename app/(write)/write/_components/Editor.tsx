@@ -53,12 +53,12 @@ const TuiEditor = React.forwardRef(
     };
 
     return (
-      <div className="flex-grow relative">
+      <div className="grow relative h-full">
         {editorRef && (
           <div className="flex flex-col gap-3 mb-3">
             <Editor
               ref={editorRef}
-              height="800px"
+              height="1000px"
               placeholder="포스트 내용을 채워주세요!"
               previewStyle={direction}
               theme={`${theme === "light" ? "light" : "dark"}`}

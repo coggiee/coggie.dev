@@ -1,5 +1,6 @@
 import React from "react";
 import { Chip } from "@nextui-org/react";
+import { Badge } from "@/components/ui/badge";
 
 interface TagListProps {
   tagList: string[];
@@ -11,15 +12,14 @@ export default function TagList({ tagList, onClick }: TagListProps) {
     <div className="mb-4">
       <ul className="flex flex-wrap justify-start items-center gap-2">
         {tagList.map((tag, index) => (
-          <Chip
+          <Badge
             key={index}
-            variant="solid"
-            radius="sm"
-            className="cursor-pointer"
-            onClose={() => onClick(tag)}
+            variant="secondary"
+            className="cursor-pointer h-8 text-lg p-4 text-[#2f90ff]"
+            onClick={() => onClick(tag)}
           >
             {tag}
-          </Chip>
+          </Badge>
         ))}
       </ul>
     </div>

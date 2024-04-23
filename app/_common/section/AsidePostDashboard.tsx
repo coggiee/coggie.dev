@@ -1,5 +1,3 @@
-"use client";
-
 import MotionVerticalProvider from "@/app/_provider/MotionVerticalProvider";
 import React from "react";
 import AsidePostList from "./AsidePostList";

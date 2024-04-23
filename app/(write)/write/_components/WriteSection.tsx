@@ -2,17 +2,24 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
-import { Button, useDisclosure } from "@nextui-org/react";
+import { useDisclosure } from "@nextui-org/react";
 import { useFormStore } from "@/app/_store/useFormStore";
 import { useForm } from "@/app/_hooks/useForm";
 import TagList from "./TagList";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 
-const TitleInput = dynamic(() => import("@/app/write/_components/TitleInput"));
-const TagInput = dynamic(() => import("@/app/write/_components/TagInput"));
-const TuiEditor = dynamic(() => import("@/app/write/_components/Editor"));
-const Alert = dynamic(() => import("@/app/_common/global/Alert"));
+const TitleInput = dynamic(
+  () => import("@/app/(write)/write/_components/TitleInput"),
+);
+const TagInput = dynamic(
+  () => import("@/app/(write)/write/_components/TagInput"),
+);
+const TuiEditor = dynamic(
+  () => import("@/app/(write)/write/_components/Editor"),
+);
 const ReCheckModal = dynamic(
-  () => import("@/app/write/_components/ReCheckModal"),
+  () => import("@/app/(write)/write/_components/ReCheckModal"),
 );
 const Loading = dynamic(() => import("@/app/loading"));
 
@@ -34,7 +41,7 @@ export default function WriteSection() {
   const {
     ref,
     isLoading,
-    isToast,
+    textareaRef,
     handleSubmit,
     handleChangeTitle,
     handleChangeContent,
@@ -50,8 +57,13 @@ export default function WriteSection() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <div className="flex flex-col flex-grow flex-3 relative w-full pt-10">
-      <TitleInput title={title} handleOnTypeTitle={handleChangeTitle} />
+    <div className="flex flex-col grow flex-3 relative w-full container pt-10">
+      <TitleInput
+        title={title}
+        handleOnTypeTitle={handleChangeTitle}
+        titleRef={textareaRef}
+      />
+      <Separator className="h-2 bg-black/70 w-20 my-5" />
       <TagInput
         tags={tagInput}
         handleKeyPress={handlePressEnter}
@@ -64,11 +76,8 @@ export default function WriteSection() {
         onChange={handleChangeContent}
       />
       <div className="flex gap-3 py-3 justify-end">
-        <Button onPress={handleBack}>
-          <span>나가기</span>
-        </Button>
-        <Button color="success" onPress={onOpen}>
-          출간하기
+        <Button onClick={handleBack} variant="ghost">
+          나가기
         </Button>
         <ReCheckModal
           isOpen={isOpen}
@@ -82,9 +91,6 @@ export default function WriteSection() {
           defaultSelected={isPinned}
         />
       </div>
-      {isToast && (
-        <Alert title="제목과 내용, 태그를 확인해주세요." bgColor="crimson" />
-      )}
       {isLoading && <Loading />}
     </div>
   );

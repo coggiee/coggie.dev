@@ -12,6 +12,7 @@ import InfoSiderbar from "./_common/sidebar/InfoSiderbar";
 import RightSidebar from "./_common/sidebar/RightSidebar";
 import Footer from "./_common/global/Footer";
 import dynamic from "next/dynamic";
+import { Toaster } from "@/components/ui/toaster";
 
 const Loading = dynamic(() => import("./loading"));
 
@@ -85,12 +86,12 @@ export default function RootLayout({
               <UIProvider>
                 <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
                   <Nav />
-                  <main className="h-full min-h-screen flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline font-notosanskr gap-7 pb-5">
+                  <main className="h-full min-h-screen flex-grow flex flex-col justify-center items-center w-full px-5 lg:flex-row md:items-baseline gap-7">
                     <Suspense fallback={<Loading />}>
-                      <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
+                      {/* <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
                         <InfoSiderbar />
                         <RightSidebar />
-                      </aside>
+                      </aside> */}
                       {children}
                       <aside className="snap-start hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0 md:snap-none">
                         {pinnedpost}
@@ -101,6 +102,7 @@ export default function RootLayout({
                   <Footer />
                 </main>
                 <Analytics />
+                <Toaster />
               </UIProvider>
             </FramerProvider>
           </ThemeProvider>

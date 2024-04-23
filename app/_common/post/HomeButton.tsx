@@ -1,5 +1,5 @@
-import IconBackToHome from "@/app/_icons/IconBackToHome";
-import { Button } from "@nextui-org/react";
+import { Button } from "@/components/ui/button";
+import { Home } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -8,14 +8,12 @@ export default function HomeButton() {
 
   return (
     <Button
-      variant="flat"
-      radius="full"
-      size="sm"
-      isIconOnly
+      variant="outline"
+      size="icon"
       className="dark:text-white"
-      onPress={() => router.push("/")}
+      onClick={() => router.push("/")}
     >
-      <IconBackToHome className="text-sm" />
+      <Home className="w-4 h-4" />
     </Button>
   );
 }

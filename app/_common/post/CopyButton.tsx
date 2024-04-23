@@ -1,5 +1,5 @@
-import IconLink from "@/app/_icons/IconLink";
-import { Button, Tooltip } from "@nextui-org/react";
+import { Button } from "@/components/ui/button";
+import { Link } from "lucide-react";
 import React from "react";
 
 interface CopyButtonProps {
@@ -8,17 +8,13 @@ interface CopyButtonProps {
 
 export default function CopyButton({ onCopy }: CopyButtonProps) {
   return (
-    <Tooltip showArrow={true} placement="bottom" content="링크 복사">
-      <Button
-        size="sm"
-        variant="flat"
-        radius="md"
-        isIconOnly
-        className="rounded-full bg-[dodgerblue]/70"
-        onClick={onCopy}
-      >
-        <IconLink />
-      </Button>
-    </Tooltip>
+    <Button
+      size="icon"
+      variant="ghost"
+      className="rounded-full w-8 h-8 p-2"
+      onClick={onCopy}
+    >
+      <Link />
+    </Button>
   );
 }

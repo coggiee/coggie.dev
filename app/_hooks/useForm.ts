@@ -3,14 +3,23 @@ import { useFormStore } from "../_store/useFormStore";
 import dayjs from "dayjs";
 import { createPost, updatePost } from "../_libs/hygraph";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export const useForm = () => {
   const ref = useRef<any>(null);
   const { form, isUpdated, setForm } = useFormStore();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [isToast, setIsToast] = useState(false);
   const [isUpdatedCoverImage, setIsUpdatedCoverImage] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { toast } = useToast();
+
+  const adjustHeight = () => {
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+    textarea.style.height = "auto"; //height 초기화
+    textarea.style.height = textarea.scrollHeight + "px";
+  };
 
   const handleSubmit = async () => {
     if (!ref) return;
@@ -35,10 +44,10 @@ export const useForm = () => {
       tagList.length === 0
     ) {
       setIsLoading(false);
-      setIsToast(true);
-      setTimeout(() => {
-        setIsToast(false);
-      }, 3000);
+      toast({
+        description: "제목과 내용, 태그를 확인해주세요.",
+        variant: "destructive",
+      });
       return;
     }
 
@@ -124,7 +133,8 @@ export const useForm = () => {
     });
   };
 
-  const handleChangeTitle = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeTitle = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    adjustHeight();
     setForm({
       ...form,
       title: e.target.value,
@@ -141,7 +151,7 @@ export const useForm = () => {
     }
   };
 
-  const handleChangeDesc = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeDesc = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setForm({
       ...form,
       description: e.target.value,
@@ -165,6 +175,7 @@ export const useForm = () => {
   };
 
   const handlePressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return;
     if (e.key === "Enter") handleAddTag();
   };
 
@@ -176,13 +187,14 @@ export const useForm = () => {
   };
 
   const handleBack = () => {
+    useFormStore.persist.clearStorage();
     router.back();
   };
 
   return {
     ref,
     isLoading,
-    isToast,
+    textareaRef,
     handleSubmit,
     handleChangeTitle,
     handleChangeContent,

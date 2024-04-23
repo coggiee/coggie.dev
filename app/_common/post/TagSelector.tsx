@@ -1,3 +1,4 @@
+import { Badge } from "@/components/ui/badge";
 import { Chip, cn } from "@nextui-org/react";
 import React from "react";
 
@@ -9,20 +10,17 @@ interface TagSelectorProps {
 
 function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
   return (
-    <section className="text-white font-amaranth">
+    <section className="text-white ">
       <main className="flex gap-2 flex-wrap">
         {tagList.map((tag) => (
-          <Chip
+          <Badge
             key={tag}
-            radius="sm"
-            className={cn(
-              "cursor-pointer transition-colors duration-75 bg-gradient-to-tr",
-              selectedTag == tag ? "from-violet-400 to-[#94c9ff]" : "",
-            )}
+            variant={`${selectedTag === tag ? "default" : "outline"}`}
+            className="cursor-pointer transition-colors duration-75 font-thin font-aritaburi"
             onClick={() => onSelect(tag)}
           >
             {tag}
-          </Chip>
+          </Badge>
         ))}
       </main>
     </section>

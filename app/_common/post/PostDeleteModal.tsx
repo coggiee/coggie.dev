@@ -5,41 +5,52 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
 } from "@nextui-org/react";
-
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 interface PostDeleteModalProps {
-  isOpen: boolean;
-  onOpenChange: () => void;
   onDelete: (isSubmit: boolean) => void;
 }
 
 function PostDeleteModal({
-  isOpen,
-  onOpenChange,
   onDelete,
 }: PostDeleteModalProps) {
   return (
-    <Modal backdrop="blur" isOpen={isOpen} onClose={onOpenChange}>
-      <ModalContent>
-        {(onClose) => (
-          <>
-            <ModalHeader>정말 포스트를 삭제하시겠어요?</ModalHeader>
-            <ModalBody>한 번 삭제된 포스트는 되돌릴 수 없어요.</ModalBody>
-            <ModalFooter>
-              <Button
-                color="danger"
-                variant="flat"
-                onPress={() => onDelete(true)}
-              >
-                삭제
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button size="sm" variant="outline">
+          삭제
+        </Button>
+      </DialogTrigger>
+      <DialogPortal>
+        <DialogContent className="w-96">
+          <DialogHeader className="mb-5">
+            <DialogTitle>정말 포스트를 삭제하시겠어요?</DialogTitle>
+            <DialogDescription>
+              한 번 삭제된 포스트는 되돌릴 수 없어요.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => onDelete(true)}>삭제</Button>
+            <DialogClose asChild>
+              <Button type="button" variant="secondary">
+                취소
               </Button>
-              <Button onPress={onClose}>취소</Button>
-            </ModalFooter>
-          </>
-        )}
-      </ModalContent>
-    </Modal>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </DialogPortal>
+    </Dialog>
   );
 }
 

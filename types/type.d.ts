@@ -71,8 +71,8 @@ interface TagFilterProps {
 interface ReCheckModalkProps {
   isOpen: boolean;
   onOpenChange: () => void;
-  handleOnTypeDesc: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnToggleHotPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOnTypeDesc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleOnToggleHotPost: () => void;
   handleOnClickSaveBtn: () => void;
   handleOnFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   description: string;
@@ -82,9 +82,9 @@ interface ReCheckModalkProps {
 
 interface EditTitleProps {
   title: string;
-  handleOnTypeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleOnTypeTitle: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  titleRef?: React.MutableRefObject<any>;
 }
-
 
 interface AlertProps {
   title: string;

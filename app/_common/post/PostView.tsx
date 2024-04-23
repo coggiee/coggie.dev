@@ -7,14 +7,10 @@ import {
   formatCreatedTime,
   formatReadingMinutes,
 } from "@/utils/formatTime";
-import {
-  Button,
-  Card,
-  CardBody,
-  Divider,
-  ScrollShadow,
-} from "@nextui-org/react";
 import SkeletonPostCard from "@/app/_common/skeleton/SkeletonPostCard";
+import { Card, CardHeader } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 const PostSideCard = dynamic(() => import("./PostSideCard"), {
   loading: () => <SkeletonPostCard />,
@@ -35,60 +31,53 @@ export default function PostView({
   isDisabledLoad,
 }: PostViewProps) {
   return (
-    <aside className="space-y-5 flex flex-col">
-      <h1 className="text-lg dark:text-white min-w-fit font-amaranth">
+    <main className="space-y-5 flex flex-col font-aritaburi">
+      <h1 className="text-lg dark:text-white min-w-fit">
         {title}
       </h1>
       {postList.length === 0 ? (
-        <Card className="dark:bg-item-dark">
-          <CardBody>
+        <Card>
+          <CardHeader>
             <p className="text-[#929292]">딱히 포스트가 없네요.</p>
-          </CardBody>
+          </CardHeader>
         </Card>
       ) : (
-        <Card>
-          <CardBody className="dark:bg-item-dark">
-            <ScrollShadow
-              size={100}
-              className="flex flex-col overflow-y-scroll overscroll-y-none max-h-[900px] scrollbar-hide"
-            >
-              <main className="flex flex-col gap-2">
-                {postList.map((post: any) => (
-                  <Link
-                    href={`/${post.id}`}
-                    passHref
-                    key={post.id}
-                    className="rounded-lg overflow-hidden space-y-2"
-                  >
-                    <PostSideCard
-                      key={post.id}
-                      date={formatCreatedAt(post.date)}
-                      time={formatCreatedTime(post.date)}
-                      title={post.title}
-                      description={post.description}
-                      tags={post.tags}
-                      coverImage={post.coverImage}
-                      readTimeMinutes={formatReadingMinutes(post.content)}
-                    />
-                    <Divider />
-                  </Link>
-                ))}
-                <footer className="flex justify-center items-center font-amaranth">
-                  <Button
-                    onClick={handleLoad}
-                    isLoading={isLoading}
-                    className="w-fit"
-                    variant="flat"
-                    isDisabled={isDisabledLoad}
-                  >
-                    Load
-                  </Button>
-                </footer>
-              </main>
-            </ScrollShadow>
-          </CardBody>
-        </Card>
+        <>
+          <main className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-5 grid-flow-row-dense auto-rows-fr">
+            {postList.map((post: any) => (
+              <Link
+                href={`/${post.id}`}
+                passHref
+                key={post.id}
+                className="rounded-lg overflow-hidden space-y-2 transform transition-transform duration-150 hover:-translate-y-3"
+              >
+                <PostSideCard
+                  key={post.id}
+                  date={formatCreatedAt(post.date)}
+                  time={formatCreatedTime(post.date)}
+                  title={post.title}
+                  description={post.description}
+                  tags={post.tags}
+                  coverImage={post.coverImage}
+                  readTimeMinutes={formatReadingMinutes(post.content)}
+                />
+              </Link>
+            ))}
+          </main>
+          <footer className="flex justify-center items-center font-amaranth">
+            <Button onClick={handleLoad} className="w-fit" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Wait...
+                </>
+              ) : (
+                <>Load</>
+              )}
+            </Button>
+          </footer>
+        </>
       )}
-    </aside>
+    </main>
   );
 }

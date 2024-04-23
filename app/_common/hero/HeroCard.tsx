@@ -1,5 +1,3 @@
-// import { Card, CardHeader, CardBody } from "@nextui-org/react";
-import SocialGroup from "../global/SocialGroup";
 import HeroBio from "./HeroBio";
 import HeroCardDetail from "./HeroCardDetail";
 import Image from "next/image";
@@ -18,7 +16,6 @@ export default function HeroCard() {
           src={"https://i.ibb.co/2SwpytM/mimoji.png"}
           className="rounded-full"
         />
-        <SocialGroup />
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
         <div className="flex flex-col gap-5">

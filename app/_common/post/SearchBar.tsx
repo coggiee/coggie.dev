@@ -1,5 +1,7 @@
 import IconSearch from "@/app/_icons/IconSearch";
-import { Input } from "@nextui-org/react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { CircleX, CircleXIcon, Search } from "lucide-react";
 import React, { ChangeEvent, KeyboardEvent } from "react";
 
 interface SearchBarProps {
@@ -16,41 +18,17 @@ function SearchBar({
   query,
 }: SearchBarProps) {
   return (
-    <div className="w-full h-full rounded-2xl flex justify-center items-center text-white shadow-lg font-amaranth">
+    <div className="relative w-full h-full space-y-2">
+      <Search className="absolute left-3 top-1/2 mt-1 transform -translate-y-1/2 text-gray-500 z-10 w-4 h-4" />
       <Input
-        label="Search"
-        isClearable
-        radius="lg"
-        value={query}
+        id="search"
+        aria-label="Search"
         onChange={handleOnSearch}
-        onClear={handleClearQuery}
         onKeyDown={handleOnPressEnter}
         autoComplete="off"
-        classNames={{
-          label: "text-black/50 dark:text-white/90",
-          input: [
-            "bg-transparent",
-            "text-black/90 dark:text-white/90",
-            "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-          ],
-          innerWrapper: "bg-transparent",
-          inputWrapper: [
-            "shadow-xl",
-            "bg-default-200/50",
-            "dark:bg-default/60",
-            "backdrop-blur-xl",
-            "backdrop-saturate-200",
-            "hover:bg-default-200/70",
-            "dark:hover:bg-default/70",
-            "group-data-[focused=true]:bg-default-200/50",
-            "dark:group-data-[focused=true]:bg-default/60",
-            "!cursor-text",
-          ],
-        }}
-        placeholder="Type to search..."
-        startContent={
-          <IconSearch className="text-black/50 mb-0.5 dark:text-white/90 pointer-events-none flex-shrink-0" />
-        }
+        placeholder="Search with Keyword..."
+        className="pl-10"
+        value={query}
       />
     </div>
   );

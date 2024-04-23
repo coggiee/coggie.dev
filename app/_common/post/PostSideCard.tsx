@@ -1,11 +1,14 @@
 import React from "react";
-import IconBxCalendarStar from "../../_icons/IconBxCalendarStar";
-import IconTimerSand from "../../_icons/IconTimerSand";
 import { CoverImage } from "@/types/type";
-import IconNoImage from "@/app/_icons/IconNoImage";
-import { Card, CardBody, Chip } from "@nextui-org/react";
-import IconCheck from "@/app/_icons/IconCheck";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { Clock } from "lucide-react";
 
 interface PostCardProps {
   date: string;
@@ -27,60 +30,51 @@ export default function PostSideCard({
   readTimeMinutes,
 }: PostCardProps) {
   return (
-    <Card
-      isHoverable
-      shadow="none"
-      className="font-notosanskr cursor-pointer rounded-lg"
-    >
-      <CardBody className="p-2 dark:bg-item-dark dark:hover:bg-item-dark/30">
-        <div className="flex flex-row gap-5">
-          <div className="relative w-32 h-32 flex-shrink-0 rounded-lg">
-            {coverImage && (
-              <Image
-                src={coverImage.url}
-                width={300}
-                height={300}
-                quality={30}
-                priority={true}
-                alt={coverImage.fileName}
-                className="h-32 object-cover absolute rounded-lg"
-              />
-            )}
-            {!coverImage && (
-              <IconNoImage className="rounded-lg w-full h-full text-[#9c9c9c] dark:text-[#7b7b7b]" />
-            )}
+    <Card className="overflow-hidden">
+      <CardHeader className="p-0">
+        <div className="relative w-full h-52 flex-shrink-0 overflow-hidden">
+          {coverImage && (
+            <Image
+              src={coverImage.url}
+              width={100}
+              height={100}
+              quality={50}
+              priority={true}
+              alt={coverImage.fileName}
+              className="w-full h-full absolute object-cover"
+            />
+          )}
+          <Badge
+            className="absolute right-3 top-3 font-medium text-[12px] text-white flex gap-2 items-center dark:text-white font-aritaburi bg-[#232323]"
+            variant="default"
+          >
+            <span>{date}</span>
+          </Badge>
+        </div>
+      </CardHeader>
+      <CardContent className="pt-5 space-y-5 font-aritaburi">
+        <div className="flex flex-col gap-10 grow w-full min-w-0">
+          <div className="flex flex-col gap-2">
+            <h2 className="font-semibold text-xl w-full truncate">{title}</h2>
+            <p className="text-sm w-full truncate">{description}</p>
           </div>
-          <div className="flex flex-col gap-2 grow w-full min-w-0">
-            <div className="flex flex-col gap-2 sm:gap-0 sm:flex-row justify-between">
-              <div className="font-medium text-[12px] text-gray-700 flex gap-2 items-center dark:text-white">
-                <IconBxCalendarStar />
-                {date}
-              </div>
-              <div className="font-medium text-[12px] text-gray-700 flex gap-1 items-center dark:text-white">
-                <IconTimerSand />
-                {time} - {readTimeMinutes} min read
-              </div>
-            </div>
-            <div className="flex flex-col gap-3 font-notosanskr">
-              <h2 className="font-semibold text-sm w-full truncate">{title}</h2>
-              <p className="text-xs w-full truncate">{description}</p>
-            </div>
-            <div className="grow flex items-end gap-2 ">
-              {tags.map((tag) => (
-                <Chip
-                  startContent={<IconCheck fontSize={18} className="mr-1" />}
-                  key={tag}
-                  size="sm"
-                  radius="sm"
-                  variant="flat"
-                >
-                  {tag}
-                </Chip>
-              ))}
-            </div>
+          <div className="grow flex items-end gap-2 flex-wrap">
+            {tags.map((tag) => (
+              <Badge key={tag} variant="secondary">
+                # {tag}
+              </Badge>
+            ))}
           </div>
         </div>
-      </CardBody>
+        <CardFooter className="p-0">
+          <div className="font-medium text-[12px] text-gray-700 flex gap-1 items-center dark:text-white">
+            <Clock className="w-3 h-3" />
+            <span>
+              {time} - {readTimeMinutes} min read
+            </span>
+          </div>
+        </CardFooter>
+      </CardContent>
     </Card>
   );
 }

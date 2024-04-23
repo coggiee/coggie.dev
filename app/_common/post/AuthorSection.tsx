@@ -10,16 +10,13 @@ export default function AuthorSection() {
           width={120}
           height={120}
           alt="profile"
+          priority={true}
           src={"https://i.ibb.co/2SwpytM/mimoji.png"}
-          className="rounded-full border-2"
+          className="rounded-full"
         />
-        <aside className="flex flex-col">
-          <div className="font-medium font-amaranth text-xl">
-            Coggie(Moon Hwisik)
-          </div>
-          <div className="font-thin font-notosanskr mb-2">
-            프론트엔드 개발자
-          </div>
+        <aside className="flex flex-col font-aritaburi">
+          <div className="font-semibold text-xl">문휘식</div>
+          <div className="mb-2">FE Engineer</div>
           <SocialGroup dir="justify-start" />
         </aside>
       </div>

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "prose.css";
-@import "prism-nord.css";
+@import "prism-material-light.css";
 @import "editor.css";
 
 @layer base {
@@ -75,11 +75,5 @@
   }
   body {
     @apply bg-background text-foreground;
-  }
-  nav[aria-label="Breadcrumbs"] ol {
-    @apply flex-nowrap;
-  }
-  #breadcrumb-title {
-    @apply inline-block shrink max-w-[140px] text-ellipsis overflow-hidden whitespace-nowrap sm:flex sm:justify-start sm:max-w-full sm:items-center sm:grow;
   }
 }
