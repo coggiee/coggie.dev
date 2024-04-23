@@ -1,8 +1,6 @@
-import IconGithub from "@/app/_icons/IconGithub";
-import IconGmail from "@/app/_icons/IconGmail";
-import IconVelog from "@/app/_icons/IconVelog";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Album, Github, Mail } from "lucide-react";
 import Link from "next/link";
 
 type Direction = "justify-center" | "justify-start";
@@ -12,9 +10,9 @@ interface SocialGroupProps {
 }
 
 const socialItems = [
-  { link: "https://github.com/coggiee", icon: <IconGithub /> },
-  { link: "https://velog.io/@49crehbgr", icon: <IconVelog /> },
-  { link: "mailto:zentechie7@gmail.com", icon: <IconGmail /> },
+  { link: "https://github.com/coggiee", icon: <Github className="w-5 h-5" /> },
+  { link: "https://velog.io/@49crehbgr", icon: <Album className="w-5 h-5" /> },
+  { link: "mailto:zentechie7@gmail.com", icon: <Mail className="w-5 h-5" /> },
 ];
 
 export default function SocialGroup({ dir }: SocialGroupProps) {
