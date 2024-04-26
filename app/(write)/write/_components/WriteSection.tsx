@@ -7,15 +7,13 @@ import { useForm } from "@/app/_hooks/useForm";
 import TagList from "./TagList";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { ForwardRefEditor } from "./ForwardRefEditor";
 
 const TitleInput = dynamic(
   () => import("@/app/(write)/write/_components/TitleInput"),
 );
 const TagInput = dynamic(
   () => import("@/app/(write)/write/_components/TagInput"),
-);
-const TuiEditor = dynamic(
-  () => import("@/app/(write)/write/_components/Editor"),
 );
 const ReCheckModal = dynamic(
   () => import("@/app/(write)/write/_components/ReCheckModal"),
@@ -53,9 +51,8 @@ export default function WriteSection() {
     handleBack,
   } = useForm();
 
-
   return (
-    <div className="flex flex-col grow flex-3 relative w-full container pt-10">
+    <div className="flex flex-col grow flex-3 w-full container pt-10">
       <TitleInput
         title={title}
         handleOnTypeTitle={handleChangeTitle}
@@ -68,24 +65,26 @@ export default function WriteSection() {
         handleOnTypeTags={handleChangeTag}
       />
       <TagList tagList={tagList} onClick={handleSelectTag} />
-      <TuiEditor
-        content={isUpdated ? content : " "}
-        editorRef={ref}
+      <ForwardRefEditor
+        ref={ref}
+        markdown={isUpdated ? content : ""}
         onChange={handleChangeContent}
       />
-      <div className="flex gap-3 py-3 justify-end">
-        <Button onClick={handleBack} variant="ghost">
-          나가기
-        </Button>
-        <ReCheckModal
-          handleOnTypeDesc={handleChangeDesc}
-          handleOnToggleHotPost={handleTogglePin}
-          handleOnClickSaveBtn={handleSubmit}
-          handleOnFileChange={handleChangeCoverImage}
-          description={description}
-          coverImageUrl={coverImage ? coverImage.url : null}
-          defaultSelected={isPinned}
-        />
+      <div className="fixed w-full bottom-0 left-0 border-t px-10 bg-white">
+        <div className="flex gap-3 py-3 justify-end w-full container">
+          <Button onClick={handleBack} variant="ghost">
+            나가기
+          </Button>
+          <ReCheckModal
+            handleOnTypeDesc={handleChangeDesc}
+            handleOnToggleHotPost={handleTogglePin}
+            handleOnClickSaveBtn={handleSubmit}
+            handleOnFileChange={handleChangeCoverImage}
+            description={description}
+            coverImageUrl={coverImage ? coverImage.url : null}
+            defaultSelected={isPinned}
+          />
+        </div>
       </div>
       {isLoading && <Loading />}
     </div>

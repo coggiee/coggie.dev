@@ -4,9 +4,10 @@ import dayjs from "dayjs";
 import { createPost, updatePost } from "../_libs/hygraph";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import { MDXEditorMethods } from "@mdxeditor/editor";
 
 export const useForm = () => {
-  const ref = useRef<any>(null);
+  const ref = useRef<MDXEditorMethods>(null);
   const { form, isUpdated, setForm } = useFormStore();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -22,11 +23,11 @@ export const useForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!ref) return;
+    if (!ref.current) return;
 
     setIsLoading(true);
 
-    const content: string = ref.current?.getInstance().getMarkdown();
+    const content: string = ref.current?.getMarkdown();
     const {
       id: postId,
       title,
@@ -143,7 +144,8 @@ export const useForm = () => {
 
   const handleChangeContent = () => {
     if (ref.current) {
-      const content = ref.current?.getInstance().getMarkdown();
+      const content = ref.current?.getMarkdown();
+      console.log(content)
       setForm({
         ...form,
         content,
