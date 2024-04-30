@@ -10,8 +10,8 @@ NextJS로 개발했으며, Hygraph(CMS)를 사용하여 동적 포스팅이 가�
 |프레임워크|NextJS 14 app router|
 |스타일링|TailwindCSS|
 |애니메이션|framer-motion|
-|UI 라이브러리|NextUI|
-|에디터|@toast-ui/editor|
+|UI 라이브러리|shadcn|
+|에디터|mdxeditor|
 |백엔드|Hygraph + graphQL|
 
 ### 현재까지 파악된 이슈
