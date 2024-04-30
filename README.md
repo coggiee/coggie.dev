@@ -1,5 +1,5 @@
 # Coggie.dev
-[개인 개발 블로그](https://coggie.dev/blog)입니다.
+[개인 개발 블로그](https://coggie.dev)입니다.
 > 현재 [dev](https://github.com/coggiee/zentechie-blog/tree/dev)브랜치에서 최신 작업을 확인하실 수 있습니다.
 
 ## 기술 스택
