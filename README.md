@@ -30,9 +30,9 @@ NextJS로 개발했으며, Hygraph(CMS)를 사용하여 동적 포스팅이 가�
   - <del>현재는 `useRef`를 사용하고 있지만, `intersectionObserver`로 최적화 & Custom Hook으로 분리</del>
   - <del>또는 전체 포스트 페이지를 parallel routes로 변경하는 것도 고려 중.</del>
 - <del>중복 코드 제거 (컴포넌트, 로직 등)</del>
-- 포스트 사진 추가 기능
-  - 현재 Hygraph를 통해 image url을 받아와서 포스트에 사진을 추가하고 있지만, 대기 시간이 상대적으로 긴 단점 발견
-- API 호출 최적화를 통해 렌더링 시간을 단축
+- <del>포스트 사진 추가 기능</del>
+  - <del>현재 Hygraph를 통해 image url을 받아와서 포스트에 사진을 추가하고 있지만, 대기 시간이 상대적으로 긴 단점 발견</del>
+- <del>API 호출 최적화를 통해 렌더링 시간을 단축</del>
 
 ### 추가 또는 수정할 기능
 - i18n을 적용한 다국어 기능 추가
@@ -43,4 +43,4 @@ NextJS로 개발했으며, Hygraph(CMS)를 사용하여 동적 포스팅이 가�
 - <del>태그로 포스트 검색하기 기능 수정</del>
   - <del>로직 최적화 필요</del>
 - 포스트 생성 후 가져오는 기능
-  - 현재 포스트를 생성하면 revalidate로 포스트 목록을 가져오고 있으나, 이를 제거하고 `revalidateTag`를 고려 중
+  - revalidate로 포스트 목록을 가져오고 있으나, 이를 제거하고 `revalidateTag`를 고려 중
