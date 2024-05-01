@@ -31,8 +31,6 @@ import {
   tablePlugin,
 } from "@mdxeditor/editor";
 
-import "@mdxeditor/editor/style.css";
-
 interface ImageHandlerProps {
   imageUploadHandler: (image: File) => Promise<string>;
 }

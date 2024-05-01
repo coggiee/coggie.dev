@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import "prose.css";
 @import "prism-material-light.css";
+@import "@mdxeditor/editor/style.css";
 
 @layer base {
   :root {
@@ -76,6 +77,14 @@
     @apply bg-background text-foreground;
   }
   .mdxEditor {
-    @apply h-[1000px] border prose w-full max-w-none;
+    @apply h-[1000px] prose w-full max-w-none;
+  }
+
+  [role="toolbar"] {
+    @apply bg-transparent border-b;
+  }
+
+  [role="toolbar"] svg {
+    @apply w-7 h-7;
   }
 }
