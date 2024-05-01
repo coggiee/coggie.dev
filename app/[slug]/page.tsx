@@ -76,7 +76,7 @@ export default async function BlogPostPage({
   const mdx = await serializeMdx(post!.content);
 
   return (
-    <div className="snap-center w-full min-w-[50%] max-w-screen-2xl basis-2/3 rounded-lg flex-col gap-5 flex xl:flex md:snap-none prose dark:prose-dark self-start">
+    <div className="snap-center w-full container max-w-screen-xl rounded-lg flex-col gap-5 flex xl:flex md:snap-none prose dark:prose-dark self-start">
       <PostViewDashboard currentPost={post!} mdx={mdx!} />
     </div>
   );

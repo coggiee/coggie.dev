@@ -9,10 +9,10 @@ import { useSelectTag } from "@/hooks/useSelectTag";
 import { usePostStore } from "@/store/usePostStore";
 import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
+import SearchBar from "./SearchBar";
+import TagSelector from "./TagSelector";
 
 const PostView = dynamic(() => import("./PostView"));
-const SearchBar = dynamic(() => import("./SearchBar"));
-const TagSelector = dynamic(() => import("./TagSelector"));
 interface PostDashboardProps {
   totalPostList: any;
   tagList: string[];
@@ -45,7 +45,7 @@ export default function PostDashboard({
       duration={0.7}
       fromY={500}
       toY={0}
-      className={"flex flex-col gap-5"}
+      className={"flex flex-col gap-5 min-w-0 w-[1000px]"}
     >
       <Introduction />
       <Separator />

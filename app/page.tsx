@@ -1,13 +1,21 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { getTotalPosts, getTotalTags } from "../lib/hygraph";
+import {
+  getHotPosts,
+  getRecentPosts,
+  getTotalPosts,
+  getTotalTags,
+} from "../lib/hygraph";
 import InfoSiderbar from "../components/sidebar/InfoSiderbar";
 import RightSidebar from "../components/sidebar/RightSidebar";
-
-const PostDashboard = dynamic(() => import("@/components/post/PostDashboard"));
+import AsidePostDashboard from "@/components/section/AsidePostDashboard";
+import PostDashboard from "@/components/post/PostDashboard";
 
 async function getProps() {
   const { edges, aggregate } = (await getTotalPosts()) || [];
+  const recentPosts = (await getRecentPosts()) || [];
+  const hotPosts = (await getHotPosts()) || [];
+
   const posts = edges.map((post: any) => post.node);
   const lastPostCursor = posts[posts.length - 1].id;
   const tags = (await getTotalTags()) || [];
@@ -19,17 +27,26 @@ async function getProps() {
       uniqueTags,
       lastPostCursor,
       totalPostsSize: aggregate.count,
+      recentPosts,
+      hotPosts,
     },
   };
 }
 
 export default async function BlogPage() {
   const {
-    props: { posts, uniqueTags: tagList, lastPostCursor, totalPostsSize },
+    props: {
+      posts,
+      uniqueTags: tagList,
+      lastPostCursor,
+      totalPostsSize,
+      recentPosts,
+      hotPosts,
+    },
   } = await getProps();
   return (
-    <main className="snap-center w-full max-w-screen-2xl rounded-lg flex-col gap-5 flex xl:flex md:snap-none lg:flex-row md:items-baseline">
-      <aside className="snap-start w-full min-w-0 lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 md:snap-none">
+    <main className="w-full rounded-lg flex flex-col gap-5 xl:flex lg:flex-row md:items-baseline justify-center">
+      <aside className="w-full lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 ">
         <InfoSiderbar />
         <RightSidebar />
       </aside>
@@ -39,6 +56,10 @@ export default async function BlogPage() {
         tagList={tagList}
         totalPageSize={totalPostsSize}
       />
+      <aside className="hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0">
+        <AsidePostDashboard posts={recentPosts} type="RECENT" />
+        <AsidePostDashboard posts={hotPosts} type="PINNED" />
+      </aside>
     </main>
   );
 }
