@@ -45,8 +45,8 @@ export default async function BlogPage() {
     },
   } = await getProps();
   return (
-    <main className="w-full rounded-lg flex flex-col gap-5 xl:flex lg:flex-row md:items-baseline justify-center">
-      <aside className="w-full lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5 ">
+    <main className="w-full min-w-0 flex flex-col gap-5 xl:flex lg:flex-row md:items-baseline max-w-screen-2xl justify-center items-center">
+      <aside className="w-full lg:basis-1/2 basis-1/3 lg:max-w-sm lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5">
         <InfoSiderbar />
         <RightSidebar />
       </aside>

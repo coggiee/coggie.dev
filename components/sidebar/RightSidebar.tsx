@@ -10,7 +10,7 @@ export default function RightSidebar() {
       fromY={100}
       toY={0}
       className={
-        "w-full flex-col gap-5 snap-start hidden min-w-0 lg:flex lg:flex-col self-start flex-grow-0 flex-shrink-0 md:snap-none"
+        "w-full flex-col gap-5 hidden min-w-0 lg:flex lg:flex-col self-start flex-grow-0 flex-shrink-0"
       }
     >
       <ProjectList />

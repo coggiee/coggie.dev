@@ -78,7 +78,7 @@ export default function RootLayout({
         <Providers>
           <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
             <Nav />
-            <main className="h-full w-screen min-h-screen flex-grow px-5 gap-7">
+            <main className="h-full w-full flex justify-center items-center sm:items-start min-h-screen flex-grow px-5 gap-7">
               {children}
             </main>
             <Footer />

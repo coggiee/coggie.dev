@@ -9,12 +9,8 @@ import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { ForwardRefEditor } from "./ForwardRefEditor";
 
-const TitleInput = dynamic(
-  () => import("@/app/write/_components/TitleInput"),
-);
-const TagInput = dynamic(
-  () => import("@/app/write/_components/TagInput"),
-);
+const TitleInput = dynamic(() => import("@/app/write/_components/TitleInput"));
+const TagInput = dynamic(() => import("@/app/write/_components/TagInput"));
 const ReCheckModal = dynamic(
   () => import("@/app/write/_components/ReCheckModal"),
 );
@@ -52,7 +48,7 @@ export default function WriteSection() {
   } = useForm();
 
   return (
-    <div className="flex flex-col grow flex-3 w-full container pt-10">
+    <div className="flex flex-col grow flex-3 w-full pt-10 container max-w-screen-xl self-start">
       <TitleInput
         title={title}
         handleOnTypeTitle={handleChangeTitle}

@@ -45,7 +45,7 @@ export default function PostDashboard({
       duration={0.7}
       fromY={500}
       toY={0}
-      className={"flex flex-col gap-5 min-w-0 w-[1000px]"}
+      className={"flex flex-col gap-5"}
     >
       <Introduction />
       <Separator />
