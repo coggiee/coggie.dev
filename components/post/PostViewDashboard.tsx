@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import dynamic from "next/dynamic";
 import MotionVerticalProvider from "@/provider/MotionVerticalProvider";
 
@@ -17,8 +17,6 @@ export default function PostViewDashboard({
   currentPost,
   mdx,
 }: PostViewDashboardProps) {
-  const postDetailRef = useRef<HTMLDivElement>(null); // Ref 추가
-
   return (
     <MotionVerticalProvider
       duration={0.8}
