@@ -1,5 +1,5 @@
-import { getSinglePost } from '@/app/_libs/hygraph';
-import { serializeMdx } from '@/app/_libs/mdx';
+import { getSinglePost } from '@/lib/hygraph';
+import { serializeMdx } from '@/lib/mdx';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {

@@ -1,9 +1,9 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { getRecentPosts } from "@/app/_libs/hygraph";
+import { getRecentPosts } from "@/lib/hygraph";
 
 const AsidePostDashboard = dynamic(
-  () => import("@/app/_common/section/AsidePostDashboard"),
+  () => import("@/components/section/AsidePostDashboard"),
 );
 
 async function getProps() {

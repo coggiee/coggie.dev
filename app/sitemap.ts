@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { getTotalPosts } from "./_libs/hygraph";
+import { getTotalPosts } from "../lib/hygraph";
 
 const BASE_URL = "https://coggie.dev";
 

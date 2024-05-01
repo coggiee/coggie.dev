@@ -1,10 +1,10 @@
 import React from "react";
 import dynamic from "next/dynamic";
-import { getTotalPosts, getTotalTags } from "./_libs/hygraph";
-import InfoSiderbar from "./_common/sidebar/InfoSiderbar";
-import RightSidebar from "./_common/sidebar/RightSidebar";
+import { getTotalPosts, getTotalTags } from "../lib/hygraph";
+import InfoSiderbar from "../components/sidebar/InfoSiderbar";
+import RightSidebar from "../components/sidebar/RightSidebar";
 
-const PostDashboard = dynamic(() => import("@/app/_common/post/PostDashboard"));
+const PostDashboard = dynamic(() => import("@/components/post/PostDashboard"));
 
 async function getProps() {
   const { edges, aggregate } = (await getTotalPosts()) || [];
