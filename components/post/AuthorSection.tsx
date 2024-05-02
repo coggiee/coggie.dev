@@ -11,7 +11,7 @@ export default function AuthorSection() {
           height={120}
           alt="profile"
           priority={true}
-          src={"https://i.ibb.co/2SwpytM/mimoji.png"}
+          src={"https://avatars.githubusercontent.com/u/101445377?v=4"}
           className="rounded-full"
         />
         <aside className="flex flex-col font-aritaburi">
