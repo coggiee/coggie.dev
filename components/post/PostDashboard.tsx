@@ -43,9 +43,9 @@ export default function PostDashboard({
   return (
     <MotionVerticalProvider
       duration={0.7}
-      fromY={500}
+      fromY={300}
       toY={0}
-      className={"flex flex-col gap-5"}
+      className={"flex flex-col gap-5 grow"}
     >
       <Introduction />
       <Separator />

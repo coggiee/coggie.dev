@@ -16,15 +16,17 @@ const socialItems = [
 
 export default function SocialGroup({ dir }: SocialGroupProps) {
   return (
-    <aside className={cn("flex h-fit gap-2", dir ?? "justify-center")}>
+    <aside className={cn("flex h-fit mt-0 gap-2", dir ?? "justify-center")}>
       {socialItems.map(({ title, link }) => (
         <Button
           key={title}
           asChild
           variant="link"
-          className="p-0 after:content-['_↗']"
+          className="p-0 after:content-['_↗'] h-fit"
         >
-          <Link href={link}>{title}</Link>
+          <Link href={link}>
+            {title}
+          </Link>
         </Button>
       ))}
     </aside>
