@@ -242,7 +242,7 @@ export async function createPost(
 export async function getPostsOnScroll(after: string) {
   const query = gql`
     query getPostsOnScroll($after: String) {
-      posts(after: $after) {
+      posts(after: $after, orderBy: createdAt_DESC) {
         content
         date
         description
