@@ -1,20 +1,12 @@
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { notosanskr, aritaburi } from "../lib/fonts";
-import { ThemeProvider } from "../provider/ThemeProvider";
-import AuthProvider from "../provider/AuthProvider";
-import FramerProvider from "../provider/FramerProvider";
-import { Suspense } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "../components/global/Nav";
-import InfoSiderbar from "../components/sidebar/InfoSiderbar";
-import RightSidebar from "../components/sidebar/RightSidebar";
 import Footer from "../components/global/Footer";
 import dynamic from "next/dynamic";
 import { Toaster } from "@/components/ui/toaster";
 import Providers from "./providers";
-
-const Loading = dynamic(() => import("./loading"));
 
 const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";
 
@@ -63,12 +55,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  pinnedpost,
-  recentpost,
 }: {
   children: React.ReactNode;
-  pinnedpost: React.ReactNode;
-  recentpost: React.ReactNode;
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
