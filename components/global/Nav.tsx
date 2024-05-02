@@ -8,7 +8,6 @@ import {
   MenubarItem,
   MenubarMenu,
   MenubarSeparator,
-  MenubarShortcut,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Languages, Menu, Music, NotebookPen, ScanFace } from "lucide-react";
@@ -18,7 +17,7 @@ export default function Nav() {
   const { data: session } = useSession();
 
   const handleOnLogin = () => {
-    signIn("github");
+    signIn();
   };
 
   const handleOnLogout = () => {
