@@ -9,7 +9,11 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ["media.graphassets.com", "i.ibb.co"],
+    domains: [
+      "media.graphassets.com",
+      "i.ibb.co",
+      "avatars.githubusercontent.com",
+    ],
   },
 };
 
