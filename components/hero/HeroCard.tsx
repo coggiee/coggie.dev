@@ -4,17 +4,17 @@ import Image from "next/image";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
-export default function HeroCard() {
+export default async function HeroCard() {
   return (
     <Card className="w-full flex-grow-0 flex-shrink-0 rounded-lg dark:bg-item-dark dark:text-white">
       <CardHeader className="flex flex-row justify-between">
         <Image
-          width={120}
-          height={120}
+          width={150}
+          height={150}
           alt="profile"
           priority={true}
-          src={"https://i.ibb.co/2SwpytM/mimoji.png"}
-          className="rounded-full"
+          src={"https://avatars.githubusercontent.com/u/101445377?v=4"}
+          className="rounded-md"
         />
       </CardHeader>
       <CardContent className="flex flex-col gap-5">
