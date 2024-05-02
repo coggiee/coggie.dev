@@ -5,7 +5,7 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 export async function getTotalPosts(first?: number) {
   const query = gql`
     query getAllPosts($first: Int) {
-      postsConnection(first: $first) {
+      postsConnection(first: $first, orderBy: createdAt_DESC) {
         edges {
           node {
             content
@@ -67,7 +67,7 @@ export async function getSinglePost(id: string) {
 export async function getHotPosts() {
   const query = gql`
     query getHotPosts {
-      postsConnection(where: { hot: true }) {
+      postsConnection(where: { hot: true }, orderBy: createdAt_DESC) {
         edges {
           node {
             content
@@ -99,7 +99,7 @@ export async function getHotPosts() {
 export async function getRecentPosts() {
   const query = gql`
     query getRecentPosts {
-      postsConnection(orderBy: date_DESC, last: 5) {
+      postsConnection(orderBy: createdAt_DESC, first: 5) {
         edges {
           node {
             content
@@ -148,7 +148,10 @@ export async function getTotalTags() {
 export async function getPostsByTag(tag: any[]) {
   const query = gql`
     query getPostByTag($tags_contains_some: [Tags!]) {
-      postsConnection(where: { tags_contains_some: $tags_contains_some }) {
+      postsConnection(
+        where: { tags_contains_some: $tags_contains_some }
+        orderBy: createdAt_DESC
+      ) {
         aggregate {
           count
         }
@@ -265,7 +268,10 @@ export async function getPostsOnScroll(after: string) {
 export async function searchPostByTitle(title: string) {
   const query = gql`
     query searchPostByTitle($title_contains: String) {
-      postsConnection(where: { title_contains: $title_contains }) {
+      postsConnection(
+        where: { title_contains: $title_contains }
+        orderBy: createdAt_DESC
+      ) {
         aggregate {
           count
         }
