@@ -28,7 +28,7 @@ export default function Nav() {
     <nav className="w-full sticky top-0 border-b z-10 bg-white">
       <main className="container flex justify-between items-center py-3 w-full">
         <Link href="/" className="font-aritaburi text-2xl">
-          Coggie.dev
+          coggie.dev
         </Link>
         <div className="flex gap-3">
           <Menubar>

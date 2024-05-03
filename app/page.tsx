@@ -55,10 +55,10 @@ export default async function BlogPage() {
         tagList={tagList}
         totalPageSize={totalPostsSize}
       />
-      <aside className="hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0">
+      {/* <aside className="hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0">
         <AsidePostDashboard posts={recentPosts} type="RECENT" />
         <AsidePostDashboard posts={hotPosts} type="PINNED" />
-      </aside>
+      </aside> */}
     </main>
   );
 }

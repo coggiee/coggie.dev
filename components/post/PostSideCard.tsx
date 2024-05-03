@@ -25,10 +25,12 @@ export default function PostSideCard({
   readTimeMinutes,
 }: PostCardProps) {
   return (
-    <Card className="overflow-hidden border-none">
+    <Card className="border-none overflow-hidden">
       <CardHeader className="flex flex-col justify-between lg:flex-row gap-3 p-0">
-        <header className="space-y-1 w-full">
-          <CardTitle className="text-base">{title}</CardTitle>
+        <header className="space-y-1 w-full relative">
+          <CardTitle className="text-base">
+            <span>{title}</span>
+          </CardTitle>
           <CardDescription className="text-sm">{description}</CardDescription>
         </header>
         <aside className="flex flex-col lg:items-end gap-1 justify-center">
