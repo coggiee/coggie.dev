@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "@/styles/prose.css";
-@import "@/styles/prism-material-light.css";
+@import "@/styles/prism-vs.css";
 @import "@mdxeditor/editor/style.css";
 
 @layer base {

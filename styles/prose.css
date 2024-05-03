@@ -2,7 +2,7 @@
 
 @layer base {
   .prose pre {
-    @apply overflow-x-auto;
+    @apply overflow-x-auto border shadow-md;
   }
 
   .prose a {
@@ -10,9 +10,12 @@
   }
 
   .prose pre > code {
-    @apply grid;
+    @apply flex flex-col flex-wrap;
   }
 
+  .prose pre > code.code-line {
+    @apply w-full;
+  }
   .prose pre::-webkit-scrollbar {
     @apply hidden;
   }
@@ -36,11 +39,11 @@
   }
 
   .prose blockquote p {
-    @apply before:hidden after:hidden;
+    @apply before:hidden after:hidden not-italic;
   }
 
   .prose blockquote a {
-    @apply not-italic no-underline after:content-['_↗'] text-blue-600 after:text-sm after:font-black font-semibold;
+    @apply not-italic no-underline after:content-['_↗'] text-blue-600 after:text-sm after:font-black font-semibold hover:bg-blue-100 p-1 rounded-md hover:underline underline-offset-4;
   }
   /* Code */
   .prose code {
@@ -92,6 +95,6 @@
 
   /* Image */
   .prose img {
-    @apply my-0;
+    @apply my-0 rounded-lg shadow-lg;
   }
 }
