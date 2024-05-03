@@ -32,9 +32,7 @@ export default function PostView({
 }: PostViewProps) {
   return (
     <main className="space-y-5 flex flex-col font-aritaburi">
-      <h1 className="text-lg dark:text-white min-w-fit">
-        {title}
-      </h1>
+      <h1 className="text-lg dark:text-white min-w-fit">{title}</h1>
       {postList.length === 0 ? (
         <Card>
           <CardHeader>
@@ -65,7 +63,11 @@ export default function PostView({
             ))}
           </main>
           <footer className="flex justify-center items-center font-amaranth">
-            <Button onClick={handleLoad} className="w-fit" disabled={isLoading}>
+            <Button
+              onClick={handleLoad}
+              className="w-fit"
+              disabled={isLoading || isDisabledLoad}
+            >
               {isLoading ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

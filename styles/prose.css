@@ -25,11 +25,40 @@
     @apply inline-block px-4 py-0.5 leading-snug;
   }
 
-  .prose blockquote {
-    @apply border-l-4 border-[#af83e9] bg-[#f7f7f7] dark:text-white dark:bg-[#323232];
+  /* Paragraph */
+  .prose p {
+    @apply my-3;
   }
+
+  /* Blockquote */
+  .prose blockquote {
+    @apply bg-[#ffffff] dark:text-white dark:bg-[#323232] border rounded-lg shadow-md my-2;
+  }
+
+  .prose blockquote p {
+    @apply before:hidden after:hidden;
+  }
+
+  .prose blockquote a {
+    @apply not-italic no-underline after:content-['_↗'] text-blue-600 after:text-sm after:font-black font-semibold;
+  }
+  /* Code */
+  .prose code {
+    @apply before:hidden after:hidden not-italic font-medium bg-[#f5f5f5c3] rounded-sm p-1 text-[tomato];
+  }
+
+  /* Headings */
   .prose h1 {
-    @apply font-bold mb-4 mt-8;
+    @apply font-bold;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply mt-3 mb-3;
   }
 
   .prose h4 a {
@@ -46,6 +75,7 @@
     @apply font-semibold no-underline text-inherit;
   }
 
+  /* List */
   .prose ol,
   .prose ul {
     @apply m-0;
@@ -54,8 +84,14 @@
     @apply mt-0 mb-0 py-1 px-3;
   }
 
+  /* Article */
   .prose article ul a,
   .prose article ol a {
     @apply text-[#629ee3];
+  }
+
+  /* Image */
+  .prose img {
+    @apply my-0;
   }
 }

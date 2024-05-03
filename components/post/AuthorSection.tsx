@@ -4,7 +4,7 @@ import React from "react";
 
 export default function AuthorSection() {
   return (
-    <section className="w-full flex justify-center items-center min-h-fit mb-10">
+    <section className="w-full flex justify-center items-center min-h-fit mb-10 mt-10">
       <div className="flex items-center gap-10">
         <Image
           width={120}
