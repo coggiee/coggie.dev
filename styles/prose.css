@@ -2,7 +2,7 @@
 
 @layer base {
   .prose pre {
-    @apply overflow-x-auto border shadow-md;
+    @apply overflow-x-auto border;
   }
 
   .prose a {
@@ -35,7 +35,7 @@
 
   /* Blockquote */
   .prose blockquote {
-    @apply bg-[#ffffff] dark:text-white dark:bg-[#323232] border rounded-lg shadow-md my-2;
+    @apply bg-[#2323230a] dark:text-white dark:bg-[#323232] border rounded-lg my-2;
   }
 
   .prose blockquote p {
@@ -62,6 +62,15 @@
   .prose h5,
   .prose h6 {
     @apply mt-3 mb-3;
+  }
+
+  .prose h1 a,
+  .prose h2 a,
+  .prose h3 a,
+  .prose h4 a,
+  .prose h5 a,
+  .prose h6 a {
+    @apply relative after:content-["#"] after:font-bold after:opacity-0 after:absolute after:-right-5 hover:after:opacity-100 after:transition-opacity;
   }
 
   .prose h4 a {
