@@ -5,7 +5,7 @@ const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 export async function getTotalPosts(first?: number) {
   const query = gql`
     query getAllPosts($first: Int) {
-      postsConnection(first: $first, orderBy: createdAt_DESC) {
+      postsConnection(first: $first, orderBy: date_DESC) {
         edges {
           node {
             content
@@ -15,11 +15,6 @@ export async function getTotalPosts(first?: number) {
             id
             tags
             title
-            coverImage {
-              handle
-              fileName
-              url
-            }
           }
         }
         aggregate {
@@ -49,11 +44,6 @@ export async function getSinglePost(id: string) {
         tags
         title
         description
-        coverImage {
-          url
-          handle
-          id
-        }
       }
     }
   `;
@@ -67,7 +57,7 @@ export async function getSinglePost(id: string) {
 export async function getHotPosts() {
   const query = gql`
     query getHotPosts {
-      postsConnection(where: { hot: true }, orderBy: createdAt_DESC) {
+      postsConnection(where: { hot: true }, orderBy: date_DESC) {
         edges {
           node {
             content
@@ -77,11 +67,6 @@ export async function getHotPosts() {
             id
             tags
             title
-            coverImage {
-              fileName
-              url
-              handle
-            }
           }
         }
       }
@@ -99,7 +84,7 @@ export async function getHotPosts() {
 export async function getRecentPosts() {
   const query = gql`
     query getRecentPosts {
-      postsConnection(orderBy: createdAt_DESC, first: 5) {
+      postsConnection(orderBy: date_DESC, first: 5) {
         edges {
           node {
             content
@@ -113,11 +98,6 @@ export async function getRecentPosts() {
             tags
             title
             updatedAt
-            coverImage {
-              url
-              handle
-              fileName
-            }
           }
         }
       }
@@ -150,7 +130,7 @@ export async function getPostsByTag(tag: any[]) {
     query getPostByTag($tags_contains_some: [Tags!]) {
       postsConnection(
         where: { tags_contains_some: $tags_contains_some }
-        orderBy: createdAt_DESC
+        orderBy: date_DESC
       ) {
         aggregate {
           count
@@ -164,11 +144,6 @@ export async function getPostsByTag(tag: any[]) {
             id
             tags
             title
-            coverImage {
-              handle
-              url
-              fileName
-            }
           }
         }
       }
@@ -189,7 +164,6 @@ export async function createPost(
   tags: any[],
   hot: boolean,
   date: Date,
-  id: string,
 ) {
   const query = gql`
     mutation createPost(
@@ -199,7 +173,6 @@ export async function createPost(
       $tags: [Tags!]
       $hot: Boolean
       $date: DateTime
-      $id: ID
     ) {
       createPost(
         data: {
@@ -209,7 +182,6 @@ export async function createPost(
           title: $title
           date: $date
           tags: $tags
-          coverImage: { connect: { id: $id } }
         }
       ) {
         content
@@ -230,7 +202,6 @@ export async function createPost(
     tags,
     hot,
     date,
-    id,
     headers: {
       "hyg-stale-while-revalidate": "27",
     },
@@ -242,7 +213,7 @@ export async function createPost(
 export async function getPostsOnScroll(after: string) {
   const query = gql`
     query getPostsOnScroll($after: String) {
-      posts(after: $after, orderBy: createdAt_DESC) {
+      posts(after: $after, orderBy: date_DESC) {
         content
         date
         description
@@ -250,11 +221,6 @@ export async function getPostsOnScroll(after: string) {
         id
         tags
         title
-        coverImage {
-          url
-          handle
-          fileName
-        }
       }
     }
   `;
@@ -270,7 +236,7 @@ export async function searchPostByTitle(title: string) {
     query searchPostByTitle($title_contains: String) {
       postsConnection(
         where: { title_contains: $title_contains }
-        orderBy: createdAt_DESC
+        orderBy: date_DESC
       ) {
         aggregate {
           count
@@ -284,11 +250,6 @@ export async function searchPostByTitle(title: string) {
             hot
             tags
             title
-            coverImage {
-              handle
-              fileName
-              url
-            }
           }
         }
       }
@@ -317,7 +278,6 @@ export async function deletePost(id: string) {
 }
 
 export async function updatePost(
-  coverImageId: string,
   content: string,
   description: string,
   hot: boolean,
@@ -327,7 +287,6 @@ export async function updatePost(
 ) {
   const query = gql`
     mutation MyMutation(
-      $coverImageId: ID
       $content: String
       $description: String
       $hot: Boolean
@@ -340,7 +299,6 @@ export async function updatePost(
           description: $description
           tags: $tags
           title: $title
-          coverImage: { connect: { id: $coverImageId } }
           content: $content
           hot: $hot
         }
@@ -351,7 +309,6 @@ export async function updatePost(
     }
   `;
   const results: any = await graphcms.request(query, {
-    coverImageId,
     content,
     description,
     hot,
