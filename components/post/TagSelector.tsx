@@ -15,7 +15,7 @@ function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
           <Badge
             key={tag}
             variant={`${selectedTag === tag ? "default" : "outline"}`}
-            className="cursor-pointer transition-colors duration-75 font-thin font-aritaburi"
+            className="cursor-pointer transition-colors duration-75  font-aritaburi"
             onClick={() => onSelect(tag)}
           >
             {tag}
