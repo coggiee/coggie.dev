@@ -10,6 +10,8 @@ import RightSidebar from "../components/sidebar/RightSidebar";
 import AsidePostDashboard from "@/components/section/AsidePostDashboard";
 import PostDashboard from "@/components/post/PostDashboard";
 
+export const dynamic = 'force-dynamic'
+
 async function getProps() {
   const { edges, aggregate } = (await getTotalPosts()) || [];
   const recentPosts = (await getRecentPosts()) || [];
