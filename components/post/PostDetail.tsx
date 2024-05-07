@@ -74,7 +74,7 @@ export const PostDetail = ({ post, mdx }: PostDetailProps) => {
         <div className="flex-grow w-full min-w-0 p-5 rounded-lg dark:bg-item-dark">
           <article className="min-w-0 w-full max-w-full mx-auto relative break-words mb-20">
             <div className="mb-8 flex flex-col w-full">
-              <h1 className="text-4xl font-bold w-full break-words dark:text-[#fff]">
+              <h1 className="text-2xl font-semibold w-full break-words dark:text-[#fff]">
                 {post!.title}
               </h1>
               <PostTag tags={post!.tags} />
