@@ -20,7 +20,7 @@ export default function ProjectItem({
   projectDemoLink,
 }: ProjectItemProps) {
   return (
-    <Card className="w-full min-w-0 grow flex-shrink-0 cursor-pointer border border-item-border-light dark:border-item-border-dark dark:bg-item-dark font-aritaburi">
+    <Card className="w-full min-w-0 grow flex-shrink-0 cursor-pointer font-aritaburi">
       <CardHeader>
         <CardTitle>{projectTitle}</CardTitle>
         <CardDescription>{projectDescription}</CardDescription>

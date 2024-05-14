@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/menubar";
 import { Languages, Menu, Music, NotebookPen, ScanFace } from "lucide-react";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 export default function Nav() {
   const { data: session } = useSession();
@@ -25,16 +26,18 @@ export default function Nav() {
   };
 
   return (
-    <nav className="w-full sticky top-0 border-b z-10 bg-white">
+    <nav className="w-full sticky top-0 border-b border-item-border-light dark:border-item-border-dark z-10 dark:text-white">
       <main className="container flex justify-between items-center py-3 w-full">
         <Link href="/" className="font-aritaburi text-2xl">
           coggie.dev
         </Link>
-        <div className="flex gap-3">
-          <Menubar>
+        <div className="flex gap-1">
+          <Menubar className="bg-transparent cursor-pointer border-none">
             <MenubarMenu>
-              <MenubarTrigger className="p-1 cursor-pointer">
-                <Menu />
+              <MenubarTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Menu />
+                </Button>
               </MenubarTrigger>
               <MenubarContent className="font-aritaburi">
                 <MenubarItem>
@@ -46,7 +49,7 @@ export default function Nav() {
                     <span>Playlist</span>
                   </Link>
                 </MenubarItem>
-                <MenubarItem className="cursor-pointer" disabled>
+                <MenubarItem disabled>
                   <p className="flex items-center gap-2">
                     <Languages className="w-4 h-4" />
                     <span>Language</span>
@@ -54,7 +57,7 @@ export default function Nav() {
                 </MenubarItem>
                 <MenubarSeparator />
                 {session && session.user!.email === "zentechie7@gmail.com" && (
-                  <MenubarItem className="cursor-pointer">
+                  <MenubarItem>
                     <Link href="/write" className="flex items-center gap-2">
                       <NotebookPen className="w-4 h-4" />
                       <span>Write Post</span>

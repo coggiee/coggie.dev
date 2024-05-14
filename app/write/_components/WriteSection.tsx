@@ -66,7 +66,7 @@ export default function WriteSection() {
         markdown={isUpdated ? content : ""}
         onChange={handleChangeContent}
       />
-      <div className="fixed w-full bottom-0 left-0 border-t px-10 bg-white">
+      <div className="fixed w-full bottom-0 left-0 border-t px-10">
         <div className="flex gap-3 py-3 justify-end w-full container">
           <Button onClick={handleBack} variant="ghost">
             나가기
