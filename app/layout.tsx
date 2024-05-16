@@ -4,7 +4,7 @@ import { notosanskr, aritaburi } from "../lib/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "../components/global/Nav";
 import Footer from "../components/global/Footer";
-import dynamic from "next/dynamic";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/toaster";
 import Providers from "./providers";
 
@@ -72,6 +72,7 @@ export default function RootLayout({
             <Footer />
           </main>
           <Analytics />
+          <SpeedInsights />
           <Toaster />
         </Providers>
       </body>
