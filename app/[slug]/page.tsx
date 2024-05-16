@@ -19,8 +19,6 @@ export async function generateMetadata(
   if (!post) {
     throw new Error("no metadata");
   }
-  // const thumbnail =
-  //   post.coverImage.url || (await parent).openGraph?.images || [];
   const title = post.title;
   const desc = post.description;
   const id = post.id;
@@ -42,7 +40,6 @@ export async function generateMetadata(
       description: desc,
       url: `/${id}`,
       siteName: "COGGIE",
-      // images: [thumbnail],
       publishedTime: publishedDate,
       locale: "ko_KR",
       authors: "Coggie",
@@ -53,7 +50,6 @@ export async function generateMetadata(
       title: title,
       description: desc,
       creator: "@coggie",
-      // images: [thumbnail],
     },
   };
 }
