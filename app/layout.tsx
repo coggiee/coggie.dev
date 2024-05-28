@@ -6,7 +6,8 @@ import Nav from "../components/global/Nav";
 import Footer from "../components/global/Footer";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/toaster";
-import Providers from "./providers";
+import Provider from "./provider";
+import React from "react";
 
 const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";
 
@@ -63,7 +64,7 @@ export default function RootLayout({
       <body
         className={`${notosanskr.variable} ${aritaburi.variable} overflow-y-scroll scrollbar-thin dark:bg-dark`}
       >
-        <Providers>
+        <Provider>
           <main className="flex flex-col gap-5 justify-center items-center min-h-screen">
             <Nav />
             <main className="h-full w-full flex justify-center items-center sm:items-start min-h-screen flex-grow px-5 gap-7">
@@ -74,7 +75,7 @@ export default function RootLayout({
           <Analytics />
           <SpeedInsights />
           <Toaster />
-        </Providers>
+        </Provider>
       </body>
     </html>
   );
