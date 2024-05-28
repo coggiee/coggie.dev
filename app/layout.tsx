@@ -4,7 +4,7 @@ import { notosanskr, aritaburi } from "../lib/fonts";
 import { Analytics } from "@vercel/analytics/react";
 import Nav from "../components/global/Nav";
 import Footer from "../components/global/Footer";
-import dynamic from "next/dynamic";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "@/components/ui/toaster";
 import Providers from "./providers";
 
@@ -61,10 +61,10 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`${notosanskr.variable} ${aritaburi.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
+        className={`${notosanskr.variable} ${aritaburi.variable} overflow-y-scroll scrollbar-thin dark:bg-dark`}
       >
         <Providers>
-          <main className="flex flex-col gap-5 justify-center items-center min-h-screen text-stone-800 dark:text-main-dark dark:bg-item-dark">
+          <main className="flex flex-col gap-5 justify-center items-center min-h-screen">
             <Nav />
             <main className="h-full w-full flex justify-center items-center sm:items-start min-h-screen flex-grow px-5 gap-7">
               {children}
@@ -72,6 +72,7 @@ export default function RootLayout({
             <Footer />
           </main>
           <Analytics />
+          <SpeedInsights />
           <Toaster />
         </Providers>
       </body>

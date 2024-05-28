@@ -1,7 +1,5 @@
-import IconSearch from "@/app/_icons/IconSearch";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { CircleX, CircleXIcon, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import React, { ChangeEvent, KeyboardEvent } from "react";
 
 interface SearchBarProps {

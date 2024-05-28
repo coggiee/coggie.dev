@@ -77,7 +77,7 @@
     @apply bg-background text-foreground;
   }
   .mdxEditor {
-    @apply h-[1000px] prose w-full max-w-none;
+    @apply h-[1000px] prose w-full max-w-none overflow-y-scroll overscroll-none;
   }
 
   [role="toolbar"] {

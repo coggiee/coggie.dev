@@ -10,7 +10,7 @@ import SocialGroup from "../global/SocialGroup";
 
 export default async function HeroCard() {
   return (
-    <Card className="w-full flex-grow-0 flex-shrink-0 rounded-lg dark:bg-item-dark dark:text-white font-aritaburi">
+    <Card className="w-full flex-grow-0 flex-shrink-0 rounded-lg font-aritaburi">
       <CardContent className="flex flex-col gap-5 pt-6 ">
         <Image
           width={400}
@@ -34,11 +34,11 @@ export default async function HeroCard() {
       <CardFooter className="flex-col items-start gap-7">
         <ul className="text-sm flex flex-col gap-2">
           <li className="flex gap-2">
-            <Network className="w-4 h-4 text-gray-700" />
+            <Network className="w-4 h-4" />
             <span className="text-sm">Devcourse Frontend 5th</span>
           </li>
           <li className="flex gap-2">
-            <University className="w-4 h-4 text-gray-700" />
+            <University className="w-4 h-4" />
             <span className="text-sm">Konkuk Univ</span>
           </li>
         </ul>

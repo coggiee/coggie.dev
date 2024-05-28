@@ -70,11 +70,11 @@ export const PostDetail = ({ post, mdx }: PostDetailProps) => {
 
   return (
     <MotionVerticalProvider duration={0.7} fromY={500} toY={0}>
-      <div className="prose dark:prose-dark w-full max-w-full flex flex-row-reverse gap-10 mx-auto dark:text-[#fff] dark:prose-invert font-aritaburi">
-        <div className="flex-grow w-full min-w-0 p-5 rounded-lg dark:bg-item-dark">
+      <div className="prose dark:prose-dark w-full max-w-full flex flex-row-reverse gap-10 mx-auto dark:prose-invert font-aritaburi">
+        <div className="flex-grow w-full min-w-0 p-5 rounded-lg ">
           <article className="min-w-0 w-full max-w-full mx-auto relative break-words mb-20">
             <div className="mb-8 flex flex-col w-full">
-              <h1 className="text-4xl font-bold w-full break-words dark:text-[#fff]">
+              <h1 className="text-2xl font-semibold w-full break-words dark:text-[#fff]">
                 {post!.title}
               </h1>
               <PostTag tags={post!.tags} />

@@ -62,28 +62,28 @@ export const useForm = () => {
     const currentDate = dayjs().format();
 
     let response = null;
-    let coverImageId = null;
-    const isCoverImageChanged = isUpdated ? isUpdatedCoverImage : true;
+    // let coverImageId = null;
+    // const isCoverImageChanged = isUpdated ? isUpdatedCoverImage : true;
 
-    if (isCoverImageChanged) {
-      const uploadForm = new FormData();
+    // if (isCoverImageChanged) {
+    //   const uploadForm = new FormData();
 
-      uploadForm.append("fileUpload", coverImage);
+    //   uploadForm.append("fileUpload", coverImage);
 
-      const assetResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
-          },
-          body: uploadForm,
-        },
-      );
+    //   const assetResponse = await fetch(
+    //     `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
+    //     {
+    //       method: "POST",
+    //       headers: {
+    //         Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
+    //       },
+    //       body: uploadForm,
+    //     },
+    //   );
 
-      const { id } = await assetResponse.json();
-      coverImageId = id;
-    }
+    //   const { id } = await assetResponse.json();
+    //   coverImageId = id;
+    // }
 
     if (!isUpdated) {
       response = await createPost(
@@ -93,11 +93,9 @@ export const useForm = () => {
         tagList,
         isPinned,
         new Date(currentDate),
-        coverImageId,
       );
     } else {
       response = await updatePost(
-        isCoverImageChanged ? coverImageId : coverImage.id,
         content,
         description,
         isPinned,
@@ -145,7 +143,6 @@ export const useForm = () => {
   const handleChangeContent = () => {
     if (ref.current) {
       const content = ref.current?.getMarkdown();
-      console.log(content)
       setForm({
         ...form,
         content,

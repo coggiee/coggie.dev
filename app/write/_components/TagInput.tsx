@@ -18,7 +18,7 @@ export default function TagInput({
       value={tags}
       onChange={handleOnTypeTags}
       onKeyDown={handleKeyPress}
-      className="border-none outline-none focus-visible:ring-0 p-0 text-lg mb-5"
+      className="border-none outline-none focus-visible:ring-offset-0 focus-visible:ring-0 p-0 text-lg mb-5 dark:bg-inherit"
     />
   );
 }

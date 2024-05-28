@@ -10,7 +10,7 @@ export default function HomeButton() {
     <Button
       variant="outline"
       size="icon"
-      className="dark:text-white"
+      className="dark:bg-item-dark dark:text-white dark:hover:bg-hover-dark border dark:border-item-border-dark"
       onClick={() => router.push("/")}
     >
       <Home className="w-4 h-4" />

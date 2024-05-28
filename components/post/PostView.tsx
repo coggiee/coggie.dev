@@ -11,6 +11,9 @@ import SkeletonPostCard from "@/components/skeleton/SkeletonPostCard";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { Separator } from "../ui/separator";
+import { useMemo } from "react";
+import dayjs from "dayjs";
 
 const PostSideCard = dynamic(() => import("./PostSideCard"), {
   loading: () => <SkeletonPostCard />,
@@ -23,6 +26,12 @@ interface PostViewProps {
   isDisabledLoad: boolean;
 }
 
+interface GroupedPosts {
+  [year: string]: {
+    [month: string]: any[];
+  };
+}
+
 export default function PostView({
   postList,
   title,
@@ -30,9 +39,32 @@ export default function PostView({
   isLoading,
   isDisabledLoad,
 }: PostViewProps) {
+  const postListByYearAndMonth = useMemo(() => {
+    const grouped = postList.reduce((acc: any, post: any) => {
+      const year = dayjs(post.date).format("YYYY");
+      const month = dayjs(post.date).format("MM");
+
+      if (!acc[year]) acc[year] = {};
+      if (!acc[year][month]) acc[year][month] = [];
+
+      acc[year][month].push(post);
+      return acc;
+    }, {});
+
+    const sortedByYear = Object.keys(grouped).sort((a, b) =>
+      b.localeCompare(a),
+    );
+
+    const sortedGrouped: GroupedPosts = {};
+    sortedByYear.forEach((year) => {
+      sortedGrouped[year] = grouped[year];
+    });
+
+    return sortedGrouped;
+  }, [postList]);
+
   return (
     <main className="space-y-5 flex flex-col font-aritaburi">
-      <h1 className="text-lg dark:text-white min-w-fit">{title}</h1>
       {postList.length === 0 ? (
         <Card>
           <CardHeader>
@@ -41,25 +73,40 @@ export default function PostView({
         </Card>
       ) : (
         <>
-          <main className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-5 grid-flow-row-dense auto-rows-fr">
-            {postList.map((post: any) => (
-              <Link
-                href={`/${post.id}`}
-                passHref
-                key={post.id}
-                className="rounded-lg overflow-hidden space-y-2 transform transition-transform duration-150 hover:-translate-y-3"
-              >
-                <PostSideCard
-                  key={post.id}
-                  date={formatCreatedAt(post.date)}
-                  time={formatCreatedTime(post.date)}
-                  title={post.title}
-                  description={post.description}
-                  tags={post.tags}
-                  coverImage={post.coverImage}
-                  readTimeMinutes={formatReadingMinutes(post.content)}
-                />
-              </Link>
+          <main className="flex flex-col gap-12">
+            {Object.entries(postListByYearAndMonth).sort((a, b) => parseInt(b[0]) - parseInt(a[0])).map(([year, months]) => (
+              <section key={year} className=" flex flex-col gap-10">
+                <h1 className="flex items-center gap-3 font-bold text-3xl after:content-[''] after:h-[1px] after:bg-black/30 after:grow">
+                  {year}년
+                </h1>
+                {Object.entries(months).sort((a, b) => parseInt(b[0]) - parseInt(a[0])).map(([month, postList]) => (
+                  <div key={month} className="flex gap-7">
+                    <h2 className="text-xl whitespace-nowrap ">{month}월</h2>
+                    <aside className="w-full flex flex-col gap-3">
+                      {postList.map((post: any) => (
+                        <div key={post.id} className="flex flex-col gap-3">
+                          <Link
+                            href={`/${post.id}`}
+                            passHref
+                            className="rounded-lg overflow-hidden space-y-2"
+                          >
+                            <PostSideCard
+                              key={post.id}
+                              title={post.title}
+                              description={post.description}
+                              tags={post.tags}
+                              readTimeMinutes={formatReadingMinutes(
+                                post.content,
+                              )}
+                            />
+                          </Link>
+                          <Separator />
+                        </div>
+                      ))}
+                    </aside>
+                  </div>
+                ))}
+              </section>
             ))}
           </main>
           <footer className="flex justify-center items-center font-amaranth">
