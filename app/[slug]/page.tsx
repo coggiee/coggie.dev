@@ -2,18 +2,15 @@ import { getSinglePost } from "@/lib/hygraph";
 import { serializeMdx } from "@/lib/mdx";
 import PostViewDashboard from "@/components/post/PostViewDashboard";
 import type { Metadata, ResolvingMetadata } from "next";
+import { QueryClient } from "@tanstack/react-query";
 
 const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";
 
 type Props = {
   params: { slug: string };
-  searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   const post = await getSinglePost(slug);
   if (!post) {
@@ -54,13 +51,17 @@ export async function generateMetadata(
   };
 }
 
-async function getProps({ params }: { params: { slug: string } }) {
-  const { slug } = params;
-  const post = await getSinglePost(slug);
+async function prefetchQuery(slug: string) {
+  const queryClient = new QueryClient();
 
-  return {
-    post,
-  };
+  await queryClient.prefetchQuery({
+    queryKey: ["post", slug],
+    queryFn: () => getSinglePost(slug),
+  });
+
+  const post: any = queryClient.getQueryData(["post", slug]);
+
+  return post;
 }
 
 export default async function BlogPostPage({
@@ -68,7 +69,8 @@ export default async function BlogPostPage({
 }: {
   params: { slug: string };
 }) {
-  const { post } = await getProps({ params });
+  const { slug } = params;
+  const post = await prefetchQuery(slug);
   const mdx = await serializeMdx(post!.content);
 
   return (

@@ -1,20 +1,11 @@
 import { Input } from "@/components/ui/input";
+import { useSearch } from "@/hooks/useSearch";
 import { Search } from "lucide-react";
-import React, { ChangeEvent, KeyboardEvent } from "react";
+import React from "react";
 
-interface SearchBarProps {
-  handleOnSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  handleOnPressEnter: (e: KeyboardEvent<HTMLInputElement>) => void;
-  handleClearQuery: () => void;
-  query: string;
-}
+function SearchBar() {
+  const { searchQuery, handleOnSearch, handleOnPressEnter } = useSearch();
 
-function SearchBar({
-  handleOnSearch,
-  handleOnPressEnter,
-  handleClearQuery,
-  query,
-}: SearchBarProps) {
   return (
     <div className="relative w-full h-full space-y-2">
       <Search className="absolute left-3 top-1/2 mt-1 transform -translate-y-1/2 text-gray-500 z-10 w-4 h-4" />
@@ -26,7 +17,7 @@ function SearchBar({
         autoComplete="off"
         placeholder="Search with Keyword..."
         className="pl-10"
-        value={query}
+        value={searchQuery}
       />
     </div>
   );

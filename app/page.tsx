@@ -7,60 +7,47 @@ import {
 } from "../lib/hygraph";
 import InfoSiderbar from "../components/sidebar/InfoSiderbar";
 import RightSidebar from "../components/sidebar/RightSidebar";
-import AsidePostDashboard from "@/components/section/AsidePostDashboard";
 import PostDashboard from "@/components/post/PostDashboard";
+import { QueryClient } from "@tanstack/react-query";
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
-async function getProps() {
-  const { edges, aggregate } = (await getTotalPosts()) || [];
-  const recentPosts = (await getRecentPosts()) || [];
-  const hotPosts = (await getHotPosts()) || [];
+async function prefetchQueries() {
+  const queryClient = new QueryClient();
 
-  const posts = edges.map((post: any) => post.node);
-  const lastPostCursor = posts[posts.length - 1].id;
-  const tags = (await getTotalTags()) || [];
-  const uniqueTags = tags.map((tag: any) => tag.tag);
+  await queryClient.prefetchQuery({
+    queryKey: ["total-posts"],
+    queryFn: () => getTotalPosts({ after: null }),
+  });
 
-  return {
-    props: {
-      posts,
-      uniqueTags,
-      lastPostCursor,
-      totalPostsSize: aggregate.count,
-      recentPosts,
-      hotPosts,
-    },
-  };
+  await queryClient.prefetchQuery({
+    queryKey: ["total-tags"],
+    queryFn: () => getTotalTags(),
+  });
+
+  const tags: any = queryClient.getQueryData(["total-tags"]);
+
+  await Promise.all(
+    tags.map(
+      async ({ tag }: { tag: any }) =>
+        await queryClient.prefetchQuery({
+          queryKey: ["tag-posts", tag],
+          queryFn: () => getTotalPosts({ after: null, tag: tag }),
+        }),
+    ),
+  );
 }
 
 export default async function BlogPage() {
-  const {
-    props: {
-      posts,
-      uniqueTags: tagList,
-      lastPostCursor,
-      totalPostsSize,
-      recentPosts,
-      hotPosts,
-    },
-  } = await getProps();
+  await prefetchQueries();
+
   return (
     <main className="w-full min-w-0 flex flex-col gap-10 xl:flex lg:flex-row md:items-baseline max-w-screen-2xl ">
       <aside className="w-full lg:basis-1/3 basis-1/4 lg:max-w-xs lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5">
         <InfoSiderbar />
         <RightSidebar />
       </aside>
-      <PostDashboard
-        totalPostList={posts}
-        lastCursor={lastPostCursor}
-        tagList={tagList}
-        totalPageSize={totalPostsSize}
-      />
-      {/* <aside className="hidden w-full min-w-0 basis-1/5 2xl:flex 2xl:flex-col 2xl:gap-5 self-start flex-grow-0 flex-shrink-0">
-        <AsidePostDashboard posts={recentPosts} type="RECENT" />
-        <AsidePostDashboard posts={hotPosts} type="PINNED" />
-      </aside> */}
+      <PostDashboard />
     </main>
   );
 }

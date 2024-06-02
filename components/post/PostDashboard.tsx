@@ -1,45 +1,16 @@
 "use client";
 
 import MotionVerticalProvider from "@/provider/MotionVerticalProvider";
-import React, { useEffect } from "react";
+import React from "react";
 import Introduction from "../global/Introduction";
-import { useSearch } from "@/hooks/useSearch";
-import { useLoadPost } from "@/hooks/useLoadPost";
-import { useSelectTag } from "@/hooks/useSelectTag";
-import { usePostStore } from "@/store/usePostStore";
 import dynamic from "next/dynamic";
 import { Separator } from "@/components/ui/separator";
 import SearchBar from "./SearchBar";
 import TagSelector from "./TagSelector";
 
 const PostView = dynamic(() => import("./PostView"));
-interface PostDashboardProps {
-  totalPostList: any;
-  tagList: string[];
-  lastCursor: string;
-  totalPageSize: number;
-}
 
-export default function PostDashboard({
-  totalPostList,
-  tagList,
-  lastCursor,
-  totalPageSize,
-}: PostDashboardProps) {
-  const { postState, setPost } = usePostStore();
-  const { searchQuery, handleClearQuery, handleOnSearch, handleOnPressEnter } =
-    useSearch();
-  const { isLoading, handleOnClickLoadButton } = useLoadPost();
-  const { selectedTag, handleOnSelect } = useSelectTag();
-
-  useEffect(() => {
-    setPost({
-      postList: totalPostList,
-      cursor: lastCursor,
-      pageSize: totalPageSize,
-    });
-  }, [lastCursor, totalPostList, totalPageSize]);
-
+export default function PostDashboard() {
   return (
     <MotionVerticalProvider
       duration={0.7}
@@ -49,27 +20,10 @@ export default function PostDashboard({
     >
       <Introduction />
       <Separator />
-      <SearchBar
-        handleOnPressEnter={handleOnPressEnter}
-        handleOnSearch={handleOnSearch}
-        handleClearQuery={handleClearQuery}
-        query={searchQuery}
-      />
-      <TagSelector
-        tagList={tagList}
-        onSelect={handleOnSelect}
-        selectedTag={selectedTag}
-      />
+      <SearchBar />
+      <TagSelector />
       <Separator />
-      <PostView
-        postList={postState.postList ?? []}
-        title={"Total Posts"}
-        handleLoad={handleOnClickLoadButton}
-        isLoading={isLoading}
-        isDisabledLoad={
-          postState.postList && postState.postList.length === postState.pageSize
-        }
-      />
+      <PostView />
     </MotionVerticalProvider>
   );
 }

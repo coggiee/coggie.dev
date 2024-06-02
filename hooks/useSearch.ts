@@ -1,17 +1,14 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { getTotalPosts, searchPostByTitle } from "../lib/hygraph";
-import { usePostStore } from "../store/usePostStore";
-
-interface useSearchProps {
-  query: string;
-}
+import { useTitleStore } from "@/store/useTitleStore";
+import { useTagStore } from "@/store/useTagStore";
 
 export const useSearch = () => {
-  const { setPost } = usePostStore();
+  const { setTag } = useTagStore();
+  const { setTitle } = useTitleStore();
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleClearQuery = () => {
-    setSearchQuery("");
+    setTitle(null);
   };
 
   const handleOnSearch = (e: ChangeEvent<HTMLInputElement>) => {
@@ -19,22 +16,11 @@ export const useSearch = () => {
     setSearchQuery(query);
   };
 
-  const handleOnPressEnter = async (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+  const handleOnPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && searchQuery) {
       const trimmedQuery = searchQuery.trim();
-      const { edges, aggregate } =
-        trimmedQuery.length === 0
-          ? await getTotalPosts()
-          : await searchPostByTitle(trimmedQuery);
-      const posts = edges.map((post: any) => post.node);
-      const totalPageSize = aggregate.count;
-      const lastCursor = posts[posts.length - 1]?.id ?? null;
-
-      setPost({
-        postList: posts,
-        cursor: lastCursor,
-        pageSize: totalPageSize,
-      });
+      setTag('All');
+      setTitle(trimmedQuery);
     }
   };
 

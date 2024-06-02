@@ -5,6 +5,7 @@ import { createPost, updatePost } from "../lib/hygraph";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import { MDXEditorMethods } from "@mdxeditor/editor";
+import { useQueryClient } from "@tanstack/react-query";
 
 export const useForm = () => {
   const ref = useRef<MDXEditorMethods>(null);
@@ -14,6 +15,7 @@ export const useForm = () => {
   const [isUpdatedCoverImage, setIsUpdatedCoverImage] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const adjustHeight = () => {
     const textarea = textareaRef.current;
@@ -62,28 +64,6 @@ export const useForm = () => {
     const currentDate = dayjs().format();
 
     let response = null;
-    // let coverImageId = null;
-    // const isCoverImageChanged = isUpdated ? isUpdatedCoverImage : true;
-
-    // if (isCoverImageChanged) {
-    //   const uploadForm = new FormData();
-
-    //   uploadForm.append("fileUpload", coverImage);
-
-    //   const assetResponse = await fetch(
-    //     `${process.env.NEXT_PUBLIC_HYGRAPH_URL}`,
-    //     {
-    //       method: "POST",
-    //       headers: {
-    //         Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_ASSET_TOKEN}`,
-    //       },
-    //       body: uploadForm,
-    //     },
-    //   );
-
-    //   const { id } = await assetResponse.json();
-    //   coverImageId = id;
-    // }
 
     if (!isUpdated) {
       response = await createPost(
@@ -108,6 +88,9 @@ export const useForm = () => {
     const { id } = response;
 
     if (id) {
+      queryClient.invalidateQueries({
+        queryKey: ["total-posts"],
+      });
       setIsLoading(false);
       useFormStore.persist.clearStorage();
       router.push(`/${id}`);

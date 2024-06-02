@@ -1,26 +1,11 @@
-import { useState } from "react";
-import { getPostsByTag, getTotalPosts } from "../lib/hygraph";
-import { usePostStore } from "../store/usePostStore";
+import { useTagStore } from "@/store/useTagStore";
 
 export const useSelectTag = () => {
-  const { setPost } = usePostStore();
-  const [selectedTag, setSelectedTag] = useState<string | null>("All");
+  const { tag, setTag } = useTagStore();
 
-  const handleOnSelect = async (tag: string) => {
-    setSelectedTag(tag);
-
-    const { edges, aggregate } =
-      tag === "All" ? await getTotalPosts() : await getPostsByTag([tag]);
-    const posts = edges.map((post: any) => post.node);
-    const totalPageSize = aggregate.count;
-    const lastCursor = posts[posts.length - 1]?.id ?? null;
-
-    setPost({
-      postList: posts,
-      cursor: lastCursor,
-      pageSize: totalPageSize,
-    });
+  const handleOnSelect = (tag: string) => {
+    setTag(tag);
   };
 
-  return { selectedTag, handleOnSelect };
+  return { tag, handleOnSelect };
 };

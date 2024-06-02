@@ -1,22 +1,22 @@
 import { Badge } from "@/components/ui/badge";
+import useQueryTotalTags from "@/hooks/query/useQueryTotalTags";
+import { useSelectTag } from "@/hooks/useSelectTag";
 import React from "react";
 
-interface TagSelectorProps {
-  tagList: string[];
-  onSelect: (tag: string) => void;
-  selectedTag: string | null;
-}
+export default function  TagSelector() {
+  const { tag: currentTag, handleOnSelect } = useSelectTag();
 
-function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
+  const { data: tagList } = useQueryTotalTags();
+
   return (
     <section className="text-white ">
       <main className="flex gap-2 flex-wrap">
-        {tagList.map((tag) => (
+        {tagList.map((tag: any) => (
           <Badge
             key={tag}
-            variant={`${selectedTag === tag ? "default" : "outline"}`}
+            variant={`${currentTag === tag ? "default" : "outline"}`}
             className="cursor-pointer transition-colors duration-75  font-aritaburi dark:border-item-border-dark"
-            onClick={() => onSelect(tag)}
+            onClick={() => handleOnSelect(tag)}
           >
             {tag}
           </Badge>
@@ -25,5 +25,3 @@ function TagSelector({ tagList, onSelect, selectedTag }: TagSelectorProps) {
     </section>
   );
 }
-
-export default TagSelector;

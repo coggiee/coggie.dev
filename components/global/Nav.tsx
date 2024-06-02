@@ -26,7 +26,7 @@ export default function Nav() {
   };
 
   return (
-    <nav className="w-full sticky top-0 border-b border-item-border-light dark:border-item-border-dark z-10 dark:text-white">
+    <nav className="w-full sticky top-0 border-b border-item-border-light dark:border-item-border-dark z-10 dark:text-white bg-light/50 backdrop-blur-md dark:bg-dark/50">
       <main className="container flex justify-between items-center py-3 w-full">
         <Link href="/" className="font-aritaburi text-2xl">
           coggie.dev

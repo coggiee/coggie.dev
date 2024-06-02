@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { copyToClipboard } from "@/utils/copyToClipboard";
+import { useQueryClient } from "@tanstack/react-query";
 
 const MDXRemote = dynamic(() =>
   import("next-mdx-remote").then((mod) => ({ default: mod.MDXRemote })),
@@ -29,6 +30,7 @@ export const PostDetail = ({ post, mdx }: PostDetailProps) => {
   const { setForm, setIsUpdated } = useFormStore();
   const { data: session } = useSession();
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const handleOnClickCopyButton = () => {
     copyToClipboard(post.id);
@@ -48,6 +50,9 @@ export const PostDetail = ({ post, mdx }: PostDetailProps) => {
             : "포스트를 삭제하지 못했어요.",
         description: !data && "오류가 발생했어요.",
       });
+      queryClient.invalidateQueries({
+        queryKey: ["total-posts"],
+      });
       router.push("/");
     }
   };
@@ -64,6 +69,9 @@ export const PostDetail = ({ post, mdx }: PostDetailProps) => {
       isPinned: post!.hot,
       content: post!.content,
       tagInput: "",
+    });
+    queryClient.invalidateQueries({
+      queryKey: ["total-posts"],
     });
     router.push(`/write`);
   };

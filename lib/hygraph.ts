@@ -2,10 +2,23 @@ import { GraphQLClient, gql } from "graphql-request";
 
 const graphcms = new GraphQLClient(process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT!);
 
-export async function getTotalPosts(first?: number) {
-  const query = gql`
-    query getAllPosts($first: Int) {
-      postsConnection(first: $first, orderBy: date_DESC) {
+export async function getTotalPosts({
+  after,
+  tag,
+  title,
+}: {
+  after?: string | null;
+  tag?: string[] | null;
+  title?: string | null;
+}) {
+  const GET_TOTAL_POSTS_WITH_TAGS = gql`
+    query getTotalPosts($after: String, $tags_contains_some: [Tags!]) {
+      postsConnection(
+        after: $after
+        orderBy: date_DESC
+        first: 10
+        where: { tags_contains_some: $tags_contains_some }
+      ) {
         edges {
           node {
             content
@@ -17,18 +30,71 @@ export async function getTotalPosts(first?: number) {
             title
           }
         }
-        aggregate {
-          count
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  `;
+  const GET_TOTAL_POSTS_WITHOUT_TAGS = gql`
+    query getTotalPosts($after: String) {
+      postsConnection(after: $after, orderBy: date_DESC, first: 10) {
+        edges {
+          node {
+            content
+            date
+            description
+            hot
+            id
+            tags
+            title
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+      }
+    }
+  `;
+  const GET_TOTAL_POST_WITH_TITLE = gql`
+    query searchPostByTitle($title_contains: String) {
+      postsConnection(
+        where: { title_contains: $title_contains }
+        orderBy: date_DESC
+        first: 10
+      ) {
+        edges {
+          node {
+            content
+            date
+            description
+            hot
+            id
+            tags
+            title
+          }
+        }
+        pageInfo {
+          endCursor
+          hasNextPage
         }
       }
     }
   `;
 
+  const query =
+    tag !== null
+      ? GET_TOTAL_POSTS_WITH_TAGS
+      : title
+        ? GET_TOTAL_POST_WITH_TITLE
+        : GET_TOTAL_POSTS_WITHOUT_TAGS;
+
   const results: any = await graphcms.request(query, {
-    first,
-    headers: {
-      "hyg-stale-while-revalidate": "27",
-    },
+    after,
+    tags_contains_some: tag,
+    title_contains: title,
   });
   return results.postsConnection;
 }
