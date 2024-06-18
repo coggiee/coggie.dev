@@ -1,25 +1,15 @@
+import "@/app/globals.css";
 import type { Metadata } from "next";
-import "@/app/_styles/globals.css";
-import {
-  blackHanSans,
-  inter,
-  lato,
-  notosanskr,
-  marhey,
-  pacifico,
-  indieFlower,
-  permanentMarker,
-  dhurjati,
-  teko,
-} from "../assets/fonts";
-import { Providers } from "./_provider/providers";
-import AuthProvider from "./_provider/AuthProvider";
-import FramerProvider from "./_provider/FramerProvider";
-import UIProvider from "./_provider/UIProvider";
-import { Suspense } from "react";
-import Loading from "./loading";
+import { notosanskr, aritaburi } from "../lib/fonts";
+import { Analytics } from "@vercel/analytics/react";
+import Nav from "../components/global/Nav";
+import Footer from "../components/global/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "@/components/ui/toaster";
+import Provider from "./provider";
+import React from "react";
 
-export const dynamic = "dynamic";
+const LOGO_IMAGE = "https://i.ibb.co/M2nK5kv/logo.png";
 
 export const metadata: Metadata = {
   metadataBase:
@@ -28,24 +18,26 @@ export const metadata: Metadata = {
       : new URL("http://localhost:3000"),
   title: {
     template: "%s | Coggie",
-    default: "coggie.dev",
+    default: "COGGIE",
   },
-  description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+  description: "FE 개발 블로그",
   icons: {
-    icon: "/mimoji.png",
-    apple: "/mimoji.png",
+    icon: LOGO_IMAGE,
+    apple: LOGO_IMAGE,
   },
+  authors: [{ name: "Coggie" }],
   other: {
     "naver-site-verification": "db583c8efc6a2ebd36e6b839daf24a146b414c49",
+    "google-site-verification": "0tnS6KVtqCXOMDRbpwRTkUZBQ5e0QJfw0SkCu8XHXA4",
   },
   openGraph: {
-    title: "coggie.dev",
-    description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+    title: "COGGIE",
+    description: "FE 개발 블로그",
     url: "https://coggie.dev",
-    siteName: "coggie.dev",
+    siteName: "COGGIE.DEV",
     images: [
       {
-        url: "https://i.ibb.co/XX8jkbW/mimoji.png",
+        url: LOGO_IMAGE,
         width: 800,
         height: 600,
       },
@@ -55,36 +47,35 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "coggie.dev",
-    description: "프론트엔드 개발 블로그 coggie.dev입니다.",
+    title: "COGGIE.DEV",
+    description: "FE 개발 블로그",
     creator: "@coggie",
-    images: ["https://i.ibb.co/XX8jkbW/mimoji.png"],
+    images: [LOGO_IMAGE],
   },
 };
 
 export default function RootLayout({
   children,
-  post,
 }: {
   children: React.ReactNode;
-  post: React.ReactNode;
 }) {
   return (
     <html lang="ko" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${blackHanSans.variable} ${notosanskr.variable} ${lato.variable} ${marhey.variable} ${pacifico.variable} ${indieFlower.variable} ${permanentMarker.variable}  ${dhurjati.variable} ${teko.variable} dark:bg-[#212121] transition-all ease-in-out overflow-y-scroll scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[dodgerblue]/60`}
+        className={`${notosanskr.variable} ${aritaburi.variable} overflow-y-scroll scrollbar-thin dark:bg-dark`}
       >
-        <AuthProvider>
-          <Providers>
-            <FramerProvider>
-              <UIProvider>
-                <main className="w-full h-screen min-h-screen dark:bg-item-dark">
-                  <Suspense fallback={<Loading />}>{children}</Suspense>
-                </main>
-              </UIProvider>
-            </FramerProvider>
-          </Providers>
-        </AuthProvider>
+        <Provider>
+          <main className="flex flex-col gap-5 justify-center items-center min-h-screen">
+            <Nav />
+            <main className="h-full w-full flex justify-center items-center sm:items-start min-h-screen flex-grow px-5 gap-7">
+              {children}
+            </main>
+            <Footer />
+          </main>
+          <Analytics />
+          <SpeedInsights />
+          <Toaster />
+        </Provider>
       </body>
     </html>
   );

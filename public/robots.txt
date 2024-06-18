@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://zentechie.vercel.app
-
-# Sitemaps
-Sitemap: https://zentechie.vercel.app/sitemap.xml

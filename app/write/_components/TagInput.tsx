@@ -1,33 +1,24 @@
-import { Input } from "@nextui-org/react";
+import { Input } from "@/components/ui/input";
 import React from "react";
 
-type Props = {
+interface TagInputProps {
   tags: string;
   handleOnTypeTags: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleKeyPress: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-};
+}
 
 export default function TagInput({
   tags,
   handleOnTypeTags,
   handleKeyPress,
-}: Props) {
+}: TagInputProps) {
   return (
-    <div className="mb-4">
-      <Input
-        id="tags"
-        name="tags"
-        type="text"
-        placeholder="태그를 추가하세요."
-        size="lg"
-        variant="underlined"
-        label="태그"
-        className="font-bold"
-        isRequired
-        value={tags}
-        onChange={handleOnTypeTags}
-        onKeyDown={handleKeyPress}
-      />
-    </div>
+    <Input
+      placeholder="태그를 입력하세요"
+      value={tags}
+      onChange={handleOnTypeTags}
+      onKeyDown={handleKeyPress}
+      className="border-none outline-none focus-visible:ring-offset-0 focus-visible:ring-0 p-0 text-lg mb-5 dark:bg-inherit"
+    />
   );
 }

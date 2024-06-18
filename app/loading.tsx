@@ -1,9 +1,9 @@
-import { Spinner } from "@nextui-org/react";
+import { LoaderCircle } from "lucide-react";
 
 export default function Loading() {
   return (
-    <div className="w-full h-full fixed z-[50] flex flex-col justify-center backdrop-blur-sm">
-      <Spinner color="success" size="lg" />
+    <div className="w-full h-full fixed z-[50] flex flex-col justify-center items-center">
+      <LoaderCircle className="animate-spin w-7 h-7" />
     </div>
   );
 }

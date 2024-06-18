@@ -1,30 +1,15 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from "next";
+import { getTotalPosts } from "../lib/hygraph";
+
+const BASE_URL = "https://coggie.dev";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://zentechie.vercel.app',
+      url: "https://coggie.dev",
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: "weekly",
       priority: 1,
     },
-    {
-      url: 'https://zentechie.vercel.app/blog',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: 'https://zentechie.vercel.app/posts',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: 'https://zentechie.vercel.app/book',
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
-    },
-  ]
+  ];
 }

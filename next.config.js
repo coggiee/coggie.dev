@@ -1,3 +1,7 @@
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -5,8 +9,12 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['media.graphassets.com'],
+    domains: [
+      "media.graphassets.com",
+      "i.ibb.co",
+      "avatars.githubusercontent.com",
+    ],
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

@@ -1,24 +1,23 @@
+import { Textarea } from "@/components/ui/textarea";
 import { EditTitleProps } from "@/types/type";
-import { Textarea } from "@nextui-org/react";
 import React from "react";
 
-export default function TitleInput({ title, handleOnTypeTitle }: EditTitleProps) {
-  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    handleOnTypeTitle(event.target.value);
-  };
-
-  return (
-    <div className="h-auto mb-3 flex-grow">
+const TitleInput = React.forwardRef(
+  ({ title, handleOnTypeTitle, titleRef }: EditTitleProps, ref) => {
+    return (
       <Textarea
-        isRequired
-        variant="underlined"
-        label="제목"
-        labelPlacement="outside"
-        placeholder="제목을 입력하세요."
-        className="font-bold"
+        ref={titleRef}
+        placeholder="제목을 입력하세요"
+        id="title"
+        className="font-bold text-5xl overflow-hidden block resize-none min-h-[60px]"
         value={title}
-        onChange={(e) => handleTitleChange(e)}
+        onChange={handleOnTypeTitle}
+        rows={1}
       />
-    </div>
-  );
-}
+    );
+  },
+);
+
+TitleInput.displayName = "TitleInput";
+
+export default TitleInput;

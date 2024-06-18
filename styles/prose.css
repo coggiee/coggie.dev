@@ -1,0 +1,109 @@
+@tailwind base;
+
+@layer base {
+  .prose pre {
+    @apply overflow-x-auto border;
+  }
+
+  .prose a {
+    @apply transition-all;
+  }
+
+  .prose pre > code {
+    @apply flex flex-col flex-wrap;
+  }
+
+  .prose pre > code.code-line {
+    @apply w-full;
+  }
+  .prose pre::-webkit-scrollbar {
+    @apply hidden;
+  }
+
+  .prose pre {
+    @apply scrollbar-none;
+  }
+
+  .prose pre span[data-line] {
+    @apply inline-block px-4 py-0.5 leading-snug;
+  }
+
+  /* Paragraph */
+  .prose p {
+    @apply my-3;
+  }
+
+  /* Blockquote */
+  .prose blockquote {
+    @apply bg-[#2323230a] dark:text-white dark:bg-[#323232] border rounded-lg my-2;
+  }
+
+  .prose blockquote p {
+    @apply before:hidden after:hidden not-italic;
+  }
+
+  .prose blockquote a {
+    @apply not-italic no-underline after:content-['_↗'] text-blue-600 after:text-sm after:font-black font-semibold hover:bg-blue-100 p-1 rounded-md hover:underline underline-offset-4;
+  }
+  /* Code */
+  .prose code {
+    @apply before:hidden after:hidden not-italic font-medium bg-[#f5f5f5c3] rounded-sm p-1 text-[tomato];
+  }
+
+  /* Headings */
+  .prose h1 {
+    @apply font-bold;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply mt-3 mb-3;
+  }
+
+  .prose h1 a,
+  .prose h2 a,
+  .prose h3 a,
+  .prose h4 a,
+  .prose h5 a,
+  .prose h6 a {
+    @apply relative after:content-["#"] after:font-bold after:opacity-0 after:absolute after:-right-5 hover:after:opacity-100 after:transition-opacity;
+  }
+
+  .prose h4 a {
+    @apply font-semibold text-lg no-underline text-inherit;
+  }
+
+  .prose h5 a {
+    @apply text-lg font-semibold no-underline text-inherit;
+  }
+
+  .prose h1 a,
+  .prose h2 a,
+  .prose h3 a {
+    @apply font-semibold no-underline text-inherit;
+  }
+
+  /* List */
+  .prose ol,
+  .prose ul {
+    @apply m-0;
+  }
+  .prose ol[data-slot="list"] {
+    @apply mt-0 mb-0 py-1 px-3;
+  }
+
+  /* Article */
+  .prose article ul a,
+  .prose article ol a {
+    @apply text-[#629ee3];
+  }
+
+  /* Image */
+  .prose img {
+    @apply my-0 rounded-lg shadow-lg;
+  }
+}

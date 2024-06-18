@@ -1,13 +1,3 @@
-import NextAuth from 'next-auth';
-import GitHubProvider from 'next-auth/providers/github';
-
-const handler = NextAuth({
-  providers: [
-    GitHubProvider({
-      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID!,
-      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET!,
-    }),
-  ],
-});
-
-export { handler as GET, handler as POST };
+import { handlers } from "@/auth";
+export const { GET, POST } = handlers;
+export const runtime = "edge" // optional

@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { ChangeEvent } from "react";
 
 interface Toc {
   level: 1 | 2 | 3;
@@ -18,8 +19,6 @@ interface Skill {
 interface PostDetailProps {
   post: any;
   mdx: MDXRemoteSerializeResult;
-  toc: any;
-  isFullSize?: boolean;
 }
 
 interface PostCardProps {
@@ -70,10 +69,8 @@ interface TagFilterProps {
 }
 
 interface ReCheckModalkProps {
-  isOpen: boolean;
-  onOpenChange: () => void;
-  handleOnTypeDesc: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleOnToggleHotPost: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOnTypeDesc: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  handleOnToggleHotPost: () => void;
   handleOnClickSaveBtn: () => void;
   handleOnFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   description: string;
@@ -83,12 +80,8 @@ interface ReCheckModalkProps {
 
 interface EditTitleProps {
   title: string;
-  handleOnTypeTitle: (value: string) => void;
-}
-
-interface EditorProps {
-  content: string;
-  editorRef: React.MutableRefObject<any>;
+  handleOnTypeTitle: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  titleRef?: React.MutableRefObject<any>;
 }
 
 interface AlertProps {
@@ -128,15 +121,6 @@ interface GithubLoginProps {
 interface SearchBarProps {
   handleOnSearch: (e: ChangeEvent) => void;
   handleOnPressEnter: (e: any) => void;
-}
-
-interface SocialGroupProps {
-  fontSize: string;
-  display: string;
-  justify?: string;
-  align?: string;
-  direction?: string;
-  gap?: number;
 }
 
 interface ProjectItemProps {
