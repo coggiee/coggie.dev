@@ -35,5 +35,6 @@ export const aritaburi = localFont({
       style: "normal",
     },
   ],
+  display: "block",
   variable: "--font-aritaburi",
 });
