@@ -10,7 +10,7 @@ import SocialGroup from "../global/SocialGroup";
 
 export default async function HeroCard() {
   return (
-    <Card className="w-full flex-grow-0 flex-shrink-0 rounded-lg font-aritaburi">
+    <Card className="w-full flex-grow-0 flex-shrink-0 rounded-lg font-aritaburi relative">
       <CardContent className="flex flex-col gap-5 pt-6 ">
         <Image
           width={400}

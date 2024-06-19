@@ -70,7 +70,7 @@ export default function RootLayout({
             <main className="h-full w-full flex justify-center items-center sm:items-start min-h-screen flex-grow px-5 gap-7">
               {children}
             </main>
-            <Footer />
+            {/* <Footer /> */}
           </main>
           <Analytics />
           <SpeedInsights />
