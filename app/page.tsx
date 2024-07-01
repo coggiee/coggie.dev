@@ -9,6 +9,7 @@ import InfoSiderbar from "../components/sidebar/InfoSiderbar";
 import RightSidebar from "../components/sidebar/RightSidebar";
 import PostDashboard from "@/components/post/PostDashboard";
 import { QueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -42,11 +43,13 @@ export default async function BlogPage() {
   await prefetchQueries();
 
   return (
-    <main className="w-full min-w-0 flex flex-col gap-10 xl:flex lg:flex-row md:items-baseline max-w-screen-2xl ">
-      <aside className="w-full lg:basis-1/3 basis-1/4 lg:max-w-xs lg:min-w-min flex flex-col flex-grow-0 flex-shrink-0 gap-5">
-        <InfoSiderbar />
-        <RightSidebar />
-      </aside>
+    <main className="w-full min-w-0 flex flex-col gap-10 max-w-screen-2xl relative">
+      <header className="sticky top-0 bg-[#ff9634] p-3 text-sm flex gap-3 items-center rounded-lg">
+        <span className="font-black">⚠️ 블로그 임시 이전</span>
+        <Link href="https://medium.com/@coggiee" className="underline">
+          Go to
+        </Link>
+      </header>
       <PostDashboard />
     </main>
   );
